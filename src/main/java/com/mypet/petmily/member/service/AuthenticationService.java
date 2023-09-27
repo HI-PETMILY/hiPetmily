@@ -7,21 +7,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Slf4j
-@Service
+//@Slf4j
+//@Service
 public class AuthenticationService implements UserDetailsService {
 
-    private final MemberMapper memberMapper;
-
-    public AuthenticationService(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
-    }
-
+//    private final MemberMapper memberMapper;
+//
+//    public AuthenticationService(MemberMapper memberMapper) {
+//        this.memberMapper = memberMapper;
+//    }
+//
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return null;
         /* 서현이 자리 */
     }
-
-
+//
+//
 }

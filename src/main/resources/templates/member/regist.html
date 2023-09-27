@@ -1,199 +1,176 @@
 <!DOCTYPE html>
-<html lang="ko-KR">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 타이틀 -->
-    <title>펫밀리 - 회원가입</title>
-    <!-- css / stylesheet 연결 -->
-    <link href="../css/regist.css" rel="stylesheet" type="text/css">
-    <!-- <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
-            rel="stylesheet">
+    <title>회원가입</title>
 
+    <link rel="stylesheet" type="text/css" href="/css/member/regist.css"/>
+    <script defer type="text/javascript" src ="/js/member/regist.js"></script>
 </head>
 
 <body>
+
 <div class="con_container">
     <div class="style_container">
             <span>
-                <h2>회원가입</h3>
+                <h2>회원가입</h2>
             </span>
         <div>
-            <td>
+            <div class="notice1">
                 * 은 필수 입력 사항입니다.
-            </td>
-            <tr>
-                <td>
-                    <div class="container_email">
-                            <span class="span_input_email">
-                                <input type="text" name="memberInput" id="memberEmail" placeholder="* 이메일"
-                                       onfocus="this.placeholder=''" onblur="this.placeholder='* 이메일'"
-                                       oninput="handleOnInput(this)" required>
-                            </span>
-                        <span>@</span>
-                        <span>
-                                <input type="text"  name= "memberInput" id="memberEmail2" placeholder=" email.com"
-                                       onblur="this.placeholder=' email.com'">
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="container_name">
-                            <span class="span_input_name">
-                                <input type="text" maxlength="6" name="memberInput" id="memberName" placeholder="* 이름"
-                                       onfocus="this.placeholder=''" onblur="this.placeholder='* 이름'" required>
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="container_nickName">
-                            <span class="span_input_nickName">
-                                <input type="text" maxlength="10" name="memberNickName" id="memberNickName"
-                                       placeholder="* 닉네임" onfocus="this.placeholder=''" onblur="this.placeholder='* 닉네임'"
-                                       oninput="replaceNotFullKorean" required>
-                                <input type="button" value="중복확인" id="duplicationCheck">
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="Container_Password">
-                            <span class="Span_Input_Password">
-                                <input type="password" maxlength="13" name="memberInput" id="memberPassword"
-                                       placeholder="* 비밀번호" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder='* 비밀번호'" oninput="handleOnInput2(this)" required>
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="Container_Password2">
-                            <span class="Span_Input_Password2">
-                                <input type="password" maxlength="15" name="memberInput" id="memberPassword2"
-                                       placeholder="* 비밀번호 확인" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder='* 비밀번호 확인'" oninput="handleOnInput2(this)" required>
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="Container_Phone">
-                            <span class="Span_Input_Phone">
-                                <input type="text" maxlength="15" name="memberPhone" id="memberPhone"
-                                       placeholder="* 휴대전화" onfocus="this.placeholder=''"
-                                       onblur="this.placeholder='* 휴대전화'" oninput="handleOnInput3(this)" required>
-                                <input type="button" value="인증번호 발송" id="authenticationNumber">
-                            </span>
-                    </div>
-                </td>
-            </tr>
-            </table>
-            <tr>
-                    <span>
-                    <td id="gender0">성별</td>
-                    <td class="gender-container">
-                        <label>
-                            <input type="radio" name="gender" checked="checked" />
-                            <span calss="span_gender">여성</span>
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" />
-                            <span class="span_gender">남성</span>
-                        </label>
-                    </td>
-                    </span>
-            </tr>
+            </div>
+            <div>
+                <div class="container_email">
+                        <span class="span_input_email">
+                            <input type="text" name="memberInput" id="memberEmail" placeholder=" * 이메일"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 이메일'"
+                                   oninput="handleOnInput(this)" required>
+                        </span>
+                    <span class="atsign">@</span>
+                          <span>
+                                <input class="box" id="domain-txt" type="text"/>
+                                <select class="box" id="domain-list">
+                                    <option value="">직접입력</option>
+                                    <option value="naver.com">naver.com</option>
+                                    <option value="hanmail.net">hanmail.net</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="gmail.com">gmail.com</option>
+                                    <option value="nate.com">nate.com</option>
+                                    <option value="hotmail.com">hotmail.com</option>
+                          </span>
+                </div>
+            </div>
+            <div>
+                <div class="container_name">
+                        <span class="span_input_name">
+                            <input type="text" maxlength="6" name="memberInput" id="memberName" placeholder=" * 이름"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 이름'" required>
+                        </span>
+                </div>
+            </div>
+            <div>
+                <div class="container_nickName">
+                        <span class="span_input_nickName">
+                            <input type="text" maxlength="10" name="memberNickName" id="memberNickName"
+                                   placeholder=" * 닉네임" onfocus="this.placeholder=''" onblur="this.placeholder=' * 닉네임'"
+                                   oninput="replaceNotFullKorean" required>
+                            <input type="button" value="중복확인" id="duplicationCheck">
+                        </span>
+                </div>
+            </div>
+            <div>
+                <div class="Container_Password">
+                        <span class="Span_Input_Password">
+                            <input type="password" maxlength="13" name="memberInput" id="memberPassword"
+                                   placeholder=" * 비밀번호" onfocus="this.placeholder=''"
+                                   onblur="this.placeholder=' * 비밀번호'"
+                                   oninput="handleOnInput2(this)" required>
+                        </span>
+                </div>
+            </div>
+            <div>
+                <div class="Container_Password2">
+                        <span class="Span_Input_Password2">
+                            <input type="password" maxlength="15" name="memberInput" id="memberPassword2"
+                                   placeholder=" * 비밀번호 확인" onfocus="this.placeholder=''"
+                                   onblur="this.placeholder=' * 비밀번호 확인'" oninput="handleOnInput2(this)" required>
+                        </span>
+                </div>
+            </div>
+            <div>
+                <div class="Container_Phone">
+                        <span class="Span_Input_Phone">
+                            <input type="text" maxlength="15" name="memberPhone" id="memberPhone" placeholder=" * 휴대전화"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 휴대전화'"
+                                   oninput="handleOnInput3(this)" required>
+                            <input type="button" value="인증번호 발송" id="authenticationNumber">
+                        </span>
+                </div>
+            </div>
+            <div class="gender-row">
+                <div class="gender-label">성별</div>
+                <div class="gender-container">
+                    <label class="gender-fe">
+                        <input type="radio" name="gender" checked="checked"/>
+                        <span class="female">여성</span>
+                    </label>
+                    <label class="gender-me">
+                        <input type="radio" name="gender"/>
+                        <span class="male">남성</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <div id="centerLine">
+                    <input type="text" name="zipCode" id="zipCode" placeholder=" 우편번호 (선택)" readonly>
+                    <input type="button" value="우편번호 검색" id="searchZipCode">
+                </div>
+            </div>
+            <div>
+                <input type="text" name="address1" id="address1" placeholder=" 기본주소" readonly>
 
-            <tr>
-                <td id="centerLine">
-                    <input type="text" name="zipCode" id="zipCode" placeholder="우편번호 (선택)" readonly>
-                    <input type="button" value="검색" id="searchZipCode">
-                </td>
-            </tr>
-            <tr>
-                <td><input type="text" name="address1" id="address1" placeholder="기본주소" readonly></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="address2" id="address2" placeholder="상세주소 입력"></td>
-                <td></td>
-            </tr>
+            </div>
+            <div>
+                <input type="text" name="address2" id="address2" placeholder=" 상세주소 입력">
 
+            </div>
+            <div class="checkbox_group">
+                <div>
+                    <input type="checkbox" id="check_all">
+                    <label for="check_all">전체동의</label>
+                </div>
+                <div>
+                    <input type="checkbox" class="normal required" id="check_1">
+                    <label for="check_1">만 14세 이상입니다. [필수] </label>
+                </div>
+                <div>
+                    <input type="checkbox" class="normal required" id="check_2">
+                    <label for="check_2">펫밀리 이용 약관 동의 [필수]</label>
+                    <span>내용보기</span>
+                </div>
+                <div>
+                    <input type="checkbox" class="normal required" id="check_3">
+                    <label for="check_3">개인정보 수집 및 이용 동의 [필수]</label>
+                    <span>내용보기</span>
+                </div>
+                <div>
+                    <input type="checkbox" class="normal" id="check_4">
+                    <label for="check_4">개인정보 제 3자 제공 동의 [선택]</label>
+                    <span>내용보기</span>
+                </div>
+                <div>
+                    <input type="checkbox" class="normal" id="check_5">
+                    <label for="check_5">마케팅 정보 수신 동의 [선택]</label>
+                </div>
 
-            <tr><br>
-                <!-- id값 다 넣고 name 수정해서 전체동의 만들기 -->
-                <td>
-                    <input type="checkbox" name=allCheckbox id="selectAll" onclick='selectAll(this)' />
-                    전체동의
-                </td>
-            </tr>
-            <tr><br>
-                <td>
-                    <input type="checkbox" name=allCheckbox id="terms14">
-                    만 14세 이상입니다. [필수]
-                </td>
-            </tr>
-            <tr><br>
-                <td>
-                    <input type="checkbox" name=allCheckbox id="petTerms">
-                    펫밀리 이용 약관 동의 [필수]
-                </td>
-                <td>
-                    내용보기
-                </td>
-            </tr><br>
-            <tr>
-                <td>
-                    <input type="checkbox" name=allCheckbox id="personalInformation">
-                    개인정보 수집 및 이용 동의 [필수]
-                </td>
-                <td>
-                    내용보기
-                </td>
-            </tr>
-            <tr><br>
-                <td>
-                    <input type="checkbox" name=allCheckbox id="peInThird">
-                    개인정보 제 3자 제공 동의 [선택]
-                </td>
-                <td>
-                    내용보기
-                </td>
-            </tr>
-            <tr><br>
-                <td>
-                    <input type="checkbox" name=allCheckbox id="marketingInformation">
-                    마케팅 정보 수신 동의 [선택]
-                </td>
-            </tr>
-            <tr><br>
-                <td name="marketingCell">
+                <div class="marketingCell">
                     마케팅 수신 동의하고 펫밀리의 이벤트와 혜택 소식을 받아보세요.
-                </td>
-            </tr>
+                </div>
+            </div>
         </div>
         <br>
-        <div>
-            <input type="submit" id="regist-button" value="가입하기" disabled>
+        <div class="regist_button">
+            <input type="submit" name="regist" value="가입하기" disabled>
         </div>
     </div>
 </div>
 
-<script src="../html/petmily.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+
+    const $searchZipCode = document.getElementById("searchZipCode");
+
+    $searchZipCode.onclick = function() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                document.getElementById("zipCode").value = data.zonecode;
+                document.getElementById("address1").value = data.address;
+                document.getElementById("address2").focus(); // 사용자가 그냥 쓸 수 있게 커서 넣는 focus
+            }
+        }).open();
+    }
+</script>
 
 </body>
-
 </html>
