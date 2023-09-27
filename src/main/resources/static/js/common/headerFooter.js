@@ -2,6 +2,9 @@
 
 window.onload = function () {
 
+    const header = document.getElementById("header");
+    const classList = header.classList;
+
     // 로고 버튼
     if(document.getElementById("headerLogImg")) {
 
@@ -38,18 +41,23 @@ window.onload = function () {
 
         $headerBtn1.addEventListener("mouseover", (event) => {
 
+            $headerBtn1.style.color = "#81BDF1";
             $headerBtn1.style.transform = "scale(1.07)";
             $headerBtn1.style.zIndex = "1";
             $headerBtn1.style.transition = "all 0.1s";
-            $headerBtn1.style.color = "#81BDF1";
         });
 
         $headerBtn1.addEventListener("mouseleave", (event) => {
 
+            if( classList.contains("white") ) {
+                $headerBtn1.style.color = "#364f6b";
+            } else {
+                $headerBtn1.style.color = "white";
+            }
+
             $headerBtn1.style.transform = "scale(1)";
             $headerBtn1.style.zIndex = "0";
             $headerBtn1.style.transition = "all 0.1s";
-            $headerBtn1.style.color = "white";
         });
 
     }
@@ -66,18 +74,23 @@ window.onload = function () {
 
         $headerBtn2.addEventListener("mouseover", (event) => {
 
+            $headerBtn2.style.color = "#81BDF1";
             $headerBtn2.style.transform = "scale(1.07)";
             $headerBtn2.style.zIndex = "1";
             $headerBtn2.style.transition = "all 0.1s";
-            $headerBtn2.style.color = "#81BDF1";
         });
 
         $headerBtn2.addEventListener("mouseleave", (event) => {
 
+            if( classList.contains("white") ) {
+                $headerBtn2.style.color = "#364f6b";
+            } else {
+                $headerBtn2.style.color = "white";
+            }
+
             $headerBtn2.style.transform = "scale(1)";
             $headerBtn2.style.zIndex = "0";
             $headerBtn2.style.transition = "all 0.1s";
-            $headerBtn2.style.color = "white";
         });
 
     }
@@ -94,18 +107,23 @@ window.onload = function () {
 
         $headerBtn3.addEventListener("mouseover", (event) => {
 
+            $headerBtn3.style.color = "#81BDF1";
             $headerBtn3.style.transform = "scale(1.07)";
             $headerBtn3.style.zIndex = "1";
             $headerBtn3.style.transition = "all 0.1s";
-            $headerBtn3.style.color = "#81BDF1";
         });
 
         $headerBtn3.addEventListener("mouseleave", (event) => {
 
+            if( classList.contains("white") ) {
+                $headerBtn3.style.color = "#364f6b";
+            } else {
+                $headerBtn3.style.color = "white";
+            }
+
             $headerBtn3.style.transform = "scale(1)";
             $headerBtn3.style.zIndex = "0";
             $headerBtn3.style.transition = "all 0.1s";
-            $headerBtn3.style.color = "white";
         });
 
     }
@@ -122,18 +140,23 @@ window.onload = function () {
 
         $headerBtn4.addEventListener("mouseover", (event) => {
 
+            $headerBtn4.style.color = "#81BDF1";
             $headerBtn4.style.transform = "scale(1.07)";
             $headerBtn4.style.zIndex = "1";
             $headerBtn4.style.transition = "all 0.1s";
-            $headerBtn4.style.color = "#81BDF1";
         });
 
         $headerBtn4.addEventListener("mouseleave", (event) => {
 
+            if( classList.contains("white") ) {
+                $headerBtn4.style.color = "#364f6b";
+            } else {
+                $headerBtn4.style.color = "white";
+            }
+
             $headerBtn4.style.transform = "scale(1)";
             $headerBtn4.style.zIndex = "0";
             $headerBtn4.style.transition = "all 0.1s";
-            $headerBtn4.style.color = "white";
         });
 
     }
@@ -152,24 +175,33 @@ window.onload = function () {
 
         $headerJoin.addEventListener("mouseover", (event) => {
 
-            $headerJoinImg.setAttribute("src","/static_Image/common/add-user_bu.png");
+            $headerJoinImg.setAttribute("src","/static_Image/common/add_user_bu.png");
+            $headerJoinTitle.style.color = "#81BDF1";
+
             $headerJoinImg.style.width = "25px";
             $headerJoinImg.style.height = "25px";
             $headerJoin.style.transform = "scale(1.07)";
             $headerJoin.style.zIndex = "1";
             $headerJoin.style.transition = "all 0.1s";
-            $headerJoinTitle.style.color = "#81BDF1";
+
         });
 
         $headerJoin.addEventListener("mouseleave", (event) => {
 
-            $headerJoinImg.setAttribute("src","/static_Image/common/add-user_wh.png");
+            if( classList.contains("white") ) {
+                $headerJoinImg.setAttribute("src","/static_Image/common/add_user_bk.png");
+                $headerJoinTitle.style.color = "#364f6b";
+            } else {
+                $headerJoinImg.setAttribute("src","/static_Image/common/add_user_wh.png");
+                $headerJoinTitle.style.color = "white";
+            }
+
             $headerJoinImg.style.width = "25px";
             $headerJoinImg.style.height = "25px";
             $headerJoin.style.transform = "scale(1)";
             $headerJoin.style.zIndex = "0";
             $headerJoin.style.transition = "all 0.1s";
-            $headerJoinTitle.style.color = "white";
+
         });
 
     }
@@ -189,23 +221,109 @@ window.onload = function () {
         $headerLogin.addEventListener("mouseover", (event) => {
 
             $headerLoginImg.setAttribute("src","/static_Image/common/login_bu.png");
+            $headerLoginTitle.style.color = "#81BDF1";
+
             $headerLoginImg.style.width = "25px";
             $headerLoginImg.style.height = "25px";
             $headerLogin.style.transform = "scale(1.07)";
             $headerLogin.style.zIndex = "1";
             $headerLogin.style.transition = "all 0.1s";
-            $headerLoginTitle.style.color = "#81BDF1";
+
         });
 
         $headerLogin.addEventListener("mouseleave", (event) => {
 
-            $headerLoginImg.setAttribute("src","/static_Image/common/login_wh.png");
+            if( classList.contains("white") ) {
+                $headerLoginImg.setAttribute("src","/static_Image/common/login_bk.png");
+                $headerLoginTitle.style.color = "#364f6b";
+            } else {
+                $headerLoginImg.setAttribute("src","/static_Image/common/login_wh.png");
+                $headerLoginTitle.style.color = "white";
+            }
+
             $headerLoginImg.style.width = "25px";
             $headerLoginImg.style.height = "25px";
             $headerLogin.style.transform = "scale(1)";
             $headerLogin.style.zIndex = "0";
             $headerLogin.style.transition = "all 0.1s";
-            $headerLoginTitle.style.color = "white";
+        });
+
+    }
+
+    // 마이페이지 버튼
+    if(document.getElementById("headerMypage")) {
+
+        const $headerMypage = document.getElementById("headerMypage");
+        const $headerMypageImg = document.getElementById("headerMypageImg");
+        const $headerMypageTitle = document.getElementById("headerMypageTitle");
+
+        $headerMypage.addEventListener("click", (event) => {
+
+            location.href = "/";    // 추후 연결
+        });
+
+        $headerMypage.addEventListener("mouseover", (event) => {
+
+            $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bu.png");
+            $headerMypageTitle.style.color = "#81BDF1";
+
+            $headerMypageImg.style.width = "25px";
+            $headerMypageImg.style.height = "25px";
+            $headerMypage.style.transform = "scale(1.07)";
+            $headerMypage.style.zIndex = "1";
+            $headerMypage.style.transition = "all 0.1s";
+
+        });
+
+        $headerMypage.addEventListener("mouseleave", (event) => {
+
+            $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bk.png");
+            $headerMypageTitle.style.color = "#364f6b";
+
+            $headerMypageImg.style.width = "25px";
+            $headerMypageImg.style.height = "25px";
+            $headerMypage.style.transform = "scale(1)";
+            $headerMypage.style.zIndex = "0";
+            $headerMypage.style.transition = "all 0.1s";
+        });
+
+    }
+
+    // 로그아웃 버튼
+    if(document.getElementById("headerLogout")) {
+
+        const $headerLogout = document.getElementById("headerLogout");
+        const $headerLogoutImg = document.getElementById("headerLogoutImg");
+        const $headerLogoutTitle = document.getElementById("headerLogoutTitle");
+
+        $headerLogout.addEventListener("click", (event) => {
+
+            location.href = "/";    // 추후 연결
+        });
+
+        $headerLogout.addEventListener("mouseover", (event) => {
+
+            $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bu.png");
+            $headerLogoutTitle.style.color = "#81BDF1";
+
+            $headerLogoutImg.style.width = "25px";
+            $headerLogoutImg.style.height = "25px";
+            $headerLogout.style.transform = "scale(1.07)";
+            $headerLogout.style.zIndex = "1";
+            $headerLogout.style.transition = "all 0.1s";
+
+        });
+
+        $headerLogout.addEventListener("mouseleave", (event) => {
+
+            $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bk.png");
+            $headerLogoutTitle.style.color = "#364f6b";
+
+            $headerLogoutImg.style.width = "25px";
+            $headerLogoutImg.style.height = "25px";
+            $headerLogout.style.transform = "scale(1)";
+            $headerLogout.style.zIndex = "0";
+            $headerLogout.style.transition = "all 0.1s";
         });
 
     }
@@ -235,13 +353,19 @@ window.onload = function () {
 
         $headerAdmin.addEventListener("mouseleave", (event) => {
 
-            $headerAdminImg.setAttribute("src","/static_Image/common/admin_wh.png");
+            if( classList.contains("white") ) {
+                $headerAdminImg.setAttribute("src","/static_Image/common/admin_bk.png");
+                $headerAdminTitle.style.color = "#364f6b";
+            } else {
+                $headerAdminImg.setAttribute("src","/static_Image/common/admin_wh.png");
+                $headerAdminTitle.style.color = "white";
+            }
+
             $headerAdminImg.style.width = "25px";
             $headerAdminImg.style.height = "25px";
             $headerAdmin.style.transform = "scale(1)";
             $headerAdmin.style.zIndex = "0";
             $headerAdmin.style.transition = "all 0.1s";
-            $headerAdminTitle.style.color = "white";
         });
 
     }

@@ -7,11 +7,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #2E313B;
     font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
     /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
-    color: white;
     min-width: 1440px;
+    font-weight: bold;
 
     position: fixed;
     top: 0;
@@ -20,7 +19,17 @@
     z-index: 10;
 }
 
-.header-left {
+.black {
+    background-color: #2E313B;
+    color: white;
+}
+
+.white {
+    background-color: white;
+    color: #364f6b;
+}
+
+.header_left {
     display: flex;
     flex-direction: row;
     width: 410px;
@@ -28,35 +37,32 @@
     margin-right: 12%;
 }
 
-.header-left-img img {
+.header_left_img img {
     width: 166px;
     height: 90px;
     cursor: pointer;
 }
 
-.header-left-title {
+.header_left_title {
     margin-left: 10px;
     text-align: center;
     padding-top: 12px;
     cursor: pointer;
-}
-
-.header-left-title {
     font-size: 50px;
     font-family: 'Roboto', sans-serif;
 }
 
-.header-middle {
+.header_middle {
     width: 500px;
     height: 100%;
     margin-right: 100px;
 }
 
-.header-middle-nav {
+.header_middle_nav {
     padding-top: 30px;
 }
 
-.header-middle-nav ul {
+.header_middle_nav ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -64,36 +70,51 @@
     font-size: 20px;
 }
 
-.header-middle-nav ul li {
+.header_middle_nav ul li {
     cursor: pointer;
 }
 
-.header-right {
+.header_right {
     padding-top: 20px;
 }
 
-.header-right ul {
+.header_right ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     list-style-type: none;
 }
 
-.header-right ul li {
-    width: 60px;
+.header_right ul li {
+    width: 75px;
     height: 50px;
-    margin-right: 10px;
+    margin-right: 5px;
     cursor: pointer;
     text-align: center;
 }
 
-.header-right-img {
-    width: 60px;
+.header_right_img {
+    width: 75px;
     height: 25px;
     text-align: center;
 }
 
-/* 이미지 변경 작업하다가 말았음... 헤더 앱솔루트 고정 아직 미실행 */
+.header_right_img img{
+    width: 25px;
+    height: 25px;
+}
+
+.headerMypage {
+    /*display: none;*/
+}
+
+.headerLogout {
+    /*display: none;*/
+}
+
+.headerAdmin {
+    /*display: none;*/
+}
 
 
 
@@ -111,12 +132,12 @@
     min-width: 1440px;
 }
 
-.footer-left {
+.footer_left {
     height: 100%;
     margin-right: 12%;
 }
 
-.footer-right {
+.footer_right {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,30 +146,30 @@
 
 }
 
-.footer-right-top {
+.footer_right_top {
     width: 700px;
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.footer-right-top ul {
+.footer_right_top ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     list-style-type: none;
 }
 
-.footer-right-top li:hover{
+.footer_right_top li:hover{
     /*color: #FCDB6B;*/
     color: #81BDF1;
     cursor: pointer;
 }
 
-.footer-left img {
+.footer_left img {
     cursor: pointer;
 }
 
-.footer-right-bottom {
+.footer_right_bottom {
     font-size: 12px;
     line-height: 1.5;
 }
