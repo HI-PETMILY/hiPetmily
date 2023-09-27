@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+html {
+    font-size: 100%;
+}
+
+body {
+    color: #432;
+    line-height: 2.0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+}
+
+
+/*==================================================*/
+
+body {
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+header {
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+#header-l {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#header-r {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*==================================================*/
+.mainWrapper {
+    position: relative;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.inputForm{
+    margin-bottom: 16px;
+}
+
+.InputBox{
+    height: 48px;
+    min-height: 48px;
+    line-height: 28px;
+    font-size: 16px;
+    width: 100%;
+    border : 1px solid #dde2e6;
+    border-radius: 4px;
+    padding: 0 16px;
+
+}
+
+.submitButton{
+    padding: 10px 23px;
+    height: 55px;
+    width: 100%;
+    background-color: #81BDF1;
+    border: 1px solid #dde2e6;
+    border-radius: 4px;
+    margin: 10px;
+
+}
+
+.btns{
+    float: right;
+}
+
+.snsButtonLogin{
+    margin-top: 35px;
+}
+
+.signInMessage{
+    margin-top: 20px;
+}
+
+/*==================================================*/
+
+.nav-line{
+    width: 100%;
+    height: 1px;
+    background-color: #363636;
+    margin: 30px 0;
+}
+
+.findIdPwd {
+    margin: 10px;
+}
+
+.findPwdWay{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*==================================================*/
+
+.pet-profile-img{
+    width: 80%;
+    margin: auto;
+}
+
+.profile-regist{
+    display: flex;
+    justify-content: space-around;
+}
+
+textarea{
+    width: 100%;
+}

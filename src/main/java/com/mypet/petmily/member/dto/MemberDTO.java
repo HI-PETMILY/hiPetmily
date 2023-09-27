@@ -12,13 +12,13 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-
 public class MemberDTO implements UserDetails {
 
     private Long memberNo;          // 회원코드
     private String memberId;        // 사용자 ID
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름
+    private String Nickname;        // 닉네임
     private int phone;              // 연락처
     private int postNo;             // 우편번호
     private String address;         // 주소
