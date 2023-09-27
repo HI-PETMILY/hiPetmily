@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <div class="header">
-    
-        <h1 align="center">This is Header</h1>
-        
-        <div align="right">
-        
-                <div>
-                    <input type="button" value="로그인" id="login">
-                </div>
+<div class="header">
 
-                <div>
-                    <h3>님의 방문을 환영합니다.</h3>
-                    <div>
-                        <input type="button" value="정보수정" id="updateMember">
-                        <input type="button" value="로그아웃" id="logout">
-                    </div>
-                </div>
+    <div class="header-left">
+        <div class="header-left-img">
+            <img id="headerLogImg" src="/static_Image/common/log_white.png">
+        </div>
+        <div class="header-left-title">
+            <p id="headerTitle">PETMILY</p>
         </div>
     </div>
 
+    <div class="header-middle">
+        <div class="header-middle-nav">
+            <ul>
+                <li id="headerBtn1">공지사항</li>
+                <li id="headerBtn2">펫시터 찾기</li>
+                <li id="headerBtn3">펫시터 지원</li>
+                <li id="headerBtn4">고객센터</li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="header-right">
+        <ul>
+            <li id="headerJoin">
+                <div class="header-right-img">
+                    <img src="/static_Image/common/add-user_wh.png" id="headerJoinImg" alt="회원가입">
+                </div>
+                <div id="headerJoinTitle">회원가입</div>
+            </li>
+            <li id="headerLogin">
+                <div class="header-right-img">
+                    <img src="/static_Image/common/login_wh.png" id="headerLoginImg" alt="로그인">
+                </div>
+                <div id="headerLoginTitle">로그인</div>
+            </li>
+            <li id="headerAdmin">
+                <div class="header-right-img">
+                    <img src="/static_Image/common/admin_wh.png" id="headerAdminImg" alt="관리자">
+                </div>
+                <div id="headerAdminTitle">관리자</div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="/js/common/headerFooter.js"></script>
 
 </html>
 
