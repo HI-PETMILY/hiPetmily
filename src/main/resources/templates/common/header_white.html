@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div id="header" class="header white">
+
+    <div class="header_left">
+        <div class="header_left_img">
+            <img id="headerLogImg" src="/static_Image/common/logo_black.png">
+        </div>
+        <div class="header_left_title">
+            <p id="headerTitle">PETMILY</p>
+        </div>
+    </div>
+
+    <div class="header_middle">
+        <div class="header_middle_nav">
+            <ul>
+                <li id="headerBtn1">공지사항</li>
+                <li id="headerBtn2">펫시터 찾기</li>
+                <li id="headerBtn3">펫시터 지원</li>
+                <li id="headerBtn4">고객센터</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="header_right">
+        <ul>
+            <li id="headerJoin" class="headerJoin">
+                <div class="header_right_img">
+                    <img src="/static_Image/common/add_user_bk.png" id="headerJoinImg" alt="회원가입">
+                </div>
+                <div id="headerJoinTitle">회원가입</div>
+            </li>
+            <!-- 로그인 로그인시 사라지는 버튼 default : show -->
+            <li id="headerLogin" class="headerLogin">
+                <div class="header_right_img">
+                    <img src="/static_Image/common/login_bk.png" id="headerLoginImg" alt="로그인">
+                </div>
+                <div id="headerLoginTitle">로그인</div>
+            </li>
+            <!-- 마이페이지 로그인시 보여지는 버튼 default : hide -->
+            <li id="headerMypage" class="headerMypage">
+                <div class="header_right_img">
+                    <img src="/static_Image/common/mypage_bk.png" id="headerMypageImg" alt="마이페이지">
+                </div>
+                <div id="headerMypageTitle">마이페이지</div>
+            </li>
+            <!-- 로그아웃 로그인시 보여지는 버튼 default : hide -->
+            <li id="headerLogout" class="headerLogout">
+                <div class="header_right_img">
+                    <img src="/static_Image/common/logout_bk.png" id="headerLogoutImg" alt="로그아웃">
+                </div>
+                <div id="headerLogoutTitle">로그아웃</div>
+            </li>
+            <!-- 관리자 로그인해서 관리자만 보여지는 버튼 -->
+            <li id="headerAdmin" class="headerAdmin">
+                <div class="header_right_img">
+                    <img src="/static_Image/common/admin_bk.png" id="headerAdminImg" alt="관리자">
+                </div>
+                <div id="headerAdminTitle">관리자</div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="/js/common/headerFooter.js"></script>
+
+</html>
+
