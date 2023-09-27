@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 목록</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+<!--    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">-->
+
+    <link rel="stylesheet" href="/css/main/main.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <link rel="stylesheet" href="/css/board/list.css"/>-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link-->
+<!--            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"-->
+<!--            rel="stylesheet">-->
+
+</head>
+<body>
+
+<div th:replace="common/header_black.html"></div>
+
+<div class="contents">
+    <div class="page-title">공지사항</div>
+    <div class="save_button"><button onclick="saveReq()">글작성</button></div>
+    <div class="board">
+	    <table>
+	        <tr>
+	            <th class="sec1">분류</th>
+	            <th class="sec2">제목</th>
+	            <th class="sec3">등록일</th>
+	            <th class="sec4">조회수</th>
+	        </tr>
+	        <!-- 게시판 데이터 예시 -->
+	        <tr th:if="${#lists.isEmpty(list)}">
+	            <td colspan="4">데이터가 없습니다.</td>
+	        </tr>
+	        <tr th:each="item : ${list}" th:unless="${#lists.isEmpty(list)}">
+	            <td class="sec1" th:text="${item.categoryName}"></td>
+	            <td class="sec2"><a th:href="'#'" th:text="${item.boardName}"></a></td>
+	            <td class="sec3" th:text="${item.boardRegistDate}"></td>
+	            <td class="sec4" th:text="${item.boardViews}"></td>
+	        </tr>
+	    </table>        
+    </div>
+    <div class="search-el">
+        <div class="search-el-wrap1"></div>
+        <div class="search-el-wrap2">
+        <form id="searchFrm" name="searchFrm" method="get" action="/board/notice/list">
+		    <select name="searchType" class="browser-default custom-select" th:if="${boardDTO != null}" >
+		        <option value="title" th:selected="${boardDTO.searchType == 'title'}">제목</option>
+		        <option value="content" th:selected="${boardDTO.searchType == 'content'}">내용</option>
+		    </select>
+            <input type="search" id="searchTxt" name="searchTxt" th:value="${boardDTO != null} ? ${boardDTO.searchTxt} : ''" />
+            <img id="search-img" width="19px" src="./img/search.png"/>
+     	</form>
+        </div>
+    </div>
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+    	<div th:utext="${pagingHtml}"></div>
+    </div>
+</div>
+<div th:replace="common/footer.html"></div>
+
+<script> const saveReq = () => {
+    location.href = "/board/save";}
+</script>
+
+</body>
+
+
+</html>

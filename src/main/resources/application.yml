@@ -6,6 +6,11 @@ spring:
     username: C##PETMILY
     password: PETMILY
 
+# Mybatis config
+mybatis:
+  mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 #  # file upload config (??? spring?? ????.)
 #  servlet:
