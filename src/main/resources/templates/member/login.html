@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/js/event.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <!-- <script>
+	    const message = '[[${message}]]';
+		message && alert(message);
+	</script> -->
+
+</head>
+
+<body>
+<div id="login" class="main-container">
+
+    <div class="web-header"></div>
+
+    <div class="mainWrapper">
+
+        <div class="accountContainer">
+
+            <h1 class="mainTitle">로그인</h1>
+
+            <form id="loginForm" action="/member/login" method="post">
+                <div class="signInemail">
+                    <label class="text">이메일 </label>
+                    <div class="signIn inputForm">
+                        <input type="email" name="userId" placeholder="example@email.com"
+                               onfocus="this.placeholder=''" onblur="this.placeholder='example@email.com'"
+                               class="logIn InputBox" required>
+                    </div>
+                </div>
+
+                <div class="signInpwd">
+                    <label class="text">비밀번호 </label>
+                    <div class="signIn inputForm">
+                        <input type="password" name="memberPwd" placeholder="********"
+                               onfocus="this.placeholder=''" onblur="this.placeholder='********'"
+                               class="logIn InputBox" required>
+                    </div>
+                </div>
+
+                <div>
+                    <input id="loginSubmit" class="submitButton" type="submit" value="로그인">
+                </div>
+
+                <div class="btns" align="center">
+                    <button style="border: none; background: none; color: grey; cursor: pointer;" id="find_id-pwd"
+                            href="2_find_id-pwd.html">로그인 정보를 잊으셨나요?
+                    </button>
+                </div>
+            </form>
+
+            <div class="snsButtonLogin" align="center">
+                <div>
+                    <button aria-label="카카오로 인증하기"></button>
+                    <button aria-label="네이버로 인증하기"></button>
+                    <button aria-label="구글로 인증하기"></button>
+                </div>
+
+                <div class="signInMessage">
+                    <p>펫밀리의 회원이 아니신가요?
+                        <a href="">회원가입</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
