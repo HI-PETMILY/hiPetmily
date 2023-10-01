@@ -9,7 +9,7 @@
     justify-content: center;
     font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
     /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
-    min-width: 1440px;
+    min-width: 1903px;
     font-weight: bold;
     font-size: 17px;
     position: fixed;
@@ -27,6 +27,7 @@
 .white {
     background-color: white;
     color: #364f6b;
+    border-bottom: 1px solid lightgray;
 }
 
 .header_left {
@@ -87,7 +88,7 @@
 }
 
 .header_right ul li {
-    width: 80px;
+    width: 62px;
     height: 50px;
     margin-right: 5px;
     cursor: pointer;
@@ -95,14 +96,14 @@
 }
 
 .header_right_img {
-    width: 75px;
-    height: 25px;
+    width: 62px;
+    height: 50px;
     text-align: center;
 }
 
 .header_right_img img{
-    width: 25px;
-    height: 25px;
+    width: 62px;
+    height: 50px;
 }
 
 .headerMypage {
@@ -130,7 +131,7 @@
     /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
     color: white;
     padding-top: 20px;
-    min-width: 1440px;
+    min-width: 1903px;
 }
 
 .footer_left {
