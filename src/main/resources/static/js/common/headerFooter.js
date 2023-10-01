@@ -277,8 +277,13 @@ window.onload = function () {
 
         $headerMypage.addEventListener("mouseleave", (event) => {
 
-            $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bk.png");
-            $headerMypageTitle.style.color = "#364f6b";
+            if( classList.contains("white") ) {
+                $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bk.png");
+                $headerMypageTitle.style.color = "#364f6b";
+            } else {
+                $headerMypageImg.setAttribute("src","/static_Image/common/mypage_wh.png");
+                $headerMypageTitle.style.color = "white";
+            }
 
             $headerMypageImg.style.width = "25px";
             $headerMypageImg.style.height = "25px";
@@ -316,8 +321,13 @@ window.onload = function () {
 
         $headerLogout.addEventListener("mouseleave", (event) => {
 
-            $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bk.png");
-            $headerLogoutTitle.style.color = "#364f6b";
+            if( classList.contains("white") ) {
+                $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bk.png");
+                $headerLogoutTitle.style.color = "#364f6b";
+            } else {
+                $headerLogoutImg.setAttribute("src","/static_Image/common/logout_wh.png");
+                $headerLogoutTitle.style.color = "white";
+            }
 
             $headerLogoutImg.style.width = "25px";
             $headerLogoutImg.style.height = "25px";
