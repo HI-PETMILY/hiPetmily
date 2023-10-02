@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 
-    MemberDTO findByMemberId(String memberId);
+    MemberDTO findMemberById(String memberId);
+
+//    String selectMemberById(String memberId);
+
 
 }

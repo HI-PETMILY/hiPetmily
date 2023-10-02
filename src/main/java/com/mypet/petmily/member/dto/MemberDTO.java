@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +30,8 @@ public class MemberDTO implements UserDetails {
     private int warningCount;       // 경고 횟수
     private Date memberStatDate;    // 상태 변경일
     private int sighupPathCode;     // 가입경로 코드
+    private List<MemberRoleDTO> memberRoleList;
+    // 한 멤버는 여러 권한을 가질 수 있다
 
 
     /* 나중에 GrantedAuthority 객체 */

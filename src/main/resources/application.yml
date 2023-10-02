@@ -16,8 +16,8 @@ spring:
 #
 #
 ## Mybatis config
-#mybatis:
-#  mapper-locations: mappers/**/*.xml
+mybatis:
+  mapper-locations: mappers/**/*.xml
 #
 ## image upload dir
 #image:

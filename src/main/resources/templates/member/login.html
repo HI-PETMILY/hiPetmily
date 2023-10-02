@@ -3,22 +3,36 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <script type="text/javascript" src="/js/event.js"></script>
+    <script type="text/javascript" src="/js/member/event.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
 
-    <!-- <script>
+     <script>
 	    const message = '[[${message}]]';
 		message && alert(message);
-	</script> -->
+	</script>
+
+    <script>
+      /*  $(document).ready(function (){
+            $("#find_idPwd").on("click", function (){
+                location.href="/member/find_id-pwd";
+            });
+        });*/
+        $(function(){
+            $("#find_idPwd").click(function (){
+                location.href="/member/find_id-pwd";
+            })
+        })
+    </script>
 
 </head>
 
 <body>
-<div id="login" class="main-container">
+<div id="login-container" class="main-container">
 
-    <div class="web-header"></div>
+    <!-- common header -->
+    <div th:replace="common/header.html"></div>
 
     <div class="mainWrapper">
 
@@ -27,7 +41,7 @@
             <h1 class="mainTitle">로그인</h1>
 
             <form id="loginForm" action="/member/login" method="post">
-                <div class="signInemail">
+                <div class="signInEmail">
                     <label class="text">이메일 </label>
                     <div class="signIn inputForm">
                         <input type="email" name="userId" placeholder="example@email.com"
@@ -48,13 +62,10 @@
                 <div>
                     <input id="loginSubmit" class="submitButton" type="submit" value="로그인">
                 </div>
-
-                <div class="btns" align="center">
-                    <button style="border: none; background: none; color: grey; cursor: pointer;" id="find_id-pwd"
-                            href="2_find_id-pwd.html">로그인 정보를 잊으셨나요?
-                    </button>
-                </div>
             </form>
+                <div class="btns" align="center">
+                    <a href="/member/find_id-pwd">로그인 정보를 잊으셨나요?</a>
+                </div>
 
             <div class="snsButtonLogin" align="center">
                 <div>
@@ -74,5 +85,9 @@
         </div>
     </div>
 </div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+
 </body>
 </html>

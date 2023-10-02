@@ -38,7 +38,7 @@ public class SpringSecurityConfiguration {
                 .formLogin()
                 .loginPage("/member/login")
                 .successForwardUrl("/")
-                .failureForwardUrl("/error/login")
+                .failureForwardUrl("/member/loginfail")
                 .and()
 //                /* 로그아웃 설정 */
 //                .logout()
