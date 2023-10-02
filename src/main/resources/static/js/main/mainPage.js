@@ -197,5 +197,39 @@ let loopInterval = setInterval(() => {
 /* ============= 슬라이더 배너 끝 ============= */
 
 
+/* ============= 컨테이너 시작 ============= */
 
+// 컨테이너 펫시터 찾기 버튼
+if(document.getElementById("detail_button_search")) {
 
+    const $detail_button_search = document.getElementById("detail_button_search");
+
+    $detail_button_search.addEventListener("click", (event) => {
+
+        location.href = "/";        // 추후 연결
+    });
+}
+
+// 컨테이너 펫시터 지원 버튼
+if(document.getElementById("detail_button_apply")) {
+
+    const $detail_button_apply = document.getElementById("detail_button_apply");
+
+    $detail_button_apply.addEventListener("click", (event) => {
+
+        location.href = "/";        // 추후 연결
+    });
+}
+
+// 컨테이너 이용 프로세스 버튼
+if(document.getElementById("detail_button_terms")) {
+
+    const $detail_button_terms = document.getElementById("detail_button_terms");
+
+    $detail_button_terms.addEventListener("click", (event) => {
+
+        location.href = "/";        // 추후 연결
+    });
+}
+
+/* ============= 컨테이너 끝 ============= */

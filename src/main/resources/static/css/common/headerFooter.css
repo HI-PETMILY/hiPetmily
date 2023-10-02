@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
-    /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
+    font-family: 'Noto Sans KR','Roboto', sans-serif;        /* 한글 */
+    /*font-family: 'Roboto', sans-serif;*/                  /* 영문 */
     min-width: 1903px;
     font-weight: bold;
     font-size: 17px;
@@ -44,10 +44,10 @@
     cursor: pointer;
 }
 
-.header_left_title {
+.header_left_title p {
     margin-left: 10px;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 10px;
     cursor: pointer;
     font-size: 45px;
     font-family: 'Roboto', sans-serif;
@@ -127,8 +127,8 @@
     flex-direction: row;
     justify-content: center;
     background-color: #2E313B;
-    font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
-    /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/                  /* 영문 */
     color: white;
     padding-top: 20px;
     min-width: 1903px;

@@ -22,6 +22,12 @@ window.onload = function () {
 
         const $headerTitle = document.getElementById("headerTitle");
 
+        if( classList.contains("white") ) {
+            $headerTitle.style.color = "#364f6b";
+        } else {
+            $headerTitle.style.color = "white";
+        }
+
         $headerTitle.addEventListener("click", (event) => {
 
             location.href = "/";
