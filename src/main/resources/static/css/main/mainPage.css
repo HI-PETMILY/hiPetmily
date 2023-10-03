@@ -29,6 +29,9 @@ a {
     text-decoration: none;      /* 하이퍼 링크 밑줄 x */
 }
 
+span {
+    font-weight: 500;
+}
 
 /* banner ----------------------------------- */
 .slide {
@@ -108,18 +111,16 @@ a {
 /* ---------------- content ---------------- */
 .container {
     width: 1440px;
-    margin: 0 auto;
+    margin: 110px auto 0;
     background-color: white;
-    margin-top: 110px;
-    padding-bottom: 180px;
     position: relative;
 }
 
 .container_item {
+    width: 1000px;
     display: flex;
     justify-content: space-around;
-    padding: 0 220px;
-    margin-bottom: 110px;
+    margin: 0 auto 110px;
 }
 
 .flex_column {
@@ -127,8 +128,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    padding: 0 220px;
-    margin-bottom: 110px;
+    margin: 0 auto 110px;
 }
 
 .container_item_img {
@@ -176,50 +176,116 @@ a {
     transition: all 0.1s;
 }
 
+.container_item_review {
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto 50px;
+}
 
-/*.contentBanner {*/
-/*    width: 1903px;*/
-/*    height: 100%;*/
-/*    margin-top: 90px;*/
+.item5 {
+    margin-bottom: 50px;
+}
+
+.review_item {
+    width: 310px;
+    height: 460px;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 1px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    border-radius: 15px;
+}
+
+.review_item_img {
+    width: 300px;
+    height: 170px;
+    position: relative;
+    border-radius: 15px;
+}
+
+.review_item_img img {
+    width: 300px;
+    height: 170px;
+    border-radius: 15px;
+    position: absolute;
+}
+
+.review_item_title {
+    display: flex;
+    justify-content: space-between;
+    width: 246px;
+    margin-top: 35px;
+}
+
+.review_star_img {
+    width: 53px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review_star_img img{
+    width: 9px;
+    height: 9px;
+}
+
+.review_item_content {
+    margin-top: 24px;
+    width: 246px;
+    height: 126px;
+    font-size: 15px;
+    line-height: 26px;
+    color: rgb(77, 80, 85);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.review_item_btnDiv {
+    margin-top: 10px;
+    width: 246px;
+}
+
+.review_all_btn {
+    color: rgb(188, 188, 188);
+    font-size: 15px;
+    font-weight: 600;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.review_all_btn:hover{
+    transform: scale(1.03);
+    transition: all 0.1s;
+}
+
+
+/* 반응형 적용 전 */
+/*@media (max-width: 1440px) {*/
+/*    .slide {*/
+
+/*        width: 1400px;*/
+
+/*        min-width: 1400px;*/
+/*    }*/
+
+/*    .slide_banner img {*/
+/*        width: 1400px;*/
+/*    }*/
+
+/*    .container {*/
+/*        width: 1400px;*/
+
+/*    }*/
 /*}*/
-
-/*.bannerImgSlide {*/
-/*    width: 1903px;*/
-/*    height: 833px;*/
-/*    margin: 0 auto;*/
-
-/*    overflow: hidden;*/
-/*}*/
-
-/*!* 페이드인에 없던거 *!*/
-/*.bannerImgSlide>ul {*/
-
-/*    width: 5721px;*/
-/*}*/
-
-/*.bannerImgSlide>ul>li {*/
-/*    !*position: absolute;*!*/
-
-/*    display: inline-block;*/
-/*}*/
-
-/*.bannerImgSlide Img {*/
-/*    width: 1903px;*/
-/*    height: 833px;*/
-/*}*/
-
-/*.bannerBar ul {*/
-/*    position: absolute;*/
-/*    bottom: 50px;*/
-/*    right: 952px;*/
-
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: space-around;*/
-/*    width: 100px;*/
-/*    height: 15px;*/
-/*}*/
-
-
-
-

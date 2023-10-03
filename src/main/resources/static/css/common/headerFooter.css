@@ -175,3 +175,18 @@
     font-size: 12px;
     line-height: 1.5;
 }
+
+
+/* 반응형 적용 전 */
+/*@media (max-width: 1440px) {*/
+/*    .header {*/
+/*        width: 1400px;*/
+/*        min-width: 1400px;*/
+
+/*    }*/
+
+/*    .footer {*/
+/*        width: 1400px;*/
+/*        min-width: 1400px;*/
+/*    }*/
+/*}*/
