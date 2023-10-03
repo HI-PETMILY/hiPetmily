@@ -10,5 +10,10 @@ public interface MemberMapper {
 
 //    String selectMemberById(String memberId);
 
+    String findId(String memberName, String phone);
+
+    Thread findByMemberEmail(String email);
+
+    void updatePwd(Long memberId, String memberPwd);
 
 }

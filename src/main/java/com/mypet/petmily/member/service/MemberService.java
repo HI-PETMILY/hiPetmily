@@ -1,9 +1,10 @@
 package com.mypet.petmily.member.service;
 
 import com.mypet.petmily.member.dao.MemberMapper;
-import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.MailDTO;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MemberService {
@@ -12,6 +13,11 @@ public class MemberService {
 
     public MemberService(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
+
+    }
+
+    public String findId(String memberName, String phone) {
+        return memberMapper.findId(memberName, phone);
     }
 
 

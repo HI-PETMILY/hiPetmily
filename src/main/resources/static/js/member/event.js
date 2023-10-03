@@ -10,24 +10,34 @@ window.onload = function() {
     }
 }
 
+// 아이디 찾기 버튼에 대한 클릭 이벤트
 function findUserId(){
+
     var name = document.getElementById("inputName_id").value;
     var phone = document.getElementById("inputPhone_id").value;
+    var findIdResult = document.getElementById("findIdResult").value;
 
-    // Ajax 요청
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "member/find_id-pwd", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function (){
-        if(xhr.readyState == 4 && xhr.status == 200){
-            // 서버로부터 받은 응답 처리
-            document.getElementById("result").innerHTML = xhr.responseText;
-        }
-    };
-    xhr.send("inputName_id=" + name + "&inputPhone_id=" + phone);
+    //이름 또는 휴대폰 번호가 비어있으면 findIdReuslt div를 숨김
+    if(name && phone){
+        // Ajax 요청
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "member/find_id-pwd", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function (){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                // 서버로부터 받은 응답 처리
+                document.getElementById("result").innerHTML = xhr.responseText;
+                findIdResult.style.display='block';
+            }
+        };
+        xhr.send("inputName_id=" + name + "&inputPhone_id=" + phone);
+    } else{
+        // 이름 휴대폰번호가 비어있으면 결과를 숨김
+        findIdResult.style.display='none';
+    }
 }
 
-// 휴대폰 or 이메일로 비밀번호 찾기
+// 휴대폰 or 이메일로 비밀번호 찾기 선택 시 보이는 화면
 function find_Pwd(num){
     if (num == '1'){
         document.getElementById("findPwdByPhone").style.display="";

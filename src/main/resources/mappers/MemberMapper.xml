@@ -64,7 +64,20 @@
            AND A.MEMBER_ID = #{memberId}
     </select>
 
+    <select id="findId" parameterType="String" resultType="String">
+        SELECT
+               MEMBER_ID
+          FROM TBL_MEMBER
+         WHERE MEMBER_NAME = #{memberName}
+           AND PHONE = #{phone}
+    </select>
 
+    <update id="updatePwd">
+        UPDATE
+               TBL_MEMBER
+           SET MEMBER_PWD = #{memberPwd}
+         WHERE MEMBER_ID = #{memberId}
+    </update>
 
 
 </mapper>

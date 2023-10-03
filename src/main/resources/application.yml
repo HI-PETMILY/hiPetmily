@@ -6,6 +6,14 @@ spring:
     username: C##PETMILY
     password: PETMILY
 
+  mail:
+  host: smtp.gmail.com
+  port: 587
+  username: hipetmily@gmail.com
+  password: Pgoogle123
+  properties:
+    mail.smtp.auth: true
+    mail.smtp.starttls.enable: true
 
 #  # file upload config (??? spring?? ????.)
 #  servlet:

@@ -18,21 +18,19 @@
             <div class="nav-line"></div>
 
             <form id="findIdForm" action="/member/find_id-pwd" method="post">
-                <div class="">
-                    <input type="text" name="name" placeholder="이름" id="inputName_id"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='이름'"
-                           class="findIdPwd InputBox" required>
+
+                <div id="findIdResult" align="center">
+                    <div th:if="result != null">
+                        <p th:text="'회원님의 아이디는 ' + ${result} + '입니다.'"></p>
+                    </div>
+
+                    <div th:if="${findIdError != null}">
+                        <p th:text="${findIdError}"></p>
+                    </div>
                 </div>
 
-                <div class="">
-                    <input type="text" name="phone" placeholder="휴대폰 번호" id="inputPhone_id"
-                           onfocus="this.placeholder=''" onblur="this.placeholder='휴대폰 번호'"
-                           class="findIdPwd InputBox" required>
-                </div>
-
-                <div>
-                    <input id="findIdSubmit" class="submitButton" type="submit" value="아이디 찾기"
-                    onclick="findUserId()">
+                <div align="center">
+                    <a href="/member/login">로그인 하러 가기</a>
                 </div>
             </form>
         </div>
@@ -59,37 +57,14 @@
             <div id="findPwdByEmail"  style="display: none">
                 <input type="email" name="email" placeholder="이메일"
                        onfocus="this.placeholder=''" onblur="this.placeholder='example@email.com'"
-                       class="findIdPwd InputBox" id="userEmail" required>
+                       class="findIdPwd InputBox" required>
             </div>
 
             <div>
                 <input id="findPwdSubmit" class="submitButton" type="submit" value="비밀번호 찾기">
-                <script>
-                    $("#findPwdSubmit").click(function (){
-                        const userEmail = $("#userEmail").val();
-                        const sendEmail = document.forms["sendEmail"];
-                        $.ajax({
-                            type: 'post',
-                            url: 'emailDuplication',
-                            data: {
-                                'email':userEmail
-                            },
-                            dataType: "text",
-                            success: function (result){
-                                if(result == "no"){
-                                    alert('임시 비밀번호가 발송되었습니다.');
-                                    sendEmail.submit();
-                                }else{
-                                    alert('가입되지 않은 이메일입니다.');
-                                }
-                            }, error:function (){
-                                console.log('이메일 에러 발생')
-                            }
-                        })
-                    });
-                </script>
             </div>
         </div>
+
     </div>
 </div>
 
