@@ -12,7 +12,7 @@ window.onload = function () {
 
         $headerLogImg.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/";
         });
 
     }
@@ -22,9 +22,15 @@ window.onload = function () {
 
         const $headerTitle = document.getElementById("headerTitle");
 
+        if( classList.contains("white") ) {
+            $headerTitle.style.color = "#364f6b";
+        } else {
+            $headerTitle.style.color = "white";
+        }
+
         $headerTitle.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/";
         });
 
     }
@@ -166,7 +172,6 @@ window.onload = function () {
 
         const $headerJoin = document.getElementById("headerJoin");
         const $headerJoinImg = document.getElementById("headerJoinImg");
-        const $headerJoinTitle = document.getElementById("headerJoinTitle");
 
         $headerJoin.addEventListener("click", (event) => {
 
@@ -175,11 +180,10 @@ window.onload = function () {
 
         $headerJoin.addEventListener("mouseover", (event) => {
 
-            $headerJoinImg.setAttribute("src","/static_Image/common/add_user_bu.png");
-            $headerJoinTitle.style.color = "#81BDF1";
+            $headerJoinImg.setAttribute("src","/static_Image/common/main/add_user_bu.png");
 
-            $headerJoinImg.style.width = "25px";
-            $headerJoinImg.style.height = "25px";
+            $headerJoinImg.style.width = "62px";
+            $headerJoinImg.style.height = "50px";
             $headerJoin.style.transform = "scale(1.07)";
             $headerJoin.style.zIndex = "1";
             $headerJoin.style.transition = "all 0.1s";
@@ -189,15 +193,13 @@ window.onload = function () {
         $headerJoin.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerJoinImg.setAttribute("src","/static_Image/common/add_user_bk.png");
-                $headerJoinTitle.style.color = "#364f6b";
+                $headerJoinImg.setAttribute("src","/static_Image/common/main/add_user_bl.png");
             } else {
-                $headerJoinImg.setAttribute("src","/static_Image/common/add_user_wh.png");
-                $headerJoinTitle.style.color = "white";
+                $headerJoinImg.setAttribute("src","/static_Image/common/main/add_user_wh.png");
             }
 
-            $headerJoinImg.style.width = "25px";
-            $headerJoinImg.style.height = "25px";
+            $headerJoinImg.style.width = "62px";
+            $headerJoinImg.style.height = "52px";
             $headerJoin.style.transform = "scale(1)";
             $headerJoin.style.zIndex = "0";
             $headerJoin.style.transition = "all 0.1s";
@@ -211,7 +213,6 @@ window.onload = function () {
 
         const $headerLogin = document.getElementById("headerLogin");
         const $headerLoginImg = document.getElementById("headerLoginImg");
-        const $headerLoginTitle = document.getElementById("headerLoginTitle");
 
         $headerLogin.addEventListener("click", (event) => {
 
@@ -220,11 +221,10 @@ window.onload = function () {
 
         $headerLogin.addEventListener("mouseover", (event) => {
 
-            $headerLoginImg.setAttribute("src","/static_Image/common/login_bu.png");
-            $headerLoginTitle.style.color = "#81BDF1";
+            $headerLoginImg.setAttribute("src","/static_Image/common/main/login_bu.png");
 
-            $headerLoginImg.style.width = "25px";
-            $headerLoginImg.style.height = "25px";
+            $headerLoginImg.style.width = "62px";
+            $headerLoginImg.style.height = "50px";
             $headerLogin.style.transform = "scale(1.07)";
             $headerLogin.style.zIndex = "1";
             $headerLogin.style.transition = "all 0.1s";
@@ -234,15 +234,13 @@ window.onload = function () {
         $headerLogin.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerLoginImg.setAttribute("src","/static_Image/common/login_bk.png");
-                $headerLoginTitle.style.color = "#364f6b";
+                $headerLoginImg.setAttribute("src","/static_Image/common/main/login_bl.png");
             } else {
-                $headerLoginImg.setAttribute("src","/static_Image/common/login_wh.png");
-                $headerLoginTitle.style.color = "white";
+                $headerLoginImg.setAttribute("src","/static_Image/common/main/login_wh.png");
             }
 
-            $headerLoginImg.style.width = "25px";
-            $headerLoginImg.style.height = "25px";
+            $headerLoginImg.style.width = "62px";
+            $headerLoginImg.style.height = "50px";
             $headerLogin.style.transform = "scale(1)";
             $headerLogin.style.zIndex = "0";
             $headerLogin.style.transition = "all 0.1s";
@@ -255,7 +253,6 @@ window.onload = function () {
 
         const $headerMypage = document.getElementById("headerMypage");
         const $headerMypageImg = document.getElementById("headerMypageImg");
-        const $headerMypageTitle = document.getElementById("headerMypageTitle");
 
         $headerMypage.addEventListener("click", (event) => {
 
@@ -264,11 +261,10 @@ window.onload = function () {
 
         $headerMypage.addEventListener("mouseover", (event) => {
 
-            $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bu.png");
-            $headerMypageTitle.style.color = "#81BDF1";
+            $headerMypageImg.setAttribute("src","/static_Image/common/main/mypage_bu.png");
 
-            $headerMypageImg.style.width = "25px";
-            $headerMypageImg.style.height = "25px";
+            $headerMypageImg.style.width = "62px";
+            $headerMypageImg.style.height = "50px";
             $headerMypage.style.transform = "scale(1.07)";
             $headerMypage.style.zIndex = "1";
             $headerMypage.style.transition = "all 0.1s";
@@ -278,15 +274,13 @@ window.onload = function () {
         $headerMypage.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerMypageImg.setAttribute("src","/static_Image/common/mypage_bk.png");
-                $headerMypageTitle.style.color = "#364f6b";
+                $headerMypageImg.setAttribute("src","/static_Image/common/main/mypage_bl.png");
             } else {
-                $headerMypageImg.setAttribute("src","/static_Image/common/mypage_wh.png");
-                $headerMypageTitle.style.color = "white";
+                $headerMypageImg.setAttribute("src","/static_Image/common/main/mypage_wh.png");
             }
 
-            $headerMypageImg.style.width = "25px";
-            $headerMypageImg.style.height = "25px";
+            $headerMypageImg.style.width = "62px";
+            $headerMypageImg.style.height = "50px";
             $headerMypage.style.transform = "scale(1)";
             $headerMypage.style.zIndex = "0";
             $headerMypage.style.transition = "all 0.1s";
@@ -299,7 +293,6 @@ window.onload = function () {
 
         const $headerLogout = document.getElementById("headerLogout");
         const $headerLogoutImg = document.getElementById("headerLogoutImg");
-        const $headerLogoutTitle = document.getElementById("headerLogoutTitle");
 
         $headerLogout.addEventListener("click", (event) => {
 
@@ -308,11 +301,10 @@ window.onload = function () {
 
         $headerLogout.addEventListener("mouseover", (event) => {
 
-            $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bu.png");
-            $headerLogoutTitle.style.color = "#81BDF1";
+            $headerLogoutImg.setAttribute("src","/static_Image/common/main/logout_bu.png");
 
-            $headerLogoutImg.style.width = "25px";
-            $headerLogoutImg.style.height = "25px";
+            $headerLogoutImg.style.width = "62px";
+            $headerLogoutImg.style.height = "50px";
             $headerLogout.style.transform = "scale(1.07)";
             $headerLogout.style.zIndex = "1";
             $headerLogout.style.transition = "all 0.1s";
@@ -322,15 +314,13 @@ window.onload = function () {
         $headerLogout.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerLogoutImg.setAttribute("src","/static_Image/common/logout_bk.png");
-                $headerLogoutTitle.style.color = "#364f6b";
+                $headerLogoutImg.setAttribute("src","/static_Image/common/main/logout_bl.png");
             } else {
-                $headerLogoutImg.setAttribute("src","/static_Image/common/logout_wh.png");
-                $headerLogoutTitle.style.color = "white";
+                $headerLogoutImg.setAttribute("src","/static_Image/common/main/logout_wh.png");
             }
 
-            $headerLogoutImg.style.width = "25px";
-            $headerLogoutImg.style.height = "25px";
+            $headerLogoutImg.style.width = "62px";
+            $headerLogoutImg.style.height = "50px";
             $headerLogout.style.transform = "scale(1)";
             $headerLogout.style.zIndex = "0";
             $headerLogout.style.transition = "all 0.1s";
@@ -343,7 +333,6 @@ window.onload = function () {
 
         const $headerAdmin = document.getElementById("headerAdmin");
         const $headerAdminImg = document.getElementById("headerAdminImg");
-        const $headerAdminTitle = document.getElementById("headerAdminTitle");
 
         $headerAdmin.addEventListener("click", (event) => {
 
@@ -352,27 +341,24 @@ window.onload = function () {
 
         $headerAdmin.addEventListener("mouseover", (event) => {
 
-            $headerAdminImg.setAttribute("src","/static_Image/common/admin_bu.png");
-            $headerAdminImg.style.width = "25px";
-            $headerAdminImg.style.height = "25px";
+            $headerAdminImg.setAttribute("src","/static_Image/common/main/admin_bu.png");
+            $headerAdminImg.style.width = "62px";
+            $headerAdminImg.style.height = "50px";
             $headerAdmin.style.transform = "scale(1.07)";
             $headerAdmin.style.zIndex = "1";
             $headerAdmin.style.transition = "all 0.1s";
-            $headerAdminTitle.style.color = "#81BDF1";
         });
 
         $headerAdmin.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerAdminImg.setAttribute("src","/static_Image/common/admin_bk.png");
-                $headerAdminTitle.style.color = "#364f6b";
+                $headerAdminImg.setAttribute("src","/static_Image/common/main/admin_bl.png");
             } else {
-                $headerAdminImg.setAttribute("src","/static_Image/common/admin_wh.png");
-                $headerAdminTitle.style.color = "white";
+                $headerAdminImg.setAttribute("src","/static_Image/common/main/admin_wh.png");
             }
 
-            $headerAdminImg.style.width = "25px";
-            $headerAdminImg.style.height = "25px";
+            $headerAdminImg.style.width = "62px";
+            $headerAdminImg.style.height = "50px";
             $headerAdmin.style.transform = "scale(1)";
             $headerAdmin.style.zIndex = "0";
             $headerAdmin.style.transition = "all 0.1s";

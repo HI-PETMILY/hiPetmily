@@ -1,7 +1,0 @@
-@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
-
-.test1 {
-    height: 100%;
-    margin-top: 90px;
-}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HI-PETMILY</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/main/mainPage.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
+
+    <script>
+        // const message = '[[${message}]]';
+        // message && alert(message);
+    </script>
+
+</head>
+
+<body>
+    <!-- common header -->
+    <div th:replace="common/header_black.html"></div>
+<!--    <div th:replace="common/header_white.html"></div>-->
+
+    <div class="slide slide_wrap">
+        <div class="slide_banner banner1">
+            <img src="/static_Image/common/main/banner1.png" alt="메인배너1">
+        </div>
+        <div class="slide_banner banner2">
+            <img src="/static_Image/common/main/banner2.png" alt="메인배너2">
+        </div>
+        <div class="slide_banner banner3">
+            <img src="/static_Image/common/main/banner3.png" alt="메인배너3">
+        </div>
+        <div class="slide_prev_button slide_button"><</div>
+        <div class="slide_next_button slide_button">></div>
+        <ul class="slide_pagination"></ul>
+    </div>
+
+    <div class="container">
+        <div class="container_item item1">
+            <div class="container_item_img">
+                <img src="/static_Image/common/main/mainImage1.png" alt="서브이미지1">
+            </div>
+            <div class="container_item_text">
+                <div class="item_text_title">펫시터 찾기</div>
+                <div class="item_text_detail">
+                    좁고 답답한 장소가 아닌 가정집에서<br>
+                    편안한 맞춤형 돌봄을 경험하세요.
+                </div>
+                <div id="detail_button_search" class="detail_button">자세히 보기 →</div>
+            </div>
+        </div>
+        <div class="container_item item2">
+            <div class="container_item_text">
+                <div class="item_text_title">펫시터 지원</div>
+                <div class="item_text_detail">
+                    펫밀리로 등록하시고<br>
+                    마음을 나누세요!
+                </div>
+                <div id="detail_button_apply" class="detail_button">자세히 보기 →</div>
+            </div>
+            <div class="container_item_img">
+                <img src="/static_Image/common/main/mainImage2.png" alt="서브이미지2">
+            </div>
+        </div>
+        <div class="container_item item3">
+            <div class="container_item_img">
+                <img src="/static_Image/common/main/mainImage3.png" alt="서브이미지3">
+            </div>
+            <div class="container_item_text">
+                <div class="item_text_title">이용 프로세스</div>
+                <div class="item_text_detail">
+                    우리 아이에게 최적화 된<br>
+                    펫밀리 서비스를 만나보세요.
+                </div>
+                <div id="detail_button_terms" class="detail_button">자세히 보기 →</div>
+            </div>
+        </div>
+
+        <div class="container_item item4 flex_column">
+            <div class="container_item_title item_text_title">EASY TO USE</div>
+            <div class="container_item_img2">
+                <img src="/static_Image/common/main/easytouse.png" alt="ETU이미지">
+            </div>
+        </div>
+
+        <div class="container_item item5 flex_column">
+            <div class="container_item_title item_text_title">펫밀리 후기</div>
+            <div class="container_item_review">
+
+                <div class="review_item">
+                    <div class="review_item_img">
+                        <img src="/static_Image/common/main/mainReviewDogEx.png" alt="반려견사진1">
+                    </div>
+                    <div class="review_item_title">
+                        <div class="review_item_name"><span>크림이</span> 보호자님</div>
+                        <div class="review_star_img">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                        </div>
+                    </div>
+                    <p class="review_item_content">
+                        추석 연휴동안 정신이 없어서 코코네 후기가 늦었네요🥹 코코는 평소에 펫시팅 맡겼을때 2-3시간 정도는 낑낑대면서 적응에 시간이 걸리는 편이었어요. 하지만 은영시터님께서 30분만에 코코를 진정시키신걸 보고 편하게 잘 대해주셔서 금방 안정을 찾았구나싶어 보호자인 저도 안심이 되었습니다!! 그리고 다른집에 맡겼을때보다 표정이 너무 밝아요ㅋㅋㅋ 온통 웃는 사진 뿐.. 우리 코코가 이렇게 웃상이었나? 싶을정도로 2박3일간 아주 사랑 듬뿍 받고온게 보였어요! 저보다 더 잘 케어해주시고, 코코를 더 챙겨주시더라구요 피부가 안좋아서 연고를 발라야 하는데 연고도 잘 발라주셔서 맡겼을때보다 피부도 많이 좋아졌더라구요 ㅠㅠ 그리고 일지도 꼼꼼하게 작성해주시고, 코코의 일거수 일투족을 보내주셔서 시팅중에 마음이 편안했어요 감사합니다!! 이거 원 참, 코코가 집에 와서도 시터 이모를 그리워하는 표정을 짓고 있어서ㅋㅋㅋㅋ자주 맡겨야 하나 고민까지 하게 되는 분은 처음이에요🤣 다음에 기회가 된다면 또 뵙고싶어요🩷 감사했습니다🩷 강아지도 표정으로 개만족한 후기 끝!🥰
+                    </p>
+                    <div class="review_item_btnDiv">
+                        <div id="review_all_btn1" class="review_all_btn">전체보기 ></div>
+                    </div>
+                </div>
+
+                <div class="review_item">
+                    <div class="review_item_img">
+                        <img src="/static_Image/common/main/mainReviewDogEx.png" alt="반려견사진1">
+                    </div>
+                    <div class="review_item_title">
+                        <div class="review_item_name"><span>크림이</span> 보호자님</div>
+                        <div class="review_star_img">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                        </div>
+                    </div>
+                    <p class="review_item_content">
+                        추석 연휴동안 정신이 없어서 코코네 후기가 늦었네요🥹 코코는 평소에 펫시팅 맡겼을때 2-3시간 정도는 낑낑대면서 적응에 시간이 걸리는 편이었어요. 하지만 은영시터님께서 30분만에 코코를 진정시키신걸 보고 편하게 잘 대해주셔서 금방 안정을 찾았구나싶어 보호자인 저도 안심이 되었습니다!! 그리고 다른집에 맡겼을때보다 표정이 너무 밝아요ㅋㅋㅋ 온통 웃는 사진 뿐.. 우리 코코가 이렇게 웃상이었나? 싶을정도로 2박3일간 아주 사랑 듬뿍 받고온게 보였어요! 저보다 더 잘 케어해주시고, 코코를 더 챙겨주시더라구요 피부가 안좋아서 연고를 발라야 하는데 연고도 잘 발라주셔서 맡겼을때보다 피부도 많이 좋아졌더라구요 ㅠㅠ 그리고 일지도 꼼꼼하게 작성해주시고, 코코의 일거수 일투족을 보내주셔서 시팅중에 마음이 편안했어요 감사합니다!! 이거 원 참, 코코가 집에 와서도 시터 이모를 그리워하는 표정을 짓고 있어서ㅋㅋㅋㅋ자주 맡겨야 하나 고민까지 하게 되는 분은 처음이에요🤣 다음에 기회가 된다면 또 뵙고싶어요🩷 감사했습니다🩷 강아지도 표정으로 개만족한 후기 끝!🥰
+                    </p>
+                    <div class="review_item_btnDiv">
+                        <div id="review_all_btn2" class="review_all_btn">전체보기 ></div>
+                    </div>
+                </div>
+
+                <div class="review_item">
+                    <div class="review_item_img">
+                        <img src="/static_Image/common/main/mainReviewDogEx.png" alt="반려견사진1">
+                    </div>
+                    <div class="review_item_title">
+                        <div class="review_item_name"><span>크림이</span> 보호자님</div>
+                        <div class="review_star_img">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                            <img src="/static_Image/common/main/star_1.png" alt="후기별">
+                        </div>
+                    </div>
+                    <p class="review_item_content">
+                        추석 연휴동안 정신이 없어서 코코네 후기가 늦었네요🥹 코코는 평소에 펫시팅 맡겼을때 2-3시간 정도는 낑낑대면서 적응에 시간이 걸리는 편이었어요. 하지만 은영시터님께서 30분만에 코코를 진정시키신걸 보고 편하게 잘 대해주셔서 금방 안정을 찾았구나싶어 보호자인 저도 안심이 되었습니다!! 그리고 다른집에 맡겼을때보다 표정이 너무 밝아요ㅋㅋㅋ 온통 웃는 사진 뿐.. 우리 코코가 이렇게 웃상이었나? 싶을정도로 2박3일간 아주 사랑 듬뿍 받고온게 보였어요! 저보다 더 잘 케어해주시고, 코코를 더 챙겨주시더라구요 피부가 안좋아서 연고를 발라야 하는데 연고도 잘 발라주셔서 맡겼을때보다 피부도 많이 좋아졌더라구요 ㅠㅠ 그리고 일지도 꼼꼼하게 작성해주시고, 코코의 일거수 일투족을 보내주셔서 시팅중에 마음이 편안했어요 감사합니다!! 이거 원 참, 코코가 집에 와서도 시터 이모를 그리워하는 표정을 짓고 있어서ㅋㅋㅋㅋ자주 맡겨야 하나 고민까지 하게 되는 분은 처음이에요🤣 다음에 기회가 된다면 또 뵙고싶어요🩷 감사했습니다🩷 강아지도 표정으로 개만족한 후기 끝!🥰
+                    </p>
+                    <div class="review_item_btnDiv">
+                        <div id="review_all_btn3" class="review_all_btn">전체보기 ></div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="review_detail_button" class="detail_button">+ 후기 더보기</div>
+        </div>
+
+    </div>
+
+    <!-- common footer -->
+    <div th:replace="common/footer.html"></div>
+
+</body>
+</html>
