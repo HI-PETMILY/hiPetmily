@@ -1,5 +1,6 @@
 package com.mypet.petmily.member.service;
 
+import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
@@ -50,5 +51,12 @@ public class MemberService {
         return member;
     }
 
+    /* 회원 정보 수정 */
+    @Transactional
+    public void modifyMember(MemberDTO modifyMember) throws MemberModifyException {
 
+        int result = memberMapper.updateMember(modifyMember);
+
+        if(!(result > 0)) throw  new MemberModifyException("회원 정보 수정에 실패하였습니다.");
+    }
 }

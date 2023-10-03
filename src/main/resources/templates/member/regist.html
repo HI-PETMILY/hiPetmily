@@ -68,10 +68,15 @@
                         <span>
                             <input type="text" maxlength="15" name="phone" id="phone" placeholder=" * 휴대전화"
                                    onfocus="this.placeholder=''" onblur="this.placeholder=' * 휴대전화'"  required>
-                            <input type="button" value="인증번호 발송" id="authenticationNumber">
+                            <input type="button" onclick="sendSms()" value="인증번호 발송" id="authenticationNumber">
                         </span>
                         </div>
                     </div>
+                    <form id="verificationForm" style="display:none;">
+                        <label for="verificationCode"></label>
+                        <input type="text" id="verificationCode" name="verificationCode" required>
+                        <button type="button" onclick="verifySms()">인증 확인</button>
+                    </form>
 
                     <div class="gender-row">
                         <div class="gender-label">성별</div>

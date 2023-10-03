@@ -81,4 +81,41 @@
             )
     </insert>
 
+    <!-- 설마 암호화..?...?-->
+<!--    <select id="selectEncryptedPwd" resultType="string">-->
+<!--        SELECT-->
+<!--            MEMBER_PWD-->
+<!--        FROM TBL_MEMBER-->
+<!--        WHERE MEMBER_STATUS = '활동'-->
+<!--          AND MEMBER_ID = #{ memberId }-->
+<!--    </select>-->
+
+    <!-- 설마 중복 처리..?-->
+<!--    <select id="selectMember">-->
+<!--        SELECT-->
+<!--            MEMBER_NO-->
+<!--             , MEMBER_ID-->
+<!--             , NICKNAME-->
+<!--             , PHONE-->
+<!--             , EMAIL-->
+<!--             , ADDRESS-->
+<!--             , ENROLL_DATE-->
+<!--             , MEMBER_ROLE-->
+<!--             , MEMBER_STATUS-->
+<!--        FROM  TBL_MEMBER A-->
+<!--        WHERE  MEMBER_STATUS = 'Y'-->
+<!--          AND  MEMBER_ID = #{ memberId }-->
+<!--    </select>-->
+
+    <update id="updateMember">
+        UPDATE
+            TBL_MEMBER
+        SET NICKNAME = #{ nickname }
+          , PHONE = #{ phone }
+          , EMAIL = #{ email }
+          , ADDRESS = #{ address }
+        WHERE MEMBER_STATUS = '활동'
+          AND MEMBER_NO = #{ memberNo }
+    </update>
+
 </mapper>

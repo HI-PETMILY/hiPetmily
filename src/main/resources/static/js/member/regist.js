@@ -4,9 +4,9 @@ window.onload = function() {
                                          mainRegist.html
    =============================================================================== */
     /* 회원 가입 mainRegist 창에서 이메일로 가입하기 버튼 누를 시 */
-    if(document.getElementById("regist")) {
+    if (document.getElementById("regist")) {
         const $regist = document.getElementById("regist");
-        $regist.onclick = function() {
+        $regist.onclick = function () {
             location.href = "/member/regist";
         }
     }
@@ -51,7 +51,7 @@ window.onload = function() {
     const checkAll = document.getElementById("check_all");
     const normalCheckboxes = document.querySelectorAll(".normal");
 
-    checkAll.addEventListener("click", function() {
+    checkAll.addEventListener("click", function () {
         normalCheckboxes.forEach(function (checkbox) {
             checkbox.checked = checkAll.checked;
         });
@@ -61,10 +61,10 @@ window.onload = function() {
 
     /* 개별 체크박스의 클릭 이벤트 핸들러(전체 동의 체크 상태 업데이트) */
     normalCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener("click", function() {
+        checkbox.addEventListener("click", function () {
             var is_checked = true;
             normalCheckboxes.forEach(function (checkbox) {
-                if(!checkbox.checked) {
+                if (!checkbox.checked) {
                     is_checked = false;
                 }
             });
@@ -79,29 +79,29 @@ window.onload = function() {
     const submitButton = document.querySelector(".regist_button input[type='submit']");
 
     // 필수 약관 체크박스들 상태 체크
-  function updateSubmitButtonState() {
-            var allRequiredChecked = true;
+    function updateSubmitButtonState() {
+        var allRequiredChecked = true;
 
-            // 모든 필수 약관 체크 여부 확인
-            requiredCheckboxes.forEach(function (checkbox) {
-                if (!checkbox.checked) {
-                    allRequiredChecked = false;
-                }
-            });
+        // 모든 필수 약관 체크 여부 확인
+        requiredCheckboxes.forEach(function (checkbox) {
+            if (!checkbox.checked) {
+                allRequiredChecked = false;
+            }
+        });
 
-            submitButton.disabled = !allRequiredChecked;
-        }
+        submitButton.disabled = !allRequiredChecked;
+    }
 
-        updateSubmitButtonState();
+    updateSubmitButtonState();
 
     /* 백 연결 ================================================= */
 
-    /* 닉네임 중복 체크 */
-    if(document.getElementById("duplicationCheck")) {
+    /* 닉네임 중복 체크 =========== 미완 */
+    if (document.getElementById("duplicationCheck")) {
 
         const $duplication = document.getElementById("duplicationCheck");
 
-        $duplication.onclick = function() {
+        $duplication.onclick = function () {
             let nickName = document.getElementById("nickName").value.trim();
 
             fetch("/member/nicknameDupCheck", {
@@ -116,5 +116,4 @@ window.onload = function() {
                 .catch((error) => error.text().then((res) => alert(res)));
         }
     }
-
 }
