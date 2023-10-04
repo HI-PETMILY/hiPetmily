@@ -137,7 +137,7 @@
         SELECT
             MEMBER_ID
         FROM TBL_MEMBER
-        WHERE MEMBER_STATUS = '활동'
+        WHERE MEMBER_STAT = '활동'
           AND MEMBER_ID = #{memberId}
     </select>
 
@@ -162,12 +162,12 @@
     <update id="updateMember">
         UPDATE
                TBL_MEMBER
-           SET NICKNAME = #{ nickname }
-             , PHONE = #{ phone }
-             , EMAIL = #{ email }
-             , ADDRESS = #{ address }
-         WHERE MEMBER_STATUS = '활동'
-           AND MEMBER_NO = #{ memberNo }
+           SET NICKNAME = #{nickname}
+             , PHONE = #{phone}
+             , EMAIL = #{email}
+             , ADDRESS = #{address}
+         WHERE MEMBER_STAT = '활동'
+           AND MEMBER_NO = #{memberNo}
     </update>
 
 </mapper>

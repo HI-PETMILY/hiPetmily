@@ -8,29 +8,23 @@ window.onload = function() {
             location.href = "/member/login";
         });
     }
-
-    $("#findPwdSubmit").click(function (){
-        const userEmail = $("#memberId").val();
-        const sendEmail = document.forms["sendEmail"];
-        $.ajax({
-            type: 'POST',
-            url: '/member/find_id-pwd',
-            data: {
-                'email':userEmail,
-            },
-            dataType: "text",
-            success: function (result){
-                if(result == "no"){     //서버로부터 받은 응답을 보내는게 어디쥐
-                    alert('임시 비밀번호가 발송되었습니다.');
-                    sendEmail.submit();
-                }else{
-                    alert('가입되지 않은 이메일입니다.');
+    //아이디 중복 검사
+    var emailConfirm=document.getElementById("email");
+    emailConfirm.addEventListener('keyup', function (){
+        var xhr,url='member/find_id-pwd', data='email='+emailConfirm.value;
+        xhr=doajax(url,data);
+        xhr.onload=function (){
+            var text;
+                if(xhr.status==200){    // success:function(data)부분 통신 성공 시 200 반환
+                    if(xhr.response=='true'){
+                        text='인증번호를 전송했습니다.';
+                    }else{
+                        text='인증번호 전송에 실패했습니다.';
+                    }
+                    alert(text)
                 }
-            }, error:function (){
-                console.log('이메일 에러 발생')
-            }
-        })
-    });
+        }
+    })
 };
 
 // 아이디 찾기 버튼에 대한 클릭 이벤트
@@ -71,4 +65,28 @@ function find_Pwd(num){
 
     }
 }
+
+// 비밀번호 찾기 버튼 클릭 이벤트
+$("#findPwdSubmit").click(function (){
+    const userEmail = $("#memberId").val();
+    const sendEmail = document.forms["sendEmail"];
+    $.ajax({
+        type: 'POST',
+        url: '/member/find_id-pwd',
+        data: {
+            'email':userEmail,
+        },
+        dataType: "text",
+        success: function (result){
+            if(result == "no"){     //서버로부터 받은 응답을 보내는게 어디쥐
+                alert('임시 비밀번호가 발송되었습니다.');
+                sendEmail.submit();
+            }else{
+                alert('가입되지 않은 이메일입니다.');
+            }
+        }, error:function (){
+            console.log('이메일 에러 발생')
+        }
+    })
+});
 
