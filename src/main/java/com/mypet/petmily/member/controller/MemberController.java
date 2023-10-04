@@ -15,8 +15,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 @Slf4j
 @Controller
@@ -53,19 +58,11 @@ public class MemberController {
     @GetMapping("/completedRegist")
     public void comRegistPage(){}
 
-    /* 마이페이지 */
-    @GetMapping("/mypage")
-    public void myPage(){}
 
     /* 내 정보 확인 */
     @GetMapping("/myInfo")
     public void modifyPage(){} /* 로그인 시 멤버 정보 불러오기 짜야함 */
-//    @GetMapping("/update")
-//    public void modifyPage(@AuthenticationPrincipal MemberDTO member, Model model) {
-//
-//        String[] address = member.getAddress().split("\\$");
-//        model.addAttribute("address", address);
-//    }
+
 
     /* 회원 정보 수정 */
     @PostMapping("/myInfo")
@@ -87,7 +84,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    private Authentication createNewAuthentication(String memberId) {
+    protected Authentication createNewAuthentication(String memberId) {
 
         UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
         UsernamePasswordAuthenticationToken newAuth
@@ -109,6 +106,15 @@ public class MemberController {
         log.info("Request regist member : {}", member);
 
         memberService.registMember(member);
+
+
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = new Date(calendar.getTime().getTime());
+
+        Timestamp currentTimestamp = new Timestamp(currentDate.getTime());
+
+        member.setMemberStatDate(currentTimestamp);
+
 
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
         rttr.addFlashAttribute("nickname", member.getNickName());

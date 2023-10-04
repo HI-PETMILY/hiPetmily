@@ -34,6 +34,7 @@ public class MemberService {
 
         member.setMemberStat("활동");
         member.setMemberStatDate(new Date());
+        member.setSignupPathCode(1);
 
         int result1 = memberMapper.insertMember(member);
         int result2 = memberMapper.insertMemberRole();
@@ -43,13 +44,6 @@ public class MemberService {
 
     }
 
-    @Transactional
-    public MemberDTO registerMembmer(String nickName) {
-        MemberDTO member = new MemberDTO();
-        member.setNickName(nickName);
-
-        return member;
-    }
 
     /* 회원 정보 수정 */
     @Transactional

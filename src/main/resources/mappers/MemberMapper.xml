@@ -24,7 +24,7 @@
     <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
         <id property="memberNo" column="REF_MEMBER_NO"/>
         <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
-        <!--        <association property="authority" resultMap="authorityResultMap"/>&ndash;&gt;-->
+                <association property="authority" resultMap="authorityResultMap"/>
     </resultMap>
 
     <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
@@ -53,6 +53,9 @@
         , PHONE
         , GENDER
         , ADDRESS
+        , MEMBER_STAT
+        , MEMBER_STAT_DATE
+        , SIGNUP_PATH_CODE
         )
         VALUES
         (
@@ -64,6 +67,9 @@
          , #{ phone }
          , #{ gender }
          , #{ address }
+         , #{ memberStat}
+         , #{ memberStatDate }
+         , #{ signupPathCode }
         )
     </insert>
 
@@ -81,14 +87,6 @@
             )
     </insert>
 
-    <!-- 설마 암호화..?...?-->
-<!--    <select id="selectEncryptedPwd" resultType="string">-->
-<!--        SELECT-->
-<!--            MEMBER_PWD-->
-<!--        FROM TBL_MEMBER-->
-<!--        WHERE MEMBER_STATUS = '활동'-->
-<!--          AND MEMBER_ID = #{ memberId }-->
-<!--    </select>-->
 
     <!-- 설마 중복 처리..?-->
 <!--    <select id="selectMember">-->
