@@ -32,21 +32,35 @@
 </div>
 
 
-<div> <!-- 통계 관리 메뉴 -->
+<div> <!-- 사이트 운영 관리 메뉴 -->
     <ul class="menu">
-        <!-- 통계 관리 메뉴 항목들 -->
+        <!-- 사이트 운영 관리 메뉴 항목들 -->
         <!--수직 메뉴 드롭바-->
         <li>
-            <a class="menu-li">펫시터정산관리</a>
+            <a class="menu-li">회원관리</a>
             <ul class="submenu">
-                <li><a href="atmosphere">정산대기리스트</a></li>
-                <li><a href="complete">정산완료리스트</a></li>
+                <li><a href="main-member">회원리스트</a></li>
+                <li><a href="secession">탈퇴리스트</a></li>
             </ul>
         </li>
         <li>
-            <a class="menu-li">매출관리</a>
+            <a class="menu-li">게시판관리</a>
             <ul class="submenu">
-                <li><a href="sales">월별매출</a></li>
+                <li><a href="board">게시판리스트</a></li>
+                <li><a href="comment">댓글관리</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="menu-li">펫시터 신청폼관리</a>
+            <ul class="submenu">
+                <li><a href="applyform">신청폼리스트</a></li>
+                <li><a href="management">신청관리</a></li>
+            </ul>
+        </li>
+        <li>
+            <a class="menu-li">예약관리</a>
+            <ul class="submenu">
+                <li><a href="reservation">예약리스트</a></li>
             </ul>
         </li>
     </ul>
@@ -56,26 +70,20 @@
 <!-- 탭 컨텐츠 -->
 <div class="details">
     <div class="tab-details tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            <h4><b>통계 리스트</b></h4>
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <h4><b>회원 리스트</b></h4>
             <br>
             <div class="choose">
                 <ul>
-                    <li>• 회원등급 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="basketball" name="hobby"
-                                                                    value="농구"
-                                                                    checked>
+                    <li>• 회원등급 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="basketball" name="hobby" value="농구" checked>
                         <label for="basketball">농구</label></li>
                     <li>• 수신동의</li>
                     <li>• 검색어</li>
                 </ul>
-                <!--        <div class="tab-pane fade" id="nav-other" role="tabpanel" aria-labelledby="nav-other-tab">예야고관링ㅍ-->
-                <!--            내용-->
-                <!--        </div>-->
             </div>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

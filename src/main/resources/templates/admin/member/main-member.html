@@ -53,7 +53,7 @@
             <a class="menu-li">펫시터 신청폼관리</a>
             <ul class="submenu">
                 <li><a href="applyform">신청폼리스트</a></li>
-                <li><a href="application">신청관리</a></li>
+                <li><a href="management">신청관리</a></li>
             </ul>
         </li>
         <li>
@@ -111,84 +111,97 @@
     </div>
 </div>
 
+<!--==================== 회원 목록 표 -->
 <div class="overall-list">
     <div>
         <p class="result-text" style="margin-bottom: 0rem">검색결과 : 15 / 총 15명 검색 결과</p>
     </div>
+
     <div class="member-list">
+        <nav class="member-inventory">
 
+            <form>
+                <table class="table table-hover">
+                    <colgroup>
+                        <col width="2%"/>
+                        <col width="10%"/>
+                        <col width="12%"/>
+                        <col width="12%"/>
+                        <col width="12%"/>
+                        <col width="12%"/>
+                        <col class="management-button" width="10%"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="allCheckBox" class="chk">
+                            </label>
+                        </th>
+                        <th>번호</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>등급</th>
+                        <th>상태</th>
+                        <th>가입일</th>
+                        <th class="management-button">관리</th>
+                    </tr>
+                    </thead>
 
-            <nav class="member-inventory">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="chk" name="chk" value="">
+                            </label>
+                        <td>1</td>
+                        <td>test1</td>
+                        <td>테스트</td>
+                        <td>일반</td>
+                        <td>정상</td>
+                        <td>2022.08.01</td>
+                            <td class="management-button">
+                                <button onclick="">비번변경</button>
+                                <button onclick="">1대1문의</button>
+                                <button onclick="">관리</button>
+                            </td>
+                    </tr>
+                    </tbody>
+                </table>
                 <br>
-                <form>
-                    <table class="table table-hover">
-                        <colgroup>
-                            <col width="2%" />
-                            <col width="5%" />
-                            <col width="20%" />
-                            <col width="5%" />
-                            <col width="5%" />
-                            <col width="5%" />
-                            <col width="5%" />
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" id="allCheckBox" class="chk">
-                                </label>
-                            </th>
-                            <th>번호</th>
-                            <th>아이디</th>
-                            <th>이름</th>
-                            <th>등급</th>
-                            <th>상태</th>
-                            <th>가입일</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td>
-                                <label class="checkbox-inline">
-                                    <input type="checkbox" class="chk" name="chk" value="">
-                                </label>
-                            <td>1</td>
-                            <td>test1</td>
-                            <td>테스트</td>
-                            <td>일반</td>
-                            <td>정상</td>
-                            <td>2022.08.01</td>
-                            <td><button>비번변경</button><button>1대1문의</button><button>관리</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <br>
-                    <nav class="container d-flex align-items-center justify-content-center" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </form>
-            </nav>
-
-
-
+            </form>
+        </nav>
     </div>
 </div>
+
+<nav class="container d-flex justify-content-center"
+     aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- 하단 기능 버튼들 -->
+<footer class="easy-skill-button">
+    <div class="test1">
+    <b>회원 일괄처리</b>
+    <button onclick="">메일발송</button>
+    <button onclick="">등급변경</button>
+    <button onclick="">정지처리</button><b class="Orange-text">x체크한 회원만 처리됩니다</b>
+    </div>
+</footer>
 
 
 

@@ -6,72 +6,72 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class ExampleController {
+public class CouplingController {
 
     @GetMapping("/main-member")
     public String getAdminPage(){
 
-        return "admin/main-member";
+        return "/admin/member/main-member";
     }
 
     @GetMapping("/secession")
     public String getSecessionPage(){
 
-        return "admin/secession";
+        return "admin/member/secession";
     }
 
     @GetMapping("/board")
     public String getBoardPage(){
 
-        return "admin/board";
+        return "admin/member/board";
     }
 
     @GetMapping("/comment")
     public String getCommentPage(){
 
-        return "admin/comment";
+        return "admin/member/comment";
     }
 
     @GetMapping("/applyform")
     public String getApplyFormPage(){
 
-        return "admin/applyform";
+        return "admin/member/applyform";
     }
 
-    @GetMapping("/application")
+    @GetMapping("/management")
     public String getApplicationPage(){
 
-        return "admin/application";
+        return "admin/member/management";
     }
 
     @GetMapping("/reservation")
     public String getReservationPage(){
 
-        return "admin/reservation";
+        return "admin/member/reservation";
     }
 
     @GetMapping("/automail")
     public String getAutoMailPage(){
 
-        return "admin/automail";
+        return "admin/MailManagement/automail";
     }
 
     @GetMapping("/atmosphere")
     public String getAtmospherePage(){
 
-        return "admin/atmosphere";
+        return "admin/statistics/atmosphere";
     }
 
     @GetMapping("/complete")
     public String getCompletePage(){
 
-        return "admin/complete";
+        return "admin/statistics/complete";
     }
 
     @GetMapping("/sales")
     public String getSalesPage(){
 
-        return "admin/sales";
+        return "admin/statistics/sales";
     }
 
 
