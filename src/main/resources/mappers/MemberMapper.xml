@@ -19,7 +19,7 @@
         <result property="memberStat" column="MEMBER_STAT"/>
         <result property="warningCount" column="WARNING_COUNT"/>
         <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
-        <result property="sighupPathCode" column="SIGNUP_PATH_CODE"/>
+        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
         <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
 
@@ -60,8 +60,8 @@
           FROM TBL_MEMBER A
           LEFT JOIN TBL_ROLE B ON(A.MEMBER_NO = B.MEMBER_NO)
           LEFT JOIN TBL_AUTHORITY C ON(B.AUTHORITY_CODE = C.AUTHORITY_CODE)
-         WHERE A.MEMBER_STAT = 'Y'
-           AND A.MEMBER_ID = #{memberId}
+         WHERE A.MEMBER_STAT = '활동'
+           AND A.MEMBER_ID = #{ memberId }
     </select>
 
 

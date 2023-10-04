@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -29,7 +28,7 @@ public class MemberDTO implements UserDetails {
     private String memberStat;      // 상태
     private int warningCount;       // 경고 횟수
     private Date memberStatDate;    // 상태 변경일
-    private int sighupPathCode;     // 가입경로 코드
+    private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
     // 한 멤버는 여러 권한을 가질 수 있다
 
@@ -39,36 +38,40 @@ public class MemberDTO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> roles = new HashSet<>();
+        for (MemberRoleDTO role : memberRoleList) {
+            roles.add(new SimpleGrantedAuthority(role.getAuthority().getName()));
+        }
+        return roles;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return memberPwd;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return memberId;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
