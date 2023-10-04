@@ -6,20 +6,22 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -30,10 +32,13 @@ import java.util.Date;
 @RequestMapping("/member")
 public class MemberController {
 
+
     private final MemberService memberService;
     private final AuthenticationService authenticationService;
     private final MessageSourceAccessor messageSourceAccessor;
     private final PasswordEncoder passwordEncoder;
+
+
 
     public MemberController(MemberService memberService,
                             AuthenticationService authenticationService,
@@ -57,52 +62,6 @@ public class MemberController {
     /* 회원 가입 완료 페이지 */
     @GetMapping("/completedRegist")
     public void comRegistPage(){}
-
-
-    /* 내 정보 확인 */
-    @GetMapping("/myInfo")
-    public void modifyPage(){} /* 로그인 시 멤버 정보 불러오기 짜야함 */
-
-
-    /* 회원 정보 수정 */
-    @PostMapping("/myInfo")
-    public String modifyMember(MemberDTO modifyMember, String zipCode, String address1, String address2,
-                               @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr) throws MemberModifyException {
-        String address = zipCode + "$" + address1 + "$" + address2;
-        modifyMember.setAddress(address);
-        modifyMember.setMemberNo(loginMember.getMemberNo());
-
-        log.info("modifyMember request Member : {}", modifyMember);
-
-        memberService.modifyMember(modifyMember);
-
-        /* 로그인 시 저장 된 Authentication 객체를 변경 된 정보로 교체한다. 아래 메소드 참조 */
-        SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(loginMember.getMemberId()));
-
-        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
-
-        return "redirect:/";
-    }
-    protected Authentication createNewAuthentication(String memberId) {
-
-        UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
-        UsernamePasswordAuthenticationToken newAuth
-                = new UsernamePasswordAuthenticationToken(newPrincipal, newPrincipal.getPassword(), newPrincipal.getAuthorities());
-
-        return newAuth;
-    }
-
-
-    @GetMapping("/login")
-    public void loginPage(){}
-
-    @PostMapping("/loginfail")
-    public String loginFailed(RedirectAttributes rttr){
-        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
-        return "redirect:/member/login";
-    }
-
-
 
     /* 회원 가입 */
     @PostMapping("/regist")
@@ -131,12 +90,58 @@ public class MemberController {
         return "redirect:/member/completedRegist";
     }
 
+    /* 내 정보 확인 */
+    @GetMapping("/myInfo")
+    public void modifyPage(){} /* 로그인 시 멤버 정보 불러오기 짜야함 */
+
+
+    /* 회원 정보 수정 */
+    @PostMapping("/myInfo")
+    public String modifyMember(MemberDTO modifyMember, String zipCode, String address1, String address2,
+                               @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr) throws MemberModifyException {
+
+        String address = zipCode + "$" + address1 + "$" + address2;
+        modifyMember.setAddress(address);
+        modifyMember.setMemberNo(loginMember.getMemberNo());
+
+        log.info("modifyMember request Member : {}", modifyMember);
+
+        memberService.modifyMember(modifyMember);
+
+        /* 로그인 시 저장 된 Authentication 객체를 변경 된 정보로 교체한다. 아래 메소드 참조 */
+        SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(loginMember.getMemberId()));
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
+
+        return "redirect:/";
+    }
+    protected Authentication createNewAuthentication(String memberId) {
+
+        UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
+        UsernamePasswordAuthenticationToken newAuth
+                = new UsernamePasswordAuthenticationToken(newPrincipal, newPrincipal.getPassword(), newPrincipal.getAuthorities());
+
+        return newAuth;
+    }
+
+
+    /* 로그인 화면 */
+    @GetMapping("/login")
+    public void loginPage(){}
+
+    @PostMapping("/loginfail")
+    public String loginFailed(RedirectAttributes rttr){
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
+        return "redirect:/member/login";
+    }
+
 
     @GetMapping("/find_id-pwd")
     public void findIdPwdPage(){}
 
-
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
+
+
 }
 

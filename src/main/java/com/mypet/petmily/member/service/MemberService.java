@@ -4,8 +4,16 @@ import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Date;
 
 @Service
@@ -18,6 +26,7 @@ public class MemberService {
     }
 
 
+
     /* 회원 닉네임 조회 */
     public boolean selectMemberByNickName(String nickName) {
 
@@ -25,6 +34,7 @@ public class MemberService {
 
         return result != null;
     }
+
 
     /* 회원 가입 */
     @Transactional
@@ -38,8 +48,6 @@ public class MemberService {
         int result2 = memberMapper.insertMemberRole();
 
         if (!(result1 > 0 && result2 > 0)) throw new MemberRegistException("회원 가입에 실패하였습니다.");
-
-
     }
 
 
@@ -49,6 +57,7 @@ public class MemberService {
 
         int result = memberMapper.updateMember(modifyMember);
 
-        if(!(result > 0)) throw  new MemberModifyException("회원 정보 수정에 실패하였습니다.");
+        if (!(result > 0)) throw new MemberModifyException("회원 정보 수정에 실패하였습니다.");
     }
+
 }

@@ -116,7 +116,7 @@
         VALUES
             (
              SEQ_TBL_MEMBER_NO.CURRVAL
-             , 1
+             , 2
             )
     </insert>
 
@@ -142,8 +142,7 @@
         UPDATE
             TBL_MEMBER
         SET NICKNAME = #{ nickname }
-          , PHONE = #{ phone }
-          , EMAIL = #{ email }
+          , PASSWORD = #{ memberPwd }
           , ADDRESS = #{ address }
         WHERE MEMBER_STATUS = '활동'
           AND MEMBER_NO = #{ memberNo }
