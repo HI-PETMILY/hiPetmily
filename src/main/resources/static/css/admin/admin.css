@@ -1,0 +1,236 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+
+.nav-div {
+    width: 100%;
+    padding-left: 1.5%;
+}
+
+.navbar-4 {
+    flex-direction: row;
+    display: flex;
+    padding-left: 15%;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+/* 네비게이션 바 스타일링 */
+.navbar-title {
+    width: 100%; /**/
+    background-color: #001933; /* 파란색 배경색 */
+    /*border-bottom: 1px solid #6a7ec7; /* 네비게이션 바 하단 경계선 */
+    display: flex;
+    justify-content: space-between; /* 사이트 이름과 메뉴를 좌우 정렬 */
+    align-items: center; /* 수직 정렬 */
+    position: relative;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -ms-flex-align: center;
+    -ms-flex-pack: justify;
+}
+
+@media (min-width: 992px)
+.navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.navbar-brand {
+    padding-left: 2%;
+    text-align: left;
+    font-size: 30px; /* 사이트 이름 폰트 크기 */
+    font-weight: bold; /* 사이트 이름 폰트 굵기 */
+    color: #fff; /* 사이트 이름 텍스트 색상  */
+}
+
+.nav-link {
+    color: #fff; /* 탭 메뉴 링크 텍스트 색상 */
+    font-weight: bold; /* 탭 메뉴 링크 폰트 굵기 */
+    white-space: nowrap; /* 글씨 줄 바꿈 방지 */
+}
+
+.nav-link:hover {
+    color: #0ca5a5; /* 마우스 호버 시 링크 색상 변경 */
+}
+
+/*======================메뉴바============================*/
+/* 탭 컨텐츠 스타일링 */
+.tab-pane {
+    margin: 0;
+    padding: 0px; /* 탭 컨텐츠 여백 */
+}
+
+/* 수직 드롭바 reset 부분 */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+body {
+    background-color: #eeeeee;
+}
+/*====================네비별 내용============================*/
+.contents { /* 회원리스트 제목박스 */
+    margin-left: 14%; /* 박스여백 */
+    margin-right: 2%;
+    margin-top: 1%;
+}
+
+.member-list { /* 회원목록 박스 */
+    background-color: #ffffff;
+    border: 1px solid #000000; /* 박스 테투리 */
+    margin-left: 14%; /* 박스여백 */
+    margin-right: 2%;
+}
+
+.result-text {
+    margin-left: 14%; /* 박스여백 */
+    margin-right: 2%;
+    margin-top: 1%;
+    font-size: 13px;
+}
+
+.details { /* 체크박스 검색 박스*/
+    border: 1px solid #000000; /* 박스 테투리 */
+    background-color: #ffffff;
+}
+
+.tab-details {
+    width: 100%;
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 1200px)
+.tab-details {
+    max-width: 1140px;
+}
+
+@media (min-width: 992px)
+.tab-details {
+    max-width: 960px;
+}
+
+@media (min-width: 768px)
+.tab-details {
+    max-width: 720px;
+}
+
+@media (min-width: 576px)
+.tab-details {
+    max-width: 540px;
+}
+
+.choose {
+    font-size: 14px;
+    padding-left: 2%;
+}
+
+
+/* ===================수직 메뉴바 부분===================== */
+
+.menu {
+    font-size: 20px;
+    width: 180px;
+    margin-right: 0; /* 여백 제거 */
+    background-color: #203d5c;
+    position: fixed;
+    height: 100vb; /* 화면 높이에 맞게 설정 */
+    /* top: 0; */
+    left: 0;
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+    justify-content: flex-start; /* 드롭 메뉴바 상단으로 배치 */
+}
+
+.menu-li {
+    padding-left: 20px;
+}
+
+.menu>li>a { /*관리 텍스트 밑줄 없애기*/
+    text-decoration: none;
+}
+
+.menu>li {
+    text-align: left; /* 글자를 왼쪽 정렬 */
+    line-height: 40px;
+    position: relative; /* 아래 화살표를 위해 상대 위치 설정 */
+}
+
+.menu>li>a:after {
+    content: "\1401"; /* 아래화살표 표시 */
+    position: absolute;
+    right: 10px; /* 오른쪽 여백 */
+    transition: transform 0.3s; /* 변환 애니메이션 효과 */
+}
+
+.menu>li:hover>a:after {
+    transform: rotate(180deg); /* 호버 시 위화살표로 회전 */
+}
+
+.menu a {
+    color: #fff;
+    display: block; /* 링크를 블록 요소로 설정하여 전체 너비를 차지하도록 함 */
+}
+
+.submenu>li {
+    line-height: 50px; /*하위 메뉴바 높이*/
+    background-color: #001933;
+    padding-left: 30px; /* 서브메뉴의 왼쪽 여백을 늘림 */
+}
+
+.submenu {
+    height: 0; /* ul의 높이를 안보이게 처리 */
+    overflow: hidden;
+    padding-left: 0px;
+}
+
+/* 마우스 hover 했을 때 */
+.menu>li:hover {
+    background-color: #203d5c;
+    transition-duration: 0.5s;
+}
+
+.menu>li:hover .submenu {
+
+    height: auto; /* 자동 높이 설정으로 모든 하위 메뉴를 표시 */
+    transition-duration: 1s;
+}
+
+
+/* 사이트 운영 관리 메뉴 스타일 */
+#site-operation {
+
+}
+
+/* SNS/메일 관리 메뉴 스타일 */
+#sns-mail {
+
+}
+
+.search-button {
+    border-radius: 5px; /* 검색 버튼 사각형 모서리 둥글게 */
+    background-color: #0ca5a5; /* 파란색 배경 설정 */
+    color: white; /* 글자 색상 설정 */
+    font-size: 18px; /* 글자 크기 설정 */
+    padding: 10px 20px; /* 안쪽 여백 설정 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 커서 모양 변경 */
+    float: right; /* 맨 오른쪽에 배치 */
+}
+
+.member-inventory {
+    padding-left: 2%;
+}
