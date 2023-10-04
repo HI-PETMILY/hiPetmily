@@ -6,6 +6,8 @@ spring:
     username: C##PETMILY
     password: PETMILY
 
+server:
+  port : 8081
 
 #  # file upload config (??? spring?? ????.)
 #  servlet:
