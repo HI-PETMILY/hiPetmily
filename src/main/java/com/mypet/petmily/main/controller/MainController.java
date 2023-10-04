@@ -51,10 +51,10 @@ public class MainController {
     }
 
     // 로그인
-    @GetMapping("/member/login")
-    public String headerMemberLogin() {
-        return "member/login";
-    }
+//    @GetMapping("/member/login")
+//    public String headerMemberLogin() {
+//        return "member/login";
+//    }
 
     // 마이페이지
     @GetMapping("/member/mypage")

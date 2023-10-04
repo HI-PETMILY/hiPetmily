@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/js/member/event.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+     <script>
+	    const message = '[[${message}]]';
+		message && alert(message);
+	</script>
+
+    <script>
+      /*  $(document).ready(function (){
+            $("#find_idPwd").on("click", function (){
+                location.href="/member/find_id-pwd";
+            });
+        });*/
+        $(function(){
+            $("#find_idPwd").click(function (){
+                location.href="/member/find_id-pwd";
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+<div id="login-container" class="main-container">
+
+    <!-- common header -->
+    <div th:replace="common/header_white.html"></div>
+
+    <div class="mainWrapper">
+
+        <div class="accountContainer">
+
+            <h1 class="mainTitle">로그인</h1>
+
+            <form id="loginForm" action="/member/login" method="post">
+                <div class="signInEmail">
+                    <label class="text">이메일 </label>
+                    <div class="signIn inputForm">
+                        <input type="email" name="memberId" placeholder="example@email.com"
+                               onfocus="this.placeholder=''" onblur="this.placeholder='example@email.com'"
+                               class="logIn InputBox" required>
+                    </div>
+                </div>
+
+                <div class="signInpwd">
+                    <label class="text">비밀번호 </label>
+                    <div class="signIn inputForm">
+                        <input type="password" name="memberPwd" placeholder="********"
+                               onfocus="this.placeholder=''" onblur="this.placeholder='********'"
+                               class="logIn InputBox" required>
+                    </div>
+                </div>
+
+                <div>
+                    <input id="loginSubmit" class="submitButton" type="submit" value="로그인">
+                </div>
+            </form>
+                <div class="btns" align="center">
+                    <a href="/member/find_id-pwd">로그인 정보를 잊으셨나요?</a>
+                </div>
+
+            <div class="snsButtonLogin" align="center">
+                <div>
+                    <button aria-label="카카오로 인증하기"></button>
+                    <button aria-label="네이버로 인증하기"></button>
+                    <button aria-label="구글로 인증하기"></button>
+                </div>
+
+                <div class="signInMessage">
+                    <p>펫밀리의 회원이 아니신가요?
+                        <a href="">회원가입</a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+
+</body>
+</html>

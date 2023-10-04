@@ -175,7 +175,7 @@ window.onload = function () {
 
         $headerJoin.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/member/mainRegist";    // 추후 연결
         });
 
         $headerJoin.addEventListener("mouseover", (event) => {
@@ -216,7 +216,7 @@ window.onload = function () {
 
         $headerLogin.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/member/login";    // 추후 연결
         });
 
         $headerLogin.addEventListener("mouseover", (event) => {
@@ -256,7 +256,7 @@ window.onload = function () {
 
         $headerMypage.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/member/mypage";    // 추후 연결
         });
 
         $headerMypage.addEventListener("mouseover", (event) => {

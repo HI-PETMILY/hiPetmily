@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+
+/* 전체 가운데 정렬 */
+.con_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 400px;
+    margin: 0% auto;
+}
+
+
+/* 폰트 */
+.style_container {
+    font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
+}
+
+
+/* input 칸 길이 설정 */
+#email {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#name, #password, #password2 {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#nickName {
+    width: 227px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#phone {
+    width: 197px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#zipcode {
+    width: 197px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#address1, #address2 {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#duplicationCheck {
+    width: 70px;
+    padding-bottom: 2px;
+    height: 33px;
+    font-size: 11px;
+    color: #535353;
+    font-weight: 600;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#authenticationNumber {
+    width: 100px;
+    height: 33px;
+    font-size: 11px;
+    color: #535353;
+    font-weight: 600;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+#searchZipCode {
+    width: 100px;
+    padding-bottom: 2px;
+    height: 33px;
+    font-size: 11px;
+    color: #535353;
+    font-weight: 600;
+    border: 1px solid #D3D3D3;
+    box-shadow: 1px 1px 1px 0.5px #bebebe;
+    border-radius: 5px;
+}
+
+
+.gender-label {
+    margin-right: 100px;
+}
+
+
+
+/* 폰트 사이즈 */
+.notice1, .marketingCell {
+    font-size: 11px;
+}
+
+.checkbox_group {
+    font-size: 13px;
+}
+
+::placeholder {
+    font-size: 11.5px;
+    color: #535353;
+}
+
+
+/* 전체 간격 */
+div {
+    padding-top: 7px;
+}
+
+.gender-row {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.gender-fe {
+    margin-left: 80px;
+}
+
+
+.regist_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 310px;
+    margin: 0% auto;
+    padding-right: 20px;
+}
+
+#regist_button {
+    width: 400px;
+    height: 40px;
+    border: 0px;
+    border-radius: 5px;
+    padding-right: 7px;
+    background-color: #81BDF1;
+    color: white;
+
+}
+
+#nickname {
+    margin-bottom: 20px;
+}
