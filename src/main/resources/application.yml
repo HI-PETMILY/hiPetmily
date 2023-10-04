@@ -5,12 +5,18 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
+  redis:  # sens sms api
+    host: localhost
+    port: 8080
 
-# Mybatis config
-mybatis:
-  mapper-locations: mappers/**/*.xml
-  configuration:
-    map-underscore-to-camel-case: true
+#변수
+naver:
+  serviceid: ncp:sms:kr:317090578706:petmily_sms
+  accesskey: z5qxiVolzEHlgqpEKiQe
+  secretkey: s1WRHeNKmr8gQuXTjJkk3gqPSolAPpZrypxdrFlQ
+
+server:
+  port : 8081
 
 #  # file upload config (??? spring?? ????.)
 #  servlet:

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+
+.regist_start {
+    width: 330px;
+    height: 49px;
+    margin-bottom: 15px;
+    border: 1.5px solid #bfbfbf;
+    border-radius: 8px;
+}
+
+#regist {
+    background-color: #81BDF1;
+    color: white;
+    border: 1px;
+}
+
+#kakao_start, #naver_start, #google_start {
+    background-color: white;
+}
+
+
+.login_inline {
+    display: flex;
+    align-items: center;
+}
+
+
+.login {
+    color: #81BDF1;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+
+.petmily_member {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top:10px;
+    margin-left: 45px;
+}
+
+.container {
+    display: block;
+    justify-items: center;
+    align-items: center;
+    max-width: 350px;
+    margin: 0% auto;
+    margin-top: 250px;
+    font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
+    font-weight: 500;
+}
