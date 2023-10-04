@@ -15,8 +15,8 @@ naver:
   accesskey: z5qxiVolzEHlgqpEKiQe
   secretkey: s1WRHeNKmr8gQuXTjJkk3gqPSolAPpZrypxdrFlQ
 
-server:
-  port : 8081
+#server:
+#  port : 8081
 
 #  # file upload config (??? spring?? ????.)
 #  servlet:
