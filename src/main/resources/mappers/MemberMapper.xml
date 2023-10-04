@@ -64,8 +64,6 @@
            AND A.MEMBER_ID = #{ memberId }
     </select>
 
-
-
     <select id="selectMemberByNickName" resultType="string">
         SELECT NICKNAME
         FROM TBL_MEMBER
@@ -120,6 +118,29 @@
             )
     </insert>
 
+    <select id="findId" parameterType="String" resultType="String">
+        SELECT
+            MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_NAME = #{memberName}
+          AND PHONE = #{phone}
+    </select>
+
+    <update id="updatePwd">
+        UPDATE
+            TBL_MEMBER
+        SET MEMBER_PWD = #{memberPwd}
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <select id="findByMemberEmail">
+        SELECT
+            MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_STATUS = '활동'
+          AND MEMBER_ID = #{memberId}
+    </select>
+
 
     <!-- 설마 중복 처리..?-->
 <!--    <select id="selectMember">-->
@@ -140,13 +161,13 @@
 
     <update id="updateMember">
         UPDATE
-            TBL_MEMBER
-        SET NICKNAME = #{ nickname }
-          , PHONE = #{ phone }
-          , EMAIL = #{ email }
-          , ADDRESS = #{ address }
-        WHERE MEMBER_STATUS = '활동'
-          AND MEMBER_NO = #{ memberNo }
+               TBL_MEMBER
+           SET NICKNAME = #{ nickname }
+             , PHONE = #{ phone }
+             , EMAIL = #{ email }
+             , ADDRESS = #{ address }
+         WHERE MEMBER_STATUS = '활동'
+           AND MEMBER_NO = #{ memberNo }
     </update>
 
 </mapper>

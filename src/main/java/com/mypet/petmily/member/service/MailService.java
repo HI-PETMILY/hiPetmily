@@ -2,11 +2,13 @@ package com.mypet.petmily.member.service;
 
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MailDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class MailService {
 
     private final MemberMapper memberMapper;
@@ -23,9 +25,10 @@ public class MailService {
         String str = getTempPwd();
         MailDTO mail = new MailDTO();
         mail.setAddress(email);
-        mail.setTitle("안녕하세요. 펫밀리 임시 비밀번호 관련 이메일 입니다."
-                + "회원님의 임시 비밀번호는 " + str + "입니다.");
+        mail.setTitle("안녕하세요. 펫밀리 임시 비밀번호 관련 이메일 입니다.");
+        mail.setMessage("회원님의 임시 비밀번호는 " + str + "입니다.");
         updatePwd(str, email);
+        log.info("mail : {}", mail);
         return mail;
     }
 
@@ -53,7 +56,7 @@ public class MailService {
     }
 
     // 메일 전송
-    public void mailSned(MailDTO dto) {
+    public void mailSend(MailDTO dto) {
         System.out.println("전송 완료!");
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(dto.getAddress());
@@ -64,4 +67,5 @@ public class MailService {
         System.out.println("message"+message);
         mailSender.send(message);
     }
+
 }

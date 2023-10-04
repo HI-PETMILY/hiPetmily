@@ -12,7 +12,6 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
-
 public class MemberDTO implements UserDetails {
 
     private Long memberNo;          // 회원코드
@@ -35,8 +34,6 @@ public class MemberDTO implements UserDetails {
 
 
     /* 나중에 GrantedAuthority 객체 */
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();

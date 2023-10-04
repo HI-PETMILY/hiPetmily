@@ -2,28 +2,30 @@ package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
+import com.mypet.petmily.member.dto.MailDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
+import com.mypet.petmily.member.service.MailService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -34,15 +36,19 @@ public class MemberController {
     private final AuthenticationService authenticationService;
     private final MessageSourceAccessor messageSourceAccessor;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
+
 
     public MemberController(MemberService memberService,
                             AuthenticationService authenticationService,
                             MessageSourceAccessor messageSourceAccessor,
-                            PasswordEncoder passwordEncoder) {
+                            PasswordEncoder passwordEncoder,
+                            MailService mailService) {
         this.memberService = memberService;
         this.authenticationService = authenticationService;
         this.messageSourceAccessor = messageSourceAccessor;
         this.passwordEncoder = passwordEncoder;
+        this.mailService = mailService;
     }
 
 
@@ -92,17 +98,16 @@ public class MemberController {
         return newAuth;
     }
 
-
+    /* 로그인 */
     @GetMapping("/login")
     public void loginPage(){}
 
+    /* 로그인 실패 시 */
     @PostMapping("/loginfail")
     public String loginFailed(RedirectAttributes rttr){
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
         return "redirect:/member/login";
     }
-
-
 
     /* 회원 가입 */
     @PostMapping("/regist")
@@ -131,9 +136,36 @@ public class MemberController {
         return "redirect:/member/completedRegist";
     }
 
-
+    /* 아이디 비밀번호 찾기 화면 */
     @GetMapping("/find_id-pwd")
     public void findIdPwdPage(){}
+
+    /*아이디 찾기 결과 */
+    @PostMapping("/find_id-pwd")
+    public String findId(@RequestParam("memberName") String memberName,
+                         @RequestParam("phone") String phone,
+                         Model model) {
+        System.out.println("name: " + memberName + ", phone: " + phone);
+        String result = memberService.findId(memberName, phone);
+        if(result != null){
+            model.addAttribute("result", result);   // 검색 결과를 Model에 추가
+            model.addAttribute("showResult", true); // 결과를 보여주기 위한 플래그 추가
+        }else {
+            model.addAttribute("findIdError", "해당하는 사용자를 찾을 수 없습니다.");
+        }
+        return "/member/find_id_result";
+    }
+
+    /* 비밀번호 찾기 */
+    // 이메일 전송
+    @PostMapping("/sendEmail")
+
+    public String sendEmail(@RequestParam("memberId") String email){
+        MailDTO dto = mailService.createEmailContent(email);
+        mailService.mailSend(dto);
+
+        return "member/login";
+    }
 
 
     @GetMapping("/pet-profile-regist")

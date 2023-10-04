@@ -16,4 +16,12 @@ public interface MemberMapper {
 
     void updatePwd(Long memberId, String memberPwd);
 
+    String selectMemberByNickName(String nickName);
+
+    int insertMember(MemberDTO member);
+
+    int insertMemberRole();
+
+    int updateMember(MemberDTO modifyMember);
+
 }

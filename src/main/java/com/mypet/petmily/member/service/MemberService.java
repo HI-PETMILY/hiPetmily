@@ -17,7 +17,6 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
-
     /* 회원 닉네임 조회 */
     public boolean selectMemberByNickName(String nickName) {
 
@@ -38,10 +37,7 @@ public class MemberService {
         int result2 = memberMapper.insertMemberRole();
 
         if (!(result1 > 0 && result2 > 0)) throw new MemberRegistException("회원 가입에 실패하였습니다.");
-
-
     }
-
 
     /* 회원 정보 수정 */
     @Transactional
@@ -51,4 +47,10 @@ public class MemberService {
 
         if(!(result > 0)) throw  new MemberModifyException("회원 정보 수정에 실패하였습니다.");
     }
+
+    /* 아이디 찾기 */
+    public String findId(String memberName, String phone) {
+        return memberMapper.findId(memberName, phone);
+    }
+
 }
