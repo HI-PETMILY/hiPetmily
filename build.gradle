@@ -17,12 +17,28 @@ configurations {
     }
 }
 
-repositories {
+repositories {//package com.mypet.petmily.member.service;
+//
+//import com.mypet.petmily.member.dao.MemberMapper;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class MemberService {
+//
+//    private final MemberMapper memberMapper;
+//
+//    public MemberService(MemberMapper memberMapper) {
+//        this.memberMapper = memberMapper;
+//    }
+//
+//
+//}
+
     mavenCentral()
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/net.coobird/thumbnailator
+
     implementation 'net.coobird:thumbnailator:0.4.20'
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
