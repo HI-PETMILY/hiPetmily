@@ -41,14 +41,3 @@ public class MemberService {
 
 
     }
-
-
-    /* 회원 정보 수정 */
-    @Transactional
-    public void modifyMember(MemberDTO modifyMember) throws MemberModifyException {
-
-        int result = memberMapper.updateMember(modifyMember);
-
-        if(!(result > 0)) throw  new MemberModifyException("회원 정보 수정에 실패하였습니다.");
-    }
-}
