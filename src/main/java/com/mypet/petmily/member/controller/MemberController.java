@@ -130,3 +130,13 @@ public class MemberController {
         rttr.addFlashAttribute("nickname", member.getNickName());
         return "redirect:/member/completedRegist";
     }
+
+
+    @GetMapping("/find_id-pwd")
+    public void findIdPwdPage(){}
+
+
+    @GetMapping("/pet-profile-regist")
+    public void petProfileRegist(){}
+}
+
