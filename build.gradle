@@ -38,6 +38,7 @@ repositories {//package com.mypet.petmily.member.service;
 }
 
 dependencies {
+    implementation ('org.springframework.boot:spring-boot-starter-data-redis')
     // https://mvnrepository.com/artifact/net.coobird/thumbnailator
     implementation 'net.coobird:thumbnailator:0.4.20'
 
