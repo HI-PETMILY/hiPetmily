@@ -7,11 +7,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
-    /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
-    min-width: 1440px;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;        /* 한글 */
+    /*font-family: 'Roboto', sans-serif;*/                  /* 영문 */
+    min-width: 1903px;
     font-weight: bold;
-
+    font-size: 17px;
     position: fixed;
     top: 0;
     left: 0;
@@ -27,6 +27,7 @@
 .white {
     background-color: white;
     color: #364f6b;
+    border-bottom: 1px solid lightgray;
 }
 
 .header_left {
@@ -43,12 +44,12 @@
     cursor: pointer;
 }
 
-.header_left_title {
+.header_left_title p {
     margin-left: 10px;
     text-align: center;
-    padding-top: 12px;
+    padding-top: 10px;
     cursor: pointer;
-    font-size: 50px;
+    font-size: 45px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -59,7 +60,7 @@
 }
 
 .header_middle_nav {
-    padding-top: 30px;
+    padding-top: 32px;
 }
 
 .header_middle_nav ul {
@@ -67,7 +68,7 @@
     flex-direction: row;
     justify-content: space-around;
     list-style-type: none;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .header_middle_nav ul li {
@@ -75,7 +76,8 @@
 }
 
 .header_right {
-    padding-top: 20px;
+    padding-top: 22px;
+    font-size: 13px;
 }
 
 .header_right ul {
@@ -86,7 +88,7 @@
 }
 
 .header_right ul li {
-    width: 75px;
+    width: 62px;
     height: 50px;
     margin-right: 5px;
     cursor: pointer;
@@ -94,14 +96,14 @@
 }
 
 .header_right_img {
-    width: 75px;
-    height: 25px;
+    width: 62px;
+    height: 50px;
     text-align: center;
 }
 
 .header_right_img img{
-    width: 25px;
-    height: 25px;
+    width: 62px;
+    height: 50px;
 }
 
 .headerMypage {
@@ -125,11 +127,11 @@
     flex-direction: row;
     justify-content: center;
     background-color: #2E313B;
-    font-family: 'Noto Sans KR', sans-serif;        /* 한글 */
-    /*font-family: 'Roboto', sans-serif;*/          /* 영문 */
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/                  /* 영문 */
     color: white;
     padding-top: 20px;
-    min-width: 1440px;
+    min-width: 1903px;
 }
 
 .footer_left {
@@ -148,7 +150,7 @@
 
 .footer_right_top {
     width: 700px;
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 10px;
 }
 
@@ -173,3 +175,18 @@
     font-size: 12px;
     line-height: 1.5;
 }
+
+
+/* 반응형 적용 전 */
+/*@media (max-width: 1440px) {*/
+/*    .header {*/
+/*        width: 1400px;*/
+/*        min-width: 1400px;*/
+
+/*    }*/
+
+/*    .footer {*/
+/*        width: 1400px;*/
+/*        min-width: 1400px;*/
+/*    }*/
+/*}*/
