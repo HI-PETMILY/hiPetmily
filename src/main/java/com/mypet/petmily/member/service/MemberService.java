@@ -1,9 +1,9 @@
 package com.mypet.petmily.member.service;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
+import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;

@@ -1,29 +1,25 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
+import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.context.support.MessageSourceAccessor;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -48,8 +44,6 @@ public class MemberController {
         this.messageSourceAccessor = messageSourceAccessor;
         this.passwordEncoder = passwordEncoder;
     }
-
-    /* 로그인 페이지 ~ */
 
 
     /* 회원 가입 메인 페이지 이동 */
@@ -89,6 +83,15 @@ public class MemberController {
 
         return "redirect:/";
     }
+    protected Authentication createNewAuthentication(String memberId) {
+
+        UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
+        UsernamePasswordAuthenticationToken newAuth
+                = new UsernamePasswordAuthenticationToken(newPrincipal, newPrincipal.getPassword(), newPrincipal.getAuthorities());
+
+        return newAuth;
+    }
+
 
     @GetMapping("/login")
     public void loginPage(){}
@@ -99,14 +102,6 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    protected Authentication createNewAuthentication(String memberId) {
-
-        UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
-        UsernamePasswordAuthenticationToken newAuth
-                = new UsernamePasswordAuthenticationToken(newPrincipal, newPrincipal.getPassword(), newPrincipal.getAuthorities());
-
-        return newAuth;
-    }
 
 
     /* 회원 가입 */
@@ -137,15 +132,8 @@ public class MemberController {
     }
 
 
-    @GetMapping("/regist")
-    public void registPage(){}
-
-
     @GetMapping("/find_id-pwd")
     public void findIdPwdPage(){}
-
-
-
 
 
     @GetMapping("/pet-profile-regist")
