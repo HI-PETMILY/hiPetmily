@@ -29,6 +29,8 @@ naver:
 ## Mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 ## image upload dir
 #image:
