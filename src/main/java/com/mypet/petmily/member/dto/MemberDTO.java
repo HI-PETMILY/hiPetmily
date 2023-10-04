@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 @Getter
 @Setter
 @ToString
+
 public class MemberDTO implements UserDetails {
 
     private Long memberNo;          // 회원코드
@@ -29,6 +30,8 @@ public class MemberDTO implements UserDetails {
     private Date memberStatDate;    // 상태 변경일
     private int warningCount;       // 경고 횟수
     private int signupPathCode;     // 가입경로 코드
+    private List<MemberRoleDTO> memberRoleList;
+    // 한 멤버는 여러 권한을 가질 수 있다
 
 
     /* 나중에 GrantedAuthority 객체 */
@@ -36,7 +39,11 @@ public class MemberDTO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> roles = new HashSet<>();
+        for (MemberRoleDTO role : memberRoleList) {
+            roles.add(new SimpleGrantedAuthority(role.getAuthority().getName()));
+        }
+        return roles;
     }
 
     @Override

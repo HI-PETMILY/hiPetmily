@@ -13,4 +13,10 @@ public interface MemberMapper {
     int insertMemberRole();
 
     int updateMember(MemberDTO modifyMember);
+
+    MemberDTO findMemberById(String memberId);
+
+//    String selectMemberById(String memberId);
+
+
 }

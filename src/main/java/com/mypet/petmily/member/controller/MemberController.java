@@ -7,17 +7,19 @@ import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -42,8 +44,6 @@ public class MemberController {
         this.messageSourceAccessor = messageSourceAccessor;
         this.passwordEncoder = passwordEncoder;
     }
-
-    /* 로그인 페이지 ~ */
 
 
     /* 회원 가입 메인 페이지 이동 */
@@ -83,7 +83,6 @@ public class MemberController {
 
         return "redirect:/";
     }
-
     protected Authentication createNewAuthentication(String memberId) {
 
         UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
@@ -92,6 +91,17 @@ public class MemberController {
 
         return newAuth;
     }
+
+
+    @GetMapping("/login")
+    public void loginPage(){}
+
+    @PostMapping("/loginfail")
+    public String loginFailed(RedirectAttributes rttr){
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
+        return "redirect:/member/login";
+    }
+
 
 
     /* 회원 가입 */
@@ -122,6 +132,11 @@ public class MemberController {
     }
 
 
+    @GetMapping("/find_id-pwd")
+    public void findIdPwdPage(){}
 
 
+    @GetMapping("/pet-profile-regist")
+    public void petProfileRegist(){}
 }
+

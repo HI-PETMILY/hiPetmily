@@ -23,13 +23,11 @@ naver:
 #      max-request-size: 10MB
 #      location: C:/Lecture/10_spring/04_spring-comprehensive/chap01-comprehensive
 
-
-# Mybatis config
+## Mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml
-
 
 ## image upload dir
 #image:
 #  image-dir: src/main/resources/upload/
-
+#
