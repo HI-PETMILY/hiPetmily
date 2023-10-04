@@ -55,7 +55,8 @@
 		        <option value="content" th:selected="${boardDTO.searchType == 'content'}">내용</option>
 		    </select>
             <input type="search" id="searchTxt" name="searchTxt" th:value="${boardDTO != null} ? ${boardDTO.searchTxt} : ''" />
-            <img id="search-img" width="19px" src="./img/search.png"/>
+			<input type="submit">
+			<img id="search-img" width="50px" src="/static_Image/board/search.png"/>
      	</form>
         </div>
     </div>
