@@ -37,14 +37,43 @@ span {
 /* common ----------------------------------- */
 
 .psp_container {
-    width: 1440px;
+    width: 1200px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-
     margin: 150px auto 0;
     background-color: white;
     position: relative;
 }
 
+.psp_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: calc(66.6% - 20px);
+    margin-right: 20px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img {
+    width: 100%;
+    height: 670px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img_main {
+
+}
+
+
+
+
+
+.psp_right {
+    width: 33.33%;
+
+    border: 1px solid darkgray;
+}
