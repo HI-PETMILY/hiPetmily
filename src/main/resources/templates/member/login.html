@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
 
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
      <script>
 	    const message = '[[${message}]]';
 		message && alert(message);
@@ -27,7 +33,7 @@
 <div id="login-container" class="main-container">
 
     <!-- common header -->
-    <div th:replace="common/header.html"></div>
+    <div th:replace="common/header_white.html"></div>
 
     <div class="mainWrapper">
 
@@ -39,7 +45,7 @@
                 <div class="signInEmail">
                     <label class="text">이메일 </label>
                     <div class="signIn inputForm">
-                        <input type="email" name="userId" placeholder="example@email.com"
+                        <input type="email" name="memberId" placeholder="example@email.com"
                                onfocus="this.placeholder=''" onblur="this.placeholder='example@email.com'"
                                class="logIn InputBox" required>
                     </div>
