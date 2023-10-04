@@ -79,5 +79,11 @@
          WHERE MEMBER_ID = #{memberId}
     </update>
 
-
+    <select id="">
+        SELECT
+               MEMBER_ID
+          FROM TBL_MEMBER
+         WHERE MEMBER_STATUS = 'Y'
+           AND MEMBER_ID = #{ memberId }
+    </select>
 </mapper>

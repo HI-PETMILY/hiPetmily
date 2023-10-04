@@ -70,15 +70,17 @@ public class MemberController {
         return "/member/find_id_result";
     }
 
-    //이메일 전송
-    @Transactional
-    @PostMapping("/sendEmail")
-    public String sendEmail(@RequestParam("email") String email){
-        MailDTO dto = mailService.createEmailContent(email);
-        mailService.mailSned(dto);
 
-        return "member/login";
-    }
+
+
+   @PostMapping("/find_id_result")
+   // 이메일 전송
+   public String sendEmail(@RequestParam("email") String email){
+       MailDTO dto = mailService.createEmailContent(email);
+       mailService.mailSned(dto);
+
+       return "member/login";
+   }
 
 
 

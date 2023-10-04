@@ -48,3 +48,26 @@ function find_Pwd(num){
 
     }
 }
+
+$("#findPwdSubmit").click(function (){
+    const userEmail = $("#userEmail").val();
+    const sendEmail = document.forms["sendEmail"];
+    $.ajax({
+        type: 'POST',
+        url: '/member/find_id-pwd',
+        data: {
+            'email':userEmail,
+        },
+        dataType: "text",
+        success: function (result){
+            if(result == "no"){
+                alert('임시 비밀번호가 발송되었습니다.');
+                sendEmail.submit();
+            }else{
+                alert('가입되지 않은 이메일입니다.');
+            }
+        }, error:function (){
+            console.log('이메일 에러 발생')
+        }
+    })
+});

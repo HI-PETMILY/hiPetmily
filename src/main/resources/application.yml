@@ -31,3 +31,6 @@ mybatis:
 #image:
 #  image-dir: src/main/resources/upload/
 #
+
+configuration:
+map-underscore-to-camel-case: true
