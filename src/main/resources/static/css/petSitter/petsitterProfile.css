@@ -65,12 +65,149 @@ span {
 }
 
 .psp_img_main {
+    width: 100%;
+    height: 560px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img_sub {
+    width: 100%;
+    height: 108px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0 7px;
+    text-align: center;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img_subImg {
+    height: 85px;
+    display: block;
+    float: left;
+    width: calc((100% - 61px)/6);
+    margin: 0 auto;
+
+    border: 1px solid darkgray;
+}
+
+.psp_profile {
+    width: 720px;
+    height: 170px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 10px auto;
 
 }
 
+.psp_profile_box {
+    width: 15%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
 
+    border: 1px solid darkgray;
+}
 
+.psp_profile_img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 10px;
+    padding: 2px;
+    margin-top: 15px;
+    border: 1px solid #D7B59C;
+}
 
+.psp_profile_star {
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.psp_item_content {
+    width: 85%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid darkgray;
+}
+
+.psp_item_title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.psp_item_box {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.psp_profile_name {
+    font-size: 16px;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.psp_profile_address {
+    font-size: 12px;
+    line-height: 18px;
+    height: 18px;
+    display: inline-block;
+    margin-left: 12px;
+    margin-top: 8px;
+}
+
+.psp_profile_tag {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 10px !important;
+}
+
+.tagBox {
+    display: inline-block;
+    background: #FCDB6B;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.psp_introduce {
+    width: 720px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 20px auto;
+}
+
+.psp_item_title {
+
+}
+
+.psp_item_text {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .psp_right {
     width: 33.33%;
