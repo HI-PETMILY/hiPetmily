@@ -1,0 +1,291 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* common ----------------------------------- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* em -> 부모
+        rem -> 최상위 부모 */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body, p {
+    height: 100%;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;      /* 하이퍼 링크 밑줄 x */
+}
+
+span {
+    font-weight: 500;
+}
+
+/* banner ----------------------------------- */
+.slide {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    position: relative;
+
+    width: 1903px;
+    height: 833px;
+    margin-top: 90px;
+    min-width: 1903px;
+}
+
+.slide_banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    left: 0px;
+
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+
+    transition: left 0.15s;
+}
+
+.slide_banner img {
+    width: 1903px;
+    height: 833px;
+}
+
+.slide_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: calc(50% - 50px);  /* 버튼 중앙에 위치 계산 */
+
+    font-size: 70px;
+    color: #cccc;
+    cursor: pointer;
+}
+
+.slide_prev_button {
+    left: 30px;
+}
+
+.slide_next_button {
+    right: 30px;
+}
+
+.slide_pagination {
+    display: flex;
+    gap: 5px;
+
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slide_pagination > li {
+    color: white;
+    cursor: pointer;
+    font-size: 45px;
+}
+
+.slide_pagination > li.active {
+    color: #81BDF1;
+}
+
+
+/* ---------------- content ---------------- */
+.container {
+    width: 1440px;
+    margin: 110px auto 0;
+    background-color: white;
+    position: relative;
+}
+
+.container_item {
+    width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto 110px;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto 110px;
+}
+
+.container_item_img {
+    width: 450px;
+    height: 450px;
+    border-radius: 30px;
+    box-shadow: 1rem 1rem 1rem 0 rgba(68,68,68,.2);
+}
+
+.container_item_text {
+    width: 450px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item_text_title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 50px;
+
+}
+
+.item_text_detail {
+    margin-bottom: 50px;
+}
+
+.detail_button {
+    width: 170px;
+    height: 59px;
+    font-weight: bold;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.detail_button:hover{
+    transform: scale(1.03);
+    transition: all 0.1s;
+}
+
+.container_item_review {
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto 50px;
+}
+
+.item5 {
+    margin-bottom: 50px;
+}
+
+.review_item {
+    width: 310px;
+    height: 460px;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 1px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5px;
+    border-radius: 15px;
+}
+
+.review_item_img {
+    width: 300px;
+    height: 170px;
+    position: relative;
+    border-radius: 15px;
+}
+
+.review_item_img img {
+    width: 300px;
+    height: 170px;
+    border-radius: 15px;
+    position: absolute;
+}
+
+.review_item_title {
+    display: flex;
+    justify-content: space-between;
+    width: 246px;
+    margin-top: 35px;
+}
+
+.review_star_img {
+    width: 53px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review_star_img img{
+    width: 9px;
+    height: 9px;
+}
+
+.review_item_content {
+    margin-top: 24px;
+    width: 246px;
+    height: 126px;
+    font-size: 15px;
+    line-height: 26px;
+    color: rgb(77, 80, 85);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.review_item_btnDiv {
+    margin-top: 10px;
+    width: 246px;
+}
+
+.review_all_btn {
+    color: rgb(188, 188, 188);
+    font-size: 15px;
+    font-weight: 600;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.review_all_btn:hover{
+    transform: scale(1.03);
+    transition: all 0.1s;
+}
+
+
+/* 반응형 적용 전 */
+/*@media (max-width: 1440px) {*/
+/*    .slide {*/
+
+/*        width: 1400px;*/
+
+/*        min-width: 1400px;*/
+/*    }*/
+
+/*    .slide_banner img {*/
+/*        width: 1400px;*/
+/*    }*/
+
+/*    .container {*/
+/*        width: 1400px;*/
+
+/*    }*/
+/*}*/

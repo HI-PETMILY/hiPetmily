@@ -1,6 +1,9 @@
 package com.mypet.petmily.config;
 
+import com.mypet.petmily.member.service.AuthenticationService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,6 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
+    private final AuthenticationService authenticationService;
+
+    public SpringSecurityConfiguration(AuthenticationService authenticationService){
+        this.authenticationService = authenticationService;
+    }
 
     /* 비밀번호 암호화에 사용할 객체 BCryptPasswordEncoder bean 등록 */
     @Bean
@@ -57,15 +65,15 @@ public class SpringSecurityConfiguration {
     }
 
     /* 사용자 인증을 위해서 사용할 Service 등록 & 비밀번호 인코딩 방식 지정 */
-//    @Bean
-//    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-//
-//        return http
-//                .getSharedObject(AuthenticationManagerBuilder.class)
-//                .userDetailsService(authenticationService)
-//                .passwordEncoder(passwordEncoder())
-//                .and()
-//                .build();
-//    }
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+
+        return http
+                .getSharedObject(AuthenticationManagerBuilder.class)
+                .userDetailsService(authenticationService)
+                .passwordEncoder(passwordEncoder())
+                .and()
+                .build();
+    }
 
 }

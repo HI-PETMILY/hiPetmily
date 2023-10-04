@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/member/regist.css"/>
+    <script defer type="text/javascript" src="/js/member/regist.js"></script>
+</head>
+
+<body>
+
+<div class="con_container">
+    <div class="style_container">
+            <span>
+                <h2>회원가입</h2>
+            </span>
+        <form action="/member/regist" method="post">
+        <div>
+            <div class="notice1">
+                * 은 필수 입력 사항입니다.
+                <div>
+                    <div class="container_email">
+                        <span>
+                            <input type="text" name="memberId" id="email" placeholder=" * 이메일"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 이메일'" required>
+                        </span>
+                    </div>
+
+                    <div>
+                        <div class="container_name">
+                        <span>
+                            <input type="text" maxlength="6" name="memberName" id="name" placeholder=" * 이름"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 이름'" required>
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container_nickname">
+                        <span>
+                            <input type="text" maxlength="13" name="nickName" id="nickName"
+                                   placeholder=" * 닉네임" onfocus="this.placeholder=''" onblur="this.placeholder=' * 닉네임'"
+                                   required>
+                            <input type="button" value="중복확인" id="duplicationCheck">
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container_password">
+                        <span>
+                            <input type="password" maxlength="13" name="memberPwd" id="password"
+                                   placeholder=" * 비밀번호" onfocus="this.placeholder=''"
+                                   onblur="this.placeholder=' * 비밀번호'" required>
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container_password2">
+                        <span>
+                            <input type="password" maxlength="15" name="memberPwd2" id="password2"
+                                   placeholder=" * 비밀번호 확인" onfocus="this.placeholder=''"
+                                   onblur="this.placeholder=' * 비밀번호 확인'" required>
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="container_phone">
+                        <span>
+                            <input type="text" maxlength="15" name="phone" id="phone" placeholder=" * 휴대전화"
+                                   onfocus="this.placeholder=''" onblur="this.placeholder=' * 휴대전화'"  required>
+                            <input type="button" onclick="sendSms()" value="인증번호 발송" id="authenticationNumber">
+                        </span>
+                        </div>
+                    </div>
+<!--                    <form id="verificationForm" style="display:none;">-->
+<!--                        <label for="verificationCode"></label>-->
+<!--                        <input type="text" id="verificationCode" name="verificationCode" required>-->
+<!--                        <button type="button" onclick="verifySms()">인증 확인</button>-->
+<!--                    </form>-->
+
+                    <div class="gender-row">
+                        <div class="gender-label">성별</div>
+                        <div class="gender-container">
+                            <label class="gender-fe">
+                                <input type="radio" name="gender" value="F" checked="checked"/>
+                                <span class="female">여성</span>
+                            </label>
+                            <label class="gender-me">
+                                <input type="radio" value="M" name="gender"/>
+                                <span class="male">남성</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="centerLine">
+                            <input type="text" value="" name="postNo" id="zipcode" placeholder=" 우편번호 (선택)" readonly>
+                            <input type="button" value="우편번호 검색" id="searchZipCode">
+                        </div>
+                    </div>
+                    <div>
+                        <input type="text" name="address" id="address1" placeholder=" 기본주소" readonly>
+
+                    </div>
+                    <div>
+                        <input type="text" name="address2" id="address2" placeholder=" 상세주소 입력">
+                    </div>
+
+                    <div class="checkbox_group">
+                        <div>
+                            <input type="checkbox" id="check_all">
+                            <label for="check_all">전체동의</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="normal required" id="check_1">
+                            <label for="check_1">만 14세 이상입니다. [필수] </label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="normal required" id="check_2">
+                            <label for="check_2">펫밀리 이용 약관 동의 [필수]</label>
+                            <span>내용보기</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="normal required" id="check_3">
+                            <label for="check_3">개인정보 수집 및 이용 동의 [필수]</label>
+                            <span>내용보기</span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="regist_button">
+                    <input type="submit" name="regist_button" id="regist_button" value="가입하기" disabled>
+                </div>
+
+            </div>
+        </div>
+        </form>
+
+                <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+                <script>
+
+
+                    const $searchZipCode = document.getElementById("searchZipCode");
+
+                    $searchZipCode.onclick = function () {
+                        new daum.Postcode({
+                            oncomplete: function (data) {
+                                document.getElementById("zipcode").value = data.zonecode;
+                                document.getElementById("address1").value = data.address;
+                                document.getElementById("address2").focus(); // 사용자가 그냥 쓸 수 있게 커서 넣는 focus
+                            }
+                        }).open();
+                    }
+                </script>
+
+</body>
+</html>

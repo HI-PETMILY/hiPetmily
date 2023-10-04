@@ -12,22 +12,23 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
+
 public class MemberDTO implements UserDetails {
 
     private Long memberNo;          // 회원코드
     private String memberId;        // 사용자 ID
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름
-    private String Nickname;        // 닉네임
-    private int phone;              // 연락처
-    private int postNo;             // 우편번호
+    private String nickName;        // 닉네임
+    private String phone;              // 연락처
+    private String gender;          // 성별
+    private Integer postNo;             // 우편번호
     private String address;         // 주소
     private String address2;        // 상세주소
     private int point;              // 적립금
-    private String gender;          // 성별
     private String memberStat;      // 상태
-    private int warningCount;       // 경고 횟수
     private Date memberStatDate;    // 상태 변경일
+    private int warningCount;       // 경고 횟수
     private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
     // 한 멤버는 여러 권한을 가질 수 있다
