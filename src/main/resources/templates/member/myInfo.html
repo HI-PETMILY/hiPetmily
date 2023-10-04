@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/member/myInfo.css"/>
+    <script defer type="text/javascript" src="/js/member/myInfo.js"></script>
+
+</head>
+<body>
+<div class="my_info">
+  <div class="member_pic">
+  </div>
+
+  <hr id="hr1">
+
+  <label for="name" class="info">이름</label>
+  <input type="text" id="name" class="input_text" disabled><br>
+
+  <label for="nickname" class="info">닉네임</label>
+  <input type="text" id="nickname" class="input_text"><br>
+
+  <label for="password" class="info">비밀번호</label>
+  <input type="password" id="password" class="input_text"><br>
+
+  <label for="password2" class="info">비밀번호 확인</label>
+  <input type="password" id="password2" class="input_text"><br>
+
+  <label for="phone" class="info">연락처</label>
+  <input type="text" id="phone" class="input_text" disabled><br>
+
+  <lable for="address" class="info">주소</lable>
+  <input type="text" id="zipCode" class="input_text"  disabled>
+
+  <input type="button" value="우편번호 검색" id="searchZipCode"><br>
+  <input type="text" id="address1" class="input_text" disabled><br>
+  <input type="text" id="address2" class="input_text">
+  <hr id="hr1">
+</div>
+
+
+
+<div class="info_update">
+  <input type="button" value="수정" id="modify" readonly>
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+
+    const $searchZipCode = document.getElementById("searchZipCode");
+
+    $searchZipCode.onclick = function(){
+      new daum.Postcode({
+        oncomplete: function(data) {
+          document.getElementById("zipCode").value = data.zonecode;
+          document.getElementById("address1").value = data.address;
+          document.getElementById("address2").focus();
+        }
+      }).open();
+    }
+  </script>
+</body>
+</html>

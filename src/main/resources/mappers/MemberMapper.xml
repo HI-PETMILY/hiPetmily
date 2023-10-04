@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mypet.petmily.member.dao.MemberMapper">
+
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPwd" column="MEMBER_PWD"/>
+        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
+        <result property="sighupPathCode" column="SIGNUP_PATH_CODE"/>
+    </resultMap>
+
+    <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
+        <id property="memberNo" column="REF_MEMBER_NO"/>
+        <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+                <association property="authority" resultMap="authorityResultMap"/>
+    </resultMap>
+
+    <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
+        <id property="code" column="REF_AUTHORITY_CODE2"/>
+        <result property="name" column="AUTHORITY_NAME"/>
+        <result property="desc" column="AUTHORITY_DESC"/>
+    </resultMap>
+
+    <select id="selectMemberByNickName" resultType="string">
+        SELECT NICKNAME
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
+        GROUP BY NICKNAME
+        HAVING COUNT(NICKNAME) > 1
+        ORDER BY NICKNAME ASC
+    </select>
+
+    <insert id="insertMember">
+        INSERT
+        INTO TBL_MEMBER
+        ( MEMBER_NO
+        , MEMBER_ID
+        , MEMBER_PWD
+        , MEMBER_NAME
+        , NICKNAME
+        , PHONE
+        , GENDER
+        , ADDRESS
+        , MEMBER_STAT
+        , MEMBER_STAT_DATE
+        , SIGNUP_PATH_CODE
+        )
+        VALUES
+        (
+         SEQ_TBL_MEMBER_NO.NEXTVAL
+         , #{ memberId }
+         , #{ memberPwd }
+         , #{ memberName }
+         , #{ nickName }
+         , #{ phone }
+         , #{ gender }
+         , #{ address }
+         , #{ memberStat}
+         , #{ memberStatDate }
+         , #{ signupPathCode }
+        )
+    </insert>
+
+    <insert id="insertMemberRole">
+        INSERT
+        INTO TBL_ROLE
+        (
+         MEMBER_NO
+         , AUTHORITY_CODE
+        )
+        VALUES
+            (
+             SEQ_TBL_MEMBER_NO.CURRVAL
+             , 1
+            )
+    </insert>
+
+
+    <!-- 설마 중복 처리..?-->
+<!--    <select id="selectMember">-->
+<!--        SELECT-->
+<!--            MEMBER_NO-->
+<!--             , MEMBER_ID-->
+<!--             , NICKNAME-->
+<!--             , PHONE-->
+<!--             , EMAIL-->
+<!--             , ADDRESS-->
+<!--             , ENROLL_DATE-->
+<!--             , MEMBER_ROLE-->
+<!--             , MEMBER_STATUS-->
+<!--        FROM  TBL_MEMBER A-->
+<!--        WHERE  MEMBER_STATUS = 'Y'-->
+<!--          AND  MEMBER_ID = #{ memberId }-->
+<!--    </select>-->
+
+    <update id="updateMember">
+        UPDATE
+            TBL_MEMBER
+        SET NICKNAME = #{ nickname }
+          , PHONE = #{ phone }
+          , EMAIL = #{ email }
+          , ADDRESS = #{ address }
+        WHERE MEMBER_STATUS = '활동'
+          AND MEMBER_NO = #{ memberNo }
+    </update>
+
+</mapper>

@@ -23,5 +23,4 @@ public class AuthenticationService implements UserDetailsService {
         /* 서현이 자리 */
     }
 
-
 }
