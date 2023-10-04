@@ -1,0 +1,79 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* common ----------------------------------- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* em -> 부모
+        rem -> 최상위 부모 */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body, p {
+    height: 100%;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;      /* 하이퍼 링크 밑줄 x */
+}
+
+span {
+    font-weight: 500;
+}
+
+
+/* common ----------------------------------- */
+
+.psp_container {
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 150px auto 0;
+    background-color: white;
+    position: relative;
+}
+
+.psp_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: calc(66.6% - 20px);
+    margin-right: 20px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img {
+    width: 100%;
+    height: 670px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_img_main {
+
+}
+
+
+
+
+
+.psp_right {
+    width: 33.33%;
+
+    border: 1px solid darkgray;
+}
