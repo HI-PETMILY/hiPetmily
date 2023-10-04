@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 수정</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+    <!--    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">-->
+
+    <link rel="stylesheet" href="/css/main/main.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/board/css.css"/>-->
+</head>
+<body>
+<div th:replace="common/header_black.html"></div>
+
+
+<!-- 내용-->
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>공지사항 수정</strong>
+        <p>관리자님! 펫밀리 공지사항을 해주세요</p>
+    </div>
+    <div class="board_write_wrap">
+        <div class="board_write">
+            <div class="title">
+                <dl>
+                    <dt>제목</dt>
+                    <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                </dl>
+            </div>
+            <div class="board_category">
+                <div class="board_category_wrap">
+                    <dl>
+                        <dt>분류</dt>
+                        <dd>
+                            <select class="select">
+                                <option value="main">중요공지</option>
+                                <option value="basic">일반공지</option>
+                            </select>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="info">
+                <dl>
+                    <dt>작성자</dt>
+                    <dd><input type="text" placeholder="작성자 입력" value="정수현"></dd>
+                </dl>
+                <dl>
+                    <dt>비밀번호</dt>
+                    <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
+                </dl>
+            </div>
+            <div class="cont">
+                    <textarea placeholder="내용 입력">
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.</textarea>
+            </div>
+            <div class="board_thumb">
+                <dl>
+                    <dt>첨부파일</dt>
+                    <dd><input type="file" placeholder="선택된 파일 없음"></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="bt_wrap">
+            <a href="view.html" class="on">수정</a>
+            <a href="view.html">취소</a>
+        </div>
+    </div>
+</div>
+<div th:replace="common/footer.html"></div>
+
+</body>
+</html>
