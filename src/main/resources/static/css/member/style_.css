@@ -124,6 +124,22 @@ header {
 }
 
 /*==================================================*/
+/* 반려동물 등록 */
+
+.dash-line{
+    width: 100%;
+    margin: 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #bebebe;
+}
+
+input[type=text]{
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin: 5px;
+}
 
 .pet-profile-img{
     width: 80%;
@@ -136,8 +152,16 @@ header {
 }
 
 textarea{
+    border-style: solid;
+    border-radius: 5px;
     width: 100%;
+    font-size: 12px;
 }
+
+.answer-contain{
+    margin-left: 10px;
+}
+
 /*==================================================*/
 /* 임시 비밀번호 발급 화면 */
 
