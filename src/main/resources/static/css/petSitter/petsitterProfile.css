@@ -21,7 +21,7 @@ html {
 body, p {
     height: 100%;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
@@ -33,8 +33,13 @@ span {
     font-weight: 500;
 }
 
+table {
+    width: 100%;
+    font-weight: 400;
+    border-spacing: 0;
+}
 
-/* common ----------------------------------- */
+/* container ----------------------------------- */
 
 .psp_container {
     width: 1200px;
@@ -44,6 +49,8 @@ span {
     margin: 150px auto 0;
     background-color: white;
     position: relative;
+    color: #666;
+    letter-spacing: -0.5px;
 }
 
 .psp_left {
@@ -53,22 +60,21 @@ span {
 
     width: calc(66.6% - 20px);
     margin-right: 20px;
-
-    border: 1px solid darkgray;
 }
 
 .psp_img {
     width: 100%;
     height: 670px;
-
-    border: 1px solid darkgray;
 }
 
 .psp_img_main {
     width: 100%;
     height: 560px;
+}
 
-    border: 1px solid darkgray;
+.psp_img_main img {
+    width: 100%;
+    height: 560px;
 }
 
 .psp_img_sub {
@@ -80,8 +86,6 @@ span {
     align-items: center;
     padding: 5px 0 7px;
     text-align: center;
-
-    border: 1px solid darkgray;
 }
 
 .psp_img_subImg {
@@ -90,18 +94,19 @@ span {
     float: left;
     width: calc((100% - 61px)/6);
     margin: 0 auto;
+}
 
-    border: 1px solid darkgray;
+.psp_img_subImg img{
+    width: 100%;
+    height: 85px;
 }
 
 .psp_profile {
     width: 720px;
-    height: 170px;
     display: flex;
     flex-direction: row;
     border-bottom: 1px dashed #e3e3e3;
-    margin: 10px auto;
-
+    margin: 15px auto;
 }
 
 .psp_profile_box {
@@ -112,8 +117,6 @@ span {
     justify-content: center;
     align-items: center;
     margin-right: 20px;
-
-    border: 1px solid darkgray;
 }
 
 .psp_profile_img {
@@ -126,7 +129,14 @@ span {
     border: 1px solid #D7B59C;
 }
 
+.psp_profile_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
 .psp_profile_star {
+    width: 90px;
     height: 25px;
     display: flex;
     flex-direction: row;
@@ -134,18 +144,21 @@ span {
     align-items: center;
 }
 
+.psp_profile_star img {
+    width: 15px;
+    height: 15px;
+}
+
 .psp_item_content {
     width: 85%;
     height: 170px;
     display: flex;
     flex-direction: column;
-
-    border: 1px solid darkgray;
 }
 
 .psp_item_title {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: 15px;
 }
 
@@ -157,6 +170,7 @@ span {
 
 .psp_profile_name {
     font-size: 16px;
+    font-weight: 600;
     margin-bottom: 6px;
     display: inline-block;
 }
@@ -179,26 +193,13 @@ span {
 
 .tagBox {
     display: inline-block;
-    background: #FCDB6B;
+    background: #81BDF1;
     color: #fff;
     font-size: 12px;
     padding: 4px 12px;
     border-radius: 3px;
     margin-right: 6px;
     margin-bottom: 6px;
-}
-
-.psp_introduce {
-    width: 720px;
-    height: 170px;
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px dashed #e3e3e3;
-    margin: 20px auto;
-}
-
-.psp_item_title {
-
 }
 
 .psp_item_text {
@@ -208,6 +209,250 @@ span {
     flex-direction: column;
     align-items: center;
 }
+
+.psp_item_text2 {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.psp_item_text2 li {
+    list-style-type: disc;
+}
+
+.psp_env_box {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.psp_env_item {
+    width: 48%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    font-size: 14px;
+    line-height: 46px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-left: 13px;
+}
+
+.env_item_th {
+    padding-left: 50px;
+    width: calc((100% - 14px)/2);
+    margin-right: 12px;
+    position: relative;
+    height: 46px;
+}
+
+.env_item_td {
+    font-weight: 500;
+}
+
+.env_item_bc1 {
+    background-color: #e1f0fd;
+}
+
+.env_item_bc2 {
+    background-color: #f4faff;
+}
+
+.th_img1{
+    background: url(/static_Image/petSitter/env_home.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img2{
+    background: url(/static_Image/petSitter/env_count.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img3{
+    background: url(/static_Image/petSitter/env_baby.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img4{
+    background: url(/static_Image/petSitter/env_fence.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img5{
+    background: url(/static_Image/petSitter/env_dog.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img6{
+    background: url(/static_Image/petSitter/env_smoke.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.psp_item {
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dashed #e3e3e3;
+    padding-bottom: 20px;
+    margin: 15px auto 0px;
+}
+
+.psp_table tr th {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #e1f0fd;
+    padding: 8px 8px;
+    border-radius: 5px;
+}
+
+.psp_table tr td {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    background: #f4faff;
+    padding: 8px 6px;
+    border-radius: 5px;
+}
+
+.psp_pay_box {
+    width: 100%;
+}
+
+.psp_dogDetail {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dashed #e3e3e3;
+    padding-bottom: 20px;
+    margin: 15px auto 0px;
+}
+
+.psp_dogDetail_img {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.psp_dogDetail_text1 {
+    width: 370px;
+    margin-right: 10px;
+}
+
+.psp_dogDetail_text2 {
+    width: 180px;
+}
+
+.psp_dogDetail_title {
+    font-weight: 600;
+    line-height: 2;
+}
+
+.psp_dogDetail_con img {
+    margin-right: 5px;
+}
+
+.psp_rule_box {
+    width: 100%;
+}
+
+.psp_mypet {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_mypet_img {
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.psp_mypet_img img {
+    width: 100px;
+    height: 70px;
+    border-radius: 15px;
+}
+
+.psp_mypet_name {
+    font-weight: 600;
+    line-height: 2;
+}
+
+.psp_mypet_btn {
+    color: #81BDF1;
+}
+
+.psp_review_star {
+    width: 90px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_review_star img {
+    width: 15px;
+    height: 15px;
+}
+
+.psp_review {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_review_box1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    margin-right: 20px;
+}
+
+.psp_review_nickname {
+    width: 50px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.psp_review_img {
+    width: 70px;
+    height: 70px;
+}
+
+.psp_review_box2 {
+    width: 623px;
+}
+
+.psp_review_text {
+    width: 100%;
+    height: 100%;
+}
+
+.psp_bottom_mg {
+    margin-bottom: 30px;
+}
+
+.psp_item_last {
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin: 15px auto 100px;
+}
+
 
 .psp_right {
     width: 33.33%;
