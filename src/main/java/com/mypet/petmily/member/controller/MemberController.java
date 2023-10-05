@@ -2,10 +2,8 @@ package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
-import com.mypet.petmily.member.dto.MailDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
-import com.mypet.petmily.member.service.MailService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,19 +35,16 @@ public class MemberController {
     private final AuthenticationService authenticationService;
     private final MessageSourceAccessor messageSourceAccessor;
     private final PasswordEncoder passwordEncoder;
-    private final MailService mailService;
 
 
     public MemberController(MemberService memberService,
                             AuthenticationService authenticationService,
                             MessageSourceAccessor messageSourceAccessor,
-                            PasswordEncoder passwordEncoder,
-                            MailService mailService) {
+                            PasswordEncoder passwordEncoder) {
         this.memberService = memberService;
         this.authenticationService = authenticationService;
         this.messageSourceAccessor = messageSourceAccessor;
         this.passwordEncoder = passwordEncoder;
-        this.mailService = mailService;
     }
 
 
@@ -137,11 +133,11 @@ public class MemberController {
     }
 
     /* 아이디 비밀번호 찾기 화면 */
-    @GetMapping("/find_id-pwd")
+    @GetMapping("/find_id")
     public void findIdPwdPage(){}
 
     /*아이디 찾기 결과 */
-    @PostMapping("/find_id-pwd")
+    @PostMapping("/find_id")
     public String findId(@RequestParam("memberName") String memberName,
                          @RequestParam("phone") String phone,
                          Model model) {
@@ -149,27 +145,52 @@ public class MemberController {
         String result = memberService.findId(memberName, phone);
         if(result != null){
             model.addAttribute("result", result);   // 검색 결과를 Model에 추가
-            model.addAttribute("showResult", true); // 결과를 보여주기 위한 플래그 추가
+            // model.addAttribute("showResult", true); // 결과를 보여주기 위한 플래그 추가
         }else {
             model.addAttribute("findIdError", "해당하는 사용자를 찾을 수 없습니다.");
         }
         return "/member/find_id_result";
     }
 
-    @PostMapping("/find_pwd")   //폼 액션
-    /* 비밀번호 찾기 */
-    public String sendEmail(@RequestParam("memberId") String email){
+    /* 비밀번호 찾기 페이지 */
+    @GetMapping("/find_pwd")
+    public void findPwdPage(){}
 
-        MailDTO dto = mailService.createEmailContent(email);
-        mailService.mailSend(dto);
+    /* 비밀번호 찾기 결과 */
+    @PostMapping("/find_pwd")
+    public String findPwdCheck(HttpServletRequest request, Model model,
+                               @RequestParam String memberName, @RequestParam String memberId,
+                               MemberDTO dto){
 
-        return "member/login";
+        try{
+            dto.setMemberId(memberId);
+            dto.setMemberName(memberName);
+            int search = memberService.pwdCheck(dto);
+
+            if(search == 0){
+                model.addAttribute("message", "입력 정보가 잘못되었습니다. 다시 입력해주세요.");
+            }
+
+            char[] charSet = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+            String tempPwd="";
+            int idx = 0;
+            for (int i = 0; i < 10; i++) {
+                idx = (int) (charSet.length * Math.random());
+                tempPwd += charSet[idx];
+            }
+
+            dto.setMemberPwd(tempPwd);
+            memberService.pwdUpdate(dto);
+            model.addAttribute("tempPwd", tempPwd);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            model.addAttribute("message", "오류가 발생했습니다.");
+        }
+        return "member/find_pwd_result";
     }
-
-
-
-
-
 
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}

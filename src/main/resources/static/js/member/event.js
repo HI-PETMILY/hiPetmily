@@ -1,17 +1,17 @@
 window.onload = function() {
 
     /* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
-
     if (document.getElementById("login")) {
         const $login = document.getElementById("login");
         $login.addEventListener("click", function () {
             location.href = "/member/login";
         });
     }
+
     //아이디 중복 검사
     var emailConfirm=document.getElementById("email");
     emailConfirm.addEventListener('keyup', function (){
-        var xhr,url='member/find_id-pwd', data='email='+emailConfirm.value;
+        var xhr,url='member/find_id', data='email='+emailConfirm.value;
         xhr=doajax(url,data);
         xhr.onload=function (){
             var text;
@@ -34,11 +34,11 @@ function findUserId(){
     var phone = document.getElementById("inputPhone_id").value;
     var findIdResult = document.getElementById("findIdResult").value;
 
-    //이름 또는 휴대폰 번호가 비어있으면 findIdReuslt div를 숨김
+    /*//이름 또는 휴대폰 번호가 비어있으면 findIdReuslt div를 숨김
     if(name && phone){
         // Ajax 요청
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "member/find_id-pwd", true);
+        xhr.open("POST", "member/find_id", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function (){
             if(xhr.readyState == 4 && xhr.status == 200){
@@ -51,7 +51,7 @@ function findUserId(){
     } else{
         // 이름 휴대폰번호가 비어있으면 결과를 숨김
         findIdResult.style.display='none';
-    }
+    }*/
 }
 
 // 휴대폰 or 이메일로 비밀번호 찾기 선택 시 보이는 화면

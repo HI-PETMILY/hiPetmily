@@ -4,6 +4,7 @@ import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
@@ -12,9 +13,11 @@ import java.util.Date;
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public MemberService(MemberMapper memberMapper) {
+    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
         this.memberMapper = memberMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /* 회원 닉네임 조회 */
@@ -53,4 +56,13 @@ public class MemberService {
         return memberMapper.findId(memberName, phone);
     }
 
+    public int pwdCheck(MemberDTO dto) {
+        return memberMapper.pwdCheck(dto);
+    }
+
+    public void pwdUpdate(MemberDTO dto) {
+        String newUpdatePwd = passwordEncoder.encode(dto.getPassword());
+        dto.setMemberPwd(newUpdatePwd);
+        memberMapper.pwdUpdate(dto);
+    }
 }

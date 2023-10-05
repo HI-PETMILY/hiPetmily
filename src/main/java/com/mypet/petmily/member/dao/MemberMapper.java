@@ -14,7 +14,7 @@ public interface MemberMapper {
 
     Thread findByMemberEmail(String email);
 
-    void updatePwd(Long memberId, String memberPwd);
+    int updatePwd(Long memberId, String memberPwd);     //지워
 
     String selectMemberByNickName(String nickName);
 
@@ -24,4 +24,7 @@ public interface MemberMapper {
 
     int updateMember(MemberDTO modifyMember);
 
+    int pwdCheck(MemberDTO dto);
+
+    void pwdUpdate(MemberDTO dto);
 }

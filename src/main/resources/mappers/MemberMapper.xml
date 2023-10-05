@@ -126,11 +126,26 @@
           AND PHONE = #{phone}
     </select>
 
-    <update id="updatePwd">
+    <update id="updatePwd">    <!--지워-->
         UPDATE
-            TBL_MEMBER
-        SET MEMBER_PWD = #{memberPwd}
-        WHERE MEMBER_ID = #{memberId}
+               TBL_MEMBER
+           SET MEMBER_PWD = #{memberPwd}
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <select id="pwdCheck" resultType="Integer">
+        SELECT
+               *
+          FROM TBL_MEMBER
+         WHERE MEMBER_ID = #{memberId}
+           AND MEMBER_NAME = #{memberName}
+    </select>
+
+    <update id="pwdUpdate">
+        UPDATE
+               TBL_MEMBER
+           SET MEMBER_PWD = #{memberPwd}
+         WHERE MEMBER_ID = #{memberId}
     </update>
 
     <select id="findByMemberEmail">
