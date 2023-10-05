@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/css/member/update.css"/>
+    <script defer type="text/javascript" src="/js/member/mypage.js"></script>
+
+</head>
+<body>
+<div class="my_info">
+
+    <div class="member_pic">
+        <input type="file" id="fileInput" style="display: none;">
+    </div>
+    <button id="uploadButton">사진 등록</button>
+
+    <hr id="hr1">
+
+    <form action="/member/update" method="post">
+
+        <table>
+            <tr>
+                <td class="input" id="name">이름</td>
+                <td><p th:text="${ #authentication.principal.memberName }"></p></td>
+            </tr>
+            <tr>
+                <td class="input">이메일</td>
+                <td><p id="memberId" th:text="${ #authentication.principal.memberId }"></p></td>
+            </tr>
+            <tr>
+                <td class="input">닉네임</td>
+                <td><input class="wInput" type="text" maxlength="10" name="nickName"
+                           th:value="${ #authentication.principal.nickName }" required></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input">연락처</td>
+                <td><p id="phone" th:text="${ #authentication.principal.phone }"></p></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input">우편번호</td>
+                <td><input class="wInput" type="text" name="postNo" id="zipCode" th:value="${ #authentication.principal.postNo }" readonly></td>
+                <td><input type="button" value="검색" id="searchZipCode"></td>
+            </tr>
+            <tr>
+                <td class="input">주소</td>
+                <td><input class="wInput" type="text" name="address" id="address1" th:value="${ #strings.equals(#authentication.principal.address, 'null$null$') ? '' : #authentication.principal.address }" readonly></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="input">상세주소</td>
+                <td><input class="wInput" type="text" name="address2" id="address2" th:value="${ #authentication.principal.address2 }"></td>
+                <td></td>
+            </tr>
+        </table>
+        <input type="submit" value="수정" id="modifyMember">
+
+        <hr id="hr2">
+
+        <div class="info_update">
+            <input type="button" value="비밀번호 변경" id="updatePassword">
+            <input type="button" value="펫밀리 탈퇴하기" id="deleteMember">
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+    const $searchZipCode = document.getElementById("searchZipCode");
+
+    $searchZipCode.onclick = function () {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                document.getElementById("zipCode").value = data.zonecode;
+                document.getElementById("address1").value = data.address;
+                document.getElementById("address2").focus();
+            }
+        }).open();
+    }
+</script>
+</body>
+</html>

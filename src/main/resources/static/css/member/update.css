@@ -1,0 +1,106 @@
+
+
+.my_info {
+    display: block;
+    max-width: 600px;
+    margin: 0% auto;
+    margin-top: 170px;
+}
+
+.member_pic {
+    width: 245px;
+    height: 265px;
+    margin-left: 168px;
+    border: 0;
+    border-radius: 100px;
+    background-color: rgb(231, 231, 231);
+}
+
+#uploadButton {
+    width: 70px;
+    height: 25px;
+    border: 0;
+    margin-top: 15px;
+    margin-left: 260px;
+}
+
+#hr1 {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    height: 1px;
+    width: 500px;
+    background-color: rgb(202, 202, 202);
+    border: 0;
+}
+
+.input {
+    padding-left: 100px;
+    padding-top: 3%;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+}
+
+.wInput {
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    border-color: aliceblue;
+    margin-top: 17px;
+    margin-left: 30px;
+}
+
+
+#searchZipCode {
+    width: 50px;
+    height: 30px;
+    margin-top: 16px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #dbdbdb;
+}
+
+#modifyMember {
+    width: 70px;
+    height: 30px;
+    margin-top: 50px;
+    margin-left: 44%;
+    margin-bottom: 70px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #dbdbdb;
+}
+
+
+
+.info_update {
+    margin-left: 35%;
+}
+
+
+#updatePassword {
+    width: 95px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#deleteMember {
+    width: 120px;
+    height: 30px;
+    margin-left: 30px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.info_update {
+    margin-bottom: 100px;
+    margin-left: 180px;
+}
+
+
+#memberId, #phone {
+    margin-left: 40px;
+}

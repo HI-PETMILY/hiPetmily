@@ -1,19 +1,14 @@
 package com.mypet.petmily.member.service;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
+import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
-import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Date;
 
 @Service
@@ -24,7 +19,6 @@ public class MemberService {
     public MemberService(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
     }
-
 
 
     /* 회원 닉네임 조회 */
@@ -42,6 +36,7 @@ public class MemberService {
 
         member.setMemberStat("활동");
         member.setMemberStatDate(new Date());
+        member.setRegistDate(new Date());
         member.setSignupPathCode(1);
 
         int result1 = memberMapper.insertMember(member);
@@ -58,6 +53,16 @@ public class MemberService {
         int result = memberMapper.updateMember(modifyMember);
 
         if (!(result > 0)) throw new MemberModifyException("회원 정보 수정에 실패하였습니다.");
+    }
+
+
+    /* 비밀 번호 변경 */
+    @Transactional
+    public void modifyPassword(MemberDTO modifyPassword) throws MemberPasswordUpdateException {
+
+        int result = memberMapper.updatePassword(modifyPassword);
+
+        if (!(result > 0)) throw new MemberPasswordUpdateException("비밀번호 변경에 실패하였습니다.");
     }
 
 }

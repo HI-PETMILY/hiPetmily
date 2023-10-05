@@ -16,6 +16,8 @@ public interface MemberMapper {
 
     MemberDTO findMemberById(String memberId);
 
+    int updatePassword(MemberDTO modifyPassword);
+
 //    String selectMemberById(String memberId);
 
 

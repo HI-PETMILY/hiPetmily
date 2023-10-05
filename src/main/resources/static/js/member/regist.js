@@ -78,6 +78,7 @@ window.onload = function() {
     const requiredCheckboxes = document.querySelectorAll(".required");
     const submitButton = document.querySelector(".regist_button input[type='submit']");
 
+
     // 필수 약관 체크박스들 상태 체크
     function updateSubmitButtonState() {
         var allRequiredChecked = true;

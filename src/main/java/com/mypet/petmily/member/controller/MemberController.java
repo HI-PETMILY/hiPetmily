@@ -1,12 +1,12 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.MemberModifyException;
+import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,12 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
@@ -84,24 +80,25 @@ public class MemberController {
 
         member.setMemberStatDate(currentTimestamp);
 
-
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
         rttr.addFlashAttribute("nickname", member.getNickName());
         return "redirect:/member/completedRegist";
     }
 
-    /* 내 정보 확인 */
-    @GetMapping("/myInfo")
-    public void modifyPage(){} /* 로그인 시 멤버 정보 불러오기 짜야함 */
+    /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
+    @GetMapping("/update")
+    public void modifyPage(@AuthenticationPrincipal MemberDTO member){
+
+    }
 
 
     /* 회원 정보 수정 */
-    @PostMapping("/myInfo")
-    public String modifyMember(MemberDTO modifyMember, String zipCode, String address1, String address2,
+    @PostMapping("/update")
+    public String modifyMember(MemberDTO modifyMember, String postNo, String address, String address2,
                                @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr) throws MemberModifyException {
 
-        String address = zipCode + "$" + address1 + "$" + address2;
-        modifyMember.setAddress(address);
+        String total_address = postNo + address + address2;
+        modifyMember.setAddress(total_address);
         modifyMember.setMemberNo(loginMember.getMemberNo());
 
         log.info("modifyMember request Member : {}", modifyMember);
@@ -125,6 +122,39 @@ public class MemberController {
     }
 
 
+    /* 패스워드 변경 페이지로 이동 */
+    @GetMapping("/updatePassword")
+    public void updatePasswordPage(@AuthenticationPrincipal MemberDTO member){}
+
+
+    /* 패스워드 변경하기 */
+    @PostMapping("/updatePassword")
+    public String modifyPassword(MemberDTO modifyPassword,
+                                 @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr,
+                                  String updatePassword1,
+                                  String updatePassword2) throws MemberPasswordUpdateException {
+
+        if (updatePassword1.equals(updatePassword2)) {
+            String hashedPassword = passwordEncoder.encode(updatePassword1);
+            modifyPassword.setMemberId(loginMember.getMemberId());
+            modifyPassword.setMemberPwd(hashedPassword);
+            modifyPassword.setMemberNo(loginMember.getMemberNo());
+
+            memberService.modifyPassword(modifyPassword);
+
+            SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(modifyPassword.getMemberId()));
+
+            rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.success"));
+
+        } else {
+            rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.password_missmatch"));
+        }
+
+        return "redirect:/member/update";
+    }
+
+
+
     /* 로그인 화면 */
     @GetMapping("/login")
     public void loginPage(){}
@@ -135,12 +165,16 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-
     @GetMapping("/find_id-pwd")
     public void findIdPwdPage(){}
 
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
+
+
+
+
+
 
 
 }

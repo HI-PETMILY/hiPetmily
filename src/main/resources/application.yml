@@ -27,6 +27,10 @@ spring:
 mybatis:
   mapper-locations: mappers/**/*.xml
 
+
 ## image upload dir
 image:
   image-dir: src/main/resources/upload/
+
+
+## db에 null로 넘기기
