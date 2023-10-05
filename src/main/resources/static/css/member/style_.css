@@ -163,8 +163,52 @@ textarea{
 }
 
 /*==================================================*/
-/* 임시 비밀번호 발급 화면 */
+/* 반려동물 프로필 조회 화면 */
+#slideShow{
+    width: 250px;
+    overflow: hidden;
+}
 
+.slides{
+    width: 1800px;
+    transition: 0.5s ease-out;
+}
+/* 슬라이드들 옆으로 정렬*/
+.slides li:not(:last-child){
+    float: left;
+    margin: 20px;
+}
+
+.petImgController span{
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 50%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.petImgController span:hover{
+    background-color: rgba(128, 128, 128, 0.11);
+}
+.prev {
+    left: 10px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+    transform: translateX(-10px);
+}
+
+.next {
+    right: 10px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+    transform: translateX(10px);
+}
+
+/*==================================================*/
+/* 임시 비밀번호 발급 화면 */
 
 .pwdResultBox{
     border: solid 1px #81BDF1;

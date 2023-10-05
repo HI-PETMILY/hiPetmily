@@ -192,7 +192,12 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
+    /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
+
+    /* 반려동물 프로필 조회 페이지 */
+    @GetMapping("/pet-profile-view")
+    public void petProfileView(){}
 }
 
