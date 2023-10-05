@@ -5,10 +5,12 @@ html, body{
 
 
 .main{
-    margin-top: 200px;
-    width: 100%;
+    margin-top: 150px;
+    width: 80%;
     display: block;
     background: #ababab;
+    margin-left: 200px;
+    margin-bottom: 150px;
 }
 .content-wrap{
     width: 100%;
@@ -123,4 +125,13 @@ html, body{
     background: #0b0809;
     border-radius: 50%;
     color: #ffffff;
+}
+
+.sidebar{
+
+    position: sticky;
+    top: 300px;
+    width: 200px;
+    margin-right: 150px;
+    margin-left: 20px;
 }
