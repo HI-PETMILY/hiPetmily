@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/petsitter")
+@RequestMapping("/petSitter")
 public class PetSitterController {
 
 //    private final MypageService mypageService;
@@ -21,7 +21,7 @@ public class PetSitterController {
 
 
 
-        return "petsitter/mypage";
+        return "petSitter/mypage";
 
 
 
@@ -31,6 +31,12 @@ public class PetSitterController {
     @GetMapping("/account")
     public String getAccount(Model model){
 
-        return  "petsitter/account";
+        return  "petSitter/account";
+    }
+
+    @GetMapping("/reservationList")
+
+    public  String getReservationList(Model model){
+        return "petSitter/reservationList";
     }
 }

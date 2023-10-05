@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReservationList</title>
+    <!--뷰 포트: 화면상의 화상 표시영역. 너비를 디바이스에 맞춤. 기본배율은 1.
+   데스크탑 화면과 모바일의 뷰 포트는 차이가 있기 때문에 필요한 설정-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--favicion 설정:일반이미지는 사용할수없다.(Real Favicon Generator 사이트 활용하기)-->
+    <!--    <link rel="icon" type="image/x-con" href="../resources/images/favicon.ico">-->
+    <!--리셋 CSS: 브라우저별로 디폴트로 적용된 CSS(여백,폰트)에 차이가 있으므로
+        브라우저별로 다르게 보일수 있어 리셋CSS를 활용한다.(unpkg ress라고 검색창에 검색)
+    다른사람이 만들 리셋CSS를 링크로 가져와서 다운로드해서 사용한다.-->
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/petSitter/mypage.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main/main.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+    <link rel="stylesheet" href="/css/petSitter/reservationList.css"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/petSitter/reservationList.js"></script>
+</head>
+<body id="body">
+<div th:replace="common/header_white.html"></div>
+
+
+<div class="main">
+    <div class="content-wrap">
+        <div class="content-left">
+            <div class="main-wrap">
+                <div id="main-day" class="main-day"></div>
+                <div id="main-date" class="main-date"></div>
+            </div>
+            <div class="todo-wrap">
+                <div class="todo-title">Todo List</div>
+                <div class="input-wrap">
+                    <input type="text" placeholder="please write here!!" id="input-box" class="input-box">
+                    <button type="button" id="input-data" class="input-data">INPUT</button>
+                    <div id="input-list" class="input-list"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content-right">
+            <table id="calendar" align="center">
+                <thead>
+                <tr class="btn-wrap clearfix">
+                    <td>
+                        <label id="prev">
+                            &#60;
+                        </label>
+                    </td>
+                    <td align="center" id="current-year-month" colspan="5"></td>
+                    <td>
+                        <label id="next">
+                            &#62;
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class = "sun" align="center">Sun</td>
+                    <td align="center">Mon</td>
+                    <td align="center">Tue</td>
+                    <td align="center">Wed</td>
+                    <td align="center">Thu</td>
+                    <td align="center">Fri</td>
+                    <td class= "sat" align="center">Sat</td>
+                </tr>
+                </thead>
+                <tbody id="calendar-body" class="calendar-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/footer.html"></div>
+</body>
+</html>
