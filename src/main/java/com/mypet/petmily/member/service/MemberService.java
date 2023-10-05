@@ -56,10 +56,12 @@ public class MemberService {
         return memberMapper.findId(memberName, phone);
     }
 
+    /* 비밀번호 찾기 */
     public int pwdCheck(MemberDTO dto) {
         return memberMapper.pwdCheck(dto);
     }
 
+    /* 비밀번호 업데이트 */
     public void pwdUpdate(MemberDTO dto) {
         String newUpdatePwd = passwordEncoder.encode(dto.getPassword());
         dto.setMemberPwd(newUpdatePwd);

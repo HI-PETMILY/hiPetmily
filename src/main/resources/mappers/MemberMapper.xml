@@ -126,13 +126,6 @@
           AND PHONE = #{phone}
     </select>
 
-    <update id="updatePwd">    <!--지워-->
-        UPDATE
-               TBL_MEMBER
-           SET MEMBER_PWD = #{memberPwd}
-         WHERE MEMBER_ID = #{memberId}
-    </update>
-
     <select id="pwdCheck" resultType="Integer">
         SELECT
                *

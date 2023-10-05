@@ -12,10 +12,6 @@ public interface MemberMapper {
 
     String findId(String memberName, String phone);
 
-    Thread findByMemberEmail(String email);
-
-    int updatePwd(Long memberId, String memberPwd);     //지워
-
     String selectMemberByNickName(String nickName);
 
     int insertMember(MemberDTO member);
