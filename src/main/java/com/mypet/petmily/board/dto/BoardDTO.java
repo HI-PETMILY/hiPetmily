@@ -12,7 +12,7 @@ public class BoardDTO {
     private String boardName;
     /** 게시판 내용 */
     private String boardDetail;
-    /** 게시판 등록,수정일 조회수*/
+    /** 게시판 등록일 */
     private String boardRegistDate;
     private String boardViews;
     private String boardReviseDate;
@@ -24,6 +24,8 @@ public class BoardDTO {
     private String boardSecret;
     /** 회원번호 */
     private Integer memberNo;
+    /** 회원이름 */
+    private String memberName;
     /** 게시판 카테고리 코드 */
     private Integer categoryCode;
     /** 게시판 카테고리 명 */

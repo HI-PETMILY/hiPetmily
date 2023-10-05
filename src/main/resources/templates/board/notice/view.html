@@ -1,66 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
 <head>
     <meta charset="UTF-8">
-    <title>공지사항 조회</title>
+    <title>list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
-    <!--    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">-->
-
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/main/main.css"/>
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/board/css.css"/>-->
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/css/board/view.css">
 </head>
 <body>
-<div th:replace="common/header_black.html"></div>
-<div class="board_wrap">
-    <div class="board_title">
-        <strong>공지사항 조회</strong>
-        <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
-    </div>
-    <div class="board_view_wrap">
-        <div class="board_view">
-            <div class="title">
-                글 제목이 들어갑니다.
-            </div>
-            <div class="info">
-                <dl>
-                    <dt>분류</dt>
-                    <dd>중요공지</dd>
-                </dl>
-                <dl>
-                    <dt>작성자</dt>
-                    <dd>관리자</dd>
-                </dl>
-                <dl>
-                    <dt>작성일</dt>
-                    <dd>2023.10.02</dd>
-                </dl>
-                <dl>
-                    <dt>조회수</dt>
-                    <dd>33</dd>
-                </dl>
-            </div>
-            <div class="cont">
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다<br>
-                글 내용이 들어갑니다
-            </div>
+	<div th:replace="common/header_black.html"></div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지사항</strong>
+            <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
         </div>
-        <div class="bt_wrap">
-            <a href="list.html" class="on">목록</a>
-            <a href="edit.html">수정</a>
-        </div>
+		<form name="form" id="form" method="" action="">
+			<!-- 글의 수정이나 삭제를 할때 필요한 키값(게시판번호)-->
+			<input type="hidden" id="boardNo" name="boardNo" th:value="${boardDTO.boardNo}">
+	        <div class="board_view_wrap">
+	            <div class="board_write">
+	                <div class="title"th:text="${boardDTO.boardName}"></div>
+	                <div class="info">
+	                    <dl>
+	                        <dt>분류</dt>
+	                        <dd th:text="${boardDTO.categoryName}"></dd>
+	                    </dl>
+	                    <dl>
+	                        <dt>작성자</dt>
+	                        <dd th:text="${boardDTO.memberName}"></dd>
+	                    </dl>
+	                    <dl>
+	                        <dt>작성일</dt>
+	                        <dd th:text="${boardDTO.boardRegistDate}"></dd>
+	                    </dl>
+	                    <dl>
+	                        <dt>조회</dt>
+	                        <dd th:text="${boardDTO.boardViews}"></dd>
+	                    </dl>
+	                </div>
+					<div class="cont">
+	                	<textarea readonly="readonly" th:text="${boardDTO.boardDetail}"></textarea>
+					</div>
+	            </div>
+	            <div class="bt_wrap">
+	                <a href="/board/notice/list" class="on">목록</a>
+	                <!-- 버튼은 나중에 관리자만 가능하도록 권한체크를 해야한다-->
+	                <a href="#" id="modBtn">수정</a>
+	                <a href="#" id="deleteBtn">삭제</a>
+	            </div>
+	        </div>
+        </form>
     </div>
-</div>
-<div th:replace="common/footer.html"></div>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
 
+			//게시판 수정버튼
+            $("#modBtn").on("click", function(){
+            	location.href = "/board/notice/write?boardNo="+$('#boardNo').val();
+            });
+
+			//게시판 삭제버튼
+            $("#deleteBtn").on("click", function(){
+                let form = $("#form");
+                form.attr("action", "/board/notice/delete");
+                form.attr("method", "post");
+             	form.submit();
+            });
+			
+		});
+
+	</script>
+	<div th:replace="common/footer.html"></div>
 </body>
 </html>
