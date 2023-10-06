@@ -1,0 +1,219 @@
+@charset "UTF-8";/*인코딩 문자 깨짐 방지*/
+
+
+html {
+
+    /*사용자가 설정한 문자 크기 그대로 반영될수 있도록*/
+
+}
+
+a{
+    text-decoration: none;
+}
+
+/*img{*/
+/*    max-width: 100%;*/
+/*}*/
+
+#body{
+    /*font-size: 100%;*/
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.mode-bar{
+    width: 100%;
+    height: 50px;
+    background-color: lightskyblue;
+    margin-bottom: 30px;
+    margin-top: 90px;
+    position: sticky;
+    top: 90px;
+}
+
+.member-mode{
+    width: 70px;
+    background-color: yellow;
+    height: 35px;
+    border-radius: 15px;
+    border-bottom: hidden;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.petsitter-mode{
+
+    margin-left: 15px;
+
+    width: 70px;
+    background-color: white;
+    height: 35px;
+    border-radius: 30px;
+    border-bottom: hidden;
+    font-size: 20px;
+    text-align: center;
+}
+
+.mode{
+    display: flex;
+    flex-direction: row;
+    float: right;
+    margin-right: 300px;
+    margin-top: 15px;
+
+}
+
+
+.profile-info{
+
+    height: 250px;
+    width: 700px;
+    margin-left: 600px;
+    margin-bottom: 60px;
+    border: 5px solid;
+    border-color: dimgray;
+    border-radius: 7px;
+}
+
+
+.profile-picture{
+
+    float: left;
+    margin-right: 50px;
+}
+
+.introduce{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+#profile-photo{
+
+    width: 160px;
+    height:160px;
+    border-radius: 80px;
+    margin-top: 40px;
+    margin-left: 25px;
+
+}
+
+.profile-name{
+
+    margin-bottom: 25px;
+}
+
+.mypage-menu{
+
+
+    width: 700px;
+    height: 700px;
+    margin-left: 600px;
+}
+
+.mypage-petsitter{
+
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+
+.mypage-row1{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mypage-reservation{
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.mypage-row2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.mypage-sum{
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.mypage-row3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.customer-service{
+
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.mypage-row4{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+
+/*aside{*/
+/*    width: 22%;*/
+/*    margin-top: 200px;*/
+/*    margin-left: 150px;*/
+
+/*}*/
+
+
+.sidebar{
+
+    position: sticky;
+    top: 300px;
+    width: 200px;
+    margin-right: 150px;
+    margin-left: 20px;
+}
+
+.sub-title{
+
+    font-size: 15px;
+    color: lightskyblue;
+    margin-bottom: 20px;
+}
+
+.sub-menu{
+    list-style-type: none;
+    margin-bottom: 20px;
+
+
+}
+
+.sub-menu-link{
+
+    color: black;
+}
+
+
+.sub-menu-link:hover{
+    font-weight : bold;
+
+
+}
+
+
+
+
+
