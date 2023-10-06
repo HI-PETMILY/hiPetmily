@@ -3,9 +3,11 @@ package com.mypet.petmily.member.controller;
 import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,12 +21,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -199,5 +203,75 @@ public class MemberController {
     /* 반려동물 프로필 조회 페이지 */
     @GetMapping("/pet-profile-view")
     public void petProfileView(){}
+
+    /* 반려동물 프로필 등록 */
+    @Value("/src/main/resources/upload")
+    private String IMAGE_DIR;
+
+//    @PostMapping("/pet-profile-regist")
+//    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
+//                                   @AuthenticationPrincipal MemberDTO member){
+//
+//        log.info("pet profile request : {}", pet);
+//        log.info("pet profile image request : {}", petProfileImg);
+//
+//        String petImgDir = IMAGE_DIR + "petProfile";
+//
+//        File dir = new File(petImgDir);
+//
+//        /* 디렉토리가 없을 경우 생성 */
+//        if(!dir.exists()){
+//            dir.mkdirs();
+//        }
+//
+//        // 업로드 파일에 대한 정보를 담을 리스트
+//        List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+//
+//        try{
+//            for (int i = 0; i < petProfileImg.size(); i++) {
+//
+//                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
+//                if(petProfileImg.get(i).getSize() > 0){
+//
+//                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+//                    log.info("originalFileName : {}", originalFileName);
+//
+//                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+//                    String savedFileName = UUID.randomUUID() + ext;
+//                    log.info("savedFileName : {}", savedFileName);
+//
+//                    // 서버의 설정 디렉토리 파일 저장하기
+//                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+//
+//                    // DB에 저장할 파일의 정보 처리
+//                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
+//                }
+//
+//
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return "redirect:/member/pet-profile-view";
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
