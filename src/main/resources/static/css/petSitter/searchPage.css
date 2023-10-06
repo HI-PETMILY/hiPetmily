@@ -1,0 +1,34 @@
+body,html{
+    width: 100%;
+
+}
+.search-data {
+    margin-top: 150px;
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    padding: 10px 10px;
+}
+
+.select-tag{
+    display: flex;
+    flex-direction: row;
+}
+.tag-info{
+    width: 90px;
+    height: 40px;
+    background-color: #81BDF1;
+    margin-left: 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.tag-info2{
+    width: 105px;
+    height: 40px;
+    background-color: #81BDF1;
+    margin-left: 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+}

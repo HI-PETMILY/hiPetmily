@@ -12,7 +12,11 @@ import java.util.Date;
 public class PetsitterDTO {
 
 
+
+
     private int petMemberNo;
+
+    private String nickname;
 
     private int price;
 
