@@ -1,19 +1,10 @@
 ## DB config
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
-#  redis:  # sens sms api
-#    host: localhost
-#    port: 8080
-#
-##변수
-#naver:
-#  serviceid: ncp:sms:kr:317090578706:petmily_sms
-#  accesskey: z5qxiVolzEHlgqpEKiQe
-#  secretkey: s1WRHeNKmr8gQuXTjJkk3gqPSolAPpZrypxdrFlQ
 
 
 #  # file upload config
@@ -32,5 +23,3 @@ mybatis:
 image:
   image-dir: src/main/resources/upload/
 
-
-## db에 null로 넘기기

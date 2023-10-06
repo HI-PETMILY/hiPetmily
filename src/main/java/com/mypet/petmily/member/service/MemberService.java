@@ -3,6 +3,7 @@ package com.mypet.petmily.member.service;
 import com.mypet.petmily.common.exception.member.MemberModifyException;
 import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
+import com.mypet.petmily.common.exception.member.MemberRemoveException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
 
@@ -18,15 +19,6 @@ public class MemberService {
 
     public MemberService(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
-    }
-
-
-    /* 회원 닉네임 조회 */
-    public boolean selectMemberByNickName(String nickName) {
-
-        String result = memberMapper.selectMemberByNickName(nickName);
-
-        return result != null;
     }
 
 
@@ -65,4 +57,22 @@ public class MemberService {
         if (!(result > 0)) throw new MemberPasswordUpdateException("비밀번호 변경에 실패하였습니다.");
     }
 
+    @Transactional
+    public void removeMember(MemberDTO member) throws MemberRemoveException {
+        int result = memberMapper.deleteMember(member);
+
+        if (!(result > 0)) {
+            throw new MemberRemoveException("회원 탈퇴에 실패하였습니다.");
+        }
+    }
+
+
+    public boolean selectMemberByNickName(String nickName){
+
+        String result = memberMapper.selectMemberByNickName(nickName);
+
+        return result != null;
+
+
+    }
 }

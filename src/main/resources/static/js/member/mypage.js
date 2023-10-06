@@ -12,12 +12,6 @@ window.onload = function() {
     }
 
 
-    /* 내 정보 확인 파일 업로드 버튼 */
-    // document.getElementById('uploadButton').addEventListener('click', function () {
-    //     document.getElementById('fileInput').click();
-    // });
-
-
     /* 내 정보 확인 - 수정하기 버튼 */
     if(document.getElementById("updateMember")) {
         const $update = document.getElementById("updateMember");
@@ -35,25 +29,7 @@ window.onload = function() {
         }
     }
 
-    /* 비밀번호 - 변경하기 버튼 누를 시 */
-    document.addEventListener("DOMContentLoaded", function () {
-        // 버튼 요소 가져오기
-        var modifyPasswordButton = document.getElementById("modifyPassword");
-
-        // 버튼 클릭 이벤트 핸들러 등록
-        modifyPasswordButton.addEventListener("click", function (event) {
-            event.preventDefault(); // 기본 폼 제출 동작 방지
-
-            // 폼 요소 가져오기
-            var form = document.querySelector("form");
-
-            // 폼을 서버로 제출
-            form.submit();
-        });
-    });
-
-
-    /* 내 정보 확인 - 탈퇴하기 버튼 */
+    /* 내 정보 확인 - 회원 탈퇴 버튼 */
     if(document.getElementById("deleteMember")) {
         const $update = document.getElementById("deleteMember");
         $update.onclick = function() {
@@ -62,4 +38,44 @@ window.onload = function() {
     }
 
 
+
+
+    <!-- 사진 업로드 즉시 실행 함수 -->
+    (function(){
+        /* div image area 요소 */
+        const imageArea = document.querySelectorAll(".image-area");
+        /* input type=file 요소 */
+        const fileElements = document.querySelectorAll("[type=file]");
+        /* div 클릭 시 open 함수 동작하여 input type=file 클릭 */
+        imageArea.forEach(item => item.addEventListener('click', open));
+        /* 파일 첨부가 발생하는 상황에 preview 함수 동작 */
+        fileElements.forEach(item => item.addEventListener('change', preview));
+
+        function open() {
+            const index = Array.from(imageArea).indexOf(this);
+            fileElements[index].click();
+        }
+
+        function preview() {
+            const index = Array.from(fileElements).indexOf(this);
+            console.log(this);
+            console.log(this.files, this.files[0]);
+            /* 첨부 된 파일이 존재한다면 */
+            if(this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                /* 파일 로드 후 동작하는 이벤트 설정 */
+                reader.onload = function() {
+                    console.log(reader.result);
+                    if(index === 0) {
+                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:245px;height:265px'>`;
+                    } else {
+                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:245px;height:265px'>`;
+
+                    }
+                }
+            }
+        }
+
+    })();
 }

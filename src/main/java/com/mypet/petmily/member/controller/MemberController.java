@@ -1,13 +1,12 @@
 package com.mypet.petmily.member.controller;
 
-import com.mypet.petmily.common.exception.member.MemberModifyException;
-import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
-import com.mypet.petmily.common.exception.member.MemberRegistException;
+import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,13 +14,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
+
 
 @Slf4j
 @Controller
@@ -29,12 +27,14 @@ import java.util.Date;
 public class MemberController {
 
 
+
     private final MemberService memberService;
     private final AuthenticationService authenticationService;
     private final MessageSourceAccessor messageSourceAccessor;
     private final PasswordEncoder passwordEncoder;
 
-
+    @Value("${image.image-dir}")
+    private String IMAGE_DIT;
 
     public MemberController(MemberService memberService,
                             AuthenticationService authenticationService,
@@ -59,19 +59,19 @@ public class MemberController {
     @GetMapping("/completedRegist")
     public void comRegistPage(){}
 
+
     /* 회원 가입 */
     @PostMapping("/regist")
-    public String registMember(MemberDTO member, String zipCode, String address1, String address2,
+    public String registMember(MemberDTO member, String PostNo, String address, String address2,
                                RedirectAttributes rttr) throws MemberRegistException {
 
-        String address = zipCode + "$" + address1 + "$" + address2;
-        member.setAddress(address);
+        String total_address = PostNo + address + address2;
+        member.setAddress(total_address);
         member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
 
         log.info("Request regist member : {}", member);
 
         memberService.registMember(member);
-
 
         Calendar calendar = Calendar.getInstance();
         Date currentDate = new Date(calendar.getTime().getTime());
@@ -85,20 +85,37 @@ public class MemberController {
         return "redirect:/member/completedRegist";
     }
 
+    /* 닉네임 중복 확인 */
+    @PostMapping("/nickNameDupCheck")
+    public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member) {
+
+        log.info("Request Check nickName : {}", member.getNickName());
+
+        String result = "사용 가능한 닉네임입니다.";
+
+        if(memberService.selectMemberByNickName(member.getNickName())) {
+            result = "중복 된 닉네임이 존재합니다.";
+        }
+
+        return ResponseEntity.ok(result);
+    }
+
+
+
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
     @GetMapping("/update")
     public void modifyPage(@AuthenticationPrincipal MemberDTO member){
-
     }
 
 
     /* 회원 정보 수정 */
     @PostMapping("/update")
-    public String modifyMember(MemberDTO modifyMember, String postNo, String address, String address2,
+    public String modifyMember(MemberDTO modifyMember, Integer postNo, String address, String address2,
                                @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr) throws MemberModifyException {
 
-        String total_address = postNo + address + address2;
-        modifyMember.setAddress(total_address);
+        modifyMember.setPostNo(postNo);
+        modifyMember.setAddress(address);
+        modifyMember.setAddress2(address2);
         modifyMember.setMemberNo(loginMember.getMemberNo());
 
         log.info("modifyMember request Member : {}", modifyMember);
@@ -110,7 +127,7 @@ public class MemberController {
 
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
 
-        return "redirect:/";
+        return "redirect:/member/mypage";
     }
     protected Authentication createNewAuthentication(String memberId) {
 
@@ -147,12 +164,26 @@ public class MemberController {
             rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.success"));
 
         } else {
-            rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.password_missmatch"));
+            rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.password.error"));
         }
 
-        return "redirect:/member/update";
+        return "redirect:/";
     }
 
+    /* 회원 탈퇴 */
+    @GetMapping("/delete")
+    public String deleteMember(@AuthenticationPrincipal MemberDTO member, RedirectAttributes rttr) throws MemberRemoveException {
+
+        log.info("login member : {}", member); //
+
+        memberService.removeMember(member);
+
+        SecurityContextHolder.clearContext();
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.delete"));
+
+        return "redirect:/";
+    }
 
 
     /* 로그인 화면 */
@@ -170,10 +201,6 @@ public class MemberController {
 
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
-
-
-
-
 
 
 

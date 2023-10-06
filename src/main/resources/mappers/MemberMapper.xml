@@ -68,13 +68,13 @@
 
     <!--/* 닉네임 찾아보기 */-->
     <select id="selectMemberByNickName" resultType="string">
-        SELECT NICKNAME
+        SELECT
+            NICKNAME
         FROM TBL_MEMBER
         WHERE MEMBER_STAT = '활동'
-        GROUP BY NICKNAME
-        HAVING COUNT(NICKNAME) > 1
-        ORDER BY NICKNAME ASC
+          AND NICKNAME = #{ nickName }
     </select>
+
 
     <!-- 회원가입 -->
     <insert id="insertMember">
@@ -100,9 +100,9 @@
                , #{ phone }
                , #{ gender }
                , #{ address }
-               , #{ memberStat}
+               , #{ memberStat }
                , #{ memberStatDate }
-               , #{ registDate}
+               , #{ registDate }
                , #{ signupPathCode })
     </insert>
 
@@ -116,23 +116,20 @@
                , 2)
     </insert>
 
-
-    <!-- 설마 중복 처리..?-->
-    <!--    <select id="selectMember">-->
-    <!--        SELECT-->
-    <!--            MEMBER_NO-->
-    <!--             , MEMBER_ID-->
-    <!--             , NICKNAME-->
-    <!--             , PHONE-->
-    <!--             , EMAIL-->
-    <!--             , ADDRESS-->
-    <!--             , ENROLL_DATE-->
-    <!--             , MEMBER_ROLE-->
-    <!--             , MEMBER_STATUS-->
-    <!--        FROM  TBL_MEMBER A-->
-    <!--        WHERE  MEMBER_STATUS = 'Y'-->
-    <!--          AND  MEMBER_ID = #{ memberId }-->
-    <!--    </select>-->
+<!--    <select id="selectMember">-->
+<!--            SELECT-->
+<!--                MEMBER_NO-->
+<!--                 , MEMBER_ID-->
+<!--                 , NICKNAME-->
+<!--                 , PHONE-->
+<!--                 , EMAIL-->
+<!--                 , ADDRESS-->
+<!--                 , MEMBER_ROLE-->
+<!--                 , MEMBER_STAT-->
+<!--            FROM  TBL_MEMBER A-->
+<!--            WHERE  MEMBER_STAT = 'Y'-->
+<!--              AND  MEMBER_ID = #{ memberId }-->
+<!--     </select>-->
 
 <!--    /* 회원 정보 수정 */-->
     <update id="updateMember">
@@ -154,5 +151,14 @@
         WHERE MEMBER_STAT = '활동'
         AND MEMBER_NO = #{ memberNo }
     </update>
+
+    <update id="deleteMember">
+        UPDATE
+            TBL_MEMBER
+        SET MEMBER_STAT = '탈퇴'
+        WHERE MEMBER_STAT = '활동'
+          AND MEMBER_ID = #{ memberId }
+    </update>
+
 
 </mapper>

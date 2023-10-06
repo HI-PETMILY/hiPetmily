@@ -11,10 +11,8 @@
 <body>
 <div class="my_info">
 
-    <div class="member_pic">
-        <input type="file" id="fileInput" style="display: none;">
+    <div class="image-area">
     </div>
-    <button id="uploadButton">사진 등록</button>
 
     <hr id="hr1">
 
@@ -47,7 +45,7 @@
             </tr>
             <tr>
                 <td class="input">주소</td>
-                <td><input class="wInput" type="text" name="address" id="address1" th:value="${ #strings.equals(#authentication.principal.address, 'null$null$') ? '' : #authentication.principal.address }" readonly></td>
+                <td><input class="wInput" type="text" name="address" id="address1" th:value="${ #authentication.principal.address }" readonly></td>
                 <td></td>
             </tr>
             <tr>
@@ -56,6 +54,9 @@
                 <td></td>
             </tr>
         </table>
+        <div style="display: none;">
+            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+        </div>
         <input type="submit" value="수정" id="modifyMember">
 
         <hr id="hr2">
