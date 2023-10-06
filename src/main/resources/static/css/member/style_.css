@@ -124,6 +124,21 @@ header {
 }
 
 /*==================================================*/
+/* 마이페이지 틀 */
+
+.myPageMainWrapper {
+    position: relative;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 60%;
+}
+
+.myPageMain-container{
+    margin: 15% 0;
+}
+
+/*==================================================*/
 /* 반려동물 등록 */
 
 .dash-line{
@@ -151,6 +166,10 @@ input[type=text]{
     justify-content: space-around;
 }
 
+.profile-regist-left .profile-regist-right{
+    width: 45%;
+}
+
 textarea{
     border-style: solid;
     border-radius: 5px;
@@ -164,28 +183,60 @@ textarea{
 
 /*==================================================*/
 /* 반려동물 프로필 조회 화면 */
+
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style-type: none;
+    display: block;
+}
+
+/* 이미지 슬라이드 설정 */
+/* 보여줄 구간의 높이와 넓이 설정 */
 #slideShow{
-    width: 250px;
+    width: 320px;
+    height: 300px;
+    position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .slides{
-    width: 1800px;
+    position: absolute;
+    width: 2500px;
+    max-height: 350px;
     transition: 0.5s ease-out;
 }
+
+.slides img{
+    width: 250px;
+    height: 200px;
+}
+
+.slides li:first-child {
+    margin-left: 35px;
+}
+
 /* 슬라이드들 옆으로 정렬*/
 .slides li:not(:last-child){
     float: left;
-    margin: 20px;
+    margin-right: 100px;
 }
 
 .petImgController span{
+    position: absolute;
     background-color: transparent;
     color: black;
     text-align: center;
     border-radius: 50%;
     padding: 10px 20px;
-    top: 50%;
+    top: 30%;
     font-size: 1.3em;
     cursor: pointer;
 }
@@ -194,17 +245,57 @@ textarea{
     background-color: rgba(128, 128, 128, 0.11);
 }
 .prev {
-    left: 10px;
+    left: 5px;
 } /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
 .prev:hover {
     transform: translateX(-10px);
 }
 
 .next {
-    right: 10px;
+    right: 5px;
 } /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
 .next:hover {
     transform: translateX(10px);
+}
+/* 슬라이드 설정 끝 */
+
+.pet-info-top{
+    display: flex;
+}
+
+.petProfile-img-name{
+    max-width: 40%;
+}
+
+.basic-info{
+    display: flex;
+    float: right;
+    width: 60%;
+    align-items: center;
+    margin: auto;
+}
+
+.basic-info-block{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.basic-info-key{
+    font-size: 1.1rem;
+    font-weight: 1000;
+}
+
+.basic-info-value{
+    display: flex;
+    justify-content: center;
+}
+
+.petProfileName{
+    display: flex;
+    position: relative;
+    top: 40%;
+    left: 35%;
 }
 
 /*==================================================*/
