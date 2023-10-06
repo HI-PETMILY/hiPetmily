@@ -2,10 +2,6 @@ package com.mypet.petmily.member.dao;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
@@ -20,8 +16,8 @@ public interface MemberMapper {
 
     MemberDTO findMemberById(String memberId);
 
+    int updatePassword(MemberDTO modifyPassword);
 
-
-//    String selectMemberById(String memberId);
+    int deleteMember(MemberDTO member);
 
 }

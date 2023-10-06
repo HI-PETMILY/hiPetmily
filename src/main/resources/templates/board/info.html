@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>고객센터</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/board/faq.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <!--    <link-->
+    <!--            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"-->
+    <!--            rel="stylesheet">-->
+
+</head>
+
+<body>
+
+<div th:replace="common/header_white.html"></div>
+<!-- 사이드 바 -->
+<aside class="side-bar">
+    <section class="side-bar__icon-box">
+        <section class="side-bar__icon-1">
+            <div></div>
+            <div></div>
+            <div></div>
+        </section>
+    </section>
+    <div class="img_boxing">
+        <div class="img_dogbox">
+            <img src="/static_Image/board/dog.png"/>
+        </div>
+        <div class="side-bar_title">
+            <h2 class="side-bar_title_name">
+               고객센터
+            </h2>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <div></div><a href="#"><i class="fa-solid fa-dog"></i> 고객지원</a>
+
+        </li>
+        <li>
+            <a href="#"><i class="fa-solid fa-cat"></i> 자주하는질문</a>
+
+        </li>
+        <li>
+            <a href="#"><i class="fa-solid fa-hippo"></i> 1:1문의</a>
+
+        </li>
+        <li>
+            <a href="#"><i class="fa-solid fa-paw"></i> 이용방법</a>
+            <ul>
+                <li><a href="info.html">펫밀리 이용방법</a></li>
+                <li><a href="terms.html">이용약관</a></li>
+                <li><a href="policy.html">개인정보처리방침</a></li>
+                <li><a href="safe.html">안전보상프로그램</a></li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+
+
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>자주하는질문(FAQ)</strong>
+        <p>환영합니다 펫밀리 자주하는질문 게시판입니다 </p>
+    </div>
+
+
+    <div class="accodion">
+        <input type="checkbox" id="answer01">
+        <label for="answer01">펫밀리는 어떤 서비스를 제공하나요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p> 원하시는 날짜와 장소를 검색하면, 집에서 가까운 전문 산책케어 파트너를 찾아 예약할 수 있습니다. <br>
+            파트너는 반려견의 산책 전후 모든 과정을 전문적으로 케어하며, 실시간으로 일지를 작성하여 공유합니다.
+        </p></div>
+        <input type="checkbox" id="answer02">
+        <label for="answer02">신뢰할 수 있는 파트너들인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>
+
+            펫밀리는 보호자-파트너 간의 신속하고 정확한 소통을 제1원칙으로 하고 있습니다. 궁금한 점이나 요청 사항이 생기면, 언제든지 파트너와 대화를 주고받을 수 있습니다.
+
+
+        </p></div>
+        <input type="checkbox" id="answer03">
+        <label for="answer03">파트너의 개인 연락처를 알 수 있나요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>
+
+
+            펫밀리는 파트너님들의 안전과 개인정보 보안을 위하여 개인 연락처를 따로 제공하지 않습니다.<br>
+            대신 유선통화를 상시 대기할 것을 교육하고 있으므로 안심하셔도 됩니다.
+        </p></div>
+        <input type="checkbox" id="answer04">
+        <label for="answer04">안전보상 프로그램은 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>안전 보상 프로그램이란, 산책 전후 모든 케어 과정에서 발생되는 예상치 못한 사건/사고 발생에 대해,법적/금전적 보상을 받을 수 있는 제도입니다. 해당 제도를 보유한 곳은, 펫밀리는 업계에서 유일합니다.<br>
+            사건/사고 발생시, 병원 수의사의 수의학적 판단의 기준으로 보상 여부를 판단하며, <br>
+            본인의 부주의 및 잘못으로 발생한 경우에는 치료에 대한 비용이 본인에게 청구됩니다.
+        </p></div>
+        <input type="checkbox" id="answer05">
+        <label for="answer05">아이디랑 비밀번호를 잃어버렸어요. 어떻게 다시 찾죠?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>첫 화면에서 로그인 버튼을 눌러 아이디,비밀번호 찾기 버튼을 누르면 아이디 혹은 비밀번호를 찾을 수 있는 페이지로 이동합니다.<br>
+            아이디의 경우 실명과 휴대폰 번호, 비밀번호의 경우 가입한 아이디를 입력하고 찾기 버튼을 누르면 문자로 해당내용을 받아보실 수 있습니다.
+        </p></div>
+
+        <input type="checkbox" id="answer06">
+        <label for="answer06">예약 대기상태는 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>펫플래닛은 파트너님께서 예약 요청을 승인해야 산책케어 매칭이 완료됩니다.<br>
+            예약 대기상태란 아직 파트너님이 예약을 승인하기 전 대기상태를 말합니다. <br>
+            이 상태에서는 결제가 이뤄지지 않습니다. 24시간 내로 파트너님께서 승인하지 않으면 자동으로 예약은 취소됩니다.
+        </p></div>
+
+        <input type="checkbox" id="answer07">
+        <label for="answer07">예약 대기상태는 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>펫플래닛은 파트너님께서 예약 요청을 승인해야 산책케어 매칭이 완료됩니다.<br>
+            예약 대기상태란 아직 파트너님이 예약을 승인하기 전 대기상태를 말합니다. <br>
+            이 상태에서는 결제가 이뤄지지 않습니다. 24시간 내로 파트너님께서 승인하지 않으면 자동으로 예약은 취소됩니다.
+        </p></div>
+
+        <input type="checkbox" id="answer08">
+        <label for="answer08">예약 대기상태는 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>펫플래닛은 파트너님께서 예약 요청을 승인해야 산책케어 매칭이 완료됩니다.<br>
+            예약 대기상태란 아직 파트너님이 예약을 승인하기 전 대기상태를 말합니다. <br>
+            이 상태에서는 결제가 이뤄지지 않습니다. 24시간 내로 파트너님께서 승인하지 않으면 자동으로 예약은 취소됩니다.
+        </p></div>
+
+        <input type="checkbox" id="answer09">
+        <label for="answer09">예약 대기상태는 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>펫플래닛은 파트너님께서 예약 요청을 승인해야 산책케어 매칭이 완료됩니다.<br>
+            예약 대기상태란 아직 파트너님이 예약을 승인하기 전 대기상태를 말합니다. <br>
+            이 상태에서는 결제가 이뤄지지 않습니다. 24시간 내로 파트너님께서 승인하지 않으면 자동으로 예약은 취소됩니다.
+        </p></div>
+
+        <input type="checkbox" id="answer10">
+        <label for="answer10">예약 대기상태는 무엇인가요?<img src="/static_Image/board/newarrow.png"/></label>
+        <div><p>펫플래닛은 파트너님께서 예약 요청을 승인해야 산책케어 매칭이 완료됩니다.<br>
+            예약 대기상태란 아직 파트너님이 예약을 승인하기 전 대기상태를 말합니다. <br>
+            이 상태에서는 결제가 이뤄지지 않습니다. 24시간 내로 파트너님께서 승인하지 않으면 자동으로 예약은 취소됩니다.
+        </p></div>
+    </div>
+</div>
+<div th:replace="common/footer.html"></div>
+</body>
+</html>

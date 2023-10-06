@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/css/board/view.css">
+</head>
+<body>
+<div th:replace="common/header_white.html"></div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지사항 등록</strong>
+            <p>관리자님! 펫밀리 공지사항을 등록해주세요</p>
+        </div>
+        <div class="board_write_wrap">
+			<form name="form" id="form" method="post" action="">
+				<input type="hidden" name="boardNo" id="boardNo" th:value="${boardDTO != null ? boardDTO.boardNo : ''}"/>
+	            <div class="board_write">
+	                <div class="title">
+	                    <dl>
+	                        <dt>제목</dt>
+	                        <dd><input type="text" placeholder="제목 입력" 	id="boardName" name="boardName"	th:value="${boardDTO != null ? boardDTO.boardName : ''}"></dd>
+	                    </dl>
+	                </div>
+	                <div class="board_category">
+	                    <div class="board_category_wrap">
+	                    <dl>
+	                        <dt>분류</dt>
+	                        <dd>
+								<select class="select" id="categoryCode" name="categoryCode">
+									<!-- 게시판에 등록된 카테고리코드 값으로 셀렉트박스를 선택한다. -->
+							  		<option value="1" th:selected="${boardDTO != null and boardDTO.categoryCode == 1}">일반공지</option>
+									<option value="2" th:selected="${boardDTO != null and boardDTO.categoryCode == 2}">중요공지</option>
+								</select>
+	                        </dd>
+	                    </dl>      
+	                    </div>  
+	                </div>
+	                <div class="cont">
+	                    <textarea placeholder="내용 입력" 	id="boardDetail" name="boardDetail"	th:text="${boardDTO != null ? boardDTO.boardDetail : ''}"></textarea>
+	                </div>
+	                <div class="board_thumb">
+	                    <dl>
+	                        <dt>첨부파일</dt>
+	                        <dd><input type="file" placeholder="선택된 파일 없음"></dd>
+	                    </dl>
+	                </div>
+	            </div>
+            </form>
+            <div class="bt_wrap">
+                <a href="#" class="on" id="insertBtn">등록</a>
+                <a href="/board/notice/list">취소</a>
+            </div>
+        </div>
+    </div>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+	        			
+			//게시판 저장버튼
+            $("#insertBtn").on("click", function(){
+                let form = $("#form");
+                //form태그의 action URL 변경하기.
+                //현재 페이지에 게시판번호가 있으면 수정, 없으면 신규등록
+               	$('#boardNo').val() != "" ?   form.attr("action", "/board/notice/update") :   form.attr("action", "/board/notice/insert")
+                
+	    		//게시판 입력폼 유효성 체크
+	            if(formCheck()){
+    				form.submit();
+	            }
+			});
+		});
+
+		// 게시판 입력폼 체크
+		let formCheck = function() {
+			
+  			let form = document.getElementById("form");
+		  	// 제목이 입력되지 않았을 경우
+		  	if (form.boardName.value === "") {
+		    	alert("제목을 입력해 주세요.");
+		    	form.boardName.focus();
+		    	return false;
+		  	}
+		
+		  	// 내용이 입력되지 않았을 경우
+		  	if (form.boardDetail.value === "") {
+		    	alert("내용을 입력해 주세요.");
+		    	form.boardDetail.focus();
+		    	return false;
+		  	}
+		  	// 모든 조건이 만족되면 true 반환
+		  	return true;
+		};
+		
+	</script>	
+	<div th:replace="common/footer.html"></div>
+</body>
+</html>
