@@ -255,6 +255,8 @@ public class MemberController {
 //        return "redirect:/member/pet-profile-view";
 //    }
 
+    @GetMapping("/review_write")
+    public void reviewWritePage(){}
 
 
 
