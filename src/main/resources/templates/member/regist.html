@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" type="text/css" href="/css/member/regist.css"/>
     <script defer type="text/javascript" src="/js/member/regist.js"></script>
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 </head>
 
 <body>
+
+<div th:replace="common/header_white.html"></div>
 
 <div class="con_container">
     <div class="style_container">
@@ -72,11 +78,6 @@
                         </span>
                         </div>
                     </div>
-<!--                    <form id="verificationForm" style="display:none;">-->
-<!--                        <label for="verificationCode"></label>-->
-<!--                        <input type="text" id="verificationCode" name="verificationCode" required>-->
-<!--                        <button type="button" onclick="verifySms()">인증 확인</button>-->
-<!--                    </form>-->
 
                     <div class="gender-row">
                         <div class="gender-label">성별</div>
@@ -134,6 +135,8 @@
             </div>
         </div>
         </form>
+    </div>
+</div>
 
                 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                 <script>
@@ -151,6 +154,7 @@
                         }).open();
                     }
                 </script>
+        <div th:replace="common/footer.html"></div>
 
 </body>
 </html>
