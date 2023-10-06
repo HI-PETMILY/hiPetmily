@@ -25,4 +25,29 @@ public class BoardService {
         return boardMapper.selectBoardCnt(boardDTO);
     }
 
+    //게시판 1건 상세조회
+    public BoardDTO selectBoard(BoardDTO boardDTO) throws Exception {
+        return boardMapper.selectBoard(boardDTO);
+    }
+
+    //게시판 저장
+    public int insertBoard(BoardDTO boardDTO) throws Exception {
+        return boardMapper.insertBoard(boardDTO);
+    }
+
+    //게시판 수정
+    public int updateBoard(BoardDTO boardDTO) throws Exception {
+        return boardMapper.updateBoard(boardDTO);
+    }
+
+    //게시판 삭제
+    public int deleteBoard(Integer boardNo) throws Exception {
+        return boardMapper.deleteBoard(boardNo);
+    }
+
+    //게시판 조회수 증가
+    public int updateBoardViews(Integer boardNo) throws Exception {
+        return boardMapper.updateBoardViews(boardNo);
+    }
+
 }
