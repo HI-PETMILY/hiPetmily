@@ -99,10 +99,8 @@
                                 <option value="number">번호</option>
                                 <option value="name">이름</option>
                                 <option value="id">아이디</option>
-                                <div class="search">
-                                    <input type="text" placeholder=" 검색어를 입력해주세요.">
-                                </div>
                             </select>
+                            <input type="text" placeholder=" 검색어를 입력해주세요.">
                         </li>
                     </ul>
                 </div>
@@ -114,7 +112,8 @@
 <!--==================== 회원 목록 표 -->
 <div class="overall-list">
     <div>
-        <p class="result-text" style="margin-bottom: 0rem">검색결과 : 15 / 총 15명 검색 결과</p>
+        <p class="result-text" style="margin-bottom: 0rem"
+           th:text="${member != null ? '검색결과 : ' + #lists.size(member) + ' / 총 ' + #lists.size(member) + '명 검색 결과' : '검색 결과가 없습니다.'}"></p>
     </div>
 
     <div class="member-list">
@@ -147,24 +146,37 @@
                         <th class="management-button">관리</th>
                     </tr>
                     </thead>
-
                     <tbody>
-                    <tr>
-                        <td>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" class="chk" name="chk" value="">
-                            </label>
-                        <td>1</td>
-                        <td>test1</td>
-                        <td>테스트</td>
-                        <td>일반</td>
-                        <td>정상</td>
-                        <td>2022.08.01</td>
-                            <td class="management-button">
-                                <button onclick="">비번변경</button>
-                                <button onclick="">1대1문의</button>
-                                <button onclick="">관리</button>
-                            </td>
+
+
+                    <!-- 회원 목록 데이터를 Thymeleaf 반복문을 사용하여 출력 -->
+                    <tr th:each="member : ${memberList}">
+                        <td><input type="checkbox" id="allCheckBox" class="chk"></td>
+                        <td th:text="${member.memberNo}"></td>
+                        <td th:text="${member.memberId}"></td>
+                        <td th:text="${member.memberName}"></td>
+
+<!--                        <td th:text="${member.memberCood.desc}"></td> &lt;!&ndash;이새끼 날짜형식으로 안나옴 고치기.&ndash;&gt;-->
+
+                        <td th:text="${member.memberStat}"></td>
+                        <td th:text="${member.registDate}"></td>
+
+                        <td class="management-button">
+                            <button onclick="">비번변경</button>
+                            <button onclick="">1대1문의</button>
+
+                            <div id="btnWrap">
+                                <button typ="button" id="popupBtn">관리</button>
+                            </div>
+
+                            <div id="modalWrap">
+                                <div id="modalBody">
+                                    <span id="closeBtn">&times;</span>
+                                    <p>modal-popup 입니다.</p>
+                                </div>
+                            </div>
+
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -174,6 +186,7 @@
     </div>
 </div>
 
+<!--페이징 바======================-->
 <nav class="container d-flex justify-content-center"
      aria-label="Page navigation example">
     <ul class="pagination">
@@ -193,16 +206,17 @@
     </ul>
 </nav>
 
+
 <!-- 하단 기능 버튼들 -->
 <footer class="easy-skill-button">
     <div class="test1">
-    <b>회원 일괄처리</b>
-    <button onclick="">메일발송</button>
-    <button onclick="">등급변경</button>
-    <button onclick="">정지처리</button><b class="Orange-text">x체크한 회원만 처리됩니다</b>
+        <b>회원 일괄처리</b>
+        <button onclick="">메일발송</button>
+        <button onclick="">등급변경</button>
+        <button onclick="">정지처리</button>
+        <b class="Orange-text"> x체크한 회원만 처리됩니다</b>
     </div>
 </footer>
-
 
 
 </body>

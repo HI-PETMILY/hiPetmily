@@ -20,6 +20,7 @@
         <result property="warningCount" column="WARNING_COUNT"/>
         <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
         <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
+        <result property="registDate" column="REGIST_DATE"/>
         <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
 
@@ -89,6 +90,7 @@
         , MEMBER_STAT
         , MEMBER_STAT_DATE
         , SIGNUP_PATH_CODE
+        ,REGIST_DATE
         )
         VALUES
         (
@@ -103,6 +105,7 @@
          , #{ memberStat}
          , #{ memberStatDate }
          , #{ signupPathCode }
+         , #{ registDate }
         )
     </insert>
 
@@ -148,5 +151,8 @@
         WHERE MEMBER_STATUS = '활동'
           AND MEMBER_NO = #{ memberNo }
     </update>
+
+
+
 
 </mapper>
