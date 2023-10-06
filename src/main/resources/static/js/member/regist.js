@@ -19,6 +19,29 @@ window.onload = function() {
 
     /* 유효성 검사 나중에 ===================================== */
 
+    /* 닉네임 중복 확인 */
+
+    if(document.getElementById("duplicationCheck")) {
+
+        const $duplication = document.getElementById("duplicationCheck");
+
+        $duplication.onclick = function() {
+            let nickName = document.getElementById("nickName").value.trim();
+
+            fetch("/member/nickNameDupCheck", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({nickName: nickName})
+            })
+                .then(result => result.text())
+                .then(result => alert(result))
+                .catch((error) => error.text().then((res) => alert(res)));
+
+        }
+    }
+
 
     /* input에 영어랑 숫자만 입력하게 하기 - 이메일 */
     const inputEngNum = document.getElementById('email');
@@ -78,6 +101,7 @@ window.onload = function() {
     const requiredCheckboxes = document.querySelectorAll(".required");
     const submitButton = document.querySelector(".regist_button input[type='submit']");
 
+
     // 필수 약관 체크박스들 상태 체크
     function updateSubmitButtonState() {
         var allRequiredChecked = true;
@@ -96,24 +120,4 @@ window.onload = function() {
 
     /* 백 연결 ================================================= */
 
-    /* 닉네임 중복 체크 =========== 미완 */
-    if (document.getElementById("duplicationCheck")) {
-
-        const $duplication = document.getElementById("duplicationCheck");
-
-        $duplication.onclick = function () {
-            let nickName = document.getElementById("nickName").value.trim();
-
-            fetch("/member/nicknameDupCheck", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
-                },
-                body: JSON.stringify({nickName: nickName})
-            })
-                .then(result => result.text())
-                .then(result => alert(result))
-                .catch((error) => error.text().then((res) => alert(res)));
-        }
-    }
 }

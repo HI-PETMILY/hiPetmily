@@ -12,13 +12,17 @@ public interface MemberMapper {
 
     String findId(String memberName, String phone);
 
-    String selectMemberByNickName(String nickName);
-
     int insertMember(MemberDTO member);
 
     int insertMemberRole();
 
     int updateMember(MemberDTO modifyMember);
+
+    int updatePassword(MemberDTO modifyPassword);
+
+    int deleteMember(MemberDTO member);
+
+    String selectMemberByNickName(String nickName);
 
     int pwdCheck(MemberDTO dto);
 
