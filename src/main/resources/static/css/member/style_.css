@@ -55,7 +55,7 @@ header {
 
 /*==================================================*/
 
-#login-container{
+.main-container{
     margin: 15% 0;
 }
 .mainWrapper {
@@ -137,4 +137,14 @@ header {
 
 textarea{
     width: 100%;
+}
+/*==================================================*/
+/* 임시 비밀번호 발급 화면 */
+
+
+.pwdResultBox{
+    border: solid 1px #81BDF1;
+    border-radius: 5px;
+    margin: 15px 0;
+    padding: 10px 0;
 }

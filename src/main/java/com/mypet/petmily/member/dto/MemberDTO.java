@@ -35,8 +35,6 @@ public class MemberDTO implements UserDetails {
 
 
     /* 나중에 GrantedAuthority 객체 */
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();

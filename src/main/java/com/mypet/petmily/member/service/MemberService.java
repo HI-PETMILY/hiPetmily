@@ -6,7 +6,7 @@ import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.common.exception.member.MemberRemoveException;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,12 +16,13 @@ import java.util.Date;
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public MemberService(MemberMapper memberMapper) {
+    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
         this.memberMapper = memberMapper;
+        this.passwordEncoder = passwordEncoder;
     }
-
-
+    
     /* 회원 가입 */
     @Transactional
     public void registMember(MemberDTO member) throws MemberRegistException {
@@ -36,7 +37,6 @@ public class MemberService {
 
         if (!(result1 > 0 && result2 > 0)) throw new MemberRegistException("회원 가입에 실패하였습니다.");
     }
-
 
     /* 회원 정보 수정 */
     @Transactional
@@ -74,5 +74,22 @@ public class MemberService {
         return result != null;
 
 
+    }
+
+    /* 아이디 찾기 */
+    public String findId(String memberName, String phone) {
+        return memberMapper.findId(memberName, phone);
+    }
+
+    /* 비밀번호 찾기 */
+    public int pwdCheck(MemberDTO dto) {
+        return memberMapper.pwdCheck(dto);
+    }
+
+    /* 비밀번호 업데이트 */
+    public void pwdUpdate(MemberDTO dto) {
+        String newUpdatePwd = passwordEncoder.encode(dto.getPassword());
+        dto.setMemberPwd(newUpdatePwd);
+        memberMapper.pwdUpdate(dto);
     }
 }
