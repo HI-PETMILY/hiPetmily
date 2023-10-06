@@ -1,35 +1,28 @@
 ## DB config
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
-  redis:  # sens sms api
-    host: localhost
-    port: 8080
 
-#변수
-naver:
-  serviceid: ncp:sms:kr:317090578706:petmily_sms
-  accesskey: z5qxiVolzEHlgqpEKiQe
-  secretkey: s1WRHeNKmr8gQuXTjJkk3gqPSolAPpZrypxdrFlQ
 
-server:
-  port : 8081
+## file upload config
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      location: C:/Lecture/sub_project/hipetmily
 
-#  # file upload config (??? spring?? ????.)
-#  servlet:
-#    multipart:
-#      max-file-size: 10MB
-#      max-request-size: 10MB
-#      location: C:/Lecture/10_spring/04_spring-comprehensive/chap01-comprehensive
 
 ## Mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
 
 ## image upload dir
-#image:
-#  image-dir: src/main/resources/upload/
-#
+image:
+  image-dir: src/main/resources/upload/
+

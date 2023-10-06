@@ -12,7 +12,6 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
-
 public class MemberDTO implements UserDetails {
 
     private Long memberNo;          // 회원코드
@@ -28,6 +27,7 @@ public class MemberDTO implements UserDetails {
     private int point;              // 적립금
     private String memberStat;      // 상태
     private Date memberStatDate;    // 상태 변경일
+    private Date registDate;        // 가입일
     private int warningCount;       // 경고 횟수
     private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
