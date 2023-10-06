@@ -7,10 +7,27 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href='/css/petSitter/fullCalendarMain.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="/css/petSitter/petSitterProfile.css"/>
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- 카카오 map -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68154c095d8912e06ea592d8c09349d8&libraries=services"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- flatpicker Calendar -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <!-- fullCalendar -->
+    <script src='/js/petSitter/fullCalendarMain.js'></script>
+    <script src='/js/petSitter/fullCalendarLocales-all.js'></script>
+
     <script defer type="text/javascript" src="/js/petSitter/petSitterProfile.js"></script>
 
 </head>
@@ -233,43 +250,73 @@
     </div>
 
     <!-- 우측 -->
-    <div class="psp_right">우측
-        <div>예약
-            <div> 첫번째
-                <div>타이틀 대
-                    <div>타이틀</div>
-                    <div>소글씨</div>
+    <div class="psp_right">
+
+        <div class="psp_res">
+
+            <div class="psp_res_item1">
+                <div class="psp_res_titleBox">
+                    <div class="psp_item_title">예약하기</div>
+                    <div class="psp_res_smTitle">예약을 원하는 날짜와 시간을 선택하세요!</div>
                 </div>
-                <div>
-                    <div>시작일</div>
-                    <div>~</div>
-                    <div>종료일</div>
-                </div>
-            </div>
-            <div>두번째
-                <div>
-                    <div>좌측
-                        <div>24 / 35,000원</div>
-                        <div>당일 / 25,000원</div>
+                <div class="psp_res_inputDate">
+                    <div class="psp_res_start">
+                        <input type="text" id="startDate" placeholder="시작 날짜" readonly>
                     </div>
-                    <div>
-                        <div>우측</div>
+                    <div class="psp_res_mid">~</div>
+                    <div class="psp_res_end">
+                        <input type="text" id="endDate" placeholder="종료 날짜" readonly>
                     </div>
                 </div>
+
+                <div class="psp_res_inputDate">
+                    <div class="psp_res_startTime">
+                        <select id="startTime" class="resTime_selectBox res_startTime">
+<!--                            <option style="font-family: 'Noto Sans KR','Roboto', sans-serif;">9시</option>-->
+                        </select>
+                    </div>
+                    <div class="psp_res_mid">~</div>
+                    <div class="psp_res_endTime">
+                        <select id="endTime" class="resTime_selectBox res_endTime"></select>
+                    </div>
+                </div>
             </div>
-            <div>세번째
+
+            <div class="psp_res_item2">두번째
+                <div class="psp_res_pay">
+                    <div class="res_pay_left">좌측
+                        <div class="pay_left_text">24H / <span>35,000원</span></div>
+                        <div class="pay_left_text">1H / <span>2,500원</span></div>
+                    </div>
+                    <div class="res_pay_right">
+                        <div class="pay_right_text">15kg 미만 기준</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="psp_res_item3">세번째
                 <div>
                     <div>맡기실 반려견 선택하기</div>
                     <div>반려견 선택</div>
+                    <div>반려견 수</div>
+                </div>
+                <div>
                     <div>1박 0원</div>
                     <div>초과금액 0원</div>
                     <div>부가세 0원</div>
                     <div>총 합계 0원</div>
                 </div>
             </div>
-            <div>네번째
+
+            <div class="psp_res_item4">네번째
                 <div>
-                    <div>내용</div>
+                    <div>
+                        <ul>
+                            <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
+                            <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
+                            <li>본 사이트 외부에서 진행된 결제 건에 대해서는 당사는 책임지지 않습니다.</li>
+                        </ul>
+                    </div>
                     <div>
                         <div>예약 요청하기</div>
                         <div>문의하기</div>
@@ -280,14 +327,23 @@
         </div>
 
         <!-- 캘린더 -->
-        <div>
-            <div>예약 가능 날짜</div>
-            <div>내용</div>
+        <div class="psp_calendar">
+            <div class="psp_calendar_title">예약 가능 날짜</div>
+            <div class="psp_calendar_box">
+                <div id='calendar'></div>
+            </div>
+            <div>배경이 푸른색이 가능한 날짜입니다.</div>
         </div>
 
         <!-- 지도 -->
-        <div>
-            <div>지도 들어갈부분</div>
+        <div class="psp_map">
+            <div>
+                <div>파트너님 위치</div>
+                <div>서울 특별시 종로구 인사동길 12</div>
+            </div>
+            <div>
+                <div id="map" style="width:400px;height:400px;"></div>
+            </div>
         </div>
 
     </div>

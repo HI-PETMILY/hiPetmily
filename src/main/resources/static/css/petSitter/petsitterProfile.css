@@ -453,9 +453,95 @@ table {
     margin: 15px auto 100px;
 }
 
-
 .psp_right {
     width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border: 1px solid darkgray;
+}
+
+.psp_res {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
 
     border: 1px solid darkgray;
 }
+
+.psp_res_item1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+
+    border: 1px solid darkgray;
+}
+
+.psp_res_titleBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.psp_res_smTitle {
+    font-size: 13px;
+    line-height: 40px;
+    margin-left: 10px;
+}
+
+.psp_res_inputDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.psp_res_start {
+    width: 100px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+}
+
+.psp_res_end {
+    width: 100px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+}
+
+.psp_res_mid {
+    width: 30px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 0px 10px;
+}
+
+
+
+.resTime_selectBox {
+    width: 100px;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.res_startTime {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+}
+
+.res_endTime {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+}
+
