@@ -5,6 +5,115 @@
 
 <mapper namespace="com.mypet.petmily.board.dao.BoardMapper">
 
+    <!-- 게시판 저장 -->
+    <insert id="insertBoard" parameterType="com.mypet.petmily.board.dto.BoardDTO" >
+        /*게시판 저장 SQL com.mypet.petmily.board.dao.BoardMapper.insertBoard*/
+        INSERT INTO TBL_BOARD(
+        BOARD_NO
+        , BOARD_NAME			/*제목*/
+        , BOARD_DETAIL			/*상세내용*/
+        , BOARD_REGIST_DATE		/*등록일*/
+        , BOARD_VIEWS			/*조회수*/
+        , BOARD_SORT			/*게시판 구분*/
+        , BOARD_STAT			/*게시글 상태*/
+        , MEMBER_NO				/*회원 번호*/
+        <if test="categoryCode != null">
+            , CATEGORY_CODE			/*카테고리 코드*/
+        </if>
+        <if test="boardSecret != null">
+            , BOARD_SECRET			/*비밀글여부*/
+        </if>
+        <if test="refBoardNo != null">
+            , REF_BOARD_NO			/*문의게시글번호*/
+        </if>
+        )VALUES(
+        SEQ_TBL_BOARD_NO.NEXTVAL
+        , #{boardName}
+        , #{boardDetail}
+        , TO_CHAR(SYSDATE,'YYYYMMDD')
+        , 0
+        , #{boardSort}
+        , 'Y'
+        , ${memberNo}
+        <if test="categoryCode != null">
+            , ${categoryCode}
+        </if>
+        <if test="boardSecret != null">
+            , #{boardSecret}
+        </if>
+        <if test="refBoardNo != null">
+            , ${refBoardNo}
+        </if>
+        )
+    </insert>
+
+    <!-- 게시판 수정 -->
+    <update id="updateBoard" parameterType="com.mypet.petmily.board.dto.BoardDTO" >
+        /*게시판 수정 SQL com.mypet.petmily.board.dao.BoardMapper.updateBoard*/
+        UPDATE
+            TBL_BOARD
+        SET
+            BOARD_NAME				= 	#{boardName}
+          , BOARD_DETAIL			=	#{boardDetail}
+          , CATEGORY_CODE			=	#{categoryCode}
+          , BOARD_REVISE_DATE 	=	TO_CHAR(SYSDATE,'YYYYMMDD')
+
+        WHERE
+            BOARD_NO = ${boardNo}
+    </update>
+
+    <!-- 게시판 삭제, 물리적인 삭제가 아니라 "삭제" 상태로 update 처리-->
+    <update id="deleteBoard" parameterType="Integer" >
+        /*게시판 삭제 SQL com.mypet.petmily.board.dao.BoardMapper.deleteBoard*/
+        UPDATE
+            TBL_BOARD
+        SET
+            BOARD_STAT				= 	'N'
+          , BOARD_DELETE_DATE 	=	TO_CHAR(SYSDATE,'YYYYMMDD')
+        WHERE
+            BOARD_NO = ${boardNo}
+    </update>
+
+    <!-- 게시판 조회수 증가 업데이트 -->
+    <update id="updateBoardViews" parameterType="Integer">
+        /*게시판 조회수 증가 SQL com.mypet.petmily.board.dao.BoardMapper.updateBoardViews*/
+        UPDATE
+            TBL_BOARD
+        SET
+            BOARD_VIEWS = NVL(BOARD_VIEWS, 0) + 1
+        WHERE
+            BOARD_NO = ${boardNo}
+    </update>
+
+    <!--게시판 1건 상세조회 -->
+    <select id="selectBoard" parameterType="com.mypet.petmily.board.dto.BoardDTO" resultType="com.mypet.petmily.board.dto.BoardDTO">
+        /*게시판 상세조회 SQL com.mypet.petmily.board.dao.BoardMapper.상세조회*/
+        SELECT
+            BOARD_NO
+             , BOARD_NAME
+             , BOARD_DETAIL
+             , TO_CHAR(TO_DATE(BOARD_REGIST_DATE, 'YYYYMMDD'), 'YYYY.MM.DD') AS BOARD_REGIST_DATE
+             , BOARD_VIEWS
+             , TO_CHAR(TO_DATE(BOARD_REVISE_DATE, 'YYYYMMDD'), 'YYYY.MM.DD') AS BOARD_REVISE_DATE
+             , BOARD_STAT
+             , TO_CHAR(TO_DATE(BOARD_DELETE_DATE, 'YYYYMMDD'), 'YYYY.MM.DD') AS BOARD_DELETE_DATE
+             , BOARD_SORT
+             , BOARD_SECRET
+             , MEMBER_NO
+            /* 스칼라서브쿼리를 이용한 INNER JOIN */
+             , ( SELECT MEMBER_NAME FROM TBL_MEMBER B WHERE A.MEMBER_NO = B.MEMBER_NO) AS MEMBER_NAME
+             , CATEGORY_CODE
+            /* 스칼라서브쿼리를 이용한 INNER JOIN */
+             , ( SELECT CATEGORY_NAME FROM TBL_BOARD_CATEGORY B WHERE A.CATEGORY_CODE = B.CATEGORY_CODE) AS CATEGORY_NAME
+             , REF_BOARD_NO
+        FROM
+            TBL_BOARD A	/*게시판 테이블*/
+        WHERE
+            BOARD_STAT = 'Y'
+          AND
+            BOARD_NO = ${boardNo}
+    </select>
+
     <!--검색 조건 쿼리 > 공통으로 한번 정의하면 where조건에 임포트형식으로 사용할 수 있음. -->
     <sql id="schSql">
         <where>
