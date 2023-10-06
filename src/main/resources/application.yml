@@ -7,16 +7,19 @@ spring:
     password: PETMILY
 
 
-#  # file upload config
+## file upload config
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
       location: C:/Lecture/sub_project/hipetmily
 
+
 ## Mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
 
 
 ## image upload dir

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HI-PETMILY</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/petSitter/petsitterProfile.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/petSitter/petSitterProfile.js"></script>
+
+</head>
+
+<body>
+    <!-- common header -->
+    <div th:replace="common/header_white.html"></div>
+
+    <div class="psp_container">
+        <div class="psp_left">
+
+            <div class="psp_img">
+                <div class="psp_img_main">메인이미지</div>
+                <div class="psp_img_sub">서브이미지</div>
+            </div>
+
+            <div>프로필
+                <div>프로필 사진</div>
+                <div>내용
+                    <div>타이틀</div>
+                    <div>이름
+                        <div>이름</div>
+                        <div>주소</div>
+                    </div>
+                    <div>태그</div>
+                </div>
+            </div>
+
+            <div>펫시터소개
+                <div>타이틀</div>
+                <div>내용</div>
+            </div>
+
+            <div>경력/교육
+                <div>타이틀</div>
+                <div>내용</div>
+            </div>
+
+            <div>돌봄환경
+                <div>타이틀</div>
+                <div>
+                    <table></table>
+                </div>
+            </div>
+
+            <div>이용금액
+                <div>타이틀</div>
+                <div>
+                    <table></table>
+                </div>
+                <div>상세라인</div>
+            </div>
+
+            <div>이용규칙
+                <div>타이틀</div>
+                <div>
+                    <table></table>
+                </div>
+            </div>
+
+            <div>펫시터 반려동물소개
+                <div>타이틀</div>
+                <div>
+                    <div>이미지</div>
+                    <div>
+                        <div>이름</div>
+                        <div>정보</div>
+                        <div>상세보기</div>
+                    </div>
+                </div>
+            </div>
+
+            <div>후기
+                <div>타이틀</div>
+                <div>
+                    <div>이미지</div>
+                    <div>
+                        <div>내용</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 우측 -->
+        <div class="psp_right">우측
+            <div>예약
+                <div> 첫번째
+                    <div>타이틀 대
+                        <div>타이틀</div>
+                        <div>소글씨</div>
+                    </div>
+                    <div>
+                        <div>시작일</div>
+                        <div>~</div>
+                        <div>종료일</div>
+                    </div>
+                </div>
+                <div>두번째
+                    <div>
+                        <div>좌측
+                            <div>24 / 35,000원</div>
+                            <div>당일 / 25,000원</div>
+                        </div>
+                        <div>
+                            <div>우측</div>
+                        </div>
+                    </div>
+                </div>
+                <div>세번째
+                    <div>
+                        <div>맡기실 반려견 선택하기</div>
+                        <div>반려견 선택</div>
+                        <div>1박 0원</div>
+                        <div>초과금액 0원</div>
+                        <div>부가세 0원</div>
+                        <div>총 합계 0원</div>
+                    </div>
+                </div>
+                <div>네번째
+                    <div>
+                        <div>내용</div>
+                        <div>
+                            <div>예약 요청하기</div>
+                            <div>문의하기</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 캘린더 -->
+            <div>
+                <div>예약 가능 날짜</div>
+                <div>내용</div>
+            </div>
+
+            <!-- 지도 -->
+            <div>
+                <div>지도 들어갈부분</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- common footer -->
+    <div th:replace="common/footer.html"></div>
+</body>
+
+</html>
