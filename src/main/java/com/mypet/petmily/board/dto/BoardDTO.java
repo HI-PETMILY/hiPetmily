@@ -36,7 +36,7 @@ public class BoardDTO {
     /** 현재페이지 */
     private int page = 1;
     /** 페이지당 출력 개수 */
-    private int row = 5;
+    private int row = 10;
     //oracle용 변수
     private int startIndex = 1;
 

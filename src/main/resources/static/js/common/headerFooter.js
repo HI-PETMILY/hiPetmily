@@ -472,7 +472,7 @@ window.onload = function () {
 
         $footerBtn4.addEventListener("click", (event) => {
 
-            location.href = "/board/safe";    // 추후 연결
+            location.href = "/board/faq";    // 추후 연결
         });
 
         $footerBtn4.addEventListener("mouseover", (event) => {
