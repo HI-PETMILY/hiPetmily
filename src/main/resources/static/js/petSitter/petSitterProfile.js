@@ -2,24 +2,25 @@
 
 $(document).ready(function(){
 
-    selectBoxAdd();
+    timeSelectBoxAdd();
+    dogSelectBoxAdd();
 
-    $("#startTime").change(function(){
-        // Value값 가져오기
-        var val = $("#startTime :selected").val();
-
-        console.log(val);
-    });
+    // $("#startTime").change(function(){
+    //     // value값 가져오기
+    //     var val = $("#startTime :selected").val();
+    //
+    //     console.log(val);
+    // });
 
 });
 
 
-function selectBoxAdd() {
+function timeSelectBoxAdd() {
 
-    var strHours = '';
-    var time = '';
+    let strHours = '';
+    let time = '';
 
-    for(var i = 0 ; i < 24; i++){
+    for(let i = 0 ; i < 24; i++){
         if(i == 9){
             time = '0'+i;
             strHours += '<option value="'+time+'00'+'" selected>'+time+'시 00분</option>';
@@ -38,6 +39,20 @@ function selectBoxAdd() {
     $("#startTime").html(strHours);
     $("#endTime").html(strHours);
 
+}
+
+function dogSelectBoxAdd() {
+
+    let dogSelect = '';
+
+    for(let i = 0 ; i < 2; i++){
+        if(i == 0){
+            dogSelect += '<option value="'+'0'+i+'">선택하기</option>';
+        } else {
+            dogSelect += '<option value="'+'0'+i+'">토리</option>';
+        }
+    }
+    $("#dogSelect").html(dogSelect);
 }
 
 

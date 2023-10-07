@@ -346,8 +346,8 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     direction: rtl;
   }
 .fc-theme-standard .fc-scrollgrid {
-    border: 1px solid #ddd;
-    border: 1px solid var(--fc-border-color, #ddd); /* bootstrap does this. match */
+    /*border: 1px solid #ddd;*/
+    /*border: 1px solid var(--fc-border-color, #ddd); !* bootstrap does this. match *!*/
   }
 .fc .fc-scrollgrid,
     .fc .fc-scrollgrid table { /* all tables (self included) */
