@@ -156,9 +156,19 @@ input[type=text]{
     margin: 5px;
 }
 
+.pet-profile-img-table{
+    display: flex;
+    justify-content: center;
+}
+
 .pet-profile-img{
-    width: 80%;
+    width: 180px;
     margin: auto;
+    border: solid 1px #bebebe;
+    border-radius: 15px;
+    max-height: 170px;
+    display: flex;
+    justify-content: center;
 }
 
 .profile-regist{
@@ -166,7 +176,7 @@ input[type=text]{
     justify-content: space-around;
 }
 
-.profile-regist-left .profile-regist-right{
+.profile-regist-left, .profile-regist-right{
     width: 45%;
 }
 
@@ -307,3 +317,7 @@ li {
     margin: 15px 0;
     padding: 10px 0;
 }
+
+/*==================================================*/
+/* 후기 작성 화면 */
+

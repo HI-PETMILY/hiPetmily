@@ -27,7 +27,7 @@
         <h2 class="mainTitle">반려동물 등록</h2>
         <div class="nav-line"></div>
         <form id="petProfileRegistForm" action="/member/pet-profile-regist" method="post" enctype="multipart/form-data">
-            <table align="center">
+            <table class="pet-profile-img-table" align="center">
                 <tr>
                     <td>
                         <div class="pet-profile-img">
@@ -73,38 +73,7 @@
             </div>
 
             <script>
-                (function (){
-                    /* div image area 요소 */
-                    const imageArea = document.querySelectorAll(".pet-profile-img");
-                    /* input type=file 요소 */
-                    const fileElements = document.querySelectorAll("[type=file]");
-                    /* div 클릭 시 open 함수 동작하여 input type=file 클릭 */
-                    imageArea.forEach(item => item.addEventListener('click', open));
-                    /* 파일 첨부가 발생하는 상황에 preview 함수 동작 */
-                    fileElements.forEach(item => item.addEventListener('change', preview));
 
-                    function open(){
-                        const index = Array.from(imageArea).indexOf(this);
-                        fileElements[index].click();
-                    }
-
-                    function preview(){
-                        const index = Array.from(fileElements).indexOf(this);
-                        console.log(this);
-                        console.log(this.files, this.files[0]);
-                        // 첨부된 파일이 존재한다면
-                        if(this.files && this.files[0]){
-                            const reader = new FileReader();
-                            reader.readAsDataURL(this.files[0]);
-                            // 파일 로드 후 동작하는 이벤트
-                            reader.onload = function (){
-                                console.log(reader.result);
-                                imageArea[index].innerHTML = `<img src='${reader.result}' style='width:120px;height:100px'>`;
-                            }
-                        }
-                    }
-
-                })();
             </script>
 
             <div class="profile-regist">
