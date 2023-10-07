@@ -37,7 +37,8 @@
     </resultMap>
 
     <select id="findMemberById" resultMap="memberResultMap">
-        SELECT A.MEMBER_NO
+        SELECT
+               A.MEMBER_NO
              , A.MEMBER_ID
              , A.MEMBER_PWD
              , A.MEMBER_NAME
@@ -116,6 +117,39 @@
                , 2)
     </insert>
 
+    <select id="findId" parameterType="String" resultType="String">
+        SELECT
+            MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_NAME = #{memberName}
+          AND PHONE = #{phone}
+    </select>
+
+    <select id="pwdCheck" resultType="Integer">
+        SELECT
+               *
+          FROM TBL_MEMBER
+         WHERE MEMBER_ID = #{memberId}
+           AND MEMBER_NAME = #{memberName}
+    </select>
+
+    <update id="pwdUpdate">
+        UPDATE
+               TBL_MEMBER
+           SET MEMBER_PWD = #{memberPwd}
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <select id="findByMemberEmail">
+        SELECT
+            MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
+          AND MEMBER_ID = #{memberId}
+    </select>
+
+
+    <!-- 설마 중복 처리..?-->
 <!--    <select id="selectMember">-->
 <!--            SELECT-->
 <!--                MEMBER_NO-->
