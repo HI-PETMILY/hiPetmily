@@ -5,27 +5,143 @@ $(function(){
     bannerImgCreate();
 
     flatpickrApi();
-    fullcalendarApi();
-    kakaoMapApi();
-
     timeSelectBoxAdd();
     dogSelectBoxAdd();
 
+    getReservation();
+
+    fullcalendarApi();
+    kakaoMapApi();
 
 
-
-
-
-    // $("#startTime").change(function(){
-    //     // value값 가져오기
-    //     var val = $("#startTime :selected").val();
-    //
-    //     console.log(val);
-    // });
 
 
 });
 
+function getReservation() {
+
+    let startDate = "";
+    let endDate = "";
+    let dayCount = "";
+
+    let startTime = "";
+    let endTime = "";
+    let timeCount = "";
+
+    $("#startDate").change(function(){
+        startDate = $("#startDate").val().replace(/\-/g, "");
+
+        $("#dogSelect").val("00").prop("selected", true);
+    });
+
+    $("#endDate").change(function(){
+        endDate = $("#endDate").val().replace(/\-/g, "");
+        dayCount = endDate - startDate;
+
+        $("#dogSelect").val("00").prop("selected", true);
+    });
+
+
+    $("#startTime").change(function(){
+        // endTime을 startTime보다 큰값만 다시 그려줌
+
+        let hour = "";
+        let strHours = '';
+        let time = '';
+
+        startTime = $("#startTime :selected").val();
+
+        if ( startTime.substring(0, 1) == 0 ) {
+            hour = startTime.substring(1, 2);
+        } else {
+            hour = startTime.substring(0, 2);
+        }
+
+        strHours += '<option value="99" selected>시작 선택</option>';
+
+        for(let i = 0 ; i < 24; i++){
+
+            if (hour <= i) {
+                if( i < 10 ){
+
+                    time = '0'+ i;
+
+                    if(startTime.substring(2, 3) == 3 && startTime.substring(1, 2) == i) {
+                        strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
+                    } else {
+                        strHours += '<option value="'+time+'00'+'">'+time+'시 00분</option>';
+                        strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
+                    }
+                } else {
+
+                    time = i;
+
+                    if(startTime.substring(2, 3) == 3 && startTime.substring(0, 2) == i) {
+                        strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
+                    } else {
+                        strHours += '<option value="'+time+'00'+'">'+time+'시 00분</option>';
+                        strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
+                    }
+                }
+            }
+        }
+
+        $("#endTime").html(strHours);
+        $("#dogSelect").val("00").prop("selected", true);
+    });
+
+
+    $("#endTime").change(function(){
+
+        endTime = $("#endTime :selected").val();
+
+        if (endTime == startTime) {
+            alert("시작시간과 종료시간이 같습니다. 다시 선택해주세요.");
+            $("#endTime").val("99").prop("selected", true);
+        }
+
+        let startTime_hour = startTime.substring(0,2);
+        let endTime_hour = endTime.substring(0,2);
+
+        let compareHour = endTime - startTime;
+        let setHour = endTime_hour - startTime_hour;
+
+        // 30분 반올림해서 +1시간
+        if ( setHour != 0 && compareHour.toString().slice(-2) == 30 ) {
+            setHour += 1;
+        }
+
+        // 1시간 미만일때 +1시간
+        if (setHour == 0) {
+            setHour = 1;
+        }
+
+        timeCount = setHour;
+
+        $("#dogSelect").val("00").prop("selected", true);
+    });
+
+    $("#dogSelect").change(function(){
+
+        if (!dayCount || !timeCount || !startDate || !endDate || !startTime || !endTime) {
+            alert("날짜와 시간을 먼저 선택해주세요.");
+            $("#dogSelect").val("00").prop("selected", true);
+        } else {
+            let dayCountTotal = dayCount * 35000;
+            let timeCountTotal = timeCount * 2500;
+            let vatTotal = (dayCountTotal + timeCountTotal) * 0.1;
+            let total = dayCountTotal + timeCountTotal + vatTotal;
+
+            $("#pay_day").html(dayCount + "박 : " + dayCountTotal.toLocaleString() + " 원");
+            $("#pay_hour").html(timeCount + "시간 : " + timeCountTotal.toLocaleString() + " 원");
+            $("#pay_vat").html("부가세 : " + vatTotal.toLocaleString() + " 원");
+            $("#pay_total").html("총 합계 : " + total.toLocaleString() + " 원");
+        }
+
+    });
+
+
+}
 
 
 function bannerImgCreate() {
@@ -56,23 +172,20 @@ function bannerImgCreate() {
 
 
 
-
-
 function timeSelectBoxAdd() {
 
     let strHours = '';
     let time = '';
 
+    strHours += '<option value="99" selected>시작 선택</option>';
+
     for(let i = 0 ; i < 24; i++){
-        if(i == 9){
-            time = '0'+i;
-            strHours += '<option value="'+time+'00'+'" selected>'+time+'시 00분</option>';
-            strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
-        }else if( i < 10){
+
+        if( i < 10 ){
             time = '0'+ i;
             strHours += '<option value="'+time+'00'+'">'+time+'시 00분</option>';
             strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';
-        }else{
+        } else {
             time = i;
             strHours += '<option value="'+time+'00'+'">'+time+'시 00분</option>';
             strHours += '<option value="'+time+'30'+'">'+time+'시 30분</option>';

@@ -37,12 +37,11 @@
 <div th:replace="common/header_white.html"></div>
 
 <div class="psp_container">
+    <!-- left -->
     <div class="psp_left">
 
         <div class="psp_img">
-            <div class="psp_img_main">
-<!--                <img id="mainImg" src="/static_Image/petSitter/profile_sub1.png" alt="프로필메인">-->
-            </div>
+            <div class="psp_img_main"></div>
             <ul class="psp_img_sub"></ul>
         </div>
 
@@ -242,7 +241,7 @@
 
     </div>
 
-    <!-- 우측 -->
+    <!-- Right -->
     <div class="psp_right">
 
         <div class="psp_res">
@@ -293,15 +292,16 @@
                     </div>
                 </div>
                 <div class="psp_res_calBox">
-                    <div>1박 0원</div>
-                    <div>초과금액 0원</div>
-                    <div>부가세 0원</div>
-                    <div>총 합계 0원</div>
+                    <div id="pay_day">1박 0원</div>
+                    <div id="pay_hour">1시간 0원</div>
+                    <div id="pay_vat">부가세 0원</div>
+                    <div id="pay_total" class="pay_total">총 합계 0원</div>
                 </div>
             </div>
 
             <div class="psp_res_item4">
                 <ul>
+                    <li>1시간 이하 이용시 1시간 비용으로 적용됩니다.</li>
                     <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
                     <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
                     <li>본 사이트 외부에서 진행된 결제 건에 대해서는 당사는 책임지지 않습니다.</li>
@@ -314,7 +314,7 @@
 
         </div>
 
-        <!-- 캘린더 -->
+        <!-- Calendar -->
         <div class="psp_calendar">
             <div class="psp_calendar_title">예약 가능 날짜</div>
             <div class="psp_calendar_box">
@@ -323,7 +323,7 @@
             <div>※ 배경이 푸른색이 가능한 날짜입니다.</div>
         </div>
 
-        <!-- 지도 -->
+        <!-- Map -->
         <div class="psp_map">
             <div class="psp_map_text_box">
                 <div class="map_title1">펫시터님 위치</div>

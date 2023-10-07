@@ -613,8 +613,9 @@ table {
 .dog_selectBox {
     width: 80px;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
-    color: #666;
-    font-size: 14px;
+    color: #E3A802;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 1.5;
     border: 1px solid #e3e3e3;
 }
@@ -630,6 +631,10 @@ table {
     line-height: 2;
 }
 
+.pay_total {
+    font-size: 16px;
+    font-weight: 600;
+}
 
 .psp_res_item4 {
     font-size: 14px;
