@@ -6,13 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 
-    MemberDTO findMemberById(String memberId);
-
 //    String selectMemberById(String memberId);
 
     String findId(String memberName, String phone);
-
-    String selectMemberByNickName(String nickName);
 
     int insertMember(MemberDTO member);
 
@@ -20,7 +16,15 @@ public interface MemberMapper {
 
     int updateMember(MemberDTO modifyMember);
 
+    MemberDTO findMemberById(String memberId);
+
+    int updatePassword(MemberDTO modifyPassword);
+
     int pwdCheck(MemberDTO dto);
+
+    int deleteMember(MemberDTO member);
+
+    String selectMemberByNickName(String nickName);
 
     void pwdUpdate(MemberDTO dto);
 }

@@ -17,8 +17,9 @@
         <result property="point" column="POINT"/>
         <result property="gender" column="GENDER"/>
         <result property="memberStat" column="MEMBER_STAT"/>
-        <result property="warningCount" column="WARNING_COUNT"/>
         <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
         <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
         <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
@@ -50,29 +51,33 @@
              , A.POINT
              , A.MEMBER_STAT
              , A.MEMBER_STAT_DATE
+             , A.REGIST_DATE
              , A.WARNING_COUNT
              , A.SIGNUP_PATH_CODE
-             , B.MEMBER_NO REF_MEMBER_NO
+             , B.MEMBER_NO      REF_MEMBER_NO
              , B.AUTHORITY_CODE REF_AUTHORITY_CODE
              , C.AUTHORITY_CODE REF_AUTHORITY_CODE2
              , C.AUTHORITY_NAME
              , C.AUTHORITY_DESC
-          FROM TBL_MEMBER A
-          LEFT JOIN TBL_ROLE B ON(A.MEMBER_NO = B.MEMBER_NO)
-          LEFT JOIN TBL_AUTHORITY C ON(B.AUTHORITY_CODE = C.AUTHORITY_CODE)
-         WHERE A.MEMBER_STAT = '활동'
-           AND A.MEMBER_ID = #{ memberId }
+        FROM TBL_MEMBER A
+                 LEFT JOIN TBL_ROLE B ON (A.MEMBER_NO = B.MEMBER_NO)
+                 LEFT JOIN TBL_AUTHORITY C ON (B.AUTHORITY_CODE = C.AUTHORITY_CODE)
+        WHERE A.MEMBER_STAT = '활동'
+          AND A.MEMBER_ID = #{ memberId }
     </select>
 
+
+    <!--/* 닉네임 찾아보기 */-->
     <select id="selectMemberByNickName" resultType="string">
-        SELECT NICKNAME
-        FROM TBL_MEMBER
-        WHERE MEMBER_STAT = '활동'
-        GROUP BY NICKNAME
-        HAVING COUNT(NICKNAME) > 1
-        ORDER BY NICKNAME ASC
+        SELECT
+               NICKNAME
+          FROM TBL_MEMBER
+         WHERE MEMBER_STAT = '활동'
+          AND NICKNAME = #{ nickName }
     </select>
 
+
+    <!-- 회원가입 -->
     <insert id="insertMember">
         INSERT
         INTO TBL_MEMBER
@@ -86,36 +91,30 @@
         , ADDRESS
         , MEMBER_STAT
         , MEMBER_STAT_DATE
-        , SIGNUP_PATH_CODE
-        )
-        VALUES
-        (
-         SEQ_TBL_MEMBER_NO.NEXTVAL
-         , #{ memberId }
-         , #{ memberPwd }
-         , #{ memberName }
-         , #{ nickName }
-         , #{ phone }
-         , #{ gender }
-         , #{ address }
-         , #{ memberStat}
-         , #{ memberStatDate }
-         , #{ signupPathCode }
-        )
+        , REGIST_DATE
+        , SIGNUP_PATH_CODE)
+        VALUES ( SEQ_TBL_MEMBER_NO.NEXTVAL
+               , #{ memberId }
+               , #{ memberPwd }
+               , #{ memberName }
+               , #{ nickName }
+               , #{ phone }
+               , #{ gender }
+               , #{ address }
+               , #{ memberStat }
+               , #{ memberStatDate }
+               , #{ registDate }
+               , #{ signupPathCode })
     </insert>
 
+    <!-- 회원가입 역할 주기 -->
     <insert id="insertMemberRole">
         INSERT
         INTO TBL_ROLE
-        (
-         MEMBER_NO
-         , AUTHORITY_CODE
-        )
-        VALUES
-            (
-             SEQ_TBL_MEMBER_NO.CURRVAL
-             , 1
-            )
+        ( MEMBER_NO
+        , AUTHORITY_CODE)
+        VALUES ( SEQ_TBL_MEMBER_NO.CURRVAL
+               , 2)
     </insert>
 
     <select id="findId" parameterType="String" resultType="String">
@@ -152,23 +151,30 @@
 
     <!-- 설마 중복 처리..?-->
 <!--    <select id="selectMember">-->
-<!--        SELECT-->
-<!--            MEMBER_NO-->
-<!--             , MEMBER_ID-->
-<!--             , NICKNAME-->
-<!--             , PHONE-->
-<!--             , EMAIL-->
-<!--             , ADDRESS-->
-<!--             , ENROLL_DATE-->
-<!--             , MEMBER_ROLE-->
-<!--             , MEMBER_STATUS-->
-<!--        FROM  TBL_MEMBER A-->
-<!--        WHERE  MEMBER_STATUS = 'Y'-->
-<!--          AND  MEMBER_ID = #{ memberId }-->
-<!--    </select>-->
+<!--            SELECT-->
+<!--                MEMBER_NO-->
+<!--                 , MEMBER_ID-->
+<!--                 , NICKNAME-->
+<!--                 , PHONE-->
+<!--                 , EMAIL-->
+<!--                 , ADDRESS-->
+<!--                 , MEMBER_ROLE-->
+<!--                 , MEMBER_STAT-->
+<!--            FROM  TBL_MEMBER A-->
+<!--            WHERE  MEMBER_STAT = 'Y'-->
+<!--              AND  MEMBER_ID = #{ memberId }-->
+<!--     </select>-->
 
+<!--    /* 회원 정보 수정 */-->
     <update id="updateMember">
         UPDATE
+            TBL_MEMBER
+        SET NICKNAME = #{ nickName }
+          , POST_NO  = #{ postNo }
+          , ADDRESS  = #{ address }
+          , ADDRESS2 = #{ address2 }
+        WHERE MEMBER_STAT = '활동'
+          AND MEMBER_NO = #{ memberNo }
                TBL_MEMBER
            SET NICKNAME = #{nickname}
              , PHONE = #{phone}
@@ -177,5 +183,23 @@
          WHERE MEMBER_STAT = '활동'
            AND MEMBER_NO = #{memberNo}
     </update>
+
+
+    <update id="updatePassword">
+        UPDATE
+            TBL_MEMBER
+         SET MEMBER_PWD = #{ memberPwd }
+        WHERE MEMBER_STAT = '활동'
+        AND MEMBER_NO = #{ memberNo }
+    </update>
+
+    <update id="deleteMember">
+        UPDATE
+            TBL_MEMBER
+        SET MEMBER_STAT = '탈퇴'
+        WHERE MEMBER_STAT = '활동'
+          AND MEMBER_ID = #{ memberId }
+    </update>
+
 
 </mapper>
