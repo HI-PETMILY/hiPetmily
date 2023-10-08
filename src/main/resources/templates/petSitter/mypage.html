@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+
+    <!--뷰 포트: 화면상의 화상 표시영역. 너비를 디바이스에 맞춤. 기본배율은 1.
+    데스크탑 화면과 모바일의 뷰 포트는 차이가 있기 때문에 필요한 설정-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--favicion 설정:일반이미지는 사용할수없다.(Real Favicon Generator 사이트 활용하기)-->
+<!--    <link rel="icon" type="image/x-con" href="../resources/images/favicon.ico">-->
+    <!--리셋 CSS: 브라우저별로 디폴트로 적용된 CSS(여백,폰트)에 차이가 있으므로
+        브라우저별로 다르게 보일수 있어 리셋CSS를 활용한다.(unpkg ress라고 검색창에 검색)
+    다른사람이 만들 리셋CSS를 링크로 가져와서 다운로드해서 사용한다.-->
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/petSitter/mypage.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main/main.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+</head>
+<body id="body">
+
+<div th:replace="common/header_white.html"></div>
+<div>
+<!--사용자모드,펫시터모드 바 -->
+<div class="mode-bar">
+    <div class="mode">
+    <div class="member">
+        <div class="member-mode">
+            사용자
+        </div>
+    </div>
+
+    <div class="petsitter">
+        <div class="petsitter-mode">
+            펫시터
+        </div>
+
+
+    </div>
+    </div>
+
+</div>
+
+
+<!--사이드바 -->
+
+<aside class="sidebar">
+    <h3 class="sub-title">마이 페이지</h3>
+    <ul class="sub-menu">
+        <li><a href="#" class="sub-menu-link">펫시터 프로필</a></li>
+        <li><a href="#" class="sub-menu-link">내계좌 정보</a></li>
+
+    </ul>
+        <h3 class="sub-title">예약관리</h3>
+        <ul class="sub-menu">
+            <li><a href="#" class="sub-menu-link">예약 내역</a></li>
+            <li><a href="#" class="sub-menu-link">이전예약 내역</a></li>
+        </ul>
+
+
+    <h3 class="sub-title">정산내역</h3>
+    <ul class="sub-menu">
+        <li><a href="#" class="sub-menu-link">지급내역</a></li>
+        <li><a href="#" class="sub-menu-link">지급예정 내역</a></li>
+    </ul>
+</aside>
+
+
+
+
+
+    <div class="profile-info">
+
+            <div class="profile-picture">
+                <img src="/static_Image/petSitter/photo.png" alt="프로필사진" id="profile-photo">
+            </div>
+
+            <div class="introduce">
+                <div class="profile-name">
+                    허가연
+                </div>
+
+                <div class="profile-address">
+                    부산 연제구 연산동
+                </div>
+            </div>
+
+    </div>
+
+
+
+
+
+<div class="mypage-menu">
+<div class="mypage-petsitter">펫시터</div>
+
+
+    <div class="mypage-row1">
+
+
+        <div>프로필</div>
+        <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+        <div>내계좌확인</div>
+        <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+
+
+    </div>
+
+
+    <hr>
+
+    <div class="mypage-reservation">예약관리</div>
+    <div class="mypage-row2">
+
+
+               <div>예약내역</div>
+               <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+                <div>이전예약 내역</div>
+                <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+
+
+    </div>
+           <div>
+
+
+    <hr>
+
+    <div class="mypage-sum">정산내역</div>
+
+        <div class="mypage-row3">
+
+
+            <div>지급 내역</div>
+            <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+            <div>지급 예정내역</div>
+            <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+        </div>
+    <hr>
+
+
+    <div class="customer-service">고객센터</div>
+               <div class="mypage-row4">
+
+
+                   <div>공지사항</div>
+                   <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+                   <div>1:1문의</div>
+                   <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
+
+               </div>
+
+
+
+
+
+
+</div>
+</div>
+    <div th:replace="common/footer.html"></div>
+</body>
+</html>

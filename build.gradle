@@ -17,16 +17,33 @@ configurations {
     }
 }
 
-repositories {
+repositories {//package com.mypet.petmily.member.service;
+//
+//import com.mypet.petmily.member.dao.MemberMapper;
+//import org.springframework.stereotype.Service;
+//
+//@Service
+//public class MemberService {
+//
+//    private final MemberMapper memberMapper;
+//
+//    public MemberService(MemberMapper memberMapper) {
+//        this.memberMapper = memberMapper;
+//    }
+//
+//
+//}
+
     mavenCentral()
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/net.coobird/thumbnailator
+
     implementation 'net.coobird:thumbnailator:0.4.20'
 
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'               // Thymeleaf Layout
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'         // Thymeleaf Template
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'

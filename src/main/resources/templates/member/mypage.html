@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/member/mypage.css"/>
+<script defer type="text/javascript" src="/js/member/mypage.js"></script>
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+
+<body>
+
+<div th:replace="common/header_white.html"></div>
+
+<div id="header_bar">
+    <div id="bar">
+        <div class="bar_info" id="bar_member">사용자</div>
+        <div class="bar_info" id="bar_sitter">펫시터</div>
+    </div>
+</div>
+<div class="main_container">
+    <div class="dog_pic_page">
+        <div id="dog_pic">
+        </div>
+        <div id="dog_profile">
+            <p class="pet_name">댕댕박사</p>
+            <p class="pet_info">3살</p>
+            <p class="pet_info">남아(중성화 완료)</p>
+            <p class="pet_info">3kg</p>
+        </div>
+        <div>
+            <button name="pet_regist" id="pet_regist">등록</button>
+        </div>
+    </div>
+    <div class="sub_container">
+        <div class="mp" id="my_page">
+            <p class="sub_info_text">마이 페이지</p>
+            <div class="sub2">
+                <input type="button" value="반려동물 프로필" id="pet_profile" class="sub_button">
+                <input type="button" value="내 정보 확인" id="my_info" class="sub_button">
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="mp" id="my_acti">
+            <p class="sub_info_text">나의 활동</p>
+            <div class="sub2">
+                <input type="button" value="내가 쓴 후기" id="my_review" class="sub_button">
+                <input type="button" value="진행중인 예약" id="ing_res" class="sub_button">
+                <input type="button" value="지난 예약" id="past_res" class="sub_button">
+                <input type="button" value="결제내역" id="pay_history" class="sub_button">
+            </div>
+        </div>
+        <hr class="hr">
+        <div class="mp" id="cus_service">
+            <p class="sub_info_text">고객센터</p>
+            <div class="sub2">
+                <input type="button" value="공지사항" id="notice" class="sub_button">
+                <input type="button" value="1 : 1 문의" id="one_contact" class="sub_button">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/footer.html"></div>
+</body>
+</html>

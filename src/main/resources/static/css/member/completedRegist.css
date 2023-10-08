@@ -1,0 +1,50 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0% auto;
+    margin-top: 350px;
+    max-width: 330px;
+    font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
+}
+
+
+#nickname {
+    font-size: 20px;
+    font-weight:bold;
+    color: rgb(65, 65, 65);
+}
+
+
+#cong_petmily {
+    font-size: 16px;
+    font-weight:bold;
+    color: rgb(54, 54, 54);
+}
+
+
+#ex_petmily {
+    margin-top: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(82, 82, 82);
+}
+
+hr {
+    size: 1px;
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 30px;
+
+}
+
+#gomain {
+    width: 260px;
+    height: 43px;
+    font-size: 12px;
+    color: white;
+    background-color: #81BDF1;
+    border: 0px;
+    border-radius: 5px;
+    font-weight: 600;
+}
