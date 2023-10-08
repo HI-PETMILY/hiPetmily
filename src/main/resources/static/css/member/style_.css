@@ -185,6 +185,7 @@ textarea{
     border-radius: 5px;
     width: 100%;
     font-size: 12px;
+    padding: 10px;
 }
 
 .answer-contain{
@@ -308,6 +309,16 @@ li {
     left: 35%;
 }
 
+.text-button{
+    margin: 0 20px;
+    float: right;
+    border: solid 1px #f0f0f0;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    background-color: #f0f0f0;
+}
+
 /*==================================================*/
 /* 임시 비밀번호 발급 화면 */
 
@@ -321,3 +332,57 @@ li {
 /*==================================================*/
 /* 후기 작성 화면 */
 
+.review-container{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.review-star-exp{
+    display: flex;
+    align-content: center;
+}
+
+.review-textarea{
+    height: 200px;
+}
+
+/* 별점 설정 */
+.review-star{
+    direction: rtl;
+}
+.review-star input[type=radio]{
+    display: none;
+}
+
+.review-star label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    line-height: 30px;
+}
+
+.review-star label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.review-star label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.review-star input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+/* ---- 별점 설정 끝 ---- */
+
+/*==================================================*/
+/* 지난 예약 조회 화면 */
+
+.reserve-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.reserve-table tr, td, th{
+    border-bottom: solid 1px #cecece;
+}

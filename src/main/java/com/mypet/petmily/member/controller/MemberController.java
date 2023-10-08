@@ -26,6 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Slf4j
@@ -322,10 +324,30 @@ public class MemberController {
 //        return "redirect:/member/pet-profile-view";
 //    }
 
+    /* 리뷰 작성 페이지 */
     @GetMapping("/review_write")
     public void reviewWritePage(){}
 
+    /* 지난 예약 내역 조회 페이지 */
+    @GetMapping("/reservation-history")
+    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
+                                         @RequestParam(required = false) String searchCondition,
+                                         @RequestParam(required = false) String searchValue,
+                                         Model model){
+        log.info("boardList page : {}", page);
+        log.info("boardList searchCondition : {}", searchCondition);
+        log.info("boardList searchValue : {}", searchValue);
 
+        Map<String, String> searchMap = new HashMap<>();
+        searchMap.put("searchCondition", searchCondition);
+        searchMap.put("searchValue", searchValue);
+
+        Map<String, Object> boardListAndPaging = memberService.selectReserveList(searchMap, page);
+        model.addAttribute("paging", boardListAndPaging.get("paging"));
+        model.addAttribute("reserveList", boardListAndPaging.get("reserveList"));
+
+        return "member/reservation-history";
+    }
 
 
 

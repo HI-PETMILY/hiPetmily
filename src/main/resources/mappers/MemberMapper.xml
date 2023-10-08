@@ -201,5 +201,11 @@
           AND MEMBER_ID = #{ memberId }
     </update>
 
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM TBL_RESERVATION
+    </select>
+
 
 </mapper>

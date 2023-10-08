@@ -6,6 +6,7 @@
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/member/event.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/member/mypage.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
 
@@ -19,12 +20,19 @@
 <!-- common header -->
 <div th:replace="common/header_white.html"></div>
 
+
+
 <div id="pet-profile-view" class="myPageMain-container">
 
     <div class="left-navi"></div>
 
+    <div id="bar">
+        <div class="bar_info" id="bar_member">사용자</div>
+        <div class="bar_info" id="bar_sitter">펫시터</div>
+    </div>
+
     <div class="myPageMainWrapper">
-        <h2 class="mainTitle">반려동물 프로필 조회</h2>
+        <h2 class="mainTitle">반려동물 프로필</h2>
         <div class="nav-line"></div>
 
         <div class="pet-info-top">
@@ -269,7 +277,8 @@
         </div>
 
         <div>
-            <input id="petRegistSubmit" class="submitButton" type="submit" value="저장">
+            <button class="text-button" type="submit">삭제하기</button>
+            <button class="text-button" type="button" onclick="location.href='/member/pet-profile-regist'">수정하기</button>
         </div>
         </form>
     </div>
