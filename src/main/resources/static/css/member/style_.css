@@ -378,7 +378,7 @@ li {
 /*==================================================*/
 /* 지난 예약 조회 화면 */
 
-.reserve-table .reviewList-table{
+.reserve-table, .reviewList-table{
     width: 100%;
     border-collapse: collapse;
 }
