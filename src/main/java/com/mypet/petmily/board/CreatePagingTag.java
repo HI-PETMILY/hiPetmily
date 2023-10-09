@@ -23,25 +23,25 @@ public final class CreatePagingTag {
         if (lastPage > pages)
             lastPage = pages;
 
-        pageData = "<a href="+pageUrl+"&page=1  title=\"첫페이지\" class=\"pbtn\">처음</a>";
+        pageData = "<a href="+pageUrl+"&page=1 class=\"bt first\"><<</a>";
 
         if(block > 1){
-            pageData += "<a href="+pageUrl+"&page="+(firstPage-1)+" title=\"이전페이지\" class=\"pbtn\">이전</a>";
+            pageData += "<a href="+pageUrl+"&page="+(firstPage-1)+" class=\"bt prev\"><</a>";
         }
 
         for(int i=firstPage; i <= lastPage; i++){
             if(page == i) {
-                pageData += "<a href="+pageUrl+"&page="+page+" title=\"<s:message code='common.page.now'/>\" class=\"numon\"><strong>"+page+"</strong></a>";
+                pageData += "<a href="+pageUrl+"&page="+page+" class=\"num on\">"+page+"</a>";
             }else{
-                pageData += "<a href="+pageUrl+"&page="+i+" title=\""+i+" 페이지\" class=\"num\">"+i+"</a>";
+                pageData += "<a href="+pageUrl+"&page="+i+" class=\"num\">"+i+"</a>";
             }
         }
 
         if(block < blocks){
-            pageData += "<a href="+pageUrl+"&page="+(lastPage+1)+" title=\"다음페이지\" class=\"pbtn\">다음</a>";
+            pageData += "<a href="+pageUrl+"&page="+(lastPage+1)+" class=\"bt next\">></a>";
         }
 
-        pageData += "<a href="+pageUrl+"&page="+pages+" title=\"마지막페이지\" class=\"pbtn\">마지막</a>";
+        pageData += "<a href="+pageUrl+"&page="+pages+" class=\"bt last\">>></a>";
 
         return pageData;
 

@@ -1,79 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="">
 <head>
     <meta charset="UTF-8">
-    <title>1:1 등록</title>
+    <title>list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/board/qna.css"/>
+    <title>공지사항</title>
+	<link rel="stylesheet" href="/css/board/view.css">
 </head>
 <body>
-<div th:replace="common/header_white.html"></div>
-
-<div class="board_wrap">
-    <div class="board_title">
-        <strong>1:1 문의등록</strong>
-        <p>펫밀리의 1:1 문의를 빠르고 정확하게 안내해드립니다.</p>
-    </div>
-    <div class="board_write_wrap">
-        <div class="board_write">
-            <div class="title">
-                <dl>
-                    <dt>제목</dt>
-                    <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
-                </dl>
-            </div>
-            <div class="board_category">
-                <div class="board_category_wrap">
-                    <dl>
-                        <dt>분류</dt>
-                        <dd>
-                            <select class="select">
-                                <option value="report">신고문의</option>
-                                <option value="basic">일반문의</option>
-                                <option value="payment">결제문의</option>
-                                <option value="etc">기타문의</option>
-                            </select>
-                        </dd>
-                    </dl>
-                </div>
-            </div>
-            <div class="info">
-                <dl>
-                    <dt>작성자</dt>
-                    <dd><input type="text" placeholder="작성자 입력" value="정수현"></dd>
-                </dl>
-                <dl>
-                    <dt>비밀번호</dt>
-                    <dd><input type="password" placeholder="비밀번호 입력" value="1234"></dd>
-                </dl>
-            </div>
-            <div class="cont">
-                    <textarea placeholder="내용 입력">
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.</textarea>
-            </div>
-            <div class="board_thumb">
-                <dl>
-                    <dt>첨부파일</dt>
-                    <dd><input type="file" placeholder="선택된 파일 없음"></dd>
-                </dl>
+	<div th:replace="common/header_black.html"></div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>1:1 문의등록</strong>
+            <p>펫밀리의 1:1 문의를 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_write_wrap">
+			<form name="form" id="form" method="post" action="">
+				<input type="hidden" name="boardNo" id="boardNo" th:value="${boardDTO != null ? boardDTO.boardNo : ''}"/>
+				<input type="hidden" name="refBoardNo" id="refBoardNo" th:value="${param.refBoardNo != null ? param.refBoardNo : ''}"/>
+	            <div class="board_write">
+	                <div class="title">
+	                    <dl>
+	                        <dt>제목</dt>
+	                        <dd><input type="text" placeholder="제목 입력" 	id="boardName" name="boardName"	th:value="${boardDTO != null ? boardDTO.boardName : ''}"></dd>
+	                    </dl>
+	                </div>
+	                <div class="board_category">
+	                    <div class="board_category_wrap">
+	                    <dl>
+	                        <dt>분류</dt>
+	                        <dd>
+								<select class="select" id="categoryCode" name="categoryCode">
+									<!-- 게시판에 등록된 카테고리코드 값으로 셀렉트박스를 선택한다. -->
+							  		<option value="3" th:selected="${boardDTO != null and boardDTO.categoryCode == 3}">신고문의</option>
+							  		<option value="4" th:selected="${boardDTO != null and boardDTO.categoryCode == 4}">일반문의</option>
+							  		<option value="5" th:selected="${boardDTO != null and boardDTO.categoryCode == 5}">결제문의</option>
+							  		<option value="6" th:selected="${boardDTO != null and boardDTO.categoryCode == 6}">기타문의</option>
+								</select>
+	                        </dd>
+	                    </dl>
+	                    </div>
+	                </div>
+	                <div class="cont">
+	                    <textarea placeholder="내용 입력" 	id="boardDetail" name="boardDetail"	th:text="${boardDTO != null ? boardDTO.boardDetail : ''}"></textarea>
+	                </div>
+	            </div>
+            </form>
+            <div class="bt_wrap">
+                <a href="#" class="on" id="insertBtn">등록</a>
+                <a href="/board/qna/list">취소</a>
             </div>
         </div>
-        <div class="bt_wrap">
-            <a href="QNA_list.html" class="on">등록</a>
-            <a href="QNA_list.html">취소</a>
-        </div>
     </div>
-</div>
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
 
-<div th:replace="common/footer.html"></div>
+		$(document).ready(function() {
+
+			//게시판 저장버튼
+            $("#insertBtn").on("click", function(){
+                let form = $("#form");
+                //form태그의 action URL 변경하기.
+                //현재 페이지에 게시판번호가 있으면 수정, 없으면 신규등록
+               	$('#boardNo').val() != "" ?   form.attr("action", "/board/qna/update") :   form.attr("action", "/board/qna/insert")
+
+	    		//게시판 입력폼 유효성 체크
+	            if(formCheck()){
+    				form.submit();
+	            }
+			});
+		});
+
+		// 게시판 입력폼 체크
+		let formCheck = function() {
+
+  			let form = document.getElementById("form");
+		  	// 제목이 입력되지 않았을 경우
+		  	if (form.boardName.value === "") {
+		    	alert("제목을 입력해 주세요.");
+		    	form.boardName.focus();
+		    	return false;
+		  	}
+
+		  	// 내용이 입력되지 않았을 경우
+		  	if (form.boardDetail.value === "") {
+		    	alert("내용을 입력해 주세요.");
+		    	form.boardDetail.focus();
+		    	return false;
+		  	}
+		  	// 모든 조건이 만족되면 true 반환
+		  	return true;
+		};
+
+	</script>
+	<div th:replace="common/footer.html"></div>
 </body>
 </html>
