@@ -30,89 +30,24 @@ $(document).ready(function () {
     });
 });
 
-//체크박스 전체 선택/해제
-function selectAll(selectAll)  {
-    const checkboxes
-        = document.getElementsByName('rating');
+
+// 체크박스 전체 선택/해제
+function selectAll(selectAll) {
+    const checkboxes = document.querySelectorAll('input[name="rating"]');
+    const entireCheckbox = document.getElementById('entire');
 
     checkboxes.forEach((checkbox) => {
         checkbox.checked = selectAll.checked;
-    })
-}
-
-//================= 회원 리스트 표 ==========================
-//체크박스 전체 선택 클릭 이벤트
-function allChecked(target){
-
-    //전체 체크박스 버튼
-    const checkbox = document.getElementById('allCheckBox');
-
-    //전체 체크박스 버튼 체크 여부
-    const is_checked = checkbox.checked;
-
-    //전체 체크박스 제외한 모든 체크박스
-    if(is_checked){
-        //체크박스 전체 체크
-        chkAllChecked()
-    }
-
-    else{
-        //체크박스 전체 해제
-        chkAllUnChecked()
-    }
-}
-
-//자식 체크박스 클릭 이벤트
-function chkClicked(){
-
-    //체크박스 전체개수
-    const allCount = document.querySelectorAll(".chk").length;
-
-    //체크된 체크박스 전체개수
-    const query = 'input[name="chk"]:checked'
-    const selectedElements = document.querySelectorAll(query)
-    const selectedElementsCnt = selectedElements.length;
-
-    //체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 전체 체크박스 체크
-    if(allCount == selectedElementsCnt){
-        document.getElementById('allCheckBox').checked = true;
-    }
-
-    //같지않으면 전체 체크박스 해제
-    else{
-        document.getElementById('allCheckBox').checked = false;
-    }
-}
-
-//체크박스 전체 체크
-function chkAllChecked(){
-    document.querySelectorAll(".chk").forEach(function(v, i) {
-        v.checked = true;
     });
-}
 
-//체크박스 전체 체크 해제
-function chkAllUnChecked(){
-    document.querySelectorAll(".chk").forEach(function(v, i) {
-        v.checked = false;
-    });
-}
-
-
-/*==============모달 창*/
-const btn = document.getElementById('popupBtn');
-const modal = document.getElementById('modalWrap');
-const closeBtn = document.getElementById('closeBtn');
-
-btn.onclick = function() {
-    modal.style.display = 'block';
-}
-closeBtn.onclick = function() {
-    modal.style.display = 'none';
-}
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none"; /*  모달 밖에 누르면 꺼지게 */
+    // 개별 체크박스를 선택할 때 전체 체크박스가 풀리도록 추가
+    if (!selectAll.checked) {
+        entireCheckbox.checked = false;
     }
 }
+
+
+
+
+
+

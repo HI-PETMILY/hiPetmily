@@ -13,6 +13,13 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    var memberList = "[[${memberList}]]";
+    //console.log(memberList);
+    for (i = 0; i < memberList.length; i++) {
+        console.log(memberList[i]);
+    }
+</script>
 
 <div class="navbar-title navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -76,6 +83,7 @@
                 <br>
                 <div class="choose">
                     <ul>
+                        <form>
                         <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="entire" name="rating"
                                                                                value="selectAll"
                                                                                onclick='selectAll(this)'>
@@ -87,7 +95,8 @@
                                                                  value="펫시터회원">
                             <label for="petSitter">펫시터회원</label></li>
 
-                        <button class="search-button" onclick="search()">검색</button>
+                        <button class="search-button">검색</button>
+<!--                        <button class="search-button" type="submit">검색</button>-->
 
                         <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email"
                                                                                name="marketing"
@@ -95,13 +104,14 @@
                             <label for="email">이메일</label></li>
 
                         <li><b>• 검색어</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select id="age" name="age">
-                                <option value="number">번호</option>
-                                <option value="name">이름</option>
-                                <option value="id">아이디</option>
+                            <select id="searchCondition" name="searchCondition">
+                                <option value="memberNo" th:selected="${'memberNo'}">번호</option>
+                                <option value="memberName" th:selected="${'memberName'}">이름</option>
+                                <option value="memberId" th:selected="${'memberId'}">아이디</option>
+                                <input type="search" id="searchValue" name="searchValue" placeholder=" 검색어를 입력해주세요.">
                             </select>
-                            <input type="text" placeholder=" 검색어를 입력해주세요.">
                         </li>
+                        </form>
                     </ul>
                 </div>
             </div>
@@ -113,7 +123,7 @@
 <div class="overall-list">
     <div>
         <p class="result-text" style="margin-bottom: 0rem"
-           th:text="${member != null ? '검색결과 : ' + #lists.size(member) + ' / 총 ' + #lists.size(member) + '명 검색 결과' : '검색 결과가 없습니다.'}"></p>
+           th:text="${memberList != null ? '검색결과 : ' + #lists.size(memberList) + ' / 총 ' + #lists.size(memberList) + '명 검색 결과' : '검색 결과가 없습니다.'}"></p>
     </div>
 
     <div class="member-list">
@@ -155,28 +165,95 @@
                         <td th:text="${member.memberNo}"></td>
                         <td th:text="${member.memberId}"></td>
                         <td th:text="${member.memberName}"></td>
-
-<!--                        <td th:text="${member.memberCood.desc}"></td> &lt;!&ndash;이새끼 날짜형식으로 안나옴 고치기.&ndash;&gt;-->
-
+                        <td th:if="${member.memberCode.code == 1}" th:text="관리자"></td>
+                        <td th:if="${member.memberCode.code == 2}" th:text="펫시터"></td>
+                        <td th:if="${member.memberCode.code == 3}" th:text="일반회원"></td>
                         <td th:text="${member.memberStat}"></td>
-                        <td th:text="${member.registDate}"></td>
+                        <td th:text="${#dates.format(member.registDate, 'yyyy-MM-dd')}"></td>
 
+                        <div id="btnWrap">
                         <td class="management-button">
-                            <button onclick="">비번변경</button>
-                            <button onclick="">1대1문의</button>
+                            <button type="button" id="passChange" class="btn btn-primary" data-toggle="modal" data-target="#inquiry">
+                                비번변경
+                            </button>
 
-                            <div id="btnWrap">
-                                <button typ="button" id="popupBtn">관리</button>
+                            <!-- 비번 변경 모달 창 -->
+                            <div class="modal fade" id="inquiry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- 모달 내용 -->
+                                            모달 내용을 여기에 추가합니다.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                                            <button type="button" class="btn btn-primary">저장</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div id="modalWrap">
-                                <div id="modalBody">
-                                    <span id="closeBtn">&times;</span>
-                                    <p>modal-popup 입니다.</p>
+                            <button type="button" id="popupBtn" class="btn btn-primary" data-toggle="modal" data-target="#inquiry">
+                                1대1문의
+                            </button>
+
+                            <!-- 1대1 문의 모달 창 -->
+                            <div class="modal fade" id="inquiry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- 모달 내용 -->
+                                            모달 내용을 여기에 추가합니다.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                                            <button type="button" class="btn btn-primary">저장</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 관리 버튼 클릭 시 모달 창 띄우기 -->
+                            <button type="button" id="popupBtn" class="btn btn-primary" data-toggle="modal" data-target="#memberDetailModal">
+                                관리
+                            </button>
+
+                            <!-- 회원 관리 모달 창 -->
+                            <div class="modal fade" id="memberDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- 모달 내용 -->
+                                            모달 내용을 여기에 추가합니다.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                                            <button type="button" class="btn btn-primary">저장</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                         </td>
+                        </div>
                     </tr>
                     </tbody>
                 </table>
@@ -187,24 +264,70 @@
 </div>
 
 <!--페이징 바======================-->
-<nav class="container d-flex justify-content-center"
-     aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<!-- 페이징 바 고치기 -->
+<!--<div id="paging" align="center" style="margin-top: 20px;">-->
+
+<!--    <th:block-->
+<!--            th:if="${ paging.searchCondition != null and paging.searchValue != null }">-->
+<!--        &lt;!&ndash; 맨 앞으로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=1&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">&lt;&lt;</button>-->
+
+<!--        &lt;!&ndash; 이전 페이지로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.page - 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"-->
+<!--                th:disabled="${ paging.page <= 1 }">&lt;</button>-->
+
+<!--        &lt;!&ndash; 숫자 버튼 &ndash;&gt;-->
+<!--        <th:block-->
+<!--                th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">-->
+<!--            <button-->
+<!--                    th:onclick="'location.href=\'/memberList/list?page=' + @{${page}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"-->
+<!--                    th:text="${ page }" th:disabled="${ paging.page eq page }">-->
+<!--            </button>-->
+<!--        </th:block>-->
+
+<!--        &lt;!&ndash; 다음 페이지로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.page + 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"-->
+<!--                th:disabled="${ paging.page >= paging.maxPage }">></button>-->
+
+<!--        &lt;!&ndash; 맨 끝으로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.maxPage}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">>></button>-->
+
+<!--    </th:block>-->
+
+<!--    <th:block-->
+<!--            th:if="${ paging.searchCondition == null  || paging.searchValue == null }">-->
+<!--        &lt;!&ndash; 맨 앞으로 이동 &ndash;&gt;-->
+<!--        <button th:onclick="'location.href=\'/memberList/list?page=1\''">&lt;&lt;</button>-->
+
+<!--        &lt;!&ndash; 이전 페이지로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.page - 1}} + '\''"-->
+<!--                th:disabled="${ paging.page <= 1 }">&lt;</button>-->
+
+<!--        &lt;!&ndash; 숫자 버튼 &ndash;&gt;-->
+<!--        <th:block-->
+<!--                th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">-->
+<!--            <button-->
+<!--                    th:onclick="'location.href=\'/memberList/list?page=' + @{${page}} + '\''"-->
+<!--                    th:text="${ page }" th:disabled="${ paging.page eq page }">-->
+<!--            </button>-->
+<!--        </th:block>-->
+
+<!--        &lt;!&ndash; 다음 페이지로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.page + 1}} + '\''"-->
+<!--                th:disabled="${ paging.page >= paging.maxPage }">></button>-->
+
+<!--        &lt;!&ndash; 맨 끝으로 이동 &ndash;&gt;-->
+<!--        <button-->
+<!--                th:onclick="'location.href=\'/memberList/list?page=' + @{${paging.maxPage}} + '\''">>></button>-->
+<!--    </th:block>-->
+
+<!--</div>-->
 
 
 <!-- 하단 기능 버튼들 -->

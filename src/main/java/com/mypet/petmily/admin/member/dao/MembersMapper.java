@@ -1,6 +1,5 @@
 package com.mypet.petmily.admin.member.dao;
 
-import com.mypet.petmily.admin.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 

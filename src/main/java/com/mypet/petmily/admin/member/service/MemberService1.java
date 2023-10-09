@@ -1,7 +1,6 @@
 package com.mypet.petmily.admin.member.service;
 
-import com.mypet.petmily.admin.common.paging.Pagenation;
-import com.mypet.petmily.admin.common.paging.SelectCriteria;
+
 import com.mypet.petmily.admin.member.dao.MembersMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +23,8 @@ public class MemberService1 {
     public List<MemberDTO> selectMemberList() {
 
         log.info("memberList : {} " , membersMapper.selectMemberList());
+
+//        System.out.println(membersMapper.selectMemberList());
 
         return membersMapper.selectMemberList();
 
