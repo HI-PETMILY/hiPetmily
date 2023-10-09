@@ -5,6 +5,7 @@ import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
 import com.mypet.petmily.common.exception.member.MemberRegistException;
 import com.mypet.petmily.common.exception.member.MemberRemoveException;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,14 +21,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Slf4j
@@ -277,52 +278,62 @@ public class MemberController {
     @Value("/src/main/resources/upload")
     private String IMAGE_DIR;
 
-//    @PostMapping("/pet-profile-regist")
-//    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-//                                   @AuthenticationPrincipal MemberDTO member){
-//
-//        log.info("pet profile request : {}", pet);
-//        log.info("pet profile image request : {}", petProfileImg);
-//
-//        String petImgDir = IMAGE_DIR + "petProfile";
-//
-//        File dir = new File(petImgDir);
-//
-//        /* 디렉토리가 없을 경우 생성 */
-//        if(!dir.exists()){
-//            dir.mkdirs();
-//        }
-//
-//        // 업로드 파일에 대한 정보를 담을 리스트
-//        List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
-//
-//        try{
-//            for (int i = 0; i < petProfileImg.size(); i++) {
-//
-//                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
-//                if(petProfileImg.get(i).getSize() > 0){
-//
-//                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
-//                    log.info("originalFileName : {}", originalFileName);
-//
-//                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-//                    String savedFileName = UUID.randomUUID() + ext;
-//                    log.info("savedFileName : {}", savedFileName);
-//
-//                    // 서버의 설정 디렉토리 파일 저장하기
-//                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
-//
-//                    // DB에 저장할 파일의 정보 처리
-//                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
-//                }
-//
-//
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "redirect:/member/pet-profile-view";
-//    }
+    @PostMapping("/pet-profile-regist")
+    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
+                                   @AuthenticationPrincipal MemberDTO member){
+
+        log.info("pet profile request : {}", pet);
+        log.info("pet profile image request : {}", petProfileImg);
+
+        String petImgDir = IMAGE_DIR + "petProfile";
+
+        File dir = new File(petImgDir);
+
+        /* 디렉토리가 없을 경우 생성 */
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        // 업로드 파일에 대한 정보를 담을 리스트
+        //List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+
+        try{
+            for (int i = 0; i < petProfileImg.size(); i++) {
+
+                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
+                if(petProfileImg.get(i).getSize() > 0){
+
+                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+                    log.info("originalFileName : {}", originalFileName);
+
+                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+                    String savedFileName = UUID.randomUUID() + ext;
+                    log.info("savedFileName : {}", savedFileName);
+
+                    // 서버의 설정 디렉토리 파일 저장하기
+                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+
+                    // DB에 저장할 파일의 정보 처리
+                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
+                    //fileInfo.setFileSaveName(savedFileName);
+                    //fileInfo.setFilePathName("/upload/member/");
+                }
+                // attachmentList.add(fileInfo);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // log.info("attachmentList : {}", attachmentList);
+
+        // pet.setAttachmentList(attachmentList);
+        pet.setMemberNo(member);
+
+        memberService.registPetProfile(pet);
+
+        return "redirect:/member/pet-profile-view";
+    }
 
     /* 지난 예약 내역 조회 페이지 */
     @GetMapping("/reservation-history")

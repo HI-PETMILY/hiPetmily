@@ -205,7 +205,61 @@
         SELECT
                COUNT(*)
           FROM TBL_RESERVATION
+        <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
     </select>
 
+    <insert id="insertPetProfile">
+        INSERT INTO TBL_MYPET
+            (
+              PET_CODE
+            , PET_NAME
+            , PET_AGE
+            , PET_GENDER
+            , NUETRAL_YN
+            , PET_BREED
+            , PET_WEIGHT
+            , P_SOCIAL
+            , A_SOCIAL
+            , BARK_LEVEL
+            , SEP_ANXIETY
+            , PET_DISEASE
+            , PET_DISEASE_EXP
+            , PET_ALLERGY
+            , PET_ALLERGY_EXP
+            , POTTY_TRAIN
+            , MARKING_IN
+            , VACCIN
+            , HOS_NAME
+            , HOS_PHONE
+            , HOS_ADDRESS
+            , MEMBER_NO
+            )
+        VALUES
+            (
+              SEQ_TBL_MYPET_NO.NEXTVAL
+            , #{petName}
+            , #{petAge}
+            , #{petGender}
+            , #{neutralYn}
+            , #{petBreed}
+            , #{petWeight}
+            , #{petRegist}
+            , #{pSocial}
+            , #{aSocial}
+            , #{barkLevel}
+            , #{sepAnxiety}
+            , #{petDisease}
+            , #{petDiseaseExp}
+            , #{petAllergy}
+            , #{petAllergyExp}
+            , #{pottyTrain}
+            , #{markingIn}
+            , #{vaccin}
+            , #{hosName}
+            , #{hosPhone}
+            , #{hosAddress}
+            , #{memberNo}       <!--멤버코드를 이렇게 넣는게 맞나..?-->
+            )
+    </insert>
 
 </mapper>

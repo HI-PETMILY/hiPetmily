@@ -8,6 +8,7 @@ import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -125,7 +126,7 @@ public class MemberService {
         return reserveListAndPaging;
     }
 
-    /* 작성 리뷰 조회 */
+    /* 작성한 리뷰 전체 조회 */
     public Map<String, Object> selectReviewList(Map<String, String> searchMap, int page) {
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
         int totalCount = memberMapper.selectTotalCount(searchMap);
@@ -146,5 +147,12 @@ public class MemberService {
         reviewListAndPaging.put("reviewList", reviewList);
 
         return reviewListAndPaging;
+    }
+
+    public void registPetProfile(PetDTO pet) {
+
+        memberMapper.insertPetProfile(pet);      // 후기 테이블에 데이터 저장
+
+        //memberMapper.insertAttachment(review.getAttachment());
     }
 }
