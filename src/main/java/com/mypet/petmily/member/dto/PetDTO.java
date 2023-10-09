@@ -1,5 +1,10 @@
 package com.mypet.petmily.member.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter @ToString
 public class PetDTO {
 
     private Long petCode;           // 반려견 코드

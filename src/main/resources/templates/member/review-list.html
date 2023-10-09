@@ -17,34 +17,32 @@
 <!-- common header -->
 <div th:replace="common/header_white.html"></div>
 
-<div id="reservation-history" class="myPageMain-container">
+<div id="review-list" class="myPageMain-container">
 
     <div class="left-navi"></div>
 
     <div class="myPageMainWrapper">
-        <h2 class="mainTitle">지난 예약 조회</h2>
+        <h2 class="mainTitle">내가 쓴 후기</h2>
         <div class="nav-line"></div>
 
-        <table align="center" class="reserve-table">
+        <table align="center" class="reviewList-table">
             <tr>
-                <th class="col1">예약 코드</th>
-                <th class="col2">예약 일자</th>
-                <th class="col3">돌봄 대상</th>
-                <th class="col4">펫시터</th>
-                <th class="col5">후기 작성</th>
+                <th class="col1">예약 일자</th>
+                <th class="col2">돌봄 대상</th>
+                <th class="col3">펫시터</th>
+                <th class="col4">별점</th>
+                <th class="col5">작성 내용</th>
             </tr>
             <tr th:if="${#lists.isEmpty(list)}">
-                <td colspan="5">예약 결과가 존재하지 않습니다. 펫밀리의 서비스를 이용해보세요!</td>
+                <td colspan="5">후기 작성 내역이 존재하지 않습니다. 펫밀리의 서비스를 이용하고 후기를 남겨보세요
+                    !</td>
             </tr>
-            <tr th:each="reserve : ${reserveList}" th:unless="${#lists.isEmpty(list)}">
-                <td class="col1" th:text="${reserve.reserveCode.예약코드}"></td>
-                <td class="col2" th:text="${reserve.reserveCode.예약일자}"></td>
-                <td class="col3" th:text="${reserve.reserveCode.돌봄대상}"></td>
-                <td class="col4" th:text="${reserve.reserveCode.펫시터}"></td>
-                <td class="col5"><span th:if="${reserve.reserveCode.예약상태 == '완료'}">
-                    <a href="#" th:href="'/member/review-write?no=' + ${reserve.reserveCode.예약코드}">후기 작성</a>
-                </span></td>
-                <td class="col5" th:if="${reserve.reserveCode.예약상태 == '취소'}">예약취소</td>
+            <tr th:each="review : ${reviewList}" th:unless="${#lists.isEmpty(list)}">
+                <td class="col1" th:text="${review.reserveCode.예약일자}"></td>
+                <td class="col2" th:text="${review.reserveCode.돌봄대상}"></td>
+                <td class="col3" th:text="${review.reserveCode.펫시터}"></td>
+                <td class="col4" th:text="${review.revScore}"></td>
+                <td class="col4" th:text="${review.revContent}"></td>
             </tr>
         </table>
 
