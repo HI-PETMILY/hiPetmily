@@ -147,9 +147,10 @@ public class MemberService {
         return reviewListAndPaging;
     }
 
-    public void registPetProfile(PetDTO pet, MemberDTO loginMember) throws PetProfileException {
+    /* 반려동물 프로필 등록 */
+    public void registPetProfile(PetDTO pet) throws PetProfileException {
 
-        memberMapper.insertPetProfile(pet);      // 후기 테이블에 데이터 저장
+        memberMapper.insertPetProfile(pet);      // 반려동물 테이블에 데이터 저장
 
         //memberMapper.insertAttachment(review.getAttachment());
     }

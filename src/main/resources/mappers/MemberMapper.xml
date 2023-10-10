@@ -238,9 +238,10 @@
             , PET_NAME
             , PET_AGE
             , PET_GENDER
-            , NUETRAL_YN
+            , NEUTRAL_YN
             , PET_BREED
             , PET_WEIGHT
+            , PET_REGIST
             , P_SOCIAL
             , A_SOCIAL
             , BARK_LEVEL
@@ -281,7 +282,7 @@
             , #{hosName}
             , #{hosPhone}
             , #{hosAddress}
-            , #{memberNo}       <!--멤버코드를 이렇게 넣는게 맞나..?-->
+            , #{member.memberNo}       <!--멤버코드를 이렇게 넣는게 맞나..?-->
             )
     </insert>
 

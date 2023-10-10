@@ -262,7 +262,10 @@ public class MemberController {
 
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
-    public void petProfileRegist(){}
+//    public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public void petProfileRegist(){
+//        model.addAttribute("loginMember", loginMember.getMemberId());
+    }
 
     /* 반려동물 프로필 조회 페이지 */
     @GetMapping("/pet-profile-view")
@@ -275,6 +278,7 @@ public class MemberController {
     @PostMapping("/pet-profile-regist")
     public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
                                    @AuthenticationPrincipal MemberDTO loginMember) throws PetProfileException {
+
 
         log.info("pet profile request : {}", pet);
         log.info("pet profile image request : {}", petProfileImg);
@@ -291,7 +295,7 @@ public class MemberController {
         // 업로드 파일에 대한 정보를 담을 리스트
         //List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
 
-        try{
+        /*try{
             for (int i = 0; i < petProfileImg.size(); i++) {
 
                 // 첨부파일이 실제로 존재하는 경우에만 로직 수행
@@ -317,14 +321,14 @@ public class MemberController {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         // log.info("attachmentList : {}", attachmentList);
 
         // pet.setAttachmentList(attachmentList);
-        pet.setMemberNo(loginMember);
+        pet.setMember(loginMember);
 
-        memberService.registPetProfile(pet, loginMember);
+        memberService.registPetProfile(pet);
 
         return "redirect:/member/pet-profile-view";
     }
