@@ -1,9 +1,6 @@
 package com.mypet.petmily.member.service;
 
-import com.mypet.petmily.common.exception.member.MemberModifyException;
-import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
-import com.mypet.petmily.common.exception.member.MemberRegistException;
-import com.mypet.petmily.common.exception.member.MemberRemoveException;
+import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
@@ -11,6 +8,7 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -149,7 +147,7 @@ public class MemberService {
         return reviewListAndPaging;
     }
 
-    public void registPetProfile(PetDTO pet) {
+    public void registPetProfile(PetDTO pet, MemberDTO loginMember) throws PetProfileException {
 
         memberMapper.insertPetProfile(pet);      // 후기 테이블에 데이터 저장
 

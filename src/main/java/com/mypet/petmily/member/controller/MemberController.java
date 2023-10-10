@@ -274,7 +274,7 @@ public class MemberController {
 
     @PostMapping("/pet-profile-regist")
     public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-                                   @AuthenticationPrincipal MemberDTO member){
+                                   @AuthenticationPrincipal MemberDTO loginMember) throws PetProfileException {
 
         log.info("pet profile request : {}", pet);
         log.info("pet profile image request : {}", petProfileImg);
@@ -322,9 +322,9 @@ public class MemberController {
         // log.info("attachmentList : {}", attachmentList);
 
         // pet.setAttachmentList(attachmentList);
-        pet.setMemberNo(member);
+        pet.setMemberNo(loginMember);
 
-        memberService.registPetProfile(pet);
+        memberService.registPetProfile(pet, loginMember);
 
         return "redirect:/member/pet-profile-view";
     }

@@ -36,7 +36,7 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
-    <resultMap id="reservationMap" type="com.mypet.petmily.reservation.dto.ReservationDTO">
+    <resultMap id="reservationMap" type="com.mypet.petmily.petSitter.dto.ReservationDTO">
 
     </resultMap>
 

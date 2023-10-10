@@ -5,6 +5,7 @@
     <meta charset="UTF-8"/>
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/member/event.js"></script>
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
@@ -98,7 +99,7 @@
 
                     <div class="regist-pet-gender  dash-line">
                         <h4>성별</h4>
-                        <label><input type="radio" name="petGender" value="F">여아&nbsp;&nbsp; </label>
+                        <label><input type="radio" name="petGender" value="F" checked>여아&nbsp;&nbsp; </label>
                         <label><input type="radio" name="petGender" value="M">남아</label>
                     </div>
                 </div>
@@ -123,7 +124,7 @@
 
                     <div class="regist-pet-neutering  dash-line">
                         <h4>중성화</h4>
-                        <label><input type="radio" name="neutralYn" value="Y">예 &nbsp;&nbsp; </label>
+                        <label><input type="radio" name="neutralYn" value="Y" checked>예 &nbsp;&nbsp; </label>
                         <label><input type="radio" name="neutralYn" value="N">아니오</label>
                     </div>
                 </div>
@@ -132,7 +133,7 @@
             <div class="regist-pet-regist  dash-line">
                 <h4>반려견 등록</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petRegist" value="inner-chip">내장형 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petRegist" value="inner-chip" checked>내장형 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="petRegist" value="outer-chip">외장형 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="petRegist" value="name-tag">등록인식표 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="petRegist" value="nothing">하지않음 &nbsp;&nbsp;</label>
@@ -144,7 +145,7 @@
                 <div class="answer-contain">
                     <label><input type="radio" name="pSocial" value="1">매우좋아요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="pSocial" value="2">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="3">보통이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="3" checked>보통이에요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="pSocial" value="4">수줍어해요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="pSocial" value="5">공격적이에요 &nbsp;&nbsp;</label>
                 </div>
@@ -155,7 +156,7 @@
                 <div class="answer-contain">
                     <label><input type="radio" name="aSocial" value="1">매우좋아요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="aSocial" value="2">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="3">보통이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="3" checked>보통이에요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="aSocial" value="4">수줍어해요 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="aSocial" value="5">공격적이에요 &nbsp;&nbsp;</label>
                 </div>
@@ -165,7 +166,7 @@
                 <h4>Q. 잘 짖는 편인가요?</h4>
                 <div class="answer-contain">
                     <label><input type="radio" name="barkLevel" value="1">예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="barkLevel" value="2">보통 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="barkLevel" value="2" checked>보통 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="barkLevel" value="3">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
@@ -173,7 +174,7 @@
             <div class="Q4 dash-line">
                 <h4>Q. 분리불안 증세가 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="sepAnxiety" value="1">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="sepAnxiety" value="1" checked>예 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="sepAnxiety" value="2">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
@@ -181,7 +182,7 @@
             <div class="Q5">
                 <h4>Q. 앓고있는 지병이나 다친 경험이 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petDisease" value="1">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petDisease" value="1" checked>예 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="petDisease" value="2">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
@@ -194,7 +195,7 @@
             <div class="Q6">
                 <h4>Q. 음식 알러지가 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petAllergy" value="1">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petAllergy" value="1" checked>예 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="petAllergy" value="2">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
@@ -207,7 +208,7 @@
             <div class="Q7 dash-line">
                 <h4>Q. 대소변은 잘 가리나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="pottyTrain" value="1">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pottyTrain" value="1" checked>예 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="pottyTrain" value="2">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
@@ -216,7 +217,7 @@
             <div class="Q8 dash-line">
                 <h4>Q. 실내 마킹을 하나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="markingIn" value="1">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="markingIn" value="1" checked>예 &nbsp;&nbsp;</label>
                     <label><input type="radio" name="markingIn" value="2">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
