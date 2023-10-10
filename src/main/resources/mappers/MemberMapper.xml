@@ -63,7 +63,7 @@
         <result property="hosName" column="HOS_NAME"/>
         <result property="hosPhone" column="HOS_PHONE"/>
         <result property="hosAddress" column="HOS_ADDRESS"/>
-        <association property="memberNo" resultMap="memberResultMap"/>
+        <association property="member" resultMap="memberResultMap"/>
     </resultMap>
 
     <select id="findMemberById" resultMap="memberResultMap">
@@ -289,7 +289,28 @@
 
     <!-- 반려동물 프로필 조회 -->
     <select id="viewPetProfile" resultMap="petResultMap">
-        SELECT *
+        SELECT
+             , PET_NAME
+             , PET_AGE
+             , PET_GENDER
+             , NEUTRAL_YN
+             , PET_BREED
+             , PET_WEIGHT
+             , PET_REGIST
+             , P_SOCIAL
+             , A_SOCIAL
+             , BARK_LEVEL
+             , SEP_ANXIETY
+             , PET_DISEASE
+             , PET_DISEASE_EXP
+             , PET_ALLERGY
+             , PET_ALLERGY_EXP
+             , POTTY_TRAIN
+             , MARKING_IN
+             , VACCIN
+             , HOS_NAME
+             , HOS_PHONE
+             , HOS_ADDRESS
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{member.memberNo}
     </select>
