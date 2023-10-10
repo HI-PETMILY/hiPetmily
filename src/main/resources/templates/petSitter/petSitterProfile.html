@@ -37,20 +37,12 @@
 <div th:replace="common/header_white.html"></div>
 
 <div class="psp_container">
+    <!-- left -->
     <div class="psp_left">
 
         <div class="psp_img">
-            <div class="psp_img_main">
-                <img src="/static_Image/petSitter/profile_main.png" alt="프로필메인">
-            </div>
-            <div class="psp_img_sub">
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub1.png" alt="프로필서브1"></div>
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub2.png" alt="프로필서브2"></div>
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub3.png" alt="프로필서브3"></div>
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub4.png" alt="프로필서브4"></div>
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub5.png" alt="프로필서브5"></div>
-                <div class="psp_img_subImg"><img src="/static_Image/petSitter/profile_sub6.png" alt="프로필서브6"></div>
-            </div>
+            <div class="psp_img_main"></div>
+            <ul class="psp_img_sub"></ul>
         </div>
 
         <div class="psp_profile">
@@ -249,100 +241,107 @@
 
     </div>
 
-    <!-- 우측 -->
+    <!-- Right -->
     <div class="psp_right">
 
-        <div class="psp_res">
+        <form action="/petSitter/reservation" method="post">
+            <div class="psp_res">
 
-            <div class="psp_res_item1">
-                <div class="psp_res_titleBox">
-                    <div class="psp_item_title">예약하기</div>
-                    <div class="psp_res_smTitle">예약을 원하는 날짜와 시간을 선택하세요!</div>
-                </div>
-                <div class="psp_res_inputDate">
-                    <div class="psp_res_start">
-                        <input type="text" id="startDate" placeholder="시작 날짜" readonly>
+                <div class="psp_res_item1">
+                    <div class="psp_res_titleBox">
+                        <div class="psp_item_title">예약하기</div>
+                        <div class="psp_res_smTitle">예약을 원하는 날짜와 시간을 선택하세요!</div>
                     </div>
-                    <div class="psp_res_mid">~</div>
-                    <div class="psp_res_end">
-                        <input type="text" id="endDate" placeholder="종료 날짜" readonly>
+                    <div class="psp_res_inputDate">
+                        <div class="psp_res_start">
+                            <input type="text" id="startDate" placeholder="시작 날짜" readonly required>
+                        </div>
+                        <div class="psp_res_mid">~</div>
+                        <div class="psp_res_end">
+                            <input type="text" id="endDate" placeholder="종료 날짜" readonly required>
+                        </div>
+                    </div>
+
+                    <div class="psp_res_inputDate">
+                        <div class="psp_res_startTime">
+                            <select id="startTime" class="resTime_selectBox res_startTime"></select>
+                        </div>
+                        <div class="psp_res_mid">~</div>
+                        <div class="psp_res_endTime">
+                            <select id="endTime" class="resTime_selectBox res_endTime"></select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="psp_res_inputDate">
-                    <div class="psp_res_startTime">
-                        <select id="startTime" class="resTime_selectBox res_startTime">
-<!--                            <option style="font-family: 'Noto Sans KR','Roboto', sans-serif;">9시</option>-->
-                        </select>
-                    </div>
-                    <div class="psp_res_mid">~</div>
-                    <div class="psp_res_endTime">
-                        <select id="endTime" class="resTime_selectBox res_endTime"></select>
+                <div class="psp_res_item2">
+                    <div class="psp_res_pay">
+                        <div class="res_pay_left">
+                            <div class="pay_left_text">24H 케어 / <span>35,000원</span></div>
+                            <div class="pay_left_text">1H 케어 / <span>2,500원</span></div>
+                        </div>
+                        <div class="res_pay_right">
+                            <div class="pay_right_text">15kg 미만 기준</div>
+                        </div>
                     </div>
                 </div>
+
+                <div class="psp_res_item3">
+                    <div class="psp_res_dogSelect">
+                        <div class="dogSelect_title">맡기실 반려견 선택하기</div>
+                        <div class="dogSelect_box">
+                            <select id="dogSelect" class="dog_selectBox"></select>
+                        </div>
+                    </div>
+                    <div class="psp_res_calBox">
+                        <div id="pay_day">1박 0원</div>
+                        <div id="pay_hour">1시간 0원</div>
+                        <div id="pay_vat">부가세 0원</div>
+                        <div id="pay_total" class="pay_total">총 합계 0원</div>
+
+                        <input type="hidden" id="startDateTime" name="startDateTime" required>
+                        <input type="hidden" id="endDateTime" name="endDateTime" required>
+                        <input type="hidden" id="resDayCount" name="resDayCount" required>
+                        <input type="hidden" id="resTimeCount" name="resTimeCount" required>
+                        <input type="hidden" id="resVat" name="resVat" required>
+                        <input type="hidden" id="resTotalAmount" name="resTotalAmount" required>
+                        <input type="hidden" id="resAppDate" name="resAppDate" required>
+                        <input type="hidden" id="resUpdateDate" name="resUpdateDate" required>
+                    </div>
+                </div>
+
+                <div class="psp_res_item4">
+                    <ul>
+                        <li>1시간 이하 이용시 1시간 비용으로 적용됩니다.</li>
+                        <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
+                        <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
+                        <li>본 사이트 외부에서 진행된 결제 건에 대해서는 당사는 책임지지 않습니다.</li>
+                    </ul>
+                </div>
+                <div class="psp_res_btn">
+                    <button type="submit" id="req_btn" class="req_btn">예약 요청하기</button>
+                    <button type="button" id="qna_btn" class="qna_btn">문의하기</button>
+                </div>
+
             </div>
+        </form>
 
-            <div class="psp_res_item2">두번째
-                <div class="psp_res_pay">
-                    <div class="res_pay_left">좌측
-                        <div class="pay_left_text">24H / <span>35,000원</span></div>
-                        <div class="pay_left_text">1H / <span>2,500원</span></div>
-                    </div>
-                    <div class="res_pay_right">
-                        <div class="pay_right_text">15kg 미만 기준</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="psp_res_item3">세번째
-                <div>
-                    <div>맡기실 반려견 선택하기</div>
-                    <div>반려견 선택</div>
-                    <div>반려견 수</div>
-                </div>
-                <div>
-                    <div>1박 0원</div>
-                    <div>초과금액 0원</div>
-                    <div>부가세 0원</div>
-                    <div>총 합계 0원</div>
-                </div>
-            </div>
-
-            <div class="psp_res_item4">네번째
-                <div>
-                    <div>
-                        <ul>
-                            <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
-                            <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
-                            <li>본 사이트 외부에서 진행된 결제 건에 대해서는 당사는 책임지지 않습니다.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div>예약 요청하기</div>
-                        <div>문의하기</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 캘린더 -->
+        <!-- Calendar -->
         <div class="psp_calendar">
             <div class="psp_calendar_title">예약 가능 날짜</div>
             <div class="psp_calendar_box">
                 <div id='calendar'></div>
             </div>
-            <div>배경이 푸른색이 가능한 날짜입니다.</div>
+            <div>※ 배경이 푸른색이 가능한 날짜입니다.</div>
         </div>
 
-        <!-- 지도 -->
+        <!-- Map -->
         <div class="psp_map">
-            <div>
-                <div>파트너님 위치</div>
-                <div>서울 특별시 종로구 인사동길 12</div>
+            <div class="psp_map_text_box">
+                <div class="map_title1">펫시터님 위치</div>
+                <div class="map_title2">서울 특별시 종로구 인사동길 12</div>
             </div>
-            <div>
-                <div id="map" style="width:400px;height:400px;"></div>
+            <div class="psp_map_box">
+                <div id="map" class="kakaoMap"></div>
             </div>
         </div>
 

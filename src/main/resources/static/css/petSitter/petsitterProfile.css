@@ -75,6 +75,7 @@ table {
 .psp_img_main img {
     width: 100%;
     height: 560px;
+    border-radius: 20px;
 }
 
 .psp_img_sub {
@@ -94,11 +95,13 @@ table {
     float: left;
     width: calc((100% - 61px)/6);
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .psp_img_subImg img{
     width: 100%;
     height: 85px;
+    border-radius: 20px;
 }
 
 .psp_profile {
@@ -458,18 +461,17 @@ table {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
-    border: 1px solid darkgray;
 }
 
 .psp_res {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #e3e3e3;
     margin: 0px auto 15px;
-
-    border: 1px solid darkgray;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
 }
 
 .psp_res_item1 {
@@ -479,8 +481,6 @@ table {
     padding-bottom: 20px;
     border-bottom: 1px dashed #e3e3e3;
     margin: 0px auto 15px;
-
-    border: 1px solid darkgray;
 }
 
 .psp_res_titleBox {
@@ -509,11 +509,23 @@ table {
     border-left: 1px solid #e3e3e3;
 }
 
+.psp_res_start input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+}
+
 .psp_res_end {
     width: 100px;
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
+}
+
+.psp_res_end input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
 }
 
 .psp_res_mid {
@@ -522,8 +534,6 @@ table {
     border-bottom: 1px solid #e3e3e3;
     padding: 0px 10px;
 }
-
-
 
 .resTime_selectBox {
     width: 100px;
@@ -544,4 +554,207 @@ table {
     border-bottom: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
 }
+
+.psp_res_item2 {
+    width: 100%;
+}
+
+.psp_res_pay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+}
+
+.res_pay_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.pay_left_text {
+    font-size: 16px;
+}
+
+.pay_left_text span {
+    font-weight: 600;
+    color: #81BDF1;
+}
+
+.res_pay_right {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+.psp_res_item3 {
+    width: 100%;
+}
+
+.psp_res_dogSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+}
+
+.dogSelect_title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.dogSelect_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.dogSelect_box_title {
+    margin-right: 30px;
+}
+
+.dog_selectBox {
+    width: 80px;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #E3A802;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    border: 1px solid #e3e3e3;
+}
+
+.psp_res_calBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+    line-height: 2;
+}
+
+.pay_total {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.psp_res_item4 {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    margin: 10px 25px;
+    line-height: 1.5;
+}
+
+.psp_res_item4 ul li {
+    list-style-type: disc;
+}
+
+.psp_res_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.req_btn {
+    width: 100px;
+    height: 25px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+.qna_btn {
+    width: 100px;
+    height: 25px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.psp_calendar {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.psp_calendar_title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.psp_calendar_box {
+    width: 100%;
+}
+
+.psp_map {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.psp_map_text_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 35px auto;
+}
+
+.map_title1 {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.2px;
+    line-height: 25px;
+}
+
+.map_title2 {
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(119, 119, 119);
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.psp_map_box {
+    width: 100%;
+    height: 100%;
+}
+
+.kakaoMap {
+    width: 355px;
+    height: 350px;
+}
+
+
 

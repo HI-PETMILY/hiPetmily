@@ -14,7 +14,7 @@ import java.util.*;
 @ToString
 public class MemberDTO implements UserDetails {
 
-    private Long memberNo;          // 회원코드
+    private int memberNo;          // 회원코드
     private String memberId;        // 사용자 ID
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름

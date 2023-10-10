@@ -1,15 +1,11 @@
 package com.mypet.petmily.member.controller;
 
-import com.mypet.petmily.common.exception.member.MemberModifyException;
-import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
-import com.mypet.petmily.common.exception.member.MemberRegistException;
-import com.mypet.petmily.common.exception.member.MemberRemoveException;
+import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,11 +16,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -66,6 +63,32 @@ public class MemberController {
     /* 회원 가입 완료 페이지 */
     @GetMapping("/completedRegist")
     public void comRegistPage(){}
+
+
+    /* 회원 가입 */
+    @PostMapping("/regist")
+    public String registMember(MemberDTO member, String PostNo, String address, String address2,
+                               RedirectAttributes rttr) throws MemberRegistException {
+
+        String total_address = PostNo + address + address2;
+        member.setAddress(total_address);
+        member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
+
+        log.info("Request regist member : {}", member);
+
+        memberService.registMember(member);
+
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = new Date(calendar.getTime().getTime());
+
+        Timestamp currentTimestamp = new Timestamp(currentDate.getTime());
+
+        member.setMemberStatDate(currentTimestamp);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
+        rttr.addFlashAttribute("nickname", member.getNickName());
+        return "redirect:/member/completedRegist";
+    }
 
     /* 닉네임 중복 확인 */
     @PostMapping("/nickNameDupCheck")
@@ -177,37 +200,8 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-
-
-    /* 회원 가입 */
-    @PostMapping("/regist")
-    public String registMember(MemberDTO member, String zipCode, String address1, String address2,
-                               RedirectAttributes rttr) throws MemberRegistException {
-
-        String address = zipCode + "$" + address1 + "$" + address2;
-        member.setAddress(address);
-        member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
-
-        log.info("Request regist member : {}", member);
-
-        memberService.registMember(member);
-
-
-        Calendar calendar = Calendar.getInstance();
-        Date currentDate = new Date(calendar.getTime().getTime());
-
-        Timestamp currentTimestamp = new Timestamp(currentDate.getTime());
-
-        member.setMemberStatDate(currentTimestamp);
-
-
-        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
-        rttr.addFlashAttribute("nickname", member.getNickName());
-        return "redirect:/member/completedRegist";
-    }
-
-
-    @GetMapping("/find_id-pwd")
+    /* 아이디 찾기 화면 */
+    @GetMapping("/find_id")
     public void findIdPwdPage(){}
 
     /*아이디 찾기 결과 */
