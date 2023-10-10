@@ -36,6 +36,36 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
+    <resultMap id="reservationMap" type="com.mypet.petmily.reservation.dto.ReservationDTO">
+
+    </resultMap>
+
+    <resultMap id="petMap" type="com.mypet.petmily.member.dto.PetDTO">
+        <id property="petCode" column="PET_CODE"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petAge" column="PET_AGE"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="neutralYn" column="NEUTRAL_YN"/>
+        <result property="petBreed" column="PET_BREED"/>
+        <result property="petWeight" column="PET_WEIGHT"/>
+        <result property="petRegist" column="PET_REGIST"/>
+        <result property="pSocial" column="P_SOCIAL"/>
+        <result property="aSocial" column="A_SOCIAL"/>
+        <result property="barkLevel" column="BARK_LEVEL"/>
+        <result property="sepAnxiety" column="SEP_ANXIETY"/>
+        <result property="petDisease" column="PET_DISEASE"/>
+        <result property="petDiseaseExp" column="PET_DISEASE_EXP"/>
+        <result property="petAllergy" column="PET_ALLERGY"/>
+        <result property="petAllergyExp" column="PET_ALLERGY_EXP"/>
+        <result property="pottyTrain" column="POTTY_TRAIN"/>
+        <result property="markingIn" column="MARKING_IN"/>
+        <result property="vaccin" column="VACCIN"/>
+        <result property="hosName" column="HOS_NAME"/>
+        <result property="hosPhone" column="HOS_PHONE"/>
+        <result property="hosAddress" column="HOS_ADDRESS"/>
+        <association property="memberNo" resultMap="memberResultMap"/>
+    </resultMap>
+
     <select id="findMemberById" resultMap="memberResultMap">
         SELECT
                A.MEMBER_NO
