@@ -154,4 +154,12 @@ public class MemberService {
 
         //memberMapper.insertAttachment(review.getAttachment());
     }
+
+    public PetDTO viewPetProfile(MemberDTO loginMember) {
+
+        return memberMapper.viewPetProfile(loginMember);
+    }
+
+    /* 반려동물 프로필 조회 */
+
 }

@@ -36,8 +36,11 @@ public interface MemberMapper {
 
     int selectTotalCount(Map<String, String> searchMap);
 
-    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
-    // xml 작성해야함
-
     void insertPetProfile(PetDTO pet);
+
+    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
+    // xml 작성해야 함
+
+    PetDTO viewPetProfile(MemberDTO loginMember);
+
 }

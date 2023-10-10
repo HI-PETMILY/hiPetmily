@@ -262,14 +262,10 @@ public class MemberController {
 
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
-//    public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
-    public void petProfileRegist(){
-//        model.addAttribute("loginMember", loginMember.getMemberId());
-    }
+    public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-    /* 반려동물 프로필 조회 페이지 */
-    @GetMapping("/pet-profile-view")
-    public void petProfileView(){}
+        model.addAttribute("loginMember", loginMember.getMemberId());
+    }
 
     /* 반려동물 프로필 등록 */
     @Value("/src/main/resources/upload")
@@ -331,6 +327,21 @@ public class MemberController {
         memberService.registPetProfile(pet);
 
         return "redirect:/member/pet-profile-view";
+    }
+
+    /* 반려동물 프로필 조회 페이지 */
+    @GetMapping("/pet-profile-view")
+    public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        log.info("loginMember : {}", loginMember);
+
+        PetDTO petProfile = memberService.viewPetProfile(loginMember);
+        log.info("pet profile : {}", petProfile);
+
+        model.addAttribute("petProfile", petProfile);
+
+
+        return "member/pet-profile-view";
     }
 
     /* 지난 예약 내역 조회 페이지 */

@@ -40,7 +40,7 @@
 
     </resultMap>
 
-    <resultMap id="petMap" type="com.mypet.petmily.member.dto.PetDTO">
+    <resultMap id="petResultMap" type="com.mypet.petmily.member.dto.PetDTO">
         <id property="petCode" column="PET_CODE"/>
         <result property="petName" column="PET_NAME"/>
         <result property="petAge" column="PET_AGE"/>
@@ -231,6 +231,7 @@
         <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
     </select>
 
+    <!-- 반려동물 프로필 등록 -->
     <insert id="insertPetProfile">
         INSERT INTO TBL_MYPET
             (
@@ -282,8 +283,14 @@
             , #{hosName}
             , #{hosPhone}
             , #{hosAddress}
-            , #{member.memberNo}       <!--멤버코드를 이렇게 넣는게 맞나..?-->
+            , #{member.memberNo}
             )
     </insert>
 
+    <!-- 반려동물 프로필 조회 -->
+    <select id="viewPetProfile" resultMap="petResultMap">
+        SELECT *
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{member.memberNo}
+    </select>
 </mapper>
