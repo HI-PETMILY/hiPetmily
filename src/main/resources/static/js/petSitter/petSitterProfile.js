@@ -4,6 +4,7 @@ $(function(){
 
     bannerImgCreate();
 
+
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -17,6 +18,9 @@ $(function(){
 
 
 });
+
+
+
 
 function getReservation() {
 

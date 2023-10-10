@@ -14,7 +14,7 @@
 <div class="container">
     <div class="container_box">
         <div>
-            <p class="big_petmily" th:text="${nickname} + '님, 예약이 완료되었습니다!'"></p><br>
+            <p class="big_petmily" th:text="${member.getNickName()} + '님, 예약이 완료되었습니다!'"></p><br>
             <p class="small_petmily" th:text="'예약번호 : ' + ${resCode} + '번 입니다.'"></p>
             <p class="small_petmily" th:text="'예약기간 : ' + ${startDateTime} + ' ~ '+ ${endDateTime}"></p>
             <p class="small_petmily" th:text="'결제금액 : ' + ${resDayCount} + '박 '
