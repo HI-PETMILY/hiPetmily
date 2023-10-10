@@ -57,7 +57,7 @@ function getReservation() {
             hour = startTime.substring(0, 2);
         }
 
-        strHours += '<option value="99" selected>시작 선택</option>';
+        strHours += '<option value="default" selected>시작 선택</option>';
 
         for(let i = 0 ; i < 24; i++){
 
@@ -97,7 +97,7 @@ function getReservation() {
 
         if (endTime == startTime) {
             alert("시작시간과 종료시간이 같습니다. 다시 선택해주세요.");
-            $("#endTime").val("99").prop("selected", true);
+            $("#endTime").val("default").prop("selected", true);
         }
 
         let startTime_hour = startTime.substring(0,2);
@@ -123,7 +123,7 @@ function getReservation() {
 
     $("#dogSelect").change(function(){
 
-        if (!dayCount || !timeCount || !startDate || !endDate || !startTime || !endTime) {
+        if (!startDate || !endDate || !startTime || !endTime) {
             alert("날짜와 시간을 먼저 선택해주세요.");
             $("#dogSelect").val("00").prop("selected", true);
         } else {
@@ -136,10 +136,21 @@ function getReservation() {
             $("#pay_hour").html(timeCount + "시간 : " + timeCountTotal.toLocaleString() + " 원");
             $("#pay_vat").html("부가세 : " + vatTotal.toLocaleString() + " 원");
             $("#pay_total").html("총 합계 : " + total.toLocaleString() + " 원");
+
+            let resStartDate = $("#startDate").val().concat(' ', startTime.slice(0,2) + ":" + startTime.slice(2,4) );
+            let resEndDate = $("#endDate").val().concat(' ', endTime.slice(0,2) + ":" + endTime.slice(2,4) );
+
+            $("#startDateTime").val(resStartDate);
+            $("#endDateTime").val(resEndDate);
+            $("#resDayCount").val(dayCount);
+            $("#resTimeCount").val(timeCount);
+            $("#resVat").val(vatTotal);
+            $("#resTotalAmount").val(total);
+            $("#resAppDate").val(new Date().toLocaleString());
+            $("#resUpdateDate").val(new Date().toLocaleString());
         }
 
     });
-
 
 }
 
@@ -177,7 +188,7 @@ function timeSelectBoxAdd() {
     let strHours = '';
     let time = '';
 
-    strHours += '<option value="99" selected>시작 선택</option>';
+    strHours += '<option value="default" selected>시작 선택</option>';
 
     for(let i = 0 ; i < 24; i++){
 
@@ -203,7 +214,7 @@ function dogSelectBoxAdd() {
 
     for(let i = 0 ; i < 2; i++){
         if(i == 0){
-            dogSelect += '<option value="'+'0'+i+'">선택하기</option>';
+            dogSelect += '<option value="'+'0'+i+'">- 선택하기</option>';
         } else {
             dogSelect += '<option value="'+'0'+i+'">토리</option>';
         }

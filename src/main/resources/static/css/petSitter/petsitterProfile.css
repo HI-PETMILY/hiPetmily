@@ -467,8 +467,11 @@ table {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
     margin: 0px auto 15px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
 }
 
 .psp_res_item1 {
@@ -506,11 +509,23 @@ table {
     border-left: 1px solid #e3e3e3;
 }
 
+.psp_res_start input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+}
+
 .psp_res_end {
     width: 100px;
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
+}
+
+.psp_res_end input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
 }
 
 .psp_res_mid {
@@ -614,7 +629,7 @@ table {
     width: 80px;
     font-family: 'Noto Sans KR','Roboto', sans-serif;
     color: #E3A802;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
     border: 1px solid #e3e3e3;

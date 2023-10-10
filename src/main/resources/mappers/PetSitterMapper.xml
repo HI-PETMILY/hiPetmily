@@ -2,6 +2,118 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mypet.petmily.petSitter.dao.MypageMapper">
+<mapper namespace="com.mypet.petmily.petSitter.dao.PetSitterMapper">
+
+    <!-- petSitter resultMap 관련 -->
+    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitter.dto.PetSitterDTO">
+        <id property="petMemberNo" column="PET_MEMBER_NO"/>
+        <result property="price" column="PRICE"/>
+        <result property="availRegistDt" column="REGIST_AVA_DT"/>
+        <result property="registDt" column="REGIST_AVA_TM"/>
+        <result property="availRegistTm" column="REGIST_DT"/>
+        <result property="accountHolder" column="ACCOUNT_HOLDER"/>
+        <result property="bank" column="BANK"/>
+        <result property="account" column="ACCOUNT_NUM"/>
+        <result property="room" column="ROOM"/>
+        <result property="smokingStatus" column="SMOKING_STATUS"/>
+        <result property="petsitterExperience" column="ACTI_EXPERIENCE"/>
+        <result property="dayCare" column="DAY_CARE"/>
+        <result property="activityAvailDay" column="ACTIVITY_AVA_NUM"/>
+        <result property="dogExist" column="DOG_EXIST"/>
+        <result property="applicationReason" column="APPLICATION_REASON"/>
+        <result property="family" column="FAMILY_NUM"/>
+        <result property="job" column="JOB"/>
+        <result property="introduce" column="INTRODUCE"/>
+        <result property="petsitterEducation" column="EDUCATION_COMPLETE"/>
+        <result property="careEnv" column="CARE_ENV"/>
+        <result property="firstComments" column="FIRST_COMMENTS"/>
+    </resultMap>
+    <!-- petSitter resultMap 관련 -->
+
+    <!-- member resultMap 관련 -->
+    <resultMap id="pet_memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPwd" column="MEMBER_PWD"/>
+        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="gender" column="GENDER"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
+        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
+    </resultMap>
+    <!-- member resultMap 관련 -->
+
+    <!-- 예약 resultMap 관련 -->
+    <resultMap id="resResultMap" type="com.mypet.petmily.petSitter.dto.ReservationDTO">
+        <id property="resCode" column="RESERV_CODE"/>
+        <result property="startDateTime" column="RESERV_START"/>
+        <result property="endDateTime" column="RESERV_END"/>
+        <result property="resStatus" column="RESERV_STATUS"/>
+        <result property="accum" column="RESERV_ACCUM"/>
+        <result property="resTotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="resDayCount" column="RESERV_DAY_COUNT"/>
+        <result property="resTimeCount" column="RESERV_TIME_COUNT"/>
+        <result property="resVat" column="RESERV_VAT"/>
+        <result property="resAppDate" column="RESERV_APP_DATE"/>
+        <result property="resUpdateDate" column="RESERV_UPDATE_DATE"/>
+
+<!--        <result property="resMember" column="MEMBER_NO"/>-->
+<!--        <result property="resPetSitter" column="PET_MEMBER_NO"/>-->
+
+        <association property="resMember" resultMap="pet_memberResultMap"/>
+        <association property="resPetSitter" resultMap="petSitterResultMap"/>
+    </resultMap>
+    <!-- 예약 resultMap 관련 -->
+
+
+
+
+
+    <!-- 예약 등록 -->
+    <insert id="registReservation">
+        <selectKey keyProperty="resCode" resultType="_int" order="AFTER">
+            SELECT SEQ_TBL_RESERVATION_NO.currval FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_RESERVATION (
+            RESERV_CODE
+            , RESERV_START
+            , RESERV_END
+            , RESERV_STATUS
+            , RESERV_ACCUM
+            , RESERV_TOTAL_AMOUNT
+            , RESERV_DAY_COUNT
+            , RESERV_TIME_COUNT
+            , RESERV_VAT
+            , RESERV_APP_DATE
+            , RESERV_UPDATE_DATE
+            , MEMBER_NO
+            , PET_MEMBER_NO
+        ) VALUES(
+            SEQ_TBL_RESERVATION_NO.NEXTVAL
+            , #{ startDateTime }
+            , #{ endDateTime }
+            , #{ resStatus }
+            , #{ accum }
+            , #{ resTotalAmount }
+            , #{ resDayCount }
+            , #{ resTimeCount }
+            , #{ resVat }
+            , #{ resAppDate }
+            , #{ resUpdateDate }
+<!--            , #{ resMemberNo }-->
+<!--            , #{ resPetMemberNo }-->
+            , #{ resMember.memberNo }
+            , #{ resPetSitter.petMemberNo }
+        )
+    </insert>
+
 
 </mapper>
