@@ -114,7 +114,7 @@
         ( MEMBER_NO
         , AUTHORITY_CODE)
         VALUES ( SEQ_TBL_MEMBER_NO.CURRVAL
-               , 2)
+               , 3)
     </insert>
 
     <select id="findId" parameterType="String" resultType="String">

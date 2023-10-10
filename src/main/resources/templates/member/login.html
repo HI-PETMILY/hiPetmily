@@ -55,9 +55,11 @@
                     <div class="signIn inputForm">
                         <input type="password" name="memberPwd" placeholder="********"
                                onfocus="this.placeholder=''" onblur="this.placeholder='********'"
-                               class="logIn InputBox" required>
+                               class="logIn InputBox" onkeyup="checkCapsLock(event)" required>
+                        <span id="message" style="color: red;"></span>
                     </div>
                 </div>
+
 
                 <div>
                     <input id="loginSubmit" class="submitButton" type="submit" value="로그인">

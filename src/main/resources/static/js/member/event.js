@@ -27,6 +27,17 @@ window.onload = function() {
     })
 };
 
+// 비밀번호 캡스락키 활성화 여부 체크
+function checkCapsLock(event)  {
+    if (event.getModifierState("CapsLock")) {
+        document.getElementById("message").innerText
+            = "Caps Lock이 켜져 있습니다."
+    }else {
+        document.getElementById("message").innerText
+            = ""
+    }
+}
+
 // 아이디 찾기 버튼에 대한 클릭 이벤트
 function findUserId(){
 
