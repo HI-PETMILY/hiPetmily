@@ -296,7 +296,7 @@ window.onload = function () {
 
         $headerLogout.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/member/logout";    // 추후 연결
         });
 
         $headerLogout.addEventListener("mouseover", (event) => {

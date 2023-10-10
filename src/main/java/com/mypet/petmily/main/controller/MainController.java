@@ -1,5 +1,7 @@
 package com.mypet.petmily.main.controller;
 
+import com.mypet.petmily.member.dto.MemberDTO;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,7 +60,7 @@ public class MainController {
 
     // 마이페이지
     @GetMapping("/member/mypage")
-    public String headerMemberMypage() {
+    public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member) {
         return "member/mypage";
     }
 
