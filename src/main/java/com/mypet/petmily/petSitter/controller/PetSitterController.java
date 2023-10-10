@@ -61,7 +61,7 @@ public class PetSitterController {
 
     @GetMapping("/searchPage")
 
-    public  String getPetSitterList(@RequestParam(defaultValue ="1") int page
+    public  String getPetSitterList(@RequestParam(defaultValue ="1") int page,
                                     @RequestParam(required = false) String searchCondition,
                                     @RequestParam(required = false) String searchValue){
 
@@ -74,8 +74,8 @@ public class PetSitterController {
         searchMap.put("searchCondition", searchCondition);
         searchMap.put("searchValue", searchValue);
 
-        petSitterService.selectPetSitterList(searchMap,page);
-        Map<String, Object> boardListAndPaging = boardService.
+
+        Map<String, Object> petSitterListAndPaging  = petSitterService.selectPetSitterList(searchMap, page);
 
 
         return "petSitter/searchPage";
