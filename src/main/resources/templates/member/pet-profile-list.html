@@ -28,29 +28,34 @@
         <h2 class="mainTitle">반려동물 프로필</h2>
         <div class="nav-line"></div>
 
-        <!-- 반려동물 등록 수만큼 pet-profile-box가 반복 돼야 함 -->
+        <!-- 반려동물 등록 수만큼 pet-profile-box가 반복 -->
         <div class="pet-profile-box" th:each="petProfile : ${petProfileList}">
 
             <div class="pet-profile-info">
-            <div class="pet-profileImg">
-                <img src="/static_Image/member/petProfileTest1.png">
-            </div>
+                <div class="pet-profileImg">
+                    <img src="/static_Image/member/petProfileTest1.png">
+                </div>
+                <div class="pet-profile-detail">
+                    <div class="pet-name"><p th:text="${petProfile.petName} + ' / '"></p></div>
+                    <div class="pet-regist"><p th:text="${petProfile.petRegist} + ' / ' "></p></div>
+                    <div class="pet-age"><p th:text="${petProfile.petAge} +살+' / '"></p></div>
+                    <div class="pet-weight"><p th:text="${petProfile.petWeight}+kg "></p></div>
+                </div>
 
-            <div class="pet-profile-detail">
-                <div class="pet-name"><p th:text="${petProfile.petName}"></p></div>
-                <div class="pet-regist"><p th:text="${petProfile.petRegist}"></p></div>
-                <div class="pet-age"><p th:text="${petProfile.petAge}"></p></div>
-                <div class="pet-weight"><p th:text="${petProfile.petWeight}"></p></div>
-                <!--<div class="pet-name"><p>이름 /</p></div>
-                <div class="pet-regist"><p>등록형 /</p></div>
-                <div class="pet-age"><p>성별 /</p></div>
-                <div class="pet-weight"><p>4kg</p></div>-->
+                <div class="result-button">
+                    <button class="text-button reserve-button"
+                            th:onclick="|location.href='/member/pet-profile-view?petCode=${petProfile.petCode}'|">자세히보기
+                    </button>
+                    <button class="text-button reserve-button">수정하기</button>
+                </div>
+
             </div>
-            </div>
-            <div class="result-button">
-                <button class="text-button reserve-button" th:onclick="|location.href='/member/pet-profile-view?no=${petCode.no}'|">자세히보기</button>
-                <button class="text-button reserve-button">수정하기</button>
-            </div>
+        </div>
+
+        <div>
+            <button class="submitButton add-pet-profile">
+            <a href="/member/pet-profile-regist">반려동물 추가 등록</a>
+            </button>
         </div>
 
     </div>

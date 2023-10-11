@@ -397,6 +397,7 @@ table.reserve-table tr, table.reviewList-table tr{
     border-radius: 25px;
     width: 100%;
     padding: 10px 0;
+    margin: 15px auto;
 }
 
 .reserve-info, .pet-profile-info{
@@ -451,6 +452,7 @@ table.reserve-table tr, table.reviewList-table tr{
     display: flex;
     justify-content: flex-end;
     margin: 5px;
+    font-size: 14px;
 }
 
 .reserve-button{
@@ -464,8 +466,24 @@ button.blue{
 /*==================================================*/
 /* 반려동물 등록 리스트 */
 
+.pet-profile-box{
+    width: 70%;
+}
+
 .pet-profile-detail{
     display: flex;
     align-items: center;
+}
+
+.pet-profile-info {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add-pet-profile{
+    display: flex;
+    margin: auto;
+    width: 60%;
+    justify-content: center;
 }
 

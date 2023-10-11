@@ -52,17 +52,6 @@ public class MainController {
         return "member/join";
     }
 
-    // 로그인
-//    @GetMapping("/member/login")
-//    public String headerMemberLogin() {
-//        return "member/login";
-//    }
-
-    // 마이페이지
-    @GetMapping("/member/mypage")
-    public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member) {
-        return "member/mypage";
-    }
 
     // 로그아웃
     @GetMapping("/member/logout")

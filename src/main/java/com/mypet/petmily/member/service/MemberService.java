@@ -100,6 +100,11 @@ public class MemberService {
         memberMapper.pwdUpdate(dto);
     }
 
+    /* 마이페이지 반려동물 프로필 조회 */
+    public PetDTO viewFirstPetProfile(MemberDTO member) {
+        return memberMapper.viewFirstPetProfile(member);
+    }
+
     /* 반려동물 프로필 등록 */
     public void registPetProfile(PetDTO pet) throws PetProfileException {
 
@@ -109,14 +114,14 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 리스트 조회 */
-    public PetDTO selectPetProfileList(MemberDTO loginMember) {
+    public List<PetDTO> selectPetProfileList(MemberDTO loginMember) {
         return memberMapper.selectPetProfileList(loginMember);
     }
 
     /* 특정 반려동물 프로필 조회 */
-    public PetDTO viewPetProfile(MemberDTO loginMember) {
+    public PetDTO viewPetProfile(MemberDTO loginMember, int petCode) {
 
-        return memberMapper.viewPetProfile(loginMember);
+        return memberMapper.viewPetProfile(loginMember, petCode);
     }
 
     /* 작성한 리뷰 전체 조회 */
@@ -165,5 +170,4 @@ public class MemberService {
 
         return reserveListAndPaging;
     }
-
 }

@@ -264,6 +264,20 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
+    /* ============================ 마이페이지 ============================ */
+
+    @GetMapping("/mypage")
+    public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member, Model model) {
+
+        model.addAttribute("member", member.getMemberId());
+
+        PetDTO petProfile = memberService.viewFirstPetProfile(member);
+
+        model.addAttribute("petProfile", petProfile);
+
+        return "member/mypage";
+    }
+
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
@@ -339,18 +353,19 @@ public class MemberController {
 
         model.addAttribute("loginMember", loginMember.getMemberId());
 
-        PetDTO petProfileList = memberService.selectPetProfileList(loginMember);
+        List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
 
         model.addAttribute("petProfileList", petProfileList);
     }
 
     /* 반려동물 프로필 상세 페이지 */
     @GetMapping("/pet-profile-view")
-    public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember,
+                                 @RequestParam int petCode,Model model){
 
         log.info("loginMember : {}", loginMember);
 
-        PetDTO petProfile = memberService.viewPetProfile(loginMember);
+        PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
         log.info("pet profile : {}", petProfile);
 
         model.addAttribute("petProfile", petProfile);

@@ -210,6 +210,19 @@
           AND MEMBER_ID = #{ memberId }
     </update>
 
+    <!-- 마이페이지 대표 반려동물 프로필 간략 조회 -->
+    <select id="viewFirstPetProfile" resultMap="petResultMap">
+        SELECT
+               PET_NAME
+             , PET_AGE
+             , PET_GENDER
+             , NEUTRAL_YN
+             , PET_WEIGHT
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{memberNo}
+           AND ROWNUM = 1
+    </select>
+
     <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
                COUNT(*)
@@ -274,7 +287,7 @@
     </insert>
 
     <!-- 반려동물 프로필 조회 -->
-    <select id="viewPetProfile" resultMap="petResultMap">
+    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="int">
         SELECT
                PET_CODE
              , PET_NAME
@@ -299,12 +312,14 @@
              , HOS_PHONE
              , HOS_ADDRESS
           FROM TBL_MYPET
-         WHERE MEMBER_NO = #{memberNo}
+         WHERE MEMBER_NO = #{loginMember.memberNo}
+           AND PET_CODE = #{petCode}
     </select>
 
     <select id="selectPetProfileList" resultMap="petResultMap">
         SELECT
-               PET_NAME
+               PET_CODE
+             , PET_NAME
              , PET_REGIST
              , PET_AGE
              , PET_WEIGHT

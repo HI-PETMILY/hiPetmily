@@ -5,6 +5,7 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,11 @@ public interface MemberMapper {
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
     // xml 작성해야 함
 
-    PetDTO selectPetProfileList(MemberDTO loginMember);
+    List<PetDTO> selectPetProfileList(MemberDTO loginMember);
 
-    PetDTO viewPetProfile(MemberDTO loginMember);
+    PetDTO viewPetProfile(MemberDTO loginMember, int petCode);
+    // 파라미터를 두개 이상 넘길 때는 xml설정으로 넘어갈 때 변수명으로 찾아야 함
+
+    PetDTO viewFirstPetProfile(MemberDTO member);
+
 }
