@@ -141,7 +141,7 @@ window.onload = function () {
 
         $headerBtn4.addEventListener("click", (event) => {
 
-            location.href = "/board/info";    // 추후 연결
+            location.href = "/board/faq/list";    // 추후 연결
         });
 
         $headerBtn4.addEventListener("mouseover", (event) => {
@@ -472,7 +472,7 @@ window.onload = function () {
 
         $footerBtn4.addEventListener("click", (event) => {
 
-            location.href = "/board/faq";    // 추후 연결
+            location.href = "/board/faq/list";    // 추후 연결
         });
 
         $footerBtn4.addEventListener("mouseover", (event) => {

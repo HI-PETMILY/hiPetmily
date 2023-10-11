@@ -182,7 +182,7 @@
 				    /* 1:1문의게시판은 제목의 형태가 다르기 때문에 CASE문으로 분기처리 */
 		   			, (
 						CASE 
-							WHEN REF_BOARD_NO IS NOT NULL THEN 'ㄴ 답변 : '||BOARD_NAME
+							WHEN REF_BOARD_NO IS NOT NULL THEN '↪ 답변 : '||BOARD_NAME
 							ELSE BOARD_NAME
 						END
 					) AS BOARD_NAME

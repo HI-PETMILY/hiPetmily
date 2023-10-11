@@ -26,26 +26,32 @@ public class BoardDTO {
 	private Integer memberNo;
 	/** 회원이름 */
 	private String memberName;
+
+//	카테고리
 	/** 게시판 카테고리 코드 */
 	private Integer categoryCode;
 	/** 게시판 카테고리 명 */
 	private String categoryName;
+
+//	1:1문의 관련
 	/** 질문번호*/
 	private Integer refBoardNo;
 	/** 답변등록유무*/
 	private String boardHasReply;
 	
-	
+
+//	페이징 관련
 	/** ############# 페이징 관련 변수 ################ */
 	/** 현재페이지 */
 	private int page = 1;
 	/** 페이지당 출력 개수 */
-	private int row = 5;
+	private int row = 10;
 	//oracle용 변수
 	private int startIndex = 1;
-	
+
+
+//	검색기능 관련
 	/** ############# 검색기능 관련 변수 ################ */
-	
 	/** 검색구분 제목or내용 */
 	private String searchType;
 	/*검색 키워드 */

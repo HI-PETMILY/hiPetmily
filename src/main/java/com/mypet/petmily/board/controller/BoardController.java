@@ -41,7 +41,7 @@ public class BoardController {
 			3 = 자주하는질문
 		 */
 		//게시판 - 공지사항 조회 이기 때문에 BOARD_SORT는 1로 셋팅
-		
+
 		if( "notice".equals(boardType) ){
 			boardDTO.setBoardSort("1");
 		}else {
@@ -100,6 +100,7 @@ public class BoardController {
     	log.info("Controller @GetMapping(/board/"+boardType+"/insert) 게시판 신규등록 insert >>>>>>>>>>>>>>> ");
 		log.info("member >>>>>>>>>>>>>>>>>> {}",member.toString());
     	//로그인사용자번호 임시 셋팅
+		//member_No가 long타입이니 int타입으로 변환
     	boardDTO.setMemberNo(Math.toIntExact(member.getMemberNo()));
 		/* 
 		 * 	BOARD_SORT
@@ -203,5 +204,10 @@ public class BoardController {
 		}
 		return mv;
     }
+
+	@GetMapping("service")
+	public String Service(){
+		return "board/service";
+	}
     
 }
