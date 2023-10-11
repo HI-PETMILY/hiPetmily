@@ -1,9 +1,9 @@
 package com.mypet.petmily.petSitter.service;
 
 import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
+import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dao.PetSitterMapper;
-import com.mypet.petmily.petSitter.dto.PetSitterDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
+import com.mypet.petmily.petSitter.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,5 +34,24 @@ public class PetSitterService {
 
         return petSitterMapper.selectAllInfo(petMember);
     }
+
+    public List<CareerDTO> selectAllCareer(PetSitterDTO petMember) {
+        return petSitterMapper.selectAllCareer(petMember);
+    }
+
+    public List<PetTagDTO> selectAllTag(PetSitterDTO petMember) {
+        return petSitterMapper.selectAllTag(petMember);
+    }
+
+    public MemberDTO selectMemberInfo(PetSitterDTO petMember) {
+
+//        return petSitterMapper.selectMemberInfo(petMember);
+        return null;
+    }
+
+    public List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO petMember) {
+        return petSitterMapper.petSitterSchedule(petMember);
+    }
+
 
 }
