@@ -14,14 +14,14 @@ import java.util.*;
 @ToString
 public class MemberDTO implements UserDetails {
 
-    private Long memberNo;          // 회원코드
+    private int memberNo;          // 회원코드
     private String memberId;        // 사용자 ID
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름
     private String nickName;        // 닉네임
-    private String phone;              // 연락처
+    private String phone;           // 연락처
     private String gender;          // 성별
-    private Integer postNo;             // 우편번호
+    private Integer postNo;         // 우편번호
     private String address;         // 주소
     private String address2;        // 상세주소
     private int point;              // 적립금
@@ -35,8 +35,6 @@ public class MemberDTO implements UserDetails {
 
 
     /* 나중에 GrantedAuthority 객체 */
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();

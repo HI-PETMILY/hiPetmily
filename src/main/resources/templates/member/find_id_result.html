@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/member/event.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+<body>
+
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div id="find_id-pwd" class="main-container">
+
+    <div class="web-header"></div>
+
+    <div class="mainWrapper">
+
+        <div>
+            <h2 class="mainTitle">아이디 찾기</h2>
+            <div class="nav-line"></div>
+
+            <form id="findIdForm" action="/member/find_id" method="post">
+
+                <!--<div id="findIdResult" align="center">
+                    <div th:if="result != null">
+                        <p th:text="'회원님의 아이디는 ' + ${result} + '입니다.'"></p>
+                    </div>
+
+                    <div th:if="${findIdError != null}">
+                        <p th:text="${findIdError}"></p>
+                    </div>
+                </div>-->
+
+                <div id="findIdResult" align="center">
+                    <c:choose>
+                        <c:when test="${empty result}">
+                            <p th:text="${findIdError}"></p>
+                        </c:when>
+                        <c:otherwise>
+                            <p th:text="'회원님의 아이디는 ' + ${result} + '입니다.'"></p>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+                <div align="center">
+                    <a href="/member/login">로그인 하러 가기</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+
+</body>
+</html>

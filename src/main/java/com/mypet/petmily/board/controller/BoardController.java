@@ -15,6 +15,7 @@ import com.mypet.petmily.board.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Slf4j
 @Controller
 @RequestMapping("/board")
@@ -25,6 +26,7 @@ public class BoardController {
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
+
     
     //게시판 목록 페이지 이동
     @GetMapping("/{boardType}/list")
@@ -205,9 +207,9 @@ public class BoardController {
 		return mv;
     }
 
+
 	@GetMapping("service")
 	public String Service(){
 		return "board/service";
 	}
-    
 }

@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/member/mainRegist.css" rel="stylesheet" type="text/css">
-    <script defer type="text/javascript" src="/js/member/regist.js"></script>
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
 
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/member/mainRegist.css"/>
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 </head>
 
 <body>
+<div th:replace="common/header_white.html"></div>
 <div class="container">
     <h3 class="member_regist">회원가입</h3>
     <div class="style_container">
@@ -28,11 +32,28 @@
     </div>
     <div class="login_inline">
         <div class="petmily_member">이미 펫밀리의 회원 이신가요?</div>
-        <div class="login">로그인</div>
+        <div class="login"><a href="/member/login" style="text-decoration: none; color:inherit;">로그인</a></div>
     </div>
 </div>
 
+<div id="footer_container">
 
+</div>
+
+<script>
+
+    /* =============================================================================
+                                         mainRegist.html
+   =============================================================================== */
+    /* 회원 가입 mainRegist 창에서 이메일로 가입하기 버튼 누를 시 */
+    if (document.getElementById("regist")) {
+        const $regist = document.getElementById("regist");
+        $regist.onclick = function () {
+            location.href = "/member/regist";
+        }
+    }
+</script>
+
+<div th:replace="common/footer.html"></div>
 </body>
-
 </html>

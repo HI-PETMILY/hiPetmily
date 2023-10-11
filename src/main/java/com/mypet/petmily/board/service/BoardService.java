@@ -52,9 +52,11 @@ public class BoardService {
 		return boardMapper.deleteBoard(boardNo);
 	}
 
+
 	//게시판 조회수 증가
 	@Transactional
 	public int updateBoardViews(Integer boardNo) throws Exception {
 		return boardMapper.updateBoardViews(boardNo);
 	}
 }
+

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <div id="header" class="header white">
 
@@ -8,7 +9,7 @@
             <img id="headerLogImg" src="/static_Image/common/main/logo_black.png">
         </div>
         <div class="header_left_title">
-            <p id="headerTitle">PETMILY</p>
+            <div id="headerTitle" class="headerTitle">PETMILY</div>
         </div>
     </div>
 
@@ -25,6 +26,8 @@
 
     <div class="header_right">
         <ul>
+
+            <th:block sec:authorize="isAnonymous()">
             <li id="headerJoin" class="headerJoin">
                 <div class="header_right_img">
                     <img src="/static_Image/common/main/add_user_bl.png" id="headerJoinImg" alt="회원가입">
@@ -36,6 +39,9 @@
                     <img src="/static_Image/common/main/login_bl.png" id="headerLoginImg" alt="로그인">
                 </div>
             </li>
+            </th:block>
+
+            <th:block sec:authorize="isAuthenticated()">
             <!-- 마이페이지 로그인시 보여지는 버튼 default : hide -->
             <li id="headerMypage" class="headerMypage">
                 <div class="header_right_img">
@@ -48,10 +54,14 @@
                     <img src="/static_Image/common/main/logout_bl.png" id="headerLogoutImg" alt="로그아웃">
                 </div>
             </li>
+            </th:block>
+
             <!-- 관리자 로그인해서 관리자만 보여지는 버튼 -->
-            <li id="headerAdmin" class="headerAdmin">
+            <li id="headerAdmin" class="headerAdmin" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <div class="header_right_img">
+                    <a href="/admin">
                     <img src="/static_Image/common/main/admin_bl.png" id="headerAdminImg" alt="관리자">
+                    </a>
                 </div>
             </li>
         </ul>

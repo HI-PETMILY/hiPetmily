@@ -5,6 +5,7 @@
     <title>list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+
 	<link rel="stylesheet" href="/css/common/headerFooter.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <link rel="stylesheet" href="/css/board/qna.css"/>-->
@@ -14,8 +15,10 @@
 <!--            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"-->
 <!--            rel="stylesheet">-->
 
+
 </head>
 <body>
+
 
 	<div th:replace="common/header_black.html"></div>
 	<div class="board_wrap">
@@ -45,6 +48,7 @@
 				<div th:if="${#lists.isEmpty(list)}">
 					<td colspan="5">데이터가 없습니다.</td>
 				</div>
+
 
 				<div th:each="item : ${list}" th:unless="${#lists.isEmpty(list)}">
 					<div class="num" th:text="${item.categoryName}"></div>

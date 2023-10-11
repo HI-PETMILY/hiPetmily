@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class BoardDTO {
 
+
 	/** ############## 테이블 컬럼 ##############*/
 	/** 게시판 번호 */
 	private Integer boardNo;
@@ -58,6 +59,7 @@ public class BoardDTO {
 	private String searchTxt;
 
 }
+
 
 
 

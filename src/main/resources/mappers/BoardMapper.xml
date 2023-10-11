@@ -4,6 +4,7 @@
 
 <mapper namespace="com.mypet.petmily.board.dao.BoardMapper">
 
+
 	<!-- 게시판 저장 -->
 	<insert id="insertBoard" parameterType="com.mypet.petmily.board.dto.BoardDTO" >
 		/*게시판 저장 SQL com.mypet.petmily.board.dao.BoardMapper.insertBoard*/
@@ -45,6 +46,7 @@
 			</if>
 		)	
 	</insert>
+
 
 	<!-- 게시판 수정 -->
 	<update id="updateBoard" parameterType="com.mypet.petmily.board.dto.BoardDTO" >

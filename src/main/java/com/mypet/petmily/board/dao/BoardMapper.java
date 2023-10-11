@@ -24,6 +24,7 @@ public interface BoardMapper {
 	//게시판 수정
 	int updateBoard(BoardDTO boardDTO) throws Exception;
 
+
 	//게시판 삭제
 	int deleteBoard(Integer boardNo) throws Exception;
 	
