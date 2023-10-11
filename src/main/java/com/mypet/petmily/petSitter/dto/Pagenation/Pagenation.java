@@ -14,9 +14,9 @@ public class Pagenation {
 
         /*페이징바 시작 숫자*/
 
-        int startPage = (int) (Math.ceil((double) page/ buttonAmount -1) * buttonAmount + 1;
+       // int startPage = (int) (Math.ceil((double) page/ buttonAmount -1) * buttonAmount + 1;
 
 
-
+return null;
     }
 }

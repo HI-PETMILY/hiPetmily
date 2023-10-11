@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -64,13 +66,13 @@ public class PetSitterDTO {
     //예금주
     private String petBankName;
     //닉네임
-    private MemberDTO nickname;
+    private String nickname;
     //태그 내용
-    private PetTagDTO tagContent;
+    private List<PetTagDTO> tagContentList;
 
-    private  ReviewDTO revScore;
+    private List<ReviewDTO> revScore;
 
-    private ReviewDTO revContent;
+    private List<ReviewDTO> revContent;
 
 
 

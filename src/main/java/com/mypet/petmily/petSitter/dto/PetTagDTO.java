@@ -13,7 +13,6 @@ public class PetTagDTO {
 
     private String tagContent;
 
-    private  PetSitterDTO petMemberNo;
 
 
 }

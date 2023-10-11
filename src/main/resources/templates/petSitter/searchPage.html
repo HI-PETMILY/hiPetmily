@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>SearchPetSitter</title>
@@ -67,62 +67,70 @@
     <button class="search-btn" name="" onclick="">찾기</button>
     <button class="search-init" name="" onclick="">초기화</button>
 </div>
-        <div class="select-tag">
-            <div class="tag-info"><button class="">대형견</button></div>
-            <div class="tag-info"><button class="">노령견</button></div>
-            <div class="tag-info"><button class="">약물복용</button></div>
-            <div class="tag-info"><button class="">실외배변</button></div>
-            <div class="tag-info"><button class="">응급처치</button></div>
-            <div class="tag-info"><button class="">목욕</button></div>
-            <div class="tag-info"><button class="">교육/훈련</button></div>
-            <div class="tag-info"><button class="">장기돌봄</button></div>
-            <div class="tag-info"><button class="">수제간식</button></div>
-            <div class="tag-info"><button class="">한마리돌봄</button></div>
-            <div class="tag-info"><button class="">분리돌봄</button></div>
-            <div class="tag-info"><button class="">CCTV</button></div>
-            <div class="tag-info"><button class="">반려견없음 </button></div>
-            <div class="tag-info2"><button class="">아이없음<br>(12세이하) </button></div>
-    </div>
+<!--        <div class="select-tag">-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">대형견</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">노령견</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">약물복용</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">실외배변</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">응급처치</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">목욕</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">교육/훈련</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">장기돌봄</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">수제간식</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">한마리돌봄</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">분리돌봄</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">CCTV</button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">반려견없음 </button></div>-->
+<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info2"><button class="">아이없음<br>(12세이하) </button></div>-->
+<!--    </div>-->
     </div>
 </div>
 
 
 <div class="petsitter-info">
-    <div class="petsitter-poto">
-        <a><img src=""></a>
-    </div>
+    <th:block th:each="petSitter : ${petSitterList}" th:onclick="|location.href='/petSitter/petSitterProfile?${petMemberNo}'|">
+<!--    <div class="petsitter-poto">-->
+<!--        <a><img src=""></a>-->
+<!--    </div>-->
 
     <div class="title">
-        <div class="comment">
-            <div class="first-comment1">
+        <div  class="comment">
+            <div th:text ="${petSitter.title}" class="first-comment1">
 
             </div>
 
-            <div class="petsitter-nickname">
+            <div th:text ="${petSitter.nickname}" class="petsitter-nickname">
 
             </div>
         </div>
         <div>
-        <div class="tag-collection"></div>
-        <div class="price"> </div>
+        <div th:text="${petSitter.tagContentList}" class="tag-collection"></div>
+        <div class="price-box">
+            <div  th:if="${peSitter.petMDayPay != null}" th:text="${peSitter.petMDayPay}" class="price"> </div>
+            <div th:if="${peSitter.petMTimePay != null}" th:text="${peSitter.petMTimePay}" class="price"> </div>
+            <div th:if="${peSitter.petLDayPay != null}" th:text="${peSitter.petLDayPay}" class="price"> </div>
+            <div th:if="${peSitter.petLTimePay != null}" th:text="${peSitter.petLTimePay}" class="price"> </div>
+        </div>
         </div>
         <div>
             <div class="review-box">
-                <div class="profile-poto">
+<!--                <div class="profile-poto">-->
 
-                </div>
-            <div class="review-content">
-                <div class="more">
-                    <span>더보기</span>
-                    <img>
+<!--                </div>-->
+            <div th:text="${peSitter.revContent}" class="review-content">
+<!--                <div class="more">-->
+<!--                    <span>더보기</span>-->
+<!--                    <img>-->
 
-                </div>
+<!--                </div>-->
 
             </div>
             </div>
         </div>
 
     </div>
+
+    </th:block>
 
 
 </div>
