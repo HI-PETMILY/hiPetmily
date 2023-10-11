@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
 
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/css/member/completedRegist.css"/>
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 </head>
 <body>
+
+<div th:replace="common/header_white.html"></div>
 
 <div class="main_container">
     <p id="cong_petmily" th:text="${nickname} + '님, 펫밀리 회원가입을 축하합니다!'"></p>
     <p id="ex_petmily">펫밀리의 돌봄 서비스를 경험해보세요.</p>
     <hr id="line">
+    <a href="/" style="text-decoration: none; color:inherit;">
     <input type="button" id="gomain" value="    지금 펫밀리 이용하기    >">
+    </a>
+</div>
+
+<div id="footer_container">
+
+<div th:replace="common/footer.html"></div>
+
 </div>
 
 </body>

@@ -52,3 +52,12 @@
     font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
     font-weight: 500;
 }
+
+
+.member_regist {
+    padding-bottom: 20px;
+}
+
+#footer_container {
+    margin-bottom: 170px
+}

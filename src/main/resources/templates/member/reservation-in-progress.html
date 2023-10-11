@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/member/event.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+<body>
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div id="reservation-in-progress" class="myPageMain-container">
+
+    <div class="left-navi"></div>
+
+    <div class="myPageMainWrapper">
+        <h2 class="mainTitle">진행 중인 예약</h2>
+        <div class="nav-line grey-line"></div>
+
+        <!-- 예약 수만큼 reservation-box가 반복 돼야 함 -->
+        <div class="reservation-box">
+            <div class="reserve-info">
+                <div class="sitter-profile">
+                    <div class="sitter-profileImg">
+                        <img src="/static_Image/member/petProfileTest1.png">
+
+                    </div>
+                    <div class="sitter-nickname">
+                        <p>펫시터 닉네임</p>
+                    </div>
+                </div>
+
+                <div class="reserve-detail">
+                    <div class="reserve-code">예약 코드 : 12345678</div>
+                    <div class="reserve-text">펫시터닉네임 님에게 돌봄 서비스를 예약하셨어요.</div>
+                    <div class="nav-line grey-line"></div>
+                    <div class="reserve-text-box">
+                        <h3 class="reserve-service-exp">펫시터 돌봄 서비스</h3>
+                        <!--                    <div><p th:text="${}"></p> </div>-->
+                        <div class="reserve-date"><p>2023 10월 22일 예약</p></div>
+                        <div class="reserve-pet"><p>돌봄대상 (이)가 서비스를 받을 예정입니다.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="result-button">
+                <button class="text-button reserve-button blue">결제 진행</button>
+                <button class="text-button reserve-button grey">예약 취소</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+</body>
+</html>

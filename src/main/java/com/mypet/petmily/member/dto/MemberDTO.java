@@ -19,9 +19,9 @@ public class MemberDTO implements UserDetails {
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름
     private String nickName;        // 닉네임
-    private String phone;              // 연락처
+    private String phone;           // 연락처
     private String gender;          // 성별
-    private Integer postNo;             // 우편번호
+    private Integer postNo;         // 우편번호
     private String address;         // 주소
     private String address2;        // 상세주소
     private int point;              // 적립금

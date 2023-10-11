@@ -8,7 +8,7 @@
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberId" column="MEMBER_ID"/>
         <result property="memberPwd" column="MEMBER_PWD"/>
-        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
         <result property="phone" column="PHONE"/>
         <result property="postNo" column="POST_NO"/>
@@ -114,7 +114,7 @@
         ( MEMBER_NO
         , AUTHORITY_CODE)
         VALUES ( SEQ_TBL_MEMBER_NO.CURRVAL
-               , 2)
+               , 3)
     </insert>
 
     <select id="findId" parameterType="String" resultType="String">
@@ -149,27 +149,13 @@
     </select>
 
 
-    <!-- 설마 중복 처리..?-->
-<!--    <select id="selectMember">-->
-<!--            SELECT-->
-<!--                MEMBER_NO-->
-<!--                 , MEMBER_ID-->
-<!--                 , NICKNAME-->
-<!--                 , PHONE-->
-<!--                 , EMAIL-->
-<!--                 , ADDRESS-->
-<!--                 , MEMBER_ROLE-->
-<!--                 , MEMBER_STAT-->
-<!--            FROM  TBL_MEMBER A-->
-<!--            WHERE  MEMBER_STAT = 'Y'-->
-<!--              AND  MEMBER_ID = #{ memberId }-->
-<!--     </select>-->
 
 <!--    /* 회원 정보 수정 */-->
     <update id="updateMember">
         UPDATE
             TBL_MEMBER
-        SET NICKNAME = #{ nickName }
+        SET
+            NICKNAME = #{ nickName }
           , POST_NO  = #{ postNo }
           , ADDRESS  = #{ address }
           , ADDRESS2 = #{ address2 }
@@ -193,6 +179,12 @@
         WHERE MEMBER_STAT = '활동'
           AND MEMBER_ID = #{ memberId }
     </update>
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM TBL_RESERVATION
+    </select>
 
 
 </mapper>
