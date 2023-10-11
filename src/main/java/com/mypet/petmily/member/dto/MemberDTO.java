@@ -32,6 +32,7 @@ public class MemberDTO implements UserDetails {
     private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
     // 한 멤버는 여러 권한을 가질 수 있다
+    private List<PetDTO> petList;   // 회원의 반려견 코드
 
 
     /* 나중에 GrantedAuthority 객체 */

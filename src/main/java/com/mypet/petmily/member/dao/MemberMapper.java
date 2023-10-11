@@ -41,6 +41,7 @@ public interface MemberMapper {
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
     // xml 작성해야 함
 
-    PetDTO viewPetProfile(MemberDTO loginMember);
+    PetDTO selectPetProfileList(MemberDTO loginMember);
 
+    PetDTO viewPetProfile(MemberDTO loginMember);
 }

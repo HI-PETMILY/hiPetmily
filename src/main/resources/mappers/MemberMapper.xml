@@ -315,4 +315,14 @@
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{memberNo}
     </select>
+
+    <select id="selectPetProfileList" resultMap="petResultMap">
+        SELECT
+               PET_NAME
+             , PET_REGIST
+             , PET_AGE
+             , PET_WEIGHT
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{memberNo}
+    </select>
 </mapper>

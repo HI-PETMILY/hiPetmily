@@ -155,11 +155,16 @@ public class MemberService {
         //memberMapper.insertAttachment(review.getAttachment());
     }
 
+    /* 반려동물 프로필 리스트 조회 */
+    public PetDTO selectPetProfileList(MemberDTO loginMember) {
+        return memberMapper.selectPetProfileList(loginMember);
+    }
+
+    /* 특정 반려동물 프로필 조회 */
     public PetDTO viewPetProfile(MemberDTO loginMember) {
 
         return memberMapper.viewPetProfile(loginMember);
     }
 
-    /* 반려동물 프로필 조회 */
 
 }

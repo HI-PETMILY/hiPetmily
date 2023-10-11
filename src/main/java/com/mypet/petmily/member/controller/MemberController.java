@@ -260,10 +260,6 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
-    /* 반려동물 프로필 리스트 조회 페이지 */
-    @GetMapping("/pet-profile-list")
-    public void petProfileListPage(){}
-
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
@@ -331,6 +327,17 @@ public class MemberController {
         memberService.registPetProfile(pet);
 
         return "redirect:/member/pet-profile-view";
+    }
+
+    /* 반려동물 프로필 리스트 조회 페이지 */
+    @GetMapping("/pet-profile-list")
+    public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        model.addAttribute("loginMember", loginMember.getMemberId());
+
+        PetDTO petProfileList = memberService.selectPetProfileList(loginMember);
+
+        model.addAttribute("petProfileList", petProfileList);
     }
 
     /* 반려동물 프로필 조회 페이지 */
