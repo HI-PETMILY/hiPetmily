@@ -14,7 +14,7 @@
 <div class="container">
     <div class="container_box">
         <div>
-            <p class="big_petmily" th:text="${nickname} + '님, 예약이 완료되었습니다!'"></p><br>
+            <p class="big_petmily" th:text="${member.getNickName()} + '님, 예약이 완료되었습니다!'"></p><br>
             <p class="small_petmily" th:text="'예약번호 : ' + ${resCode} + '번 입니다.'"></p>
             <p class="small_petmily" th:text="'예약기간 : ' + ${startDateTime} + ' ~ '+ ${endDateTime}"></p>
             <p class="small_petmily" th:text="'결제금액 : ' + ${resDayCount} + '박 '
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div>
-        <button type="button" class="btn1" onclick="location.href='/petSitter/petSitterProfile'">전 페이지로 돌아가기</button>
+        <button type="button" class="btn1" th:onclick="|location.href='/petSitter/petSitterProfile?petMemberNo=' + ${petMemberNo}|">전 페이지로 돌아가기</button>
     </div>
 </div>
 

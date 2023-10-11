@@ -355,7 +355,15 @@ table {
     line-height: 2;
 }
 
+.psp_dogDetail_con ul li {
+    display: flex;
+    flex-direction: row;
+}
+
 .psp_dogDetail_con img {
+    width: 11px;
+    height: 11px;
+    margin-top: 5px;
     margin-right: 5px;
 }
 

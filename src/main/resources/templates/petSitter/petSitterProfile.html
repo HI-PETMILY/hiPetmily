@@ -59,40 +59,28 @@
                 </div>
             </div>
             <div class="psp_item_content">
-                <div class="psp_item_title">애견전공/공원산책/미끄럼방지바닥시공/애기 안심하고 맡겨주세요!</div>
+                <div class="psp_item_title" th:text="${ petSitterInfo.petTitle }">기본값</div>
                 <div class="psp_item_box">
                     <div class="psp_profile_name">김아무개</div>
                     <div class="psp_profile_address">서울 종로구 인사동길 12</div>
                 </div>
-                <div class="psp_profile_tag">
-                    <div class="tagBox">약물복용</div>
-                    <div class="tagBox">실외배변</div>
-                    <div class="tagBox">응급처치</div>
-                    <div class="tagBox">장기돌봄</div>
-                    <div class="tagBox">수제간식</div>
-                    <div class="tagBox">한마리돌봄</div>
-                    <div class="tagBox">분리돌봄</div>
-                    <div class="tagBox">CCTV</div>
-                    <div class="tagBox">아이없음(12세이하)</div>
+                <div class="psp_profile_tag" >
+                    <th:block th:each="item : ${ petTagList }">
+                        <div class="tagBox" th:text="${ item.tagContent }">기본값</div>
+                    </th:block>
                 </div>
             </div>
         </div>
 
         <div class="psp_item">
             <div class="psp_item_title">펫시터 소개</div>
-            <p class="psp_item_text">안녕하세요. 포메라니안 10살 남아를 키우고 있는 쮸삐 맘입니다 ^^
-                우리 아이처럼 사랑으로 케어 해서 편안하게 함께 있을 수 있습니다....
-                어릴 때부터 강아지를 너무 좋아해서 강아지 키우는 친구들 집에 매일 놀러 갈 정도였어요.
-                대형견부터 작은 아이들까지 그리고 쮸삐와 함께 한 추억이 많습니다.
-                반려견과 놀기 위해 캠핑도 시작했을 정도입니다.
-                ...<< 더보기 </p>
+            <p id="psp_intro_text" class="psp_item_text" th:text="${ petSitterInfo.petIntroduce }">기본값</p>
         </div>
 
         <div class="psp_item">
             <div class="psp_item_title">경력 / 교육</div>
-            <ul class="psp_item_text2">
-                <li>반려견 양육경험 약 10년</li>
-                <li>반려동물관리사 1급 (한국교육검정원)</li>
+            <ul class="psp_item_text2" th:each="item : ${ careerList }">
+                <li th:text="${ item.careerContent }">기본값</li>
             </ul>
         </div>
 
@@ -101,27 +89,31 @@
             <div class="psp_env_box">
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img1">돌봄공간</div>
-                    <div class="env_item_td">아파트에 살아요.</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petPlace } + ' 거주'">기본값</div>
                 </div>
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img2">돌봄가능 반려견수</div>
-                    <div class="env_item_td">1마리만요.</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petCareCount } + ' 마리'">1마리까지</div>
                 </div>
                 <div class="psp_env_item env_item_bc2">
                     <div class="env_item_th th_img3">12세 이하 아동</div>
-                    <div class="env_item_td">없어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petBabyYn.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petBabyYn.toString().equals('N') }">없어요.</div>
                 </div>
                 <div class="psp_env_item env_item_bc2">
                     <div class="env_item_th th_img4">반려견 펜스</div>
-                    <div class="env_item_td">없어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petPence.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petPence.toString().equals('N') }">없어요.</div>
                 </div>
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img5">동거 반려동물</div>
-                    <div class="env_item_td">시츄(중성화 O)</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petMypetYn.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petMypetYn.toString().equals('N') }">없어요.</div>
                 </div>
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img6">실내흡연</div>
-                    <div class="env_item_td">당연 금연입니다.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petSmokYn.toString().equals('Y') }">흡연자 입니다.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petSmokYn.toString().equals('N') }">비흡연자 입니다.</div>
                 </div>
             </div>
         </div>
@@ -138,13 +130,13 @@
                     </tr>
                     <tr>
                         <th scope="row">1박케어 (24시간)</th>
-                        <td>￦35,000</td>
-                        <td>￦45,000</td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') }"></td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petL_DayPay, 3, 'COMMA') }"></td>
                     </tr>
                     <tr>
                         <th scope="row">타임케어 (1시간)</th>
-                        <td>￦1,500</td>
-                        <td>￦2,000</td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') }"></td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petL_TimePay, 3, 'COMMA') }"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -154,26 +146,38 @@
 
         <div class="psp_dogDetail">
             <div class="psp_dogDetail_img">
-                <img src="/static_Image/petSitter/dog.png" alt="dog이미지">
+                <img src="/static_Image/petSitter/dog.png" alt="개 이미지">
             </div>
             <div class="psp_dogDetail_text1">
                 <div class="psp_dogDetail_title">돌봄가능 반려견 크기, 나이</div>
                 <div class="psp_dogDetail_con">
                     <ul>
-                        <li><img src="/static_Image/petSitter/dog_next.png" alt="화살표">소/중/대/초대형견 모두 가능합니다.</li>
-                        <li><img src="/static_Image/petSitter/dog_next.png" alt="화살표">접종완료된 강아지~지병 없는 노령견 모두 가능합니다.</li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ petSitterInfo.petCareSize }">기본값</div>
+                        </li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ petSitterInfo.petCareAge }">기본값</div>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="psp_dogDetail_img">
-                <img src="/static_Image/petSitter/watch.png" alt="dog이미지">
+                <img src="/static_Image/petSitter/watch.png" alt="시계이미지">
             </div>
             <div class="psp_dogDetail_text2">
                 <div class="psp_dogDetail_title">체크인, 체크아웃 시간</div>
                 <div class="psp_dogDetail_con">
                     <ul>
-                        <li><img src="/static_Image/petSitter/dog_next.png" alt="화살표">체크인 : 01:00~23:00</li>
-                        <li><img src="/static_Image/petSitter/dog_next.png" alt="화살표">체크아웃 : 01:00~23:00</li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ '체크인 : ' + petSitterInfo.petCheckIn }">기본값</div>
+                        </li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ '체크아웃 : ' + petSitterInfo.petCheckOut }">기본값</div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -186,11 +190,11 @@
                     <tbody>
                         <tr>
                             <th scope="row">해주세요!</th>
-                            <td>평소 먹는 펫푸드/간식, 산책용폼, 반려인 체취 묻은 천</td>
+                            <td th:text="${ petSitterInfo.petRequest }">기본값</td>
                         </tr>
                         <tr>
                             <th scope="row">힘들어요!</th>
-                            <td>물거나 공격적인 아이, 피부질환 등 전염성 질병 있는 아이</td>
+                            <td th:text="${ petSitterInfo.petImpossible }">기본값</td>
                         </tr>
                     </tbody>
                 </table>
@@ -276,8 +280,12 @@
                 <div class="psp_res_item2">
                     <div class="psp_res_pay">
                         <div class="res_pay_left">
-                            <div class="pay_left_text">24H 케어 / <span>35,000원</span></div>
-                            <div class="pay_left_text">1H 케어 / <span>2,500원</span></div>
+                            <div class="pay_left_text">24H 케어 /
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') + ' 원' }">35,000원</span>
+                            </div>
+                            <div class="pay_left_text">1H 케어 /
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') + ' 원' }">2,500원</span>
+                            </div>
                         </div>
                         <div class="res_pay_right">
                             <div class="pay_right_text">15kg 미만 기준</div>
@@ -311,6 +319,7 @@
 
                 <div class="psp_res_item4">
                     <ul>
+                        <li>펫시터는 하루에 1건만 예약 가능합니다.</li>
                         <li>1시간 이하 이용시 1시간 비용으로 적용됩니다.</li>
                         <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
                         <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
@@ -331,7 +340,7 @@
             <div class="psp_calendar_box">
                 <div id='calendar'></div>
             </div>
-            <div>※ 배경이 푸른색이 가능한 날짜입니다.</div>
+            <div>※ 붉은색은 불가능한 날짜입니다.</div>
         </div>
 
         <!-- Map -->
