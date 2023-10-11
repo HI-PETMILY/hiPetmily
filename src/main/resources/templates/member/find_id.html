@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/member/event.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+<body>
+
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div id="find_id" class="main-container">
+
+    <div class="mainWrapper">
+
+        <div>
+            <h2 class="mainTitle">아이디 찾기</h2>
+            <div class="nav-line"></div>
+
+            <form id="findIdForm" action="/member/find_id" method="post">
+                <div class="">
+                    <input type="text" name="memberName" placeholder="이름" id="inputName_id"
+                           onfocus="this.placeholder=''" onblur="this.placeholder='이름'"
+                           class="findIdPwd InputBox" required>
+                </div>
+
+                <div class="">
+                    <input type="text" name="phone" placeholder="휴대폰 번호" id="inputPhone_id"
+                           onfocus="this.placeholder=''" onblur="this.placeholder='휴대폰 번호'"
+                           class="findIdPwd InputBox" required>
+                </div>
+
+                <div>
+                    <input id="findIdSubmit" class="submitButton" type="submit" value="아이디 찾기"
+                    onclick="findUserId()">
+                </div>
+            </form>
+
+            <div class="btns" align="center">
+                <a href="/member/find_pwd" style="color: #000000">비밀번호 찾으러 가기</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+
+</body>
+</html>

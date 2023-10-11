@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="/css/board/view.css">
 </head>
 <body>
-<div th:replace="common/header_white.html"></div>
+
+	<div th:replace="common/header_black.html"></div>
+
     <div class="board_wrap">
         <div class="board_title">
             <strong>공지사항 등록</strong>
@@ -34,7 +36,8 @@
 								<select class="select" id="categoryCode" name="categoryCode">
 									<!-- 게시판에 등록된 카테고리코드 값으로 셀렉트박스를 선택한다. -->
 							  		<option value="1" th:selected="${boardDTO != null and boardDTO.categoryCode == 1}">일반공지</option>
-									<option value="2" th:selected="${boardDTO != null and boardDTO.categoryCode == 2}">중요공지</option>
+							  		<option value="2" th:selected="${boardDTO != null and boardDTO.categoryCode == 2}">중요공지</option>
+
 								</select>
 	                        </dd>
 	                    </dl>      

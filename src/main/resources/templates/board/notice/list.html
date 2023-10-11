@@ -5,65 +5,70 @@
     <title>list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
-    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+	<link rel="stylesheet" href="/css/common/headerFooter.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/board/list.css"/>-->
+   <link rel="stylesheet" href="/css/board/qna.css"/>-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link-->
+<!--            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"-->
+<!--            rel="stylesheet">-->
 
 
 </head>
 <body>
 
-<div th:replace="common/header_white.html"></div>
 
-<div class="contents">
-	<div class="page-title"><strong>펫밀리 공지사항</strong></div>
-    <div class="save_button"><button class="buttons" onclick="writeBtn()">글작성</button></div>
-    <div class="board">
-	    <table>
-	        <tr>
-	            <th class="sec1">분류</th>
-	            <th class="sec2">제목</th>
-	            <th class="sec3">등록일</th>
-	            <th class="sec4">조회수</th>
-	        </tr>
-	        <!-- 게시판 데이터 예시 -->
-	        <tr th:if="${#lists.isEmpty(list)}">
-	            <td colspan="4">데이터가 없습니다.</td>
-	        </tr>
-	        <tr th:each="item : ${list}" th:unless="${#lists.isEmpty(list)}">
-	            <td class="sec1" th:text="${item.categoryName}"></td>
-				<td class="sec2"><a th:text="${item.boardName}" th:href="@{/board/notice/view(boardNo = ${item.boardNo})}"></a></td> 
-	            <td class="sec3" th:text="${item.boardRegistDate}"></td>
-	            <td class="sec4" th:text="${item.boardViews}"></td>
-	        </tr>
-	    </table>        
-    </div>
-    <div class="search-el">
-        <div class="search-el-wrap1"></div>
-        <div class="search-el-wrap2">
-        <form id="searchFrm" name="searchFrm" method="get" action="/board/notice/list">
-		    <select name="searchType" class="browser-default custom-select" th:if="${boardDTO != null}" >
-		        <option value="title" th:selected="${boardDTO.searchType == 'title'}">제목</option>
-		        <option value="content" th:selected="${boardDTO.searchType == 'content'}">내용</option>
-		    </select>
-            <input type="search" id="searchTxt" name="searchTxt" th:value="${boardDTO != null} ? ${boardDTO.searchTxt} : ''" />
-            <img id="search-img" width="19px" src="/static_Image/board/search.png"/>
-     	</form>
-        </div>
-    </div>
-    <!-- 페이지네이션 -->
-    <div class="pagination">
-    	<div th:utext="${pagingHtml}"></div>
-    </div>
-</div>
-<div th:replace="common/footer.html"></div>
+	<div th:replace="common/header_black.html"></div>
+	<div class="board_wrap">
+		<div class="board_title">
+			<strong>공지사항</strong>
+			<p>펫밀리의 공지사항을 빠르고 정확하게 안내해드립니다.</p>
+		</div>
+		<div class="board_search">
+			<form id="searchFrm" name="searchFrm" method="get" action="/board/notice/list">
+				<select name="searchType" th:if="${boardDTO != null}" >
+					<option value="title" th:selected="${boardDTO.searchType == 'title'}">제목</option>
+					<option value="content" th:selected="${boardDTO.searchType == 'content'}">내용</option>
+				</select>
+				<input type="search" id="searchTxt" name="searchTxt" th:value="${boardDTO != null} ? ${boardDTO.searchTxt} : ''" />
+			</form>
+		</div>
+		<div class="board_list_wrap">
+			<div class="board_list">
 
-<script>
-    const writeBtn = () => {
-        location.href = "/board/notice/write";
-    }
-</script>
+				<div class="top">
+					<div class="num">분류</div>
+					<div class="title">제목</div>
+					<div class="writer">글쓴이</div>
+					<div class="date">작성자</div>
+					<div class="count">조회수</div>
+				</div>
+				<div th:if="${#lists.isEmpty(list)}">
+					<td colspan="5">데이터가 없습니다.</td>
+				</div>
 
+
+				<div th:each="item : ${list}" th:unless="${#lists.isEmpty(list)}">
+					<div class="num" th:text="${item.categoryName}"></div>
+					<div class="title"><a th:text="${item.boardName}" th:href="@{/board/notice/view(boardNo = ${item.boardNo})}"></a></div> 
+					<div class="writer" th:text="${item.memberName}"></div>
+					<div class="date" th:text="${item.boardRegistDate}"></div>
+					<div class="count" th:text="${item.boardViews}"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 페이지네이션 -->
+		<div class="board_page">
+			<div th:utext="${pagingHtml}"></div>
+		</div>
+		<div class="bt_wrap">
+			<a href="/board/notice/write" class="on">등록</a>
+			<!--<a href="#">수정</a>-->
+		</div>
+	</div>
+	<div th:replace="common/footer.html"></div>
 </body>
 
 

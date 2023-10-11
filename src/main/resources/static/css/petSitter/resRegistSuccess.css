@@ -1,0 +1,90 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* common ----------------------------------- */
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* em -> 부모
+        rem -> 최상위 부모 */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body, p {
+    height: 100%;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;      /* 하이퍼 링크 밑줄 x */
+}
+
+span {
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    font-weight: 400;
+    border-spacing: 0;
+}
+
+/* container ----------------------------------- */
+
+.container {
+    width: 100%;
+    font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 330px auto 0px;
+}
+
+.container_box {
+    width: 450px;
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.nickname {
+    font-size: 20px;
+    font-weight:bold;
+    color: rgb(65, 65, 65);
+}
+
+.big_petmily {
+    font-size: 16px;
+    font-weight:bold;
+    color: rgb(54, 54, 54);
+}
+
+.small_petmily {
+    margin-top: 0px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(82, 82, 82);
+}
+
+.btn1 {
+    width: 260px;
+    height: 43px;
+    font-size: 14px;
+    color: white;
+    background-color: #81BDF1;
+    border: 0px;
+    border-radius: 5px;
+    font-weight: 600;
+}

@@ -16,7 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 public class MemberDTO implements UserDetails {
 
-    private Long memberNo;          // 회원코드
+    private int memberNo;          // 회원코드
     private String memberId;        // 사용자 ID
     private String memberPwd;       // 패스워드
     private String memberName;      // 이름
@@ -41,8 +41,6 @@ public class MemberDTO implements UserDetails {
 
 
     /* 나중에 GrantedAuthority 객체 */
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();

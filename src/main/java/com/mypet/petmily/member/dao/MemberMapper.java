@@ -1,12 +1,21 @@
 package com.mypet.petmily.member.dao;
 
+import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
 
-    String selectMemberByNickName(String nickName);
+    MemberDTO findMemberById(String memberId);
+
+//    String selectMemberById(String memberId);
+
+    String findId(String memberName, String phone);
 
     int insertMember(MemberDTO member);
 
@@ -14,10 +23,17 @@ public interface MemberMapper {
 
     int updateMember(MemberDTO modifyMember);
 
-    MemberDTO findMemberById(String memberId);
-
     int updatePassword(MemberDTO modifyPassword);
 
     int deleteMember(MemberDTO member);
 
+    String selectMemberByNickName(String nickName);
+
+    int pwdCheck(MemberDTO dto);
+
+    void pwdUpdate(MemberDTO dto);
+
+    int selectTotalCount(Map<String, String> searchMap);
+
+    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
 }

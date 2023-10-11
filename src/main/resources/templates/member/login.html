@@ -3,15 +3,13 @@
 
 <head>
     <meta charset="UTF-8"/>
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/member/event.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
 
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
-    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
-
-
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 
      <script>
@@ -20,11 +18,6 @@
 	</script>
 
     <script>
-      /*  $(document).ready(function (){
-            $("#find_idPwd").on("click", function (){
-                location.href="/member/find_id-pwd";
-            });
-        });*/
         $(function(){
             $("#find_idPwd").click(function (){
                 location.href="/member/find_id-pwd";
@@ -35,10 +28,11 @@
 </head>
 
 <body>
-<div id="login-container" class="main-container">
 
-    <!-- common header -->
-    <div th:replace="common/header_white.html"></div>
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div id="login-container" class="main-container">
 
     <div class="mainWrapper">
 
@@ -66,11 +60,11 @@
                 </div>
 
                 <div>
-                    <input id="loginSubmit" class="submitButton" type="submit" value="로그인">
+                    <input id="loginSubmit" class="submitButton" type="submit" value="로그인" style="color: white">
                 </div>
             </form>
                 <div class="btns" align="center">
-                    <a href="/member/find_id-pwd">로그인 정보를 잊으셨나요?</a>
+                    <a href="/member/find_id" style="color: #81BDF1">로그인 정보를 잊으셨나요?</a>
                 </div>
 
             <div class="snsButtonLogin" align="center">
@@ -82,7 +76,7 @@
 
                 <div class="signInMessage">
                     <p>펫밀리의 회원이 아니신가요?
-                        <a href="">회원가입</a>
+                        <a href="/member/regist" style="color: #81BDF1">회원가입</a>
                     </p>
                 </div>
 
