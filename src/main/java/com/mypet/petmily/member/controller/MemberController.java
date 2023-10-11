@@ -270,8 +270,6 @@ public class MemberController {
     public void petProfileRegist(){}
 
 
-}
-
     /* 반려동물 프로필 조회 페이지 */
     @GetMapping("/pet-profile-view")
     public void petProfileView(){}
