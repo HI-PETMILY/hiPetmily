@@ -102,7 +102,7 @@
                , #{ nickName }
                , #{ phone }
                , #{ gender }
-               , #{ postNo}
+               , #{ postNo }
                , #{ address }
                , #{ address2 }
                , #{ memberStat }

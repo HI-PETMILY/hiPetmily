@@ -65,11 +65,12 @@ public class MemberController {
 
     /* 회원 가입 */
     @PostMapping("/regist")
-    public String registMember(MemberDTO member, String PostNo, String address, String address2,
+    public String registMember(MemberDTO member, Integer postNo, String address, String address2,
                                RedirectAttributes rttr) throws MemberRegistException {
 
-        String total_address = address + address2;
-        member.setAddress(total_address);
+        member.setPostNo(postNo);
+        member.setAddress(address);
+        member.setAddress2(address2);
         member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
 
         log.info("Request regist member : {}", member);
