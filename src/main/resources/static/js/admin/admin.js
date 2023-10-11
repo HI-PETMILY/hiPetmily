@@ -1,3 +1,4 @@
+/* 네비바 + 메뉴바 */
 $(document).ready(function () {
     // 초기 상태 설정
     $('.bar-menu').hide(); // 모든 관리 메뉴 숨김
@@ -30,8 +31,7 @@ $(document).ready(function () {
     });
 });
 
-
-// 체크박스 전체 선택/해제
+// 맨위 검색 체크 박스 전체 선택/해제
 function selectAll(selectAll) {
     const checkboxes = document.querySelectorAll('input[name="rating"]');
     const entireCheckbox = document.getElementById('entire');
@@ -40,11 +40,61 @@ function selectAll(selectAll) {
         checkbox.checked = selectAll.checked;
     });
 
-    // 개별 체크박스를 선택할 때 전체 체크박스가 풀리도록 추가
-    if (!selectAll.checked) {
-        entireCheckbox.checked = false;
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', function () {
+            //전체 체크에서 개별 체크를 눌렀을때 전체 체크 풀림
+            if (!this.checked) {
+                entireCheckbox.checked = false;
+            }
+        });
+    });
+}
+
+/*==============팝업창*/
+document.getElementById("passwordChangeButton").addEventListener("click", openPasswordChangePopup);
+
+function openPasswordChangePopup() {
+    // 사용자 클릭에 의한 팝업 열기
+    var popup = window.open("popPasswordChange", "PasswordChangePopup", "width=750,height=800,left=650,top=180");
+    if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+        // 팝업 창이 차단되었거나 팝업 창이 닫힌 경우 처리
+        alert("팝업 창이 차단되었거나 팝업 창이 닫혔습니다. 팝업 차단을 확인하세요.");
     }
 }
+
+function openInquiryPopup() {
+    // "1대1문의" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
+    var popup =window.open("popInquiry", "InquiryPopup", "width=750, height=800, left=650, top=180");
+}
+
+function openManagementPopup() {
+    // "관리" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
+    var popup =window.open("popManagement", "ManagementPopup", "width=750, height=800, left=650, top=180");
+}
+
+/* 검색 부분 ==========================*/
+function searchMembers() {
+    var searchValue = document.getElementById("searchInput").value; // 검색 입력란의 값을 가져옵니다.
+
+    if (searchValue === "") {
+        // 검색 입력란이 비어 있으면 알림 메시지를 띄우고 검색 요청을 중지합니다.
+        alert("다시 확인 후 검색어를 입력해 주세요.");
+        return false; // 검색 요청을 중지하기 위해 false를 반환합니다.
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -39,6 +39,8 @@ repositories {//package com.mypet.petmily.member.service;
 
 dependencies {
 
+
+
     implementation 'net.coobird:thumbnailator:0.4.20'
 
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'               // Thymeleaf Layout

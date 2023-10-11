@@ -33,7 +33,6 @@ public class MemberDTO implements UserDetails {
     private int warningCount;       // 경고 횟수
     private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
-
     private AuthorityDTO memberCode;
 
 
