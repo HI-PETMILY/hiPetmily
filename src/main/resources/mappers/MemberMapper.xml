@@ -326,4 +326,9 @@
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{memberNo}
     </select>
+
+    <update id="petProfileUpdate">
+        UPDATE TBL_MYPEY
+           SET
+    </update>
 </mapper>

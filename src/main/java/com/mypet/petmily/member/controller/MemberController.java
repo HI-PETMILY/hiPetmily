@@ -6,7 +6,7 @@ import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,17 +15,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -136,6 +133,8 @@ public class MemberController {
 
         return "redirect:/member/mypage";
     }
+
+    /* 임시 비밀번호 생성 */
     protected Authentication createNewAuthentication(String memberId) {
 
         UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
@@ -373,6 +372,17 @@ public class MemberController {
 
         return "member/pet-profile-view";
     }
+
+    /* 반려동물 프로필 업데이트 */
+    @GetMapping("/pet-profile-update")
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+
+        model.addAttribute("petProfile", petProfile);
+    }
+
+    /* 반려동물 프로필 삭제 */
 
     /* 지난 예약 내역 조회 페이지 */
     @GetMapping("/reservation-history")

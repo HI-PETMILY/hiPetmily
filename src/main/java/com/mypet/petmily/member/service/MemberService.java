@@ -170,4 +170,9 @@ public class MemberService {
 
         return reserveListAndPaging;
     }
+
+    /* 반려동물 프로필 업데이트 */
+    public PetDTO petProfileUpdate(MemberDTO loginMember) {
+        return memberMapper.petProfileUpdate(loginMember);
+    }
 }
