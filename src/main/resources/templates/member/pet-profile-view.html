@@ -27,11 +27,6 @@
 
     <div class="left-navi"></div>
 
-    <div id="bar">
-        <div class="bar_info" id="bar_member">사용자</div>
-        <div class="bar_info" id="bar_sitter">펫시터</div>
-    </div>
-
     <div class="myPageMainWrapper">
         <h2 class="mainTitle">반려동물 프로필</h2>
 
@@ -58,7 +53,7 @@
                     </p>
 
                     <div class="petProfileName">
-                        <p th:text="${petProfile.petName}"></p>
+                        <p th:text="${petProfile.petName}">세</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +145,7 @@
                     <div class="basic-info-map">
                         <div class="basic-info-key">몸무게</div>
                         <div class="basic-info-value">
-                            <p th:text="${petProfile.petWeight}">kg</p>
+                            <p th:text="${petProfile.petWeight} + kg" ></p>
                         </div>
                     </div>
                 </div>
@@ -162,8 +157,8 @@
         <div class="regist-pet-regist  dash-line">
             <h4>반려견 등록</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.petRegist}"></p>
+                <label>
+                    <p ><input type="radio" readonly checked th:text="${petProfile.petRegist}"></p>
                 </label>
             </div>
         </div>
@@ -171,8 +166,8 @@
         <div class="Q1  dash-line">
             <h4>Q. 다른 사람들과의 친화력</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.pSocial}"></p>    <!-- 왜 get만 있지..? -->
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.pSocial}"></p>
                 </label>
             </div>
         </div>
@@ -180,8 +175,8 @@
         <div class="Q2 dash-line">
             <h4>Q. 다른 반려동물과의 친화력</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.aSocial}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.aSocial}"></p>
                 </label>
             </div>
         </div>
@@ -189,8 +184,8 @@
         <div class="Q3 dash-line">
             <h4>Q. 잘 짖는 편인가요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.barkLevel}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.barkLevel}"></p>
                 </label>
             </div>
         </div>
@@ -198,8 +193,8 @@
         <div class="Q4 dash-line">
             <h4>Q. 분리불안 증세가 있나요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.sepAnxiety}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.sepAnxiety}"></p>
                 </label>
             </div>
         </div>
@@ -207,36 +202,36 @@
         <div class="Q5">
             <h4>Q. 앓고있는 지병이나 다친 경험이 있나요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.petDisease}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.petDisease}"></p>
                 </label>
             </div>
         </div>
 
         <div class="Q5-1 dash-line">
             <h4>Q. 지병이나 다친 경험이 있다면 주의해야 할 행동과 함께 적어주세요.</h4>
-            <div><p th:text="${petProfile.petDiseaseExp}"></p></div>
+            <div><p><textarea th:text="${petProfile.petDiseaseExp}"></textarea></p></div>
         </div>
 
         <div class="Q6">
             <h4>Q. 음식 알러지가 있나요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.petAllergy}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.petAllergy}"></p>
                 </label>
             </div>
         </div>
 
         <div class="Q6-1 dash-line">
             <h4>Q. 알러지가 있다면 어떤 음식인지 적어주세요.</h4>
-            <div><p th:text="${petProfile.petAllergyExp}"></p></div>
+            <div><p><textarea th:text="${petProfile.petAllergyExp}"></textarea></p></div>
         </div>
 
         <div class="Q7 dash-line">
             <h4>Q. 대소변은 잘 가리나요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.pottyTrain}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.pottyTrain}"></p>
                 </label>
             </div>
         </div>
@@ -245,8 +240,8 @@
         <div class="Q8 dash-line">
             <h4>Q. 실내 마킹을 하나요?</h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.markingIn}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.markingIn}"></p>
                 </label>
             </div>
         </div>
@@ -254,8 +249,8 @@
         <div class="Q9 dash-line">
             <h4>Q. 예방접종을 하셨나요? </h4>
             <div class="answer-contain">
-                <label><input type="radio" readonly checked>
-                    <p th:text="${petProfile.vaccin}"></p>
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.vaccin}"></p>
                 </label>
             </div>
         </div>
@@ -264,29 +259,29 @@
             <h4>자주 다니는 병원 정보</h4>
             <table>
                 <tr align="center">
-                    <td>병원명</td>
-                    <td><input type="radio" readonly checked>
-                        <p th:text="${petProfile.hosName}"></p>
+                    <th>병원명</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosName}"></p>
                     </td>
                 </tr>
                 <tr align="center">
-                    <td>전화번호</td>
-                    <td><input type="radio" readonly checked>
-                        <p th:text="${petProfile.hosPhone}"></p>
+                    <th>전화번호</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosPhone}"></p>
                     </td>
                 </tr>
                 <tr align="center">
-                    <td>간략주소</td>
-                    <td><td><input type="radio" readonly checked>
-                    <p th:text="${petProfile.hosAddress}"></p>
-                </td></td>
+                    <th>간략주소</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosAddress}"></p>
+                    </td>
                 </tr>
             </table>
         </div>
 
         <div>
             <button class="text-button" type="submit">삭제하기</button>
-            <button class="text-button" type="button" onclick="location.href='/member/pet-profile-regist'">수정하기</button>
+            <button class="text-button" type="button" onclick="location.href=''">수정하기</button>
         </div>
         </form>
     </div>

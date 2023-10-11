@@ -8,7 +8,7 @@
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberId" column="MEMBER_ID"/>
         <result property="memberPwd" column="MEMBER_PWD"/>
-        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
         <result property="phone" column="PHONE"/>
         <result property="postNo" column="POST_NO"/>
@@ -290,6 +290,7 @@
     <!-- 반려동물 프로필 조회 -->
     <select id="viewPetProfile" resultMap="petResultMap">
         SELECT
+               PET_CODE
              , PET_NAME
              , PET_AGE
              , PET_GENDER
@@ -312,6 +313,6 @@
              , HOS_PHONE
              , HOS_ADDRESS
           FROM TBL_MYPET
-         WHERE MEMBER_NO = #{member.memberNo}
+         WHERE MEMBER_NO = #{memberNo}
     </select>
 </mapper>
