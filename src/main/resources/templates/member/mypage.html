@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-
-    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/css/member/mypage.css"/>
-<script defer type="text/javascript" src="/js/member/mypage.js"></script>
-
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+    <!-- 폰트? -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 
 </head>
 
@@ -18,24 +20,38 @@
 
 <div id="header_bar">
     <div id="bar">
-        <div class="bar_info" id="bar_member">사용자</div>
-        <div class="bar_info" id="bar_sitter">펫시터</div>
+        <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
+        <div class="bar_info" id="bar_sitter"><p id="sitter">펫시터</p></div>
     </div>
 </div>
-<div class="main_container">
-    <div class="dog_pic_page">
-        <div id="dog_pic">
+<div id="box">
+    <div class="member_pet_container">
+
+        <div id="member_profile">
+            <div id="member_thumbnail"></div>
+            <hr id="member_hr">
+            <div><p id="nickName" th:text="${ #authentication.principal.nickName }"></div>
         </div>
-        <div id="dog_profile">
-            <p class="pet_name">댕댕박사</p>
-            <p class="pet_info">3살</p>
-            <p class="pet_info">남아(중성화 완료)</p>
-            <p class="pet_info">3kg</p>
-        </div>
-        <div>
-            <button name="pet_regist" id="pet_regist">등록</button>
+
+
+        <div class="main_container">
+            <div id="dog_pic_box">
+                <div id="dog_pic"></div>
+                <div id="dog_profile">
+                    <p id="pet_name">OOOOO</p>
+                    <p class="pet_info">O살</p>
+                    <p class="pet_info">남아(중성화 O)</p>
+                    <p class="pet_info">3kg</p>
+                </div>
+                <div>
+                    <button name="pet_regist" id="pet_regist">등록</button>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
     <div class="sub_container">
         <div class="mp" id="my_page">
             <p class="sub_info_text">마이 페이지</p>
@@ -48,10 +64,14 @@
         <div class="mp" id="my_acti">
             <p class="sub_info_text">나의 활동</p>
             <div class="sub2">
-                <input type="button" value="내가 쓴 후기" id="my_review" class="sub_button">
-                <input type="button" value="진행중인 예약" id="ing_res" class="sub_button">
-                <input type="button" value="지난 예약" id="past_res" class="sub_button">
-                <input type="button" value="결제내역" id="pay_history" class="sub_button">
+                <p>
+                    <input type="button" value="내가 쓴 후기" id="my_review" class="sub_button">
+                    <input type="button" value="진행중인 예약" id="res_ing" class="sub_button">
+                </p>
+                <p>
+                    <input type="button" value="지난 예약" id="past_res" class="sub_button">
+                    <input type="button" value="결제내역" id="pay_history" class="sub_button">
+                </p>
             </div>
         </div>
         <hr class="hr">
@@ -64,7 +84,35 @@
         </div>
     </div>
 </div>
-
 <div th:replace="common/footer.html"></div>
+
+<script>
+
+    /* 마이 페이지 -> 내 정보 확인 페이지로 이동 */
+    if (document.getElementById("my_info")) {
+        const $update = document.getElementById("my_info");
+        $update.onclick = function () {
+            location.href = "/member/update";
+        }
+    }
+
+    /* 마이 페이지 -> 공지사항 */
+    if (document.getElementById("notice")) {
+        const $update = document.getElementById("notice");
+        $update.onclick = function () {
+            location.href = "/board/notice/list";
+        }
+    }
+
+    if (document.getElementById("one_contact")) {
+        const $update = document.getElementById("one_contact");
+        $update.onclick = function () {
+            location.href = "/no..";
+        }
+    }
+
+</script>
+
 </body>
+
 </html>
