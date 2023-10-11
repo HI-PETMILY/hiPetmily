@@ -5,6 +5,7 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -259,6 +260,122 @@ public class MemberController {
 
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
+
+    /* 반려동물 프로필 조회 페이지 */
+    @GetMapping("/pet-profile-view")
+    public void petProfileView(){}
+
+    /* 반려동물 프로필 등록 */
+    @Value("/src/main/resources/upload")
+    private String IMAGE_DIR;
+
+//    @PostMapping("/pet-profile-regist")
+//    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
+//                                   @AuthenticationPrincipal MemberDTO member){
+//
+//        log.info("pet profile request : {}", pet);
+//        log.info("pet profile image request : {}", petProfileImg);
+//
+//        String petImgDir = IMAGE_DIR + "petProfile";
+//
+//        File dir = new File(petImgDir);
+//
+//        /* 디렉토리가 없을 경우 생성 */
+//        if(!dir.exists()){
+//            dir.mkdirs();
+//        }
+//
+//        // 업로드 파일에 대한 정보를 담을 리스트
+//        List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+//
+//        try{
+//            for (int i = 0; i < petProfileImg.size(); i++) {
+//
+//                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
+//                if(petProfileImg.get(i).getSize() > 0){
+//
+//                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+//                    log.info("originalFileName : {}", originalFileName);
+//
+//                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+//                    String savedFileName = UUID.randomUUID() + ext;
+//                    log.info("savedFileName : {}", savedFileName);
+//
+//                    // 서버의 설정 디렉토리 파일 저장하기
+//                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+//
+//                    // DB에 저장할 파일의 정보 처리
+//                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
+//                }
+//
+//
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return "redirect:/member/pet-profile-view";
+//    }
+
+    /* 지난 예약 내역 조회 페이지 */
+    @GetMapping("/reservation-history")
+    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
+                                         @RequestParam(required = false) String searchCondition,
+                                         @RequestParam(required = false) String searchValue,
+                                         Model model){
+        log.info("reserveList page : {}", page);
+        log.info("reserveList searchCondition : {}", searchCondition);
+        log.info("reserveList searchValue : {}", searchValue);
+
+        Map<String, String> searchMap = new HashMap<>();
+        searchMap.put("searchCondition", searchCondition);
+        searchMap.put("searchValue", searchValue);
+
+        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
+        model.addAttribute("paging", reserveListAndPaging.get("paging"));
+        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
+
+        return "member/reservation-history";
+    }
+
+    /* 후기 작성 페이지 */
+    @GetMapping("/review_write")
+    public void reviewWritePage(){}
+
+    /* 후기 전체 조회 페이지 */
+    @GetMapping("/review-list")
+    public String reviewListPage(@RequestParam(defaultValue = "1") int page,
+                                         @RequestParam(required = false) String searchCondition,
+                                         @RequestParam(required = false) String searchValue,
+                                         Model model) {
+        log.info("reviewList page : {}", page);
+        log.info("reviewList searchCondition : {}", searchCondition);
+        log.info("reviewList searchValue : {}", searchValue);
+
+        Map<String, String> searchMap = new HashMap<>();
+        searchMap.put("searchCondition", searchCondition);
+        searchMap.put("searchValue", searchValue);
+
+        Map<String, Object> reviewListAndPaging = memberService.selectReviewList(searchMap, page);
+        model.addAttribute("paging", reviewListAndPaging.get("paging"));
+        model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
+
+        return "member/review-list";
+    }
+
+    /* 진행 중인 예약 페이지 */
+    @GetMapping("/reservation-in-progress")
+    public void progressReservationPage(){}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

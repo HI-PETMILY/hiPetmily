@@ -8,7 +8,7 @@
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberId" column="MEMBER_ID"/>
         <result property="memberPwd" column="MEMBER_PWD"/>
-        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
         <result property="phone" column="PHONE"/>
         <result property="postNo" column="POST_NO"/>
@@ -193,6 +193,12 @@
         WHERE MEMBER_STAT = '활동'
           AND MEMBER_ID = #{ memberId }
     </update>
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM TBL_RESERVATION
+    </select>
 
 
 </mapper>

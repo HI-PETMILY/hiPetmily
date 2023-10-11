@@ -124,10 +124,51 @@ header {
 }
 
 /*==================================================*/
+/* 마이페이지 틀 */
+
+.myPageMainWrapper {
+    position: relative;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 70%;
+}
+
+.myPageMain-container{
+    margin: 15% 0;
+}
+
+/*==================================================*/
+/* 반려동물 등록 */
+
+.dash-line{
+    width: 100%;
+    margin: 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #bebebe;
+}
+
+input[type=text]{
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin: 5px;
+}
+
+.pet-profile-img-table{
+    display: flex;
+    justify-content: center;
+}
 
 .pet-profile-img{
-    width: 80%;
+    width: 180px;
     margin: auto;
+    border: solid 1px #bebebe;
+    border-radius: 15px;
+    max-height: 170px;
+    display: flex;
+    justify-content: center;
 }
 
 .profile-regist{
@@ -135,16 +176,287 @@ header {
     justify-content: space-around;
 }
 
-textarea{
-    width: 100%;
+.profile-regist-left, .profile-regist-right{
+    width: 45%;
 }
+
+textarea{
+    border-style: solid;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.answer-contain{
+    margin-left: 10px;
+}
+
+/*==================================================*/
+/* 반려동물 프로필 조회 화면 */
+
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+li {
+    list-style-type: none;
+    display: block;
+}
+
+/* 이미지 슬라이드 설정 */
+/* 보여줄 구간의 높이와 넓이 설정 */
+#slideShow{
+    width: 320px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.slides{
+    position: absolute;
+    width: 2500px;
+    max-height: 350px;
+    transition: 0.5s ease-out;
+}
+
+.slides img{
+    width: 250px;
+    height: 200px;
+}
+
+.slides li:first-child {
+    margin-left: 35px;
+}
+
+/* 슬라이드들 옆으로 정렬*/
+.slides li:not(:last-child){
+    float: left;
+    margin-right: 100px;
+}
+
+.petImgController span{
+    position: absolute;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    border-radius: 50%;
+    padding: 10px 20px;
+    top: 30%;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.petImgController span:hover{
+    background-color: rgba(128, 128, 128, 0.11);
+}
+.prev {
+    left: 5px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+    transform: translateX(-10px);
+}
+
+.next {
+    right: 5px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+    transform: translateX(10px);
+}
+/* 슬라이드 설정 끝 */
+
+.pet-info-top{
+    display: flex;
+}
+
+.petProfile-img-name{
+    max-width: 40%;
+}
+
+.basic-info{
+    display: flex;
+    float: right;
+    width: 60%;
+    align-items: center;
+    margin: auto;
+}
+
+.basic-info-block{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.basic-info-key{
+    font-size: 1.1rem;
+    font-weight: 1000;
+}
+
+.basic-info-value{
+    display: flex;
+    justify-content: center;
+}
+
+.petProfileName{
+    display: flex;
+    position: relative;
+    top: 40%;
+    left: 35%;
+}
+
+.text-button{
+    margin: 0 20px;
+    float: right;
+    border: solid 1px #f0f0f0;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+    background-color: #f0f0f0;
+}
+
 /*==================================================*/
 /* 임시 비밀번호 발급 화면 */
-
 
 .pwdResultBox{
     border: solid 1px #81BDF1;
     border-radius: 5px;
     margin: 15px 0;
     padding: 10px 0;
+}
+
+/*==================================================*/
+/* 후기 작성 화면 */
+
+.review-container{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.review-star-exp{
+    display: flex;
+    align-content: center;
+}
+
+.review-textarea{
+    height: 200px;
+}
+
+/* 별점 설정 */
+.review-star{
+    direction: rtl;
+}
+.review-star input[type=radio]{
+    display: none;
+}
+
+.review-star label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    line-height: 30px;
+}
+
+.review-star label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.review-star label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.review-star input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+/* ---- 별점 설정 끝 ---- */
+
+/*==================================================*/
+/* 지난 예약 조회 화면 */
+
+.reserve-table, .reviewList-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.reserve-table tr, table.reviewList-table tr{
+    border-bottom: solid 1px #cecece;
+    display: flex;
+    justify-content: space-around;
+}
+
+/*==================================================*/
+/* 진행중인 예약 조회 화면 */
+
+.reservation-box{
+    border: solid 2px #f0f0f0;
+    border-radius: 25px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.reserve-info{
+    display: flex;
+    align-content: center;
+}
+
+.sitter-profile{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.sitter-profileImg img{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.reserve-detail{
+    width: 65%;
+}
+
+.reserve-code{
+    font-size: 12px;
+}
+
+.reserve-text{
+    border: solid 1px #f0f0f0;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: #f0f0f0;
+    margin: 5px 0;
+    box-shadow: 3px 3px 4px 0 #E0E0E0;
+}
+
+.grey-line{
+    margin: 15px;
+    width: 90%;
+    background-color: #f0f0f0;
+    margin-left: -1px;
+}
+
+.reserve-date, .reserve-pet{
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.result-button{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+}
+
+.reserve-button{
+    box-shadow: 3px 3px 4px 0 #E0E0E0;
+}
+
+button.blue{
+    background-color: #81BDF1;
 }
