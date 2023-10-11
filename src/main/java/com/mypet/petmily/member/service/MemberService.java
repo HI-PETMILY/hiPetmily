@@ -8,6 +8,7 @@ import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -101,29 +102,42 @@ public class MemberService {
         memberMapper.pwdUpdate(dto);
     }
 
+
+
     /* 예약 내역 조회 */
-    public Map<String, Object> selectReserveList(Map<String, String> searchMap, int page) {
-        /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
-        int totalCount = memberMapper.selectTotalCount(searchMap);
-        log.info("reserveList totalCount : {}", totalCount);
+//    public Map<String, Object> selectReserveList(Map<String, String> searchMap, int page) {
+//        /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해
+//        * 검색 조건을 고려한 예약 내역의 전체 수를 가져온다.
+//        * 검색 조건이 있는 경우 해당 조건에 맞는 예약 내역 수가 반환된다.*/
+//        int totalCount = memberMapper.selectTotalCount(searchMap);
+//        log.info("reserveList totalCount : {}", totalCount);
+//
+//        /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
+//        int limit = 10;         // 한 페이지에 보여줄 게시물(컨텐츠)의 수
+//        int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
+//        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount, searchMap);
+//        /* 페이지 번호(page), 총 예약 내역 수, 시작 페이지 번호, 끝 페이지 번호, 시작 항목 인덱스, 끝 항목 인덱스, 검색 조건 등이 저장 */
+//        log.info("reserveList selectCriteria : {}", selectCriteria);
+//
+//        /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다.  */
+//         List<ReservationDTO> reserveList = memberMapper.selectReserveList(selectCriteria);
+//         /* 조회된 예약 내역은 List<ReservationList> 형태로 반환된다. */
+//        log.info("board : {}", reserveList);
+//
+//        /* reserveListAndPaging 맵을 생성하여 페이징 정보와 조회된 예약 내역을 맵에 저장한다. */
+//        Map<String, Object> reserveListAndPaging = new HashMap<>();
+//        reserveListAndPaging.put("paging", selectCriteria);
+//        reserveListAndPaging.put("reserveList", reserveList);
+//
+//        return reserveListAndPaging;
+//    }
+//
 
-        /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
-        int limit = 10;         // 한 페이지에 보여줄 게시물(컨텐츠)의 수
-        int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
-        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount, searchMap);
-        log.info("reserveList selectCriteria : {}", selectCriteria);
+    /* 예약 조회 */
+   
 
-        /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
-        // List<ReservationDTO> reserveList = memberMapper.selectReserveList(selectCriteria);
-        // 예약DTO 만들어지는 거로 변경해야함!!!
-        //log.info("board : {}", reserveList);
 
-        Map<String, Object> reserveListAndPaging = new HashMap<>();
-        reserveListAndPaging.put("paging", selectCriteria);
-        //reserveListAndPaging.put("reserveList", reserveList);
 
-        return reserveListAndPaging;
-    }
 
     /* 작성 리뷰 조회 */
     public Map<String, Object> selectReviewList(Map<String, String> searchMap, int page) {
@@ -146,5 +160,13 @@ public class MemberService {
         reviewListAndPaging.put("reviewList", reviewList);
 
         return reviewListAndPaging;
+    }
+
+
+    public Map<String, Object> selectReservationList(int page) {
+
+        /*  */
+
+        return null;
     }
 }

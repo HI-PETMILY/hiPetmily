@@ -88,7 +88,9 @@
         , NICKNAME
         , PHONE
         , GENDER
+        , POST_NO
         , ADDRESS
+        , ADDRESS2
         , MEMBER_STAT
         , MEMBER_STAT_DATE
         , REGIST_DATE
@@ -100,7 +102,9 @@
                , #{ nickName }
                , #{ phone }
                , #{ gender }
+               , #{ postNo }
                , #{ address }
+               , #{ address2 }
                , #{ memberStat }
                , #{ memberStatDate }
                , #{ registDate }
@@ -185,6 +189,11 @@
                COUNT(*)
           FROM TBL_RESERVATION
     </select>
+
+<!--    <select id="selectReserveList" resultMap="generalBoardResultMap">-->
+<!--        SELECT-->
+<!--             A.-->
+<!--    </select>-->
 
 
 </mapper>

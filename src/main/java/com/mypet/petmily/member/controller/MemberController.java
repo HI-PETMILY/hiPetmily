@@ -1,11 +1,13 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.*;
+import com.mypet.petmily.common.paging.Pagenation;
+import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
+import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,17 +16,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -68,11 +65,12 @@ public class MemberController {
 
     /* 회원 가입 */
     @PostMapping("/regist")
-    public String registMember(MemberDTO member, String PostNo, String address, String address2,
+    public String registMember(MemberDTO member, Integer postNo, String address, String address2,
                                RedirectAttributes rttr) throws MemberRegistException {
 
-        String total_address = PostNo + address + address2;
-        member.setAddress(total_address);
+        member.setPostNo(postNo);
+        member.setAddress(address);
+        member.setAddress2(address2);
         member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
 
         log.info("Request regist member : {}", member);
@@ -326,25 +324,37 @@ public class MemberController {
 //    }
 
     /* 지난 예약 내역 조회 페이지 */
-    @GetMapping("/reservation-history")
-    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
-                                         @RequestParam(required = false) String searchCondition,
-                                         @RequestParam(required = false) String searchValue,
-                                         Model model){
-        log.info("reserveList page : {}", page);
-        log.info("reserveList searchCondition : {}", searchCondition);
-        log.info("reserveList searchValue : {}", searchValue);
+//    @GetMapping("/reservationList")
+//    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
+//                                         @RequestParam(required = false) String searchCondition,
+//                                         @RequestParam(required = false) String searchValue,
+//                                         Model model){
+//        log.info("reserveList page : {}", page);
+//        log.info("reserveList searchCondition : {}", searchCondition);
+//        log.info("reserveList searchValue : {}", searchValue);
+//
+//        Map<String, String> searchMap = new HashMap<>();
+//        searchMap.put("searchCondition", searchCondition);
+//        searchMap.put("searchValue", searchValue);
+//
+//        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
+//        model.addAttribute("paging", reserveListAndPaging.get("paging"));
+//        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
+//
+//        return "/member/reservationList";
+//    }
 
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
+    /* 예약 내역 조회 페이지 만들기 */
+    @GetMapping("/reservationList")
+    public String getReserveList(@RequestParam(defaultValue = "1") int page) {
 
-        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
-        model.addAttribute("paging", reserveListAndPaging.get("paging"));
-        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
+        log.info("reservationList page : {}", page);
 
-        return "member/reservation-history";
+       Map<String, Object> reservationListAndPaging = memberService.selectReservationList(page);
+
+        return "/member/reservationList";
     }
+
 
     /* 후기 작성 페이지 */
     @GetMapping("/review_write")
