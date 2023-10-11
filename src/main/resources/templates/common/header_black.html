@@ -26,10 +26,11 @@
 
     <div class="header_right">
         <ul>
+
             <th:block sec:authorize="isAnonymous()">
             <li id="headerJoin" class="headerJoin">
                 <div class="header_right_img">
-                    <img src="/static_Image/common/main/add_user_wh.png" id="headerJoinImg" alt="회원가입">
+                    <img src="/static_Image/common/main/add_user_wh.png" id="headerJoinImg" alt="회원가입" >
                 </div>
             </li>
             <li id="headerLogin" class="headerLogin">
@@ -46,29 +47,30 @@
                     <img src="/static_Image/common/main/mypage_wh.png" id="headerMypageImg" alt="마이페이지">
                 </div>
             </li>
+
             <!-- 로그아웃 로그인시 보여지는 버튼 default : hide -->
             <li id="headerLogout" class="headerLogout">
                 <div class="header_right_img">
                     <img src="/static_Image/common/main/logout_wh.png" id="headerLogoutImg" alt="로그아웃">
                 </div>
             </li>
+            </th:block>
 
             <!-- 로그인해서 관리자만 보여지는 버튼 -->
-            <li id="headerAdmin" class="headerAdmin"th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+            <li id="headerAdmin" class="headerAdmin" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <div class="header_right_img">
                     <a href="/admin">
-                        <img src="/static_Image/common/main/admin_bl.png" id="headerAdminImg" alt="관리자">
+                        <img src="/static_Image/common/main/admin_wh.png" id="headerAdminImg" alt="관리자">
                     </a>
                 </div>
             </li>
-            </th:block>
         </ul>
     </div>
 
 
 </div>
 
-<script type="text/javascript" src="/js/common/headerFooter.js"></script>
+<!--<script type="text/javascript" src="/js/common/headerFooter.js"></script>-->
 
 </html>
 

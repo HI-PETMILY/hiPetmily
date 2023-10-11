@@ -6,6 +6,7 @@ import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -107,7 +109,9 @@ public class MemberController {
 
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
     @GetMapping("/update")
-    public void modifyPage(@AuthenticationPrincipal MemberDTO member){
+    public void modifyPage(
+            @AuthenticationPrincipal MemberDTO member){
+
     }
 
 
@@ -340,7 +344,7 @@ public class MemberController {
         model.addAttribute("petProfileList", petProfileList);
     }
 
-    /* 반려동물 프로필 조회 페이지 */
+    /* 반려동물 프로필 상세 페이지 */
     @GetMapping("/pet-profile-view")
     public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 

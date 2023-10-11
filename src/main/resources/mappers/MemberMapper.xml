@@ -100,9 +100,9 @@
     <!--/* 닉네임 찾아보기 */-->
     <select id="selectMemberByNickName" resultType="string">
         SELECT
-               NICKNAME
-          FROM TBL_MEMBER
-         WHERE MEMBER_STAT = '활동'
+            NICKNAME
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
           AND NICKNAME = #{ nickName }
     </select>
 
@@ -179,27 +179,13 @@
     </select>
 
 
-    <!-- 설마 중복 처리..?-->
-<!--    <select id="selectMember">-->
-<!--            SELECT-->
-<!--                MEMBER_NO-->
-<!--                 , MEMBER_ID-->
-<!--                 , NICKNAME-->
-<!--                 , PHONE-->
-<!--                 , EMAIL-->
-<!--                 , ADDRESS-->
-<!--                 , MEMBER_ROLE-->
-<!--                 , MEMBER_STAT-->
-<!--            FROM  TBL_MEMBER A-->
-<!--            WHERE  MEMBER_STAT = 'Y'-->
-<!--              AND  MEMBER_ID = #{ memberId }-->
-<!--     </select>-->
 
 <!--    /* 회원 정보 수정 */-->
     <update id="updateMember">
         UPDATE
             TBL_MEMBER
-        SET NICKNAME = #{ nickName }
+        SET
+            NICKNAME = #{ nickName }
           , POST_NO  = #{ postNo }
           , ADDRESS  = #{ address }
           , ADDRESS2 = #{ address2 }
