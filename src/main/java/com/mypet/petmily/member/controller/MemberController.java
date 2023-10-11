@@ -1,9 +1,6 @@
 package com.mypet.petmily.member.controller;
 
-import com.mypet.petmily.common.exception.member.MemberModifyException;
-import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
-import com.mypet.petmily.common.exception.member.MemberRegistException;
-import com.mypet.petmily.common.exception.member.MemberRemoveException;
+import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
@@ -19,15 +16,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Slf4j
@@ -66,6 +60,32 @@ public class MemberController {
     @GetMapping("/completedRegist")
     public void comRegistPage(){}
 
+
+    /* 회원 가입 */
+    @PostMapping("/regist")
+    public String registMember(MemberDTO member, String PostNo, String address, String address2,
+                               RedirectAttributes rttr) throws MemberRegistException {
+
+        String total_address = PostNo + address + address2;
+        member.setAddress(total_address);
+        member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
+
+        log.info("Request regist member : {}", member);
+
+        memberService.registMember(member);
+
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = new Date(calendar.getTime().getTime());
+
+        Timestamp currentTimestamp = new Timestamp(currentDate.getTime());
+
+        member.setMemberStatDate(currentTimestamp);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
+        rttr.addFlashAttribute("nickname", member.getNickName());
+        return "redirect:/member/completedRegist";
+    }
+
     /* 닉네임 중복 확인 */
     @PostMapping("/nickNameDupCheck")
     public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member) {
@@ -80,6 +100,8 @@ public class MemberController {
 
         return ResponseEntity.ok(result);
     }
+
+
 
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
     @GetMapping("/update")
@@ -176,37 +198,8 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-
-
-    /* 회원 가입 */
-    @PostMapping("/regist")
-    public String registMember(MemberDTO member, String zipCode, String address1, String address2,
-                               RedirectAttributes rttr) throws MemberRegistException {
-
-        String address = zipCode + "$" + address1 + "$" + address2;
-        member.setAddress(address);
-        member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
-
-        log.info("Request regist member : {}", member);
-
-        memberService.registMember(member);
-
-
-        Calendar calendar = Calendar.getInstance();
-        Date currentDate = new Date(calendar.getTime().getTime());
-
-        Timestamp currentTimestamp = new Timestamp(currentDate.getTime());
-
-        member.setMemberStatDate(currentTimestamp);
-
-
-        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
-        rttr.addFlashAttribute("nickname", member.getNickName());
-        return "redirect:/member/completedRegist";
-    }
-
-
-    @GetMapping("/find_id-pwd")
+    /* 아이디 찾기 화면 */
+    @GetMapping("/find_id")
     public void findIdPwdPage(){}
 
     /*아이디 찾기 결과 */
@@ -265,7 +258,6 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
-    /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(){}
 

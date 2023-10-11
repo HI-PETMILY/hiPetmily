@@ -8,7 +8,7 @@
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberId" column="MEMBER_ID"/>
         <result property="memberPwd" column="MEMBER_PWD"/>
-        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
         <result property="phone" column="PHONE"/>
         <result property="postNo" column="POST_NO"/>
@@ -70,9 +70,9 @@
     <!--/* 닉네임 찾아보기 */-->
     <select id="selectMemberByNickName" resultType="string">
         SELECT
-               NICKNAME
-          FROM TBL_MEMBER
-         WHERE MEMBER_STAT = '활동'
+            NICKNAME
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
           AND NICKNAME = #{ nickName }
     </select>
 
@@ -175,13 +175,6 @@
           , ADDRESS2 = #{ address2 }
         WHERE MEMBER_STAT = '활동'
           AND MEMBER_NO = #{ memberNo }
-               TBL_MEMBER
-           SET NICKNAME = #{nickname}
-             , PHONE = #{phone}
-             , EMAIL = #{email}
-             , ADDRESS = #{address}
-         WHERE MEMBER_STAT = '활동'
-           AND MEMBER_NO = #{memberNo}
     </update>
 
 
