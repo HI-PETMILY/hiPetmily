@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PetSitterDTO {
+public class PetSitterDTO2 {
 
     private int petMemberNo;
     private String petRegistDate;

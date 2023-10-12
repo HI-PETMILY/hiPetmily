@@ -1,6 +1,6 @@
 package com.mypet.petmily.petSitter.service;
 
-import com.mypet.petmily.petSitter.dao.PetSitterMapper;
+import com.mypet.petmily.petSitter.dao.PetSitterMapper2;
 import com.mypet.petmily.petSitter.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,11 +11,11 @@ import java.util.List;
 @Slf4j
 @Service
 @Transactional
-public class PetSitterService {
+public class PetSitterService2 {
 
-    private final PetSitterMapper petSitterMapper;
+    private final PetSitterMapper2 petSitterMapper;
 
-    public PetSitterService(PetSitterMapper petSitterMapper) {
+    public PetSitterService2(PetSitterMapper2 petSitterMapper) {
         this.petSitterMapper = petSitterMapper;
     }
 
@@ -24,29 +24,30 @@ public class PetSitterService {
         petSitterMapper.registReservation(reservation);
     }
 
-    public PetSitterDTO selectAllInfo(PetSitterDTO petMember) {
+    public PetSitterDTO2 selectAllInfo(PetSitterDTO2 petMember) {
 
         return petSitterMapper.selectAllInfo(petMember);
     }
 
-    public List<CareerDTO> selectAllCareer(PetSitterDTO petMember) {
+    public List<CareerDTO> selectAllCareer(PetSitterDTO2 petMember) {
         return petSitterMapper.selectAllCareer(petMember);
     }
 
-    public List<PetTagDTO> selectAllTag(PetSitterDTO petMember) {
+    public List<PetTagDTO> selectAllTag(PetSitterDTO2 petMember) {
         return petSitterMapper.selectAllTag(petMember);
     }
 
-    public PetJsonMemberDTO selectMemberInfo(PetSitterDTO petMember) {
+    public PetJsonMemberDTO selectMemberInfo(PetSitterDTO2 petMember) {
 
         return petSitterMapper.selectMemberInfo(petMember);
     }
 
-    public List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO petMember) {
+    public List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO2 petMember) {
         return petSitterMapper.petSitterSchedule(petMember);
     }
 
-    public PetJsonMemberDTO petSitterAddress(PetSitterDTO petMember) {
+    public PetJsonMemberDTO petSitterAddress(PetSitterDTO2 petMember) {
         return petSitterMapper.petSitterAddress(petMember);
     }
+
 }
