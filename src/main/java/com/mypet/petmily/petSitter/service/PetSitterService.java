@@ -1,7 +1,5 @@
 package com.mypet.petmily.petSitter.service;
 
-import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
-import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dao.PetSitterMapper;
 import com.mypet.petmily.petSitter.dto.*;
 import lombok.extern.slf4j.Slf4j;
@@ -21,13 +19,9 @@ public class PetSitterService {
         this.petSitterMapper = petSitterMapper;
     }
 
-    public void registReservation(ReservationDTO reservation) throws PetSitterRegistException {
+    public void registReservation(ReservationDTO reservation) {
 
-        int result = petSitterMapper.registReservation(reservation);
-
-        if (!(result > 0)) {
-            throw new PetSitterRegistException("펫시터 예약 등록을 실패하였습니다.");
-        }
+        petSitterMapper.registReservation(reservation);
     }
 
     public PetSitterDTO selectAllInfo(PetSitterDTO petMember) {
@@ -43,15 +37,16 @@ public class PetSitterService {
         return petSitterMapper.selectAllTag(petMember);
     }
 
-    public MemberDTO selectMemberInfo(PetSitterDTO petMember) {
+    public PetJsonMemberDTO selectMemberInfo(PetSitterDTO petMember) {
 
-//        return petSitterMapper.selectMemberInfo(petMember);
-        return null;
+        return petSitterMapper.selectMemberInfo(petMember);
     }
 
     public List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO petMember) {
         return petSitterMapper.petSitterSchedule(petMember);
     }
 
-
+    public PetJsonMemberDTO petSitterAddress(PetSitterDTO petMember) {
+        return petSitterMapper.petSitterAddress(petMember);
+    }
 }

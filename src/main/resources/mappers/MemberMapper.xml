@@ -36,6 +36,37 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
+    <resultMap id="reservationMap" type="com.mypet.petmily.petSitter.dto.ReservationDTO">
+
+    </resultMap>
+
+    <resultMap id="petResultMap" type="com.mypet.petmily.member.dto.PetDTO">
+        <id property="petCode" column="PET_CODE"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petAge" column="PET_AGE"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="neutralYn" column="NEUTRAL_YN"/>
+        <result property="petBreed" column="PET_BREED"/>
+        <result property="petWeight" column="PET_WEIGHT"/>
+        <result property="petRegist" column="PET_REGIST"/>
+        <result property="pSocial" column="P_SOCIAL"/>
+        <result property="aSocial" column="A_SOCIAL"/>
+        <result property="barkLevel" column="BARK_LEVEL"/>
+        <result property="sepAnxiety" column="SEP_ANXIETY"/>
+        <result property="petDisease" column="PET_DISEASE"/>
+        <result property="petDiseaseExp" column="PET_DISEASE_EXP"/>
+        <result property="petAllergy" column="PET_ALLERGY"/>
+        <result property="petAllergyExp" column="PET_ALLERGY_EXP"/>
+        <result property="pottyTrain" column="POTTY_TRAIN"/>
+        <result property="markingIn" column="MARKING_IN"/>
+        <result property="vaccin" column="VACCIN"/>
+        <result property="hosName" column="HOS_NAME"/>
+        <result property="hosPhone" column="HOS_PHONE"/>
+        <result property="hosAddress" column="HOS_ADDRESS"/>
+        <result property="registStatus" column="REGIST_STATUS"/>
+        <association property="member" resultMap="memberResultMap"/>
+    </resultMap>
+
     <select id="findMemberById" resultMap="memberResultMap">
         SELECT
                A.MEMBER_NO
@@ -67,13 +98,22 @@
     </select>
 
 
-
+    <!-- 닉네임 중복 확인 -->
     <select id="selectMemberByNickName" resultType="string">
         SELECT
             NICKNAME
         FROM TBL_MEMBER
         WHERE MEMBER_STAT = '활동'
           AND NICKNAME = #{ nickName }
+    </select>
+
+    <!-- 이메일 중복 확인 -->
+    <select id="selectMemberByMemberId" resultType="string">
+        SELECT
+              MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
+        AND MEMBER_ID = #{ memberId }
     </select>
 
 
@@ -88,7 +128,9 @@
         , NICKNAME
         , PHONE
         , GENDER
+        , POST_NO
         , ADDRESS
+        , ADDRESS2
         , MEMBER_STAT
         , MEMBER_STAT_DATE
         , REGIST_DATE
@@ -100,7 +142,9 @@
                , #{ nickName }
                , #{ phone }
                , #{ gender }
+               , #{ postNo,jdbcType=VARCHAR }
                , #{ address }
+               , #{ address2 }
                , #{ memberStat }
                , #{ memberStatDate }
                , #{ registDate }
@@ -180,11 +224,134 @@
           AND MEMBER_ID = #{ memberId }
     </update>
 
+    <!-- 마이페이지 대표 반려동물 프로필 간략 조회 -->
+    <select id="viewFirstPetProfile" resultMap="petResultMap">
+        SELECT
+               PET_NAME
+             , PET_AGE
+             , PET_GENDER
+             , NEUTRAL_YN
+             , PET_WEIGHT
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{memberNo}
+           AND ROWNUM = 1
+    </select>
+
     <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
                COUNT(*)
           FROM TBL_RESERVATION
+        <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
     </select>
 
+    <!-- 반려동물 프로필 등록 -->
+    <insert id="insertPetProfile">
+        INSERT INTO TBL_MYPET
+            (
+              PET_CODE
+            , PET_NAME
+            , PET_AGE
+            , PET_GENDER
+            , NEUTRAL_YN
+            , PET_BREED
+            , PET_WEIGHT
+            , PET_REGIST
+            , P_SOCIAL
+            , A_SOCIAL
+            , BARK_LEVEL
+            , SEP_ANXIETY
+            , PET_DISEASE
+            , PET_DISEASE_EXP
+            , PET_ALLERGY
+            , PET_ALLERGY_EXP
+            , POTTY_TRAIN
+            , MARKING_IN
+            , VACCIN
+            , HOS_NAME
+            , HOS_PHONE
+            , HOS_ADDRESS
+            , REGIST_STATUS
+            , MEMBER_NO
+            )
+        VALUES
+            (
+              SEQ_TBL_MYPET_NO.NEXTVAL
+            , #{petName}
+            , #{petAge}
+            , #{petGender}
+            , #{neutralYn}
+            , #{petBreed}
+            , #{petWeight}
+            , #{petRegist}
+            , #{pSocial}
+            , #{aSocial}
+            , #{barkLevel}
+            , #{sepAnxiety}
+            , #{petDisease}
+            , #{petDiseaseExp}
+            , #{petAllergy}
+            , #{petAllergyExp}
+            , #{pottyTrain}
+            , #{markingIn}
+            , #{vaccin}
+            , #{hosName}
+            , #{hosPhone}
+            , #{hosAddress}
+            , #{registStatus}
+            , #{member.memberNo}
+            )
+    </insert>
 
+    <!-- 반려동물 프로필 조회 -->
+    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="_int">
+        SELECT
+               PET_CODE
+             , PET_NAME
+             , PET_AGE
+             , PET_GENDER
+             , NEUTRAL_YN
+             , PET_BREED
+             , PET_WEIGHT
+             , PET_REGIST
+             , P_SOCIAL
+             , A_SOCIAL
+             , BARK_LEVEL
+             , SEP_ANXIETY
+             , PET_DISEASE
+             , PET_DISEASE_EXP
+             , PET_ALLERGY
+             , PET_ALLERGY_EXP
+             , POTTY_TRAIN
+             , MARKING_IN
+             , VACCIN
+             , HOS_NAME
+             , HOS_PHONE
+             , HOS_ADDRESS
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{loginMember.memberNo}
+           AND PET_CODE = #{petCode}
+           AND REGIST_STATUS = 'Y'
+    </select>
+
+    <select id="selectPetProfileList" resultMap="petResultMap">
+        SELECT
+               PET_CODE
+             , PET_NAME
+             , PET_REGIST
+             , PET_AGE
+             , PET_WEIGHT
+          FROM TBL_MYPET
+         WHERE MEMBER_NO = #{memberNo}
+           AND REGIST_STATUS = 'Y'
+    </select>
+
+    <update id="petProfileUpdate">
+        UPDATE TBL_MYPEY
+           SET
+    </update>
+
+    <!--    <select id="selectReserveList" resultMap="generalBoardResultMap">-->
+    <!--        SELECT-->
+    <!--             A.-->
+    <!--    </select>-->
 </mapper>

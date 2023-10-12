@@ -1,11 +1,15 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.*;
+import com.mypet.petmily.common.paging.Pagenation;
+import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
+import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,17 +18,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -68,11 +68,12 @@ public class MemberController {
 
     /* 회원 가입 */
     @PostMapping("/regist")
-    public String registMember(MemberDTO member, String PostNo, String address, String address2,
+    public String registMember(MemberDTO member, Integer postNo, String address, String address2,
                                RedirectAttributes rttr) throws MemberRegistException {
 
-        String total_address = PostNo + address + address2;
-        member.setAddress(total_address);
+        member.setPostNo(postNo);
+        member.setAddress(address);
+        member.setAddress2(address2);
         member.setMemberPwd(passwordEncoder.encode(member.getPassword()));
 
         log.info("Request regist member : {}", member);
@@ -102,10 +103,22 @@ public class MemberController {
         if(memberService.selectMemberByNickName(member.getNickName())) {
             result = "중복 된 닉네임이 존재합니다.";
         }
-
         return ResponseEntity.ok(result);
     }
 
+    /* 이메일 중복 확인 */
+    @PostMapping("/idDupCheck")
+    public ResponseEntity<String> checkDuplication2(@RequestBody MemberDTO member) {
+
+        log.info("Request Check memberId : {}", member.getMemberId());
+
+        String result = "사용 가능한 이메일입니다.";
+
+        if(memberService.selectMemberByMemberId(member.getMemberId())) {
+            result = "중복 된 이메일이 존재합니다.";
+        }
+        return ResponseEntity.ok(result);
+    }
 
 
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
@@ -137,6 +150,8 @@ public class MemberController {
 
         return "redirect:/member/mypage";
     }
+
+    /* 임시 비밀번호 생성 */
     protected Authentication createNewAuthentication(String memberId) {
 
         UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
@@ -145,7 +160,6 @@ public class MemberController {
 
         return newAuth;
     }
-
 
 
     /* 패스워드 변경 페이지로 이동 */
@@ -266,85 +280,162 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
+    /* ============================ 마이페이지 ============================ */
+
+    @GetMapping("/mypage")
+    public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member, Model model) {
+
+        model.addAttribute("member", member.getMemberId());
+
+        PetDTO petProfile = memberService.viewFirstPetProfile(member);
+
+        model.addAttribute("petProfile", petProfile);
+
+        return "member/mypage";
+    }
+
+    /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
-    public void petProfileRegist(){}
+    public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-
-    /* 반려동물 프로필 조회 페이지 */
-    @GetMapping("/pet-profile-view")
-    public void petProfileView(){}
+        model.addAttribute("loginMember", loginMember.getMemberId());
+    }
 
     /* 반려동물 프로필 등록 */
     @Value("/src/main/resources/upload")
     private String IMAGE_DIR;
 
-//    @PostMapping("/pet-profile-regist")
-//    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-//                                   @AuthenticationPrincipal MemberDTO member){
-//
-//        log.info("pet profile request : {}", pet);
-//        log.info("pet profile image request : {}", petProfileImg);
-//
-//        String petImgDir = IMAGE_DIR + "petProfile";
-//
-//        File dir = new File(petImgDir);
-//
-//        /* 디렉토리가 없을 경우 생성 */
-//        if(!dir.exists()){
-//            dir.mkdirs();
-//        }
-//
-//        // 업로드 파일에 대한 정보를 담을 리스트
-//        List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
-//
-//        try{
-//            for (int i = 0; i < petProfileImg.size(); i++) {
-//
-//                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
-//                if(petProfileImg.get(i).getSize() > 0){
-//
-//                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
-//                    log.info("originalFileName : {}", originalFileName);
-//
-//                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-//                    String savedFileName = UUID.randomUUID() + ext;
-//                    log.info("savedFileName : {}", savedFileName);
-//
-//                    // 서버의 설정 디렉토리 파일 저장하기
-//                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
-//
-//                    // DB에 저장할 파일의 정보 처리
-//                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
-//                }
-//
-//
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "redirect:/member/pet-profile-view";
-//    }
+    @PostMapping("/pet-profile-regist")
+    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
+                                   @AuthenticationPrincipal MemberDTO loginMember,
+                                   RedirectAttributes rttr) throws PetProfileException {
+
+
+        log.info("pet profile request : {}", pet);
+        log.info("pet profile image request : {}", petProfileImg);
+
+        String petImgDir = IMAGE_DIR + "petProfile";
+
+        File dir = new File(petImgDir);
+
+        /* 디렉토리가 없을 경우 생성 */
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        // 업로드 파일에 대한 정보를 담을 리스트
+        //List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+
+        /*try{
+            for (int i = 0; i < petProfileImg.size(); i++) {
+
+                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
+                if(petProfileImg.get(i).getSize() > 0){
+
+                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+                    log.info("originalFileName : {}", originalFileName);
+
+                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+                    String savedFileName = UUID.randomUUID() + ext;
+                    log.info("savedFileName : {}", savedFileName);
+
+                    // 서버의 설정 디렉토리 파일 저장하기
+                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+
+                    // DB에 저장할 파일의 정보 처리
+                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
+                    //fileInfo.setFileSaveName(savedFileName);
+                    //fileInfo.setFilePathName("/upload/member/");
+                }
+                // attachmentList.add(fileInfo);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+
+        // log.info("attachmentList : {}", attachmentList);
+
+        // pet.setAttachmentList(attachmentList);
+        pet.setMember(loginMember);
+
+        memberService.registPetProfile(pet);
+
+        //rttr.addFlashAttribute()
+
+        return "redirect:/member/pet-profile-list";
+    }
+
+    /* 반려동물 프로필 리스트 조회 페이지 */
+    @GetMapping("/pet-profile-list")
+    public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        model.addAttribute("loginMember", loginMember.getMemberId());
+
+        List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
+
+        model.addAttribute("petProfileList", petProfileList);
+    }
+
+    /* 반려동물 프로필 상세 페이지 */
+    @GetMapping("/pet-profile-view")
+    public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember,
+                                 @RequestParam int petCode,Model model){
+
+        log.info("loginMember : {}", loginMember);
+
+        PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
+        log.info("pet profile : {}", petProfile);
+
+        model.addAttribute("petProfile", petProfile);
+
+
+        return "member/pet-profile-view";
+    }
+
+    /* 반려동물 프로필 업데이트 */
+    @GetMapping("/pet-profile-update")
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+
+        model.addAttribute("petProfile", petProfile);
+    }
+
+    /* 반려동물 프로필 삭제 */
 
     /* 지난 예약 내역 조회 페이지 */
-    @GetMapping("/reservation-history")
-    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
-                                         @RequestParam(required = false) String searchCondition,
-                                         @RequestParam(required = false) String searchValue,
-                                         Model model){
-        log.info("reserveList page : {}", page);
-        log.info("reserveList searchCondition : {}", searchCondition);
-        log.info("reserveList searchValue : {}", searchValue);
+//    @GetMapping("/reservationList")
+//    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
+//                                         @RequestParam(required = false) String searchCondition,
+//                                         @RequestParam(required = false) String searchValue,
+//                                         Model model){
+//        log.info("reserveList page : {}", page);
+//        log.info("reserveList searchCondition : {}", searchCondition);
+//        log.info("reserveList searchValue : {}", searchValue);
+//
+//        Map<String, String> searchMap = new HashMap<>();
+//        searchMap.put("searchCondition", searchCondition);
+//        searchMap.put("searchValue", searchValue);
+//
+//        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
+//        model.addAttribute("paging", reserveListAndPaging.get("paging"));
+//        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
+//
+//        return "/member/reservationList";
+//    }
 
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
+    /* 예약 내역 조회 페이지 만들기 */
+    @GetMapping("/reservationList")
+    public String getReserveList(@RequestParam(defaultValue = "1") int page) {
 
-        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
-        model.addAttribute("paging", reserveListAndPaging.get("paging"));
-        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
+        log.info("reservationList page : {}", page);
 
-        return "member/reservation-history";
+       Map<String, Object> reservationListAndPaging = memberService.selectReservationList(page);
+
+        return "/member/reservationList";
     }
+
 
     /* 후기 작성 페이지 */
     @GetMapping("/review_write")

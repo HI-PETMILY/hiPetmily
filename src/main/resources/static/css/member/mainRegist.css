@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 
+
 .regist_start {
     width: 330px;
     height: 49px;
@@ -51,13 +52,10 @@
     margin-top: 250px;
     font-family: 'Noto Sans KR', sans-serif,  'Roboto', sans-serif;
     font-weight: 500;
+    height: 56vh;
 }
 
 
 .member_regist {
     padding-bottom: 20px;
-}
-
-#footer_container {
-    margin-bottom: 170px
 }

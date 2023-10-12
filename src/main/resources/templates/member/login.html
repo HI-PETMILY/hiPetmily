@@ -5,6 +5,7 @@
     <meta charset="UTF-8"/>
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/member/event.js"></script>
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
@@ -55,9 +56,11 @@
                     <div class="signIn inputForm">
                         <input type="password" name="memberPwd" placeholder="********"
                                onfocus="this.placeholder=''" onblur="this.placeholder='********'"
-                               class="logIn InputBox" required>
+                               class="logIn InputBox" onkeyup="checkCapsLock(event)" required>
+                        <span id="message" style="color: red;"></span>
                     </div>
                 </div>
+
 
                 <div>
                     <input id="loginSubmit" class="submitButton" type="submit" value="로그인" style="color: white">

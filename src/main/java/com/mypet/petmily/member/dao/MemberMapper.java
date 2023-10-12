@@ -2,6 +2,8 @@ package com.mypet.petmily.member.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.petSitter.dto.ReservationDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,11 +31,29 @@ public interface MemberMapper {
 
     String selectMemberByNickName(String nickName);
 
+    String selectMemberByMemberId(String memberId);
+
     int pwdCheck(MemberDTO dto);
 
     void pwdUpdate(MemberDTO dto);
 
-    int selectTotalCount(Map<String, String> searchMap);
+    void insertPetProfile(PetDTO pet);
 
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
+
+    /* 예약 조회 */
+    List<ReservationDTO> selectReserveList(SelectCriteria selectCriteria);
+
+    int selectTotalCount(Map<String, String> searchMap);
+
+  
+    List<PetDTO> selectPetProfileList(MemberDTO loginMember);
+
+    PetDTO viewPetProfile(MemberDTO loginMember, int petCode);
+    // 파라미터를 두개 이상 넘길 때는 xml설정으로 넘어갈 때 변수명으로 찾아야 함
+
+    PetDTO viewFirstPetProfile(MemberDTO member);
+
+    PetDTO petProfileUpdate(MemberDTO loginMember);
+
 }
