@@ -4,13 +4,18 @@
      =============================================================================== */
 
 
-    /* 닉네임 중복 확인 */
+     /* 닉네임 중복 확인 */
     if (document.getElementById("duplicationCheck")) {
-
         const $duplication = document.getElementById("duplicationCheck");
+        const $nickNameInput = document.getElementById("nickName");
 
         $duplication.onclick = function () {
-            let nickName = document.getElementById("nickName").value.trim();
+            let nickName = $nickNameInput.value.trim();
+
+            if (nickName === "") {
+                alert("사용하실 닉네임을 입력하세요.");
+                return; // 닉네임 필드가 비어 있으면 중복 확인을 실행하지 않음
+            }
 
             fetch("/member/nickNameDupCheck", {
                 method: "POST",
@@ -22,24 +27,29 @@
                 .then(result => result.text())
                 .then(result => alert(result))
                 .catch((error) => error.text().then((res) => alert(res)));
-
         }
     }
 
+
     /* 이메일 중복 확인 */
     if (document.getElementById("duplicationCheck2")) {
+        const $duplicationEmail = document.getElementById("duplicationCheck2");
+        const $memberId = document.getElementById("memberId");
 
-        const $duplication = document.getElementById("duplicationCheck2");
+        $duplicationEmail.onclick = function () {
+            let memberId = $memberId.value.trim();
 
-        $duplication.onclick = function () {
-            let memberId = document.getElementById("memberId").value.trim();
+            if (memberId === "") {
+                alert("사용하실 이메일을 입력하세요.");
+                return; // 이메일 필드가 비어 있으면 중복 확인을 실행하지 않음
+            }
 
             fetch("/member/idDupCheck", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8'
                 },
-                body: JSON.stringify({memberId: memberId})
+                body: JSON.stringify({ memberId: memberId })
             })
                 .then(result => result.text())
                 .then(result => alert(result))
@@ -47,8 +57,6 @@
 
         }
     }
-
-
 
     /* input에 영어랑 숫자만 입력하게 하기 - 이메일 */
     const inputEngNum = document.getElementById('memberId');

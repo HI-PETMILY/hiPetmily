@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-*{
-    margin: 0;
-    padding: 0;
-}
 
 /* 전체 가운데 정렬 */
 .con_container {
@@ -14,6 +10,7 @@
     padding-bottom: 200px;
     max-width: 400px;
     margin: 0% auto;
+    height: 100vh;
 
 }
 
@@ -26,7 +23,7 @@
 
 
 /* input 칸 길이 설정 */
-#name, #password, #password2 {
+#memberName, #password, #password2 {
     width: 300px;
     height: 33px;
     border: 1px solid #D3D3D3;
