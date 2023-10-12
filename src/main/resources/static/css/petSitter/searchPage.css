@@ -2,33 +2,76 @@ body,html{
     width: 100%;
 
 }
-.search-data {
-    margin-top: 150px;
-    width: 100%;
-    border: 1px solid #e3e3e3;
-    padding: 10px 10px;
+/*.search-data {*/
+/*    margin-top: 150px;*/
+/*    width: 100%;*/
+/*    border: 1px solid #e3e3e3;*/
+/*    padding: 10px 10px;*/
+/*}*/
+
+/*.select-tag{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*}*/
+/*.tag-info{*/
+/*    width: 90px;*/
+/*    height: 40px;*/
+/*    background-color: #81BDF1;*/
+/*    margin-left: 20px;*/
+/*    text-align: center;*/
+/*    border-radius: 5px;*/
+/*    font-size: 15px;*/
+/*}*/
+
+/*.tag-info2{*/
+/*    width: 105px;*/
+/*    height: 40px;*/
+/*    background-color: #81BDF1;*/
+/*    margin-left: 20px;*/
+/*    text-align: center;*/
+/*    border-radius: 5px;*/
+/*    font-size: 15px;*/
+/*}*/
+
+.petsitter-box{
+
+
+    width: 1200px;
+    height: 100%;
+
+
 }
 
-.select-tag{
-    display: flex;
-    flex-direction: row;
-}
-.tag-info{
-    width: 90px;
-    height: 40px;
-    background-color: #81BDF1;
-    margin-left: 20px;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 15px;
+.petsitter-info{
+    width: 1200px;
+    height: 400px;
+    background-color: #FFDD69;
+    margin-top: 200px;
+
+    margin-bottom: 80px;
+
 }
 
-.tag-info2{
-    width: 105px;
-    height: 40px;
-    background-color: #81BDF1;
-    margin-left: 20px;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 15px;
+.petsitter-poto{
+
+    width: 400px;
+    height: 400px;
+    background-color: seagreen;
+
+
+}
+
+.title{
+
+    width: 800px;
+    height: 200px;
+    color: #007bff;
+    padding: 20px 20px;
+}
+
+.first-comment1{
+
+    width: 800px;
+    height: 100px;
+    font-size: 70px;
 }

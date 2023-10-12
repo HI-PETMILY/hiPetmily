@@ -53,7 +53,7 @@
         <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
 
-    <resultMap type="com.mypet.petmily.petSitter.dto.PetTagDTO" id="petTagResultMap">
+    <resultMap type="com.mypet.petmily.petSitterNew.dto.PetTagDTO" id="petTagResultMap">
         <id property="tagNo" column="TAG_NO"/>
         <result property="tagContent" column="TAG_CONTENT"/>
     </resultMap>
@@ -129,7 +129,7 @@
         , T.TAG_CONTENT
         FROM TBL_MEMBER M
         JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )
-        LEFT JOIN TBL_REVIEW R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
+        LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
         LEFT JOIN TBL_PET_TAG T ON(P.PET_MEMBER_NO = T.PET_MEMBER_NO)
         WHERE  P.PET_STAT= '활동'
     </select>

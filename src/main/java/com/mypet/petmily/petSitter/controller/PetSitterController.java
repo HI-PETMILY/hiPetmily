@@ -4,7 +4,6 @@ package com.mypet.petmily.petSitter.controller;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.MemberRoleDTO;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
-import com.mypet.petmily.petSitter.dto.PetTagDTO;
 import com.mypet.petmily.petSitter.dto.ReviewDTO;
 import com.mypet.petmily.petSitter.service.PetSitterService;
 import lombok.extern.slf4j.Slf4j;

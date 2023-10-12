@@ -22,78 +22,61 @@
 <body>
 <div th:replace="common/header_white.html"></div>
 
-<div class="search-data">
-    <div class="search-box">
-        <form name="" method="get" action="">
-            <input type="hidden" name="Tag" value>
-            <input type="hidden" name="" value="">
+<!--<div class="search-data">-->
+<!--    <div class="search-box">-->
+<!--        <form name="" method="get" action="">-->
+<!--            <input type="hidden" name="Tag" value>-->
+<!--            <input type="hidden" name="" value="">-->
 
-        </form>
-        <div class="search-area">
-        <label>
-            <input type="radio" name=""  onclick="">전체
-        </label>
-            <label>
-                <input type="radio" name=""  onclick="">서울
-            </label>
-            <label>
-                <input type="radio" name=""  onclick="">경기
-            </label>
-            <label>
-                <input type="radio" name=""  onclick="">부산
-            </label>
-            <label>
-                <input type="radio" name=""  onclick="">대구
-            </label>
-            <label>
-                <input type="radio" name="" onclick="">대전
-            </label>
-        </div>
+<!--        </form>-->
+<!--        <div class="search-area">-->
+<!--        <label>-->
+<!--            <input type="radio" name=""  onclick="">전체-->
+<!--        </label>-->
+<!--            <label>-->
+<!--                <input type="radio" name=""  onclick="">서울-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <input type="radio" name=""  onclick="">경기-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <input type="radio" name=""  onclick="">부산-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <input type="radio" name=""  onclick="">대구-->
+<!--            </label>-->
+<!--            <label>-->
+<!--                <input type="radio" name="" onclick="">대전-->
+<!--            </label>-->
+<!--        </div>-->
 
-        <div class="input-area">
-            <h3>지역찾기</h3>
-       <label>
-           <input class="text" name="address" placeholder="주소를 입력해주세요" value maxlength="50">
-       </label>
-        </div>
+<!--        <div class="input-area">-->
+<!--            <h3>지역찾기</h3>-->
+<!--       <label>-->
+<!--           <input class="text" name="address" placeholder="주소를 입력해주세요" value maxlength="50">-->
+<!--       </label>-->
+<!--        </div>-->
 
-        <div class="reservation-date">
-            <input type="text" name="" class ="" >
-            <input type="text" name=" " class="">
+<!--        <div class="reservation-date">-->
+<!--            <input type="text" name="" class ="" >-->
+<!--            <input type="text" name=" " class="">-->
 
-        </div>
+<!--        </div>-->
 
-<div>
-    <button class="search-btn" name="" onclick="">찾기</button>
-    <button class="search-init" name="" onclick="">초기화</button>
-</div>
-<!--        <div class="select-tag">-->
-<!--            <th:block th:each="petSitter : ${petSitterList}">-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">대형견</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">노령견</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">약물복용</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">실외배변</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">응급처치</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}"  class="tag-info"><button class="">목욕</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">교육/훈련</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">장기돌봄</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">수제간식</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">한마리돌봄</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">분리돌봄</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">CCTV</button></div>-->
-<!--            <div th:text = "${petSitterList.tagContentList}" class="tag-info"><button class="">반려견없음 </button></div>-->
-<!--                <div th:text = "${petSitterList.tagContentList}" class="tag-info2"><button class="">아이없음<br>(12세이하) </button></div>-->
-<!--            </th:block>-->
+<!--<div>-->
+<!--    <button class="search-btn" name="" onclick="">찾기</button>-->
+<!--    <button class="search-init" name="" onclick="">초기화</button>-->
+<!--</div>-->
+
 <!--    </div>-->
-    </div>
-</div>
+<!--</div>-->
 
-
+<div class="petsitter-box">
 <div class="petsitter-info">
     <th:block th:each="petSitter : ${petSitterList}" th:onclick="|location.href='/petSitter/petSitterProfile?petMemberNo=${petSitter.petMemberNo}'|">
-<!--    <div class="petsitter-poto">-->
-<!--        <a><img src=""></a>-->
-<!--    </div>-->
+    <div class="petsitter-poto">
+        <a><img src=""></a>
+    </div>
 
     <div class="title">
         <div  class="comment">
@@ -137,8 +120,8 @@
 
 
 </div>
-<div th:replace="common/footer.html"></div>
+<!--<div th:replace="common/footer.html"></div>-->
 
-
+</div>
 </body>
 </html>

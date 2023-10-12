@@ -1,5 +1,6 @@
 package com.mypet.petmily.petSitter.dto;
 
+import com.mypet.petmily.petSitterNew.dto.PetTagDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.Getter;
 import lombok.Setter;
