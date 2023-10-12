@@ -27,5 +27,6 @@ public class PetDTO {
     private String hosName;         // 자주 가는 병원 명
     private String hosPhone;        // 자주 가는 병원 전화번호
     private String hosAddress;      // 병원 간략 주소
-    private MemberDTO member;     // 견주의 회원 코드
+    private String registStatus;    // 반려동물 등록 상태(Y, N)
+    private MemberDTO member;       // 견주의 회원 코드
 }

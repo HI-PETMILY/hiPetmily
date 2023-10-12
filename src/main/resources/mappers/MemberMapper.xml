@@ -63,6 +63,7 @@
         <result property="hosName" column="HOS_NAME"/>
         <result property="hosPhone" column="HOS_PHONE"/>
         <result property="hosAddress" column="HOS_ADDRESS"/>
+        <result property="registStatus" column="REGIST_STATUS"/>
         <association property="member" resultMap="memberResultMap"/>
     </resultMap>
 
@@ -256,6 +257,7 @@
             , HOS_NAME
             , HOS_PHONE
             , HOS_ADDRESS
+            , REGIST_STATUS
             , MEMBER_NO
             )
         VALUES
@@ -282,12 +284,13 @@
             , #{hosName}
             , #{hosPhone}
             , #{hosAddress}
+            , #{registStatus}
             , #{member.memberNo}
             )
     </insert>
 
     <!-- 반려동물 프로필 조회 -->
-    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="int">
+    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="_int">
         SELECT
                PET_CODE
              , PET_NAME
@@ -314,6 +317,7 @@
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{loginMember.memberNo}
            AND PET_CODE = #{petCode}
+           AND REGIST_STATUS = 'Y'
     </select>
 
     <select id="selectPetProfileList" resultMap="petResultMap">
@@ -325,6 +329,7 @@
              , PET_WEIGHT
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{memberNo}
+           AND REGIST_STATUS = 'Y'
     </select>
 
     <update id="petProfileUpdate">

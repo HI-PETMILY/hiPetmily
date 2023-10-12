@@ -108,7 +108,9 @@ public class MemberService {
     /* 반려동물 프로필 등록 */
     public void registPetProfile(PetDTO pet) throws PetProfileException {
 
+        pet.setRegistStatus("Y");
         memberMapper.insertPetProfile(pet);      // 반려동물 테이블에 데이터 저장
+
 
         //memberMapper.insertAttachment(review.getAttachment());
     }

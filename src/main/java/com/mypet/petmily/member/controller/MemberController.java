@@ -290,7 +290,8 @@ public class MemberController {
 
     @PostMapping("/pet-profile-regist")
     public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-                                   @AuthenticationPrincipal MemberDTO loginMember) throws PetProfileException {
+                                   @AuthenticationPrincipal MemberDTO loginMember,
+                                   RedirectAttributes rttr) throws PetProfileException {
 
 
         log.info("pet profile request : {}", pet);
@@ -343,7 +344,9 @@ public class MemberController {
 
         memberService.registPetProfile(pet);
 
-        return "redirect:/member/pet-profile-view";
+        //rttr.addFlashAttribute()
+
+        return "redirect:/member/pet-profile-list";
     }
 
     /* 반려동물 프로필 리스트 조회 페이지 */
