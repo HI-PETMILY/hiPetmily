@@ -392,14 +392,15 @@ table.reserve-table tr, table.reviewList-table tr{
 /*==================================================*/
 /* 진행중인 예약 조회 화면 */
 
-.reservation-box{
+.reservation-box, .pet-profile-box{
     border: solid 2px #f0f0f0;
     border-radius: 25px;
     width: 100%;
     padding: 10px 0;
+    margin: 15px auto;
 }
 
-.reserve-info{
+.reserve-info, .pet-profile-info{
     display: flex;
     align-content: center;
 }
@@ -412,7 +413,7 @@ table.reserve-table tr, table.reviewList-table tr{
     padding-top: 10px;
 }
 
-.sitter-profileImg img{
+.sitter-profileImg, .pet-profileImg img{
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -451,6 +452,7 @@ table.reserve-table tr, table.reviewList-table tr{
     display: flex;
     justify-content: flex-end;
     margin: 5px;
+    font-size: 14px;
 }
 
 .reserve-button{
@@ -460,3 +462,28 @@ table.reserve-table tr, table.reviewList-table tr{
 button.blue{
     background-color: #81BDF1;
 }
+
+/*==================================================*/
+/* 반려동물 등록 리스트 */
+
+.pet-profile-box{
+    width: 70%;
+}
+
+.pet-profile-detail{
+    display: flex;
+    align-items: center;
+}
+
+.pet-profile-info {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add-pet-profile{
+    display: flex;
+    margin: auto;
+    width: 60%;
+    justify-content: center;
+}
+
