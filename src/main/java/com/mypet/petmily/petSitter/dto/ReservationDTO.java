@@ -20,6 +20,6 @@ public class ReservationDTO {
     private String resAppDate;
     private String resUpdateDate;
     private MemberDTO resMember;
-    private PetSitterDTO resPetSitter;
+    private PetSitterDTO2 resPetSitter;
 
 }

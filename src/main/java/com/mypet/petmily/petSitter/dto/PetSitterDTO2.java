@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class PetSitterDTO {
+public class PetSitterDTO2 {
 
 
 
