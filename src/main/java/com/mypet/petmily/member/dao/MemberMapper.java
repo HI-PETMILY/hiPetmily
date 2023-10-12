@@ -31,6 +31,8 @@ public interface MemberMapper {
 
     String selectMemberByNickName(String nickName);
 
+    String selectMemberByMemberId(String memberId);
+
     int pwdCheck(MemberDTO dto);
 
     void pwdUpdate(MemberDTO dto);
