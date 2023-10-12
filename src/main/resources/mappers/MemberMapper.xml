@@ -194,7 +194,7 @@
 
 
 
-<!--    /* 회원 정보 수정 */-->
+    <!-- 회원 정보 수정 -->
     <update id="updateMember">
         UPDATE
             TBL_MEMBER

@@ -1,13 +1,10 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.*;
-import com.mypet.petmily.common.paging.Pagenation;
-import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -404,37 +401,6 @@ public class MemberController {
 
     /* 반려동물 프로필 삭제 */
 
-    /* 지난 예약 내역 조회 페이지 */
-//    @GetMapping("/reservationList")
-//    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
-//                                         @RequestParam(required = false) String searchCondition,
-//                                         @RequestParam(required = false) String searchValue,
-//                                         Model model){
-//        log.info("reserveList page : {}", page);
-//        log.info("reserveList searchCondition : {}", searchCondition);
-//        log.info("reserveList searchValue : {}", searchValue);
-//
-//        Map<String, String> searchMap = new HashMap<>();
-//        searchMap.put("searchCondition", searchCondition);
-//        searchMap.put("searchValue", searchValue);
-//
-//        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
-//        model.addAttribute("paging", reserveListAndPaging.get("paging"));
-//        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
-//
-//        return "/member/reservationList";
-//    }
-
-    /* 예약 내역 조회 페이지 만들기 */
-    @GetMapping("/reservationList")
-    public String getReserveList(@RequestParam(defaultValue = "1") int page) {
-
-        log.info("reservationList page : {}", page);
-
-       Map<String, Object> reservationListAndPaging = memberService.selectReservationList(page);
-
-        return "/member/reservationList";
-    }
 
 
     /* 후기 작성 페이지 */
