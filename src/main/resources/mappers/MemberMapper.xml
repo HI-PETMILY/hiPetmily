@@ -98,13 +98,22 @@
     </select>
 
 
-    <!--/* 닉네임 찾아보기 */-->
+    <!-- 닉네임 중복 확인 -->
     <select id="selectMemberByNickName" resultType="string">
         SELECT
             NICKNAME
         FROM TBL_MEMBER
         WHERE MEMBER_STAT = '활동'
           AND NICKNAME = #{ nickName }
+    </select>
+
+    <!-- 이메일 중복 확인 -->
+    <select id="selectMemberByMemberId" resultType="string">
+        SELECT
+              MEMBER_ID
+        FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '활동'
+        AND MEMBER_ID = #{ memberId }
     </select>
 
 
@@ -133,7 +142,7 @@
                , #{ nickName }
                , #{ phone }
                , #{ gender }
-               , #{ postNo }
+               , #{ postNo,jdbcType=VARCHAR }
                , #{ address }
                , #{ address2 }
                , #{ memberStat }

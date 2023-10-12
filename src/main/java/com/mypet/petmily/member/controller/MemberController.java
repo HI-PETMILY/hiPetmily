@@ -103,9 +103,23 @@ public class MemberController {
         if(memberService.selectMemberByNickName(member.getNickName())) {
             result = "중복 된 닉네임이 존재합니다.";
         }
-
         return ResponseEntity.ok(result);
     }
+
+    /* 이메일 중복 확인 */
+    @PostMapping("/idDupCheck")
+    public ResponseEntity<String> checkDuplication2(@RequestBody MemberDTO member) {
+
+        log.info("Request Check memberId : {}", member.getMemberId());
+
+        String result = "사용 가능한 이메일입니다.";
+
+        if(memberService.selectMemberByMemberId(member.getMemberId())) {
+            result = "중복 된 이메일이 존재합니다.";
+        }
+        return ResponseEntity.ok(result);
+    }
+
 
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
     @GetMapping("/update")
