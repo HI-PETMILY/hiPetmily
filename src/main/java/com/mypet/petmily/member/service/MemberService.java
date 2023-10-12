@@ -135,10 +135,17 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 업데이트 */
-    public PetDTO petProfileUpdate(MemberDTO loginMember) {
-        return memberMapper.petProfileUpdate(loginMember);
+    public void petProfileUpdate(PetDTO pet) {
+        memberMapper.petProfileUpdate(pet);
     }
 
+    /* 반려동물 프로필 삭제 */
+    public void removePetProfile(int petCode) throws PetRemoveException {
+
+        int result = memberMapper.deletePetProfile(petCode);
+
+        if(!(result > 0)) throw new PetRemoveException("반려동물 프로필 삭제에 실패했습니다.");
+    }
 
     /* 작성한 리뷰 전체 조회 */
     public Map<String, Object> selectReviewList(Map<String, String> searchMap, int page) {
@@ -170,6 +177,5 @@ public class MemberService {
 
         return null;
     }
-
 
 }
