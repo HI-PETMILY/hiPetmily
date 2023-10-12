@@ -4,10 +4,12 @@ import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,10 +20,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -118,8 +121,6 @@ public class MemberController {
     }
 
 
-
-
     /* 내 정보 확인 페이지로 이동 - 현재 로그인한 사용자의 정보를 받아온다. 객체는 MemberDTO.*/
     @GetMapping("/update")
     public void modifyPage(
@@ -149,6 +150,8 @@ public class MemberController {
 
         return "redirect:/member/mypage";
     }
+
+    /* 임시 비밀번호 생성 */
     protected Authentication createNewAuthentication(String memberId) {
 
         UserDetails newPrincipal = authenticationService.loadUserByUsername(memberId);
@@ -157,7 +160,6 @@ public class MemberController {
 
         return newAuth;
     }
-
 
 
     /* 패스워드 변경 페이지로 이동 */
@@ -278,64 +280,129 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
+    /* ============================ 마이페이지 ============================ */
+
+    @GetMapping("/mypage")
+    public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member, Model model) {
+
+        model.addAttribute("member", member.getMemberId());
+
+        PetDTO petProfile = memberService.viewFirstPetProfile(member);
+
+        model.addAttribute("petProfile", petProfile);
+
+        return "member/mypage";
+    }
+
+    /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
-    public void petProfileRegist(){}
+    public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-
-    /* 반려동물 프로필 조회 페이지 */
-    @GetMapping("/pet-profile-view")
-    public void petProfileView(){}
+        model.addAttribute("loginMember", loginMember.getMemberId());
+    }
 
     /* 반려동물 프로필 등록 */
     @Value("/src/main/resources/upload")
     private String IMAGE_DIR;
 
-//    @PostMapping("/pet-profile-regist")
-//    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-//                                   @AuthenticationPrincipal MemberDTO member){
-//
-//        log.info("pet profile request : {}", pet);
-//        log.info("pet profile image request : {}", petProfileImg);
-//
-//        String petImgDir = IMAGE_DIR + "petProfile";
-//
-//        File dir = new File(petImgDir);
-//
-//        /* 디렉토리가 없을 경우 생성 */
-//        if(!dir.exists()){
-//            dir.mkdirs();
-//        }
-//
-//        // 업로드 파일에 대한 정보를 담을 리스트
-//        List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
-//
-//        try{
-//            for (int i = 0; i < petProfileImg.size(); i++) {
-//
-//                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
-//                if(petProfileImg.get(i).getSize() > 0){
-//
-//                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
-//                    log.info("originalFileName : {}", originalFileName);
-//
-//                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-//                    String savedFileName = UUID.randomUUID() + ext;
-//                    log.info("savedFileName : {}", savedFileName);
-//
-//                    // 서버의 설정 디렉토리 파일 저장하기
-//                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
-//
-//                    // DB에 저장할 파일의 정보 처리
-//                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
-//                }
-//
-//
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "redirect:/member/pet-profile-view";
-//    }
+    @PostMapping("/pet-profile-regist")
+    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
+                                   @AuthenticationPrincipal MemberDTO loginMember,
+                                   RedirectAttributes rttr) throws PetProfileException {
+
+
+        log.info("pet profile request : {}", pet);
+        log.info("pet profile image request : {}", petProfileImg);
+
+        String petImgDir = IMAGE_DIR + "petProfile";
+
+        File dir = new File(petImgDir);
+
+        /* 디렉토리가 없을 경우 생성 */
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        // 업로드 파일에 대한 정보를 담을 리스트
+        //List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+
+        /*try{
+            for (int i = 0; i < petProfileImg.size(); i++) {
+
+                // 첨부파일이 실제로 존재하는 경우에만 로직 수행
+                if(petProfileImg.get(i).getSize() > 0){
+
+                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+                    log.info("originalFileName : {}", originalFileName);
+
+                    String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+                    String savedFileName = UUID.randomUUID() + ext;
+                    log.info("savedFileName : {}", savedFileName);
+
+                    // 서버의 설정 디렉토리 파일 저장하기
+                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+
+                    // DB에 저장할 파일의 정보 처리
+                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
+                    //fileInfo.setFileSaveName(savedFileName);
+                    //fileInfo.setFilePathName("/upload/member/");
+                }
+                // attachmentList.add(fileInfo);
+
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }*/
+
+        // log.info("attachmentList : {}", attachmentList);
+
+        // pet.setAttachmentList(attachmentList);
+        pet.setMember(loginMember);
+
+        memberService.registPetProfile(pet);
+
+        //rttr.addFlashAttribute()
+
+        return "redirect:/member/pet-profile-list";
+    }
+
+    /* 반려동물 프로필 리스트 조회 페이지 */
+    @GetMapping("/pet-profile-list")
+    public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        model.addAttribute("loginMember", loginMember.getMemberId());
+
+        List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
+
+        model.addAttribute("petProfileList", petProfileList);
+    }
+
+    /* 반려동물 프로필 상세 페이지 */
+    @GetMapping("/pet-profile-view")
+    public String petProfileView(@AuthenticationPrincipal MemberDTO loginMember,
+                                 @RequestParam int petCode,Model model){
+
+        log.info("loginMember : {}", loginMember);
+
+        PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
+        log.info("pet profile : {}", petProfile);
+
+        model.addAttribute("petProfile", petProfile);
+
+
+        return "member/pet-profile-view";
+    }
+
+    /* 반려동물 프로필 업데이트 */
+    @GetMapping("/pet-profile-update")
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+
+        model.addAttribute("petProfile", petProfile);
+    }
+
+    /* 반려동물 프로필 삭제 */
 
     /* 지난 예약 내역 조회 페이지 */
 //    @GetMapping("/reservationList")
