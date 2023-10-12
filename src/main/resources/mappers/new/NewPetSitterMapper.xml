@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mypet.petmily.petSitter.dao.PetSitterMapper2">
+<mapper namespace="com.mypet.petmily.petSitterNew.dao.NewPetSitterMapper">
 
     <!-- petSitter resultMap 관련 -->
-    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitter.dto.PetSitterDTO2">
+    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
         <id property="petMemberNo" column="PET_MEMBER_NO"/>
         <result property="petRegistDate" column="PET_REGIST_DATE"/>
         <result property="petStat" column="PET_STAT"/>
@@ -34,7 +34,7 @@
     <!-- petSitter resultMap 관련 -->
 
     <!-- member resultMap 관련 -->
-    <resultMap id="petMemberResultMap" type="com.mypet.petmily.petSitter.dto.PetJsonMemberDTO">
+    <resultMap id="petMemberResultMap" type="com.mypet.petmily.petSitterNew.dto.PetJsonMemberDTO">
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
@@ -48,7 +48,7 @@
     <!-- member resultMap 관련 -->
 
     <!-- petSitter career resultMap 관련 -->
-    <resultMap id="petSitterCareerResultMap" type="com.mypet.petmily.petSitter.dto.CareerDTO">
+    <resultMap id="petSitterCareerResultMap" type="com.mypet.petmily.petSitterNew.dto.CareerDTO">
         <id property="careerNo" column="CAREER_NO"/>
         <result property="careerContent" column="CAREER_CONTENT"/>
         <result property="petMemberNo" column="PET_MEMBER_NO"/>
@@ -56,7 +56,7 @@
     <!-- petSitter career resultMap 관련 -->
 
     <!-- petSitter tag resultMap 관련 -->
-    <resultMap id="petSitterTagResultMap" type="com.mypet.petmily.petSitter.dto.PetTagDTO">
+    <resultMap id="petSitterTagResultMap" type="com.mypet.petmily.petSitterNew.dto.PetTagDTO">
         <id property="tagNo" column="TAG_NO"/>
         <result property="tagContent" column="TAG_CONTENT"/>
         <result property="petMemberNo" column="PET_MEMBER_NO"/>
@@ -64,7 +64,7 @@
     <!-- petSitter tag resultMap 관련 -->
 
     <!-- petSitter schedule resultMap 관련 -->
-    <resultMap id="petSitterScheduleResultMap" type="com.mypet.petmily.petSitter.dto.SitterScheduleDTO">
+    <resultMap id="petSitterScheduleResultMap" type="com.mypet.petmily.petSitterNew.dto.SitterScheduleDTO">
         <id property="petMemberResNo" column="PET_MEMBER_RES_NO"/>
         <result property="petMemberResDay" column="PET_MEMBER_REG_DAY"/>
         <result property="petMemberStatus" column="PET_MEMBER_STATUS"/>
@@ -73,7 +73,7 @@
     <!-- petSitter tag resultMap 관련 -->
 
     <!-- 예약 resultMap 관련 -->
-    <resultMap id="resResultMap" type="com.mypet.petmily.petSitter.dto.ReservationDTO">
+    <resultMap id="resResultMap" type="com.mypet.petmily.petSitterNew.dto.ReservationDTO">
         <id property="resCode" column="RESERV_CODE"/>
         <result property="startDateTime" column="RESERV_START"/>
         <result property="endDateTime" column="RESERV_END"/>
@@ -93,7 +93,7 @@
 
 
     <!-- 펫시터 전체 정보 -->
-    <select id="selectAllInfo" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petSitterResultMap">
+    <select id="selectAllInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterResultMap">
         SELECT
             PET_MEMBER_NO
             , PET_REGIST_DATE
@@ -124,7 +124,7 @@
     </select>
 
     <!-- 펫시터 경력 전체 정보 -->
-    <select id="selectAllCareer" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petSitterCareerResultMap">
+    <select id="selectAllCareer" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterCareerResultMap">
         SELECT
             CAREER_NO
             , CAREER_CONTENT
@@ -134,7 +134,7 @@
     </select>
 
     <!-- 펫시터 태그 전체 정보 -->
-    <select id="selectAllTag" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petSitterTagResultMap">
+    <select id="selectAllTag" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterTagResultMap">
         SELECT
             TAG_NO
             , TAG_CONTENT
@@ -180,7 +180,7 @@
         )
     </insert>
 
-    <select id="petSitterSchedule" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petSitterScheduleResultMap">
+    <select id="petSitterSchedule" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterScheduleResultMap">
         SELECT
             PET_MEMBER_RES_NO
             , PET_MEMBER_REG_DAY
@@ -190,7 +190,7 @@
         WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
-    <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petMemberResultMap">
+    <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
             , MEMBER_ID
@@ -212,7 +212,7 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
-    <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO2" resultMap="petMemberResultMap">
+    <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
             , ADDRESS

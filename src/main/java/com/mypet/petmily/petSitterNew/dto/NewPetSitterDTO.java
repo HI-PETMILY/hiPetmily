@@ -1,4 +1,4 @@
-package com.mypet.petmily.petSitter.dto;
+package com.mypet.petmily.petSitterNew.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class PetSitterDTO2 {
+public class NewPetSitterDTO {
 
     private int petMemberNo;
     private String petRegistDate;

@@ -14,7 +14,7 @@ window.onload = function () {
 
             // location.href = "/";
             // 임시로 일단 펫시터 프로필 메뉴로 이동시킨다.
-            location.href = "/petSitter/petSitterProfile";
+            location.href = "/petSitterNew/petSitterProfile";
         });
 
     }
