@@ -144,7 +144,7 @@ window.onload = function () {
         $headerBtn4.addEventListener("click", (event) => {
 
 
-            location.href = "/board/faq/list";    // 추후 연결
+            location.href = "/board/service";    // 추후 연결
 
         });
 
