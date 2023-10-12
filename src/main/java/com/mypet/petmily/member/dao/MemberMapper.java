@@ -52,5 +52,5 @@ public interface MemberMapper {
 
     PetDTO viewFirstPetProfile(MemberDTO member);
 
-    PetDTO petProfileUpdate(MemberDTO loginMember);
+    PetDTO petProfileUpdate(PetDTO pet);
 }

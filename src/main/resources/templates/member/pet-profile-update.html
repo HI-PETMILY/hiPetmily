@@ -83,14 +83,14 @@
                     <div class="regist-pet-name dash-line">
                         <h4>이름</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petName" th:text="${petProfile.petName}" required>
+                            <input type="text" name="petName" th:text="${modifyPetProfile.petName}" required>
                         </div>
                     </div>
 
                     <div class="regist-pet-age  dash-line">
                         <h4>나이</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petAge"  th:text="${petProfile.petAge}"> required>살
+                            <input type="text" name="petAge"  th:value="${petProfile.petAge}" required>살
                         </div>
                     </div>
 

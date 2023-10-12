@@ -130,8 +130,8 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 업데이트 */
-    public PetDTO petProfileUpdate(MemberDTO loginMember) {
-        return memberMapper.petProfileUpdate(loginMember);
+    public PetDTO petProfileUpdate(PetDTO pet) {
+        return memberMapper.petProfileUpdate(pet);
     }
 
 

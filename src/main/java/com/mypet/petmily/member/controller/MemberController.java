@@ -381,11 +381,16 @@ public class MemberController {
 
     /* 반려동물 프로필 업데이트 */
     @GetMapping("/pet-profile-update")
-    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember
+                                      ,PetDTO modifyPet, Model model, RedirectAttributes rttr){
 
-        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+        modifyPet.setMember(loginMember);
 
-        model.addAttribute("petProfile", petProfile);
+        PetDTO modifyPetProfile = memberService.petProfileUpdate(modifyPet);
+
+        model.addAttribute("modifyPetProfile", modifyPetProfile);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.pet-profile-update"));
     }
 
     /* 반려동물 프로필 삭제 */

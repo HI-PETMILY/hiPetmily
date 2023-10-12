@@ -338,7 +338,29 @@
 
     <update id="petProfileUpdate">
         UPDATE TBL_MYPEY
-           SET
+           SET PET_NAME = #{petName}
+             , PET_AGE = #{petAge}
+             , PET_GENDER = #{petGender}
+             , NEUTRAL_YN = #{neutralYn}
+             , PET_BREED = #{petBreed}
+             , PET_WEIGHT = #{petWeight}
+             , PET_REGIST = #{petRegist}
+             , P_SOCIAL = #{pSocial}
+             , A_SOCIAL = #{aSocial}
+             , BARK_LEVEL = #{barkLevel}
+             , SEP_ANXIETY = #{sepAnxiety}
+             , PET_DISEASE = #{petDisease}
+             , PET_DISEASE_EXP = #{petDiseaseExp}
+             , PET_ALLERGY = #{petAllergy}
+             , PET_ALLERGY_EXP = #{petAllergyExp}
+             , POTTY_TRAIN = #{pottyTrain}
+             , MARKING_IN = #{markingIn}
+             , VACCIN = #{vaccin}
+             , HOS_NAME = #{hosName}
+             , HOS_PHONE = #{hosPhone}
+             , HOS_ADDRESS = #{hosAddress}
+         WHERE PET_CODE = #{petCode}
+           AND REGIST_STATUS = 'Y'
     </update>
 
     <!--    <select id="selectReserveList" resultMap="generalBoardResultMap">-->
