@@ -34,23 +34,16 @@
     <!-- petSitter resultMap 관련 -->
 
     <!-- member resultMap 관련 -->
-    <resultMap id="pet_memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+    <resultMap id="petMemberResultMap" type="com.mypet.petmily.petSitter.dto.PetJsonMemberDTO">
         <id property="memberNo" column="MEMBER_NO"/>
-        <result property="memberId" column="MEMBER_ID"/>
-        <result property="memberPwd" column="MEMBER_PWD"/>
-        <result property="memberName" column="MEMBER_MAME"/>
+        <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
         <result property="phone" column="PHONE"/>
         <result property="postNo" column="POST_NO"/>
         <result property="address" column="ADDRESS"/>
         <result property="address2" column="ADDRESS2"/>
         <result property="point" column="POINT"/>
-        <result property="gender" column="GENDER"/>
         <result property="memberStat" column="MEMBER_STAT"/>
-        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
-        <result property="registDate" column="REGIST_DATE"/>
-        <result property="warningCount" column="WARNING_COUNT"/>
-        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
     </resultMap>
     <!-- member resultMap 관련 -->
 
@@ -93,7 +86,7 @@
         <result property="resAppDate" column="RESERV_APP_DATE"/>
         <result property="resUpdateDate" column="RESERV_UPDATE_DATE"/>
 
-        <association property="resMember" resultMap="pet_memberResultMap"/>
+        <association property="resMember" resultMap="petMemberResultMap"/>
         <association property="resPetSitter" resultMap="petSitterResultMap"/>
     </resultMap>
     <!-- 예약 resultMap 관련 -->
@@ -182,8 +175,6 @@
             , #{ resVat }
             , #{ resAppDate }
             , #{ resUpdateDate }
-<!--            , #{ resMemberNo }-->
-<!--            , #{ resPetMemberNo }-->
             , #{ resMember.memberNo }
             , #{ resPetSitter.petMemberNo }
         )
@@ -199,5 +190,34 @@
         WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO" resultMap="petMemberResultMap">
+        SELECT
+            MEMBER_NO
+            , MEMBER_ID
+            , MEMBER_PWD
+            , MEMBER_NAME
+            , NICKNAME
+            , PHONE
+            , GENDER
+            , POST_NO
+            , ADDRESS
+            , ADDRESS2
+            , POINT
+            , MEMBER_STAT
+            , MEMBER_STAT_DATE
+            , REGIST_DATE
+            , WARNING_COUNT
+            , SIGNUP_PATH_CODE
+        FROM TBL_MEMBER
+        WHERE MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitter.dto.PetSitterDTO" resultMap="petMemberResultMap">
+        SELECT
+            MEMBER_NO
+            , ADDRESS
+        FROM TBL_MEMBER
+        WHERE MEMBER_NO = #{ petMemberNo }
+    </select>
 
 </mapper>
