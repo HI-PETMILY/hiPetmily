@@ -243,9 +243,8 @@ public class MemberController {
 
     /* 비밀번호 찾기 결과 */
     @PostMapping("/find_pwd")
-    public String findPwdCheck(HttpServletRequest request, Model model,
-                               @RequestParam String memberName, @RequestParam String memberId,
-                               MemberDTO dto){
+    public String findPwdCheck( Model model, @RequestParam String memberName,
+                                @RequestParam String memberId, MemberDTO dto){
 
         try{
             dto.setMemberId(memberId);
@@ -390,16 +389,46 @@ public class MemberController {
         return "member/pet-profile-view";
     }
 
-    /* 반려동물 프로필 업데이트 */
+    /* 반려동물 프로필 수정 페이지 */
     @GetMapping("/pet-profile-update")
-    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember,
+                                     @RequestParam int petCode,Model model){
 
-        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+        PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
 
         model.addAttribute("petProfile", petProfile);
     }
 
+
+    /* 반려동물 프로필 수정 */
+    @PostMapping("/pet-profile-update")
+    public String petProfileUpdate(@AuthenticationPrincipal MemberDTO loginMember, Model model,
+                                   RedirectAttributes rttr, @ModelAttribute PetDTO updatePet){
+
+        updatePet.setMember(loginMember);
+        memberService.petProfileUpdate(updatePet);
+
+        log.info("update pet info : {}", updatePet);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.pet-profile-update"));
+
+        return "redirect:/member/pet-profile-list";
+    }
+
+
     /* 반려동물 프로필 삭제 */
+    @GetMapping("/pet-profile-delete")
+    public String petProfileDelete(@RequestParam int petCode, RedirectAttributes rttr) throws PetRemoveException {
+
+        log.info("want to delete pet info : {}", petCode);
+
+        memberService.removePetProfile(petCode);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("message.pet-profile-delete"));
+
+        return "redirect:/member/pet-profile-list";
+    }
+
 
     /* 지난 예약 내역 조회 페이지 */
 //    @GetMapping("/reservationList")
