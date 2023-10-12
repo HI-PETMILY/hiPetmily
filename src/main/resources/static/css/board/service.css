@@ -16,16 +16,20 @@ a {
     color: inherit;
 }
 
+
+
 /*이용약관*/
 
 .useful_wrap {
-    width: 1000px;
-    margin: 100px auto;
-    height: 100vh;
+    /*width: 1200px;*/
+    margin: 60px auto;
+    text-align:center;
+    display:table;
+    /*border:1px solid #cecece;*/
+
 }
 
 .useful_title {
-    margin-bottom: 30px;
 }
 
 .useful_title strong {
@@ -38,16 +42,16 @@ a {
 }
 
 .useful_view_wrap {
-    text-align: left;
-    border: 1px solid #ddd;
+    text-align: center;
     padding: 30px;
     border-radius: 5px;
     font-size: 14px;
     color: #666;
-    line-height: 22px;
+    line-height: 80px;
     font-family: 'Nanum Gothic','Nanum Square',sans-serif;
     font-weight: 400;
     letter-spacing: -0.5px;
+
 }
 
 h2{
@@ -237,14 +241,13 @@ h2{
 
 /*사이트의 높이를 5000px로 만들어 스크롤 생성*/
 body {
-    height: 100vh;
-    background-color: white;
+    margin-top: 100px;
 }
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
     --side-bar-width: 250px;
-    --side-bar-height: 4470px;
+    --side-bar-height: 95vh;
 
 }
 
@@ -327,6 +330,26 @@ body {
 
 .img_boxing{
     display: flex;
+}
+
+.img_boxing_petmily{
+
+    vertical-align:middle;
+}
+
+.img_petimily{
+    max-width:100vh;
+    max-height:500px;
+}
+
+/*카카오톡 api*/
+.img_boxing_petmily_kakao{
+
+    vertical-align:middle;
+    background-image: url("static/static_Image/board/petmily-service3.png");
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 /*트랜스폼*/

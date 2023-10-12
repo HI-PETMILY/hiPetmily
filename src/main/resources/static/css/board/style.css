@@ -20,6 +20,7 @@ a {
 .board_wrap {
     width: 1000px;
     margin: 100px auto;
+    height: 100vh;
 }
 
 .board_title {
@@ -95,7 +96,7 @@ a {
 
 .board_list .title {
     width: 60%;
-    text-align: left;
+    text-align: center;
 }
 
 .board_list .top .title {

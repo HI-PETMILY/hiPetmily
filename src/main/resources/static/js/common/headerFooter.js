@@ -180,7 +180,9 @@ window.onload = function () {
         $headerBtn4.addEventListener("click", (event) => {
 
 
-            location.href = "/board/faq/list";
+
+            location.href = "/board/service";    // 추후 연결
+
 
         });
 
