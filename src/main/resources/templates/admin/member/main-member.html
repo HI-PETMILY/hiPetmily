@@ -18,7 +18,7 @@
     var memberList = "[[${memberList}]]";
     //console.log(memberList);
     for (i = 0; i < memberList.length; i++) {
-        console.log(memberList[i]);
+        // console.log(memberList[i]);
     }
 </script>
 
@@ -88,24 +88,22 @@
 
                 <form>
 
-                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="entire" name="rating"
-                                                                           value="selectAll"
-                                                                           onclick='selectAll(this)'>
-                        <label for="entire">전체</label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="common" name="rating" value="일반회원"
-                                                             checked>
-                        <label for="common">일반회원</label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="petSitter" name="rating"
-                                                             value="펫시터회원">
-                        <label for="petSitter">펫시터회원</label></li>
-
                     <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
                     <button class="search-button" type="submit" onclick="searchMembers();">검색</button>
 
-                    <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email"
-                                                                           name="marketing"
-                                                                           value="이메일" checked>
-                        <label for="email">이메일</label></li>
+                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="entire" name="rating" value="selectAll" onclick='selectAll(this)'>
+
+                        <label for="entire">전체</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="checkbox" id="common" name="rating" value="일반회원" >
+                        <label for="common">일반회원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="checkbox" id="petSitter" name="rating" value="펫시터회원">
+                        <label for="petSitter">펫시터회원</label></li>
+
+
+<!--                    <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email" name="marketing" value="이메일" checked>-->
+<!--                        <label for="email">이메일</label></li>-->
 
                     <b>• 검색어</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <select id="searchCondition" name="searchCondition">

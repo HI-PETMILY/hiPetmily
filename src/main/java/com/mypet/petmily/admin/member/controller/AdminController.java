@@ -24,10 +24,19 @@ public class AdminController {
     public String getMemberList(@RequestParam(defaultValue = "1") int page,
                                 @RequestParam(required = false) String searchCondition,
                                 @RequestParam(required = false) String searchValue,
+                                @RequestParam(required = false) List<String> rating,	    //등급별 검색을 위해 추가
                                 Model model){
 
+        log.info("검색버튼 클릭 시 들어오는 체크박스 선택 값 : {}", rating);                      //등급 체크박스 값 넘어오는지 확인
 // 서비스 클래스에서 총 회원 수와 페이징 처리된 회원 목록을 가져오기
-        Map<String, Object> memberListAndPaging = adminService.getMemberList(page, searchCondition, searchValue);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // 서비스로 체크박스 값 넘김 (ex : [일반회원, 펫시터회원], [일반회원], [펫시터회원], null)
+        Map<String, Object> memberListAndPaging = adminService.getMemberList(page, searchCondition, searchValue, rating);
+        // 밑에 기존코드
+        // Map<String, Object> memberListAndPaging = adminService.getMemberList(page, searchCondition, searchValue);
+        /////////////////////////////////////////////////////////////////////////////////////
+
         List<MemberDTO> memberList = (List<MemberDTO>) memberListAndPaging.get("memberList");
         int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue);
 

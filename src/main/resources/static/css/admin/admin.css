@@ -70,7 +70,7 @@
 .choose { /* 위쪽 회원리스트 체크박스 */
     padding: 0;
     position: relative;
-    bottom: 20px;
+    bottom: 5px;
     font-size: 14px;
     padding-left: 2%;
     padding-right: 2%;
@@ -228,6 +228,7 @@ body {
 }
 
 .search-button {
+
     border-radius: 5px; /* 검색 버튼 사각형 모서리 둥글게 */
     background-color: #0ca5a5; /* 파란색 배경 설정 */
     color: white; /* 글자 색상 설정 */
