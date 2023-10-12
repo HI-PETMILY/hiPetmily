@@ -4,7 +4,6 @@ $(function(){
 
     bannerImgCreate();
 
-
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -14,13 +13,7 @@ $(function(){
     fullcalendarApi();
     kakaoMapApi();
 
-
-
-
 });
-
-
-
 
 function getReservation() {
 
