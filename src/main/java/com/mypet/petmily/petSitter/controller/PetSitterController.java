@@ -1,6 +1,5 @@
 package com.mypet.petmily.petSitter.controller;
 
-import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dto.*;
 import com.mypet.petmily.petSitter.service.PetSitterService;
@@ -41,9 +40,15 @@ public class PetSitterController {
         return  "petSitter/account";
     }
 
+    @GetMapping("/regist")
+    public String petSitterRegist(){
+
+        return  "petSitter/petSitterRegist";
+    }
+
     @GetMapping(value = "/petSitterProfile")
 //    public String PetSitterProfile(PetSitterDTO petSitterDTO, Model model, @AuthenticationPrincipal MemberDTO member) {
-    public String PetSitterProfile(PetSitterDTO petSitterDTO, Model model) {
+    public String petSitterProfile(PetSitterDTO petSitterDTO, Model model) {
 
         PetSitterDTO petSitterInfo = petSitterService.selectAllInfo(petSitterDTO);
         List<CareerDTO> careerList = petSitterService.selectAllCareer(petSitterDTO);
@@ -54,7 +59,7 @@ public class PetSitterController {
         log.info("--petSitterInfo : {}", petSitterInfo);
         log.info("--careerList : {}", careerList);
         log.info("--petTagList : {}", petTagList);
-        log.info("--444444 : {}", petJsonMemberInfo);
+        log.info("--petJsonMemberInfo : {}", petJsonMemberInfo);
 
         model.addAttribute("petSitterInfo", petSitterInfo);
         model.addAttribute("careerList", careerList);
@@ -66,7 +71,7 @@ public class PetSitterController {
     }
 
     @GetMapping(value = "/resRegistSuccess")
-    public String ResRegistSuccess(@AuthenticationPrincipal MemberDTO member, Model model) {
+    public String resRegistSuccess(@AuthenticationPrincipal MemberDTO member, Model model) {
 
         model.addAttribute("member", member);
 
@@ -75,7 +80,7 @@ public class PetSitterController {
 
     @PostMapping("/reservation")
     public String registReservation(ReservationDTO reservation,
-                                    RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) throws PetSitterRegistException {
+                                    RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) {
 
         PetSitterDTO petSitter = new PetSitterDTO();
 
@@ -110,6 +115,7 @@ public class PetSitterController {
 
         List<SitterScheduleDTO> sitterSchedule = petSitterService.petSitterSchedule(petSitter);
 
+        // 해당 비동기 호출 2번(달력 2가지)
         log.info("--sitterSchedule : {}", sitterSchedule);
 
         return sitterSchedule;
