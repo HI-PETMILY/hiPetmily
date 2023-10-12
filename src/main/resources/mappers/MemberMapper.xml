@@ -303,7 +303,7 @@
     </insert>
 
     <!-- 반려동물 프로필 조회 -->
-    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="_int">
+    <select id="viewPetProfile" resultMap="petResultMap"  parameterType="int">
         SELECT
                PET_CODE
              , PET_NAME
@@ -327,6 +327,8 @@
              , HOS_NAME
              , HOS_PHONE
              , HOS_ADDRESS
+             , REGIST_STATUS
+             , MEMBER_NO
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{loginMember.memberNo}
            AND PET_CODE = #{petCode}
@@ -345,8 +347,8 @@
            AND REGIST_STATUS = 'Y'
     </select>
 
-    <update id="petProfileUpdate">
-        UPDATE TBL_MYPEY
+    <update id="petProfileUpdate" parameterType="com.mypet.petmily.member.dto.PetDTO">
+        UPDATE TBL_MYPET
            SET PET_NAME = #{petName}
              , PET_AGE = #{petAge}
              , PET_GENDER = #{petGender}
@@ -370,6 +372,14 @@
              , HOS_ADDRESS = #{hosAddress}
          WHERE PET_CODE = #{petCode}
            AND REGIST_STATUS = 'Y'
+           AND MEMBER_NO = #{member.memberNo}
+    </update>
+
+    <update id="deletePetProfile" parameterType="int">
+        UPDATE TBL_MYPET
+           SET REGIST_STATUS = 'N'
+         WHERE REGIST_STATUS = 'Y'
+           AND PET_CODE = #{petCode}
     </update>
 
     <!--    <select id="selectReserveList" resultMap="generalBoardResultMap">-->

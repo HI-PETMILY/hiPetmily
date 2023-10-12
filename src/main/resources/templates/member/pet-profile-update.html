@@ -20,15 +20,21 @@
 <!-- common header -->
 <div th:replace="common/header_white.html"></div>
 
-<div id="pet-profile-regist" class="myPageMain-container">
+<div id="pet-profile-update" class="myPageMain-container">
 
     <div class="left-navi"></div>
 
     <div class="myPageMainWrapper">
         <h2 class="mainTitle">반려동물 등록</h2>
+
+
         <div class="nav-line"></div>
+
         <form id="petProfileUpdateForm" action="/member/pet-profile-update" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="logInMemberId" value="petProfile"/>
+
+            <input type="hidden" name="petCode" th:value="${petProfile.petCode}"/>
+
+
             <table class="pet-profile-img-table" align="center">
                 <tr>
                     <td>
@@ -83,7 +89,7 @@
                     <div class="regist-pet-name dash-line">
                         <h4>이름</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petName" th:text="${modifyPetProfile.petName}" required>
+                            <input type="text" name="petName" th:value="${petProfile.petName}" required>
                         </div>
                     </div>
 
@@ -97,8 +103,8 @@
 
                     <div class="regist-pet-gender  dash-line">
                         <h4>성별</h4>
-                        <label><input type="radio" name="petGender" value="여" ${petProfile.petGender eq'여'?"checked": ''}>여아&nbsp;&nbsp; </label>
-                        <label><input type="radio" name="petGender" value="남" ${petProfile.petGender eq'남'?"checked": ''}>남아</label>
+                        <label><input type="radio" name="petGender" value="여" checked>여아&nbsp;&nbsp; </label>
+                        <label><input type="radio" name="petGender" value="남">남아</label>
                     </div>
                 </div>
 
@@ -107,16 +113,14 @@
                     <div class="regist-pet-breed  dash-line">
                         <h4>견종</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petBreed" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder=''" class="registPet" required>
+                            <input type="text" name="petBreed" th:value="${petProfile.petBreed}" required>
                         </div>
                     </div>
 
                     <div class="regist-pet-weight  dash-line">
                         <h4>몸무게</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petWeight" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder=''" class="registPet" required>kg
+                            <input type="text" name="petWeight" th:value="${petProfile.petWeight}">kg
                         </div>
                     </div>
 
@@ -187,7 +191,7 @@
 
             <div class="Q5-1 dash-line">
                 <h4>Q. 지병이나 다친 경험이 있다면 주의해야 할 행동과 함께 적어주세요.</h4>
-                <textarea name="petDiseaseExp"></textarea>
+                <textarea name="petDiseaseExp" th:text="${petProfile.petDiseaseExp}"></textarea>
             </div>
 
             <div class="Q6">
@@ -200,7 +204,7 @@
 
             <div class="Q6-1 dash-line">
                 <h4>Q. 알러지가 있다면 어떤 음식인지 적어주세요.</h4>
-                <textarea name="petAllergyExp"></textarea>
+                <textarea name="petAllergyExp" th:text="${petProfile.petAllergyExp}"></textarea>
             </div>
 
             <div class="Q7 dash-line">
@@ -236,20 +240,15 @@
                 <table>
                     <tr align="center">
                         <td>병원명</td>
-                        <td><input type="text" name="hosName" placeholder="병원명" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='병원명'" required></td>
+                        <td><input type="text" name="hosName" th:value="${petProfile.hosName}" required></td>
                     </tr>
                     <tr align="center">
                         <td>전화번호</td>
-                        <td><input type="text" name="hosPhone" placeholder="ex) 02-0000-0000"
-                                   onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='02-0000-0000'" required></td>
+                        <td><input type="text" name="hosPhone" th:value="${petProfile.hosPhone}" required></td>
                     </tr>
                     <tr align="center">
                         <td>간략주소</td>
-                        <td><input type="text" name="hosAddress" placeholder="ex) 서울시 종로구 인사동"
-                                   onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='서울시 종로구 인사동'" required></td>
+                        <td><input type="text" name="hosAddress" th:value="${petProfile.hosAddress}" required></td>
                     </tr>
                 </table>
             </div>

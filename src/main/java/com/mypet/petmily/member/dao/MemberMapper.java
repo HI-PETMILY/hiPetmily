@@ -54,5 +54,7 @@ public interface MemberMapper {
 
     PetDTO viewFirstPetProfile(MemberDTO member);
 
-    PetDTO petProfileUpdate(PetDTO pet);
+    void petProfileUpdate(PetDTO pet);
+
+    int deletePetProfile(int petCode);
 }
