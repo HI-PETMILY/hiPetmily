@@ -4,7 +4,6 @@ $(function(){
 
     bannerImgCreate();
 
-
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -14,13 +13,7 @@ $(function(){
     fullcalendarApi();
     kakaoMapApi();
 
-
-
-
 });
-
-
-
 
 function getReservation() {
 
@@ -218,9 +211,9 @@ function dogSelectBoxAdd() {
 
     for(let i = 0 ; i < 2; i++){
         if(i == 0){
-            dogSelect += '<option value="'+'0'+i+'">- 선택하기</option>';
+            dogSelect += '<option value="'+'0'+i+'">---- 선택하기 ----</option>';
         } else {
-            dogSelect += '<option value="'+'0'+i+'">토리</option>';
+            dogSelect += '<option value="'+'0'+i+'">중소형(15kg미만)</option>';
         }
     }
     $("#dogSelect").html(dogSelect);
@@ -243,7 +236,7 @@ function flatpickrApi() {
     // 예약불가 스케줄 비동기
     $.ajax({
         type: "POST"
-        , url: "/petSitter/petSitterSchedule"
+        , url: "/petSitterNew/petSitterSchedule"
         , dataType: "JSON"
         , contentType: "application/json; charset=utf-8"
         , data : JSON.stringify({
@@ -338,7 +331,7 @@ function fullcalendarApi() {
 
             $.ajax({
                 type: "POST"
-                , url: "/petSitter/petSitterSchedule"
+                , url: "/petSitterNew/petSitterSchedule"
                 , dataType: "JSON"
                 , contentType: "application/json; charset=utf-8"
                 , data : JSON.stringify({
@@ -369,6 +362,25 @@ function fullcalendarApi() {
 /* 지도 API 부분 ---------------------------- */
 function kakaoMapApi() {
 
+    // url에 petMemberNo 를 받아옴
+    const urlParams = new URL(location.href).searchParams;
+    const urlPetMemberNo = urlParams.get('petMemberNo');
+    let petAddress;
+
+    $.ajax({
+        type: "POST"
+        , url: "/petSitterNew/petSitterAddress"
+        , dataType: "JSON"
+        , contentType: "application/json; charset=utf-8"
+        , data : JSON.stringify({
+            petMemberNo :  urlPetMemberNo
+        })
+        , async : false
+        , success: function (data) {
+            petAddress = data.address;
+        }
+    });
+
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.56710, 126.97633), // 지도의 중심좌표
@@ -395,7 +407,7 @@ function kakaoMapApi() {
     let geocoder = new kakao.maps.services.Geocoder();
 
     // 주소로 좌표를 검색합니다
-    geocoder.addressSearch('서울특별시 종로구 인사동길 12', function(result, status) {
+    geocoder.addressSearch( petAddress, function(result, status) {
 
         // 정상적으로 검색이 완료됐으면
         if (status === kakao.maps.services.Status.OK) {

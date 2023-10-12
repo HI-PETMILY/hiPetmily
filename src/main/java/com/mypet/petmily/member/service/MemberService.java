@@ -1,14 +1,11 @@
 package com.mypet.petmily.member.service;
 
-import com.mypet.petmily.common.exception.member.MemberModifyException;
-import com.mypet.petmily.common.exception.member.MemberPasswordUpdateException;
-import com.mypet.petmily.common.exception.member.MemberRegistException;
-import com.mypet.petmily.common.exception.member.MemberRemoveException;
+import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -66,6 +63,7 @@ public class MemberService {
         if (!(result > 0)) throw new MemberPasswordUpdateException("비밀번호 변경에 실패하였습니다.");
     }
 
+    /* 회원 탈퇴 */
     @Transactional
     public void removeMember(MemberDTO member) throws MemberRemoveException {
         int result = memberMapper.deleteMember(member);
@@ -75,14 +73,20 @@ public class MemberService {
         }
     }
 
-
+    /* 닉네임 중복 확인 */
     public boolean selectMemberByNickName(String nickName){
 
         String result = memberMapper.selectMemberByNickName(nickName);
 
         return result != null;
+    }
 
+    /* 이메일 중복 확인 */
+    public boolean selectMemberByMemberId(String memberId) {
 
+        String result = memberMapper.selectMemberByMemberId(memberId);
+
+        return result != null;
     }
 
     /* 아이디 찾기 */
@@ -103,6 +107,45 @@ public class MemberService {
     }
 
 
+
+    /* 마이페이지 반려동물 프로필 조회 */
+    public PetDTO viewFirstPetProfile(MemberDTO member) {
+        return memberMapper.viewFirstPetProfile(member);
+    }
+
+    /* 반려동물 프로필 등록 */
+    public void registPetProfile(PetDTO pet) throws PetProfileException {
+
+        pet.setRegistStatus("Y");
+        memberMapper.insertPetProfile(pet);      // 반려동물 테이블에 데이터 저장
+
+
+        //memberMapper.insertAttachment(review.getAttachment());
+    }
+
+    /* 반려동물 프로필 리스트 조회 */
+    public List<PetDTO> selectPetProfileList(MemberDTO loginMember) {
+        return memberMapper.selectPetProfileList(loginMember);
+    }
+
+    /* 특정 반려동물 프로필 조회 */
+    public PetDTO viewPetProfile(MemberDTO loginMember, int petCode) {
+
+        return memberMapper.viewPetProfile(loginMember, petCode);
+    }
+
+    /* 반려동물 프로필 업데이트 */
+    public void petProfileUpdate(PetDTO pet) {
+        memberMapper.petProfileUpdate(pet);
+    }
+
+    /* 반려동물 프로필 삭제 */
+    public void removePetProfile(int petCode) throws PetRemoveException {
+
+        int result = memberMapper.deletePetProfile(petCode);
+
+        if(!(result > 0)) throw new PetRemoveException("반려동물 프로필 삭제에 실패했습니다.");
+    }
 
     /* 예약 내역 조회 */
 //    public Map<String, Object> selectReserveList(Map<String, String> searchMap, int page) {
@@ -134,12 +177,10 @@ public class MemberService {
 //
 
     /* 예약 조회 */
-   
 
 
 
-
-    /* 작성 리뷰 조회 */
+    /* 작성한 리뷰 전체 조회 */
     public Map<String, Object> selectReviewList(Map<String, String> searchMap, int page) {
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
         int totalCount = memberMapper.selectTotalCount(searchMap);
@@ -152,7 +193,7 @@ public class MemberService {
         log.info("boardList selectCriteria : {}", selectCriteria);
 
         /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
-         List<ReviewDTO> reviewList = memberMapper.selectReviewList(selectCriteria);
+        List<ReviewDTO> reviewList = memberMapper.selectReviewList(selectCriteria);
         log.info("board : {}", reviewList);
 
         Map<String, Object> reviewListAndPaging = new HashMap<>();
@@ -169,4 +210,5 @@ public class MemberService {
 
         return null;
     }
+
 }

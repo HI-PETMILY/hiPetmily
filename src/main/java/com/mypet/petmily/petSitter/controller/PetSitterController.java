@@ -1,39 +1,47 @@
 package com.mypet.petmily.petSitter.controller;
 
-import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
+
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.*;
+import com.mypet.petmily.member.dto.MemberRoleDTO;
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
+import com.mypet.petmily.petSitter.dto.ReviewDTO;
 import com.mypet.petmily.petSitter.service.PetSitterService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
 @RequestMapping("/petSitter")
 public class PetSitterController {
 
-    private final MessageSourceAccessor messageSourceAccessor;
-    private final PetSitterService petSitterService;
+//    private final MypageService mypageService;
+//
+//    public MypageController(MypageService mypageService){
+//
+//        this.mypageService = mypageService;
+//    }
 
-    public PetSitterController(MessageSourceAccessor messageSourceAccessor, PetSitterService petSitterService) {
-        this.messageSourceAccessor = messageSourceAccessor;
-        this.petSitterService = petSitterService;
-    }
 
 
     @GetMapping("/mypage")
     public String getMypage(Model model){
 
+
+
         return "petSitter/mypage";
+
+
+
     }
+
 
     @GetMapping("/account")
     public String getAccount(Model model){
@@ -41,76 +49,57 @@ public class PetSitterController {
         return  "petSitter/account";
     }
 
-    @GetMapping(value = "/petSitterProfile")
-//    public String PetSitterProfile(PetSitterDTO petSitterDTO, Model model, @AuthenticationPrincipal MemberDTO member) {
-    public String PetSitterProfile(PetSitterDTO petSitterDTO, Model model) {
+    @GetMapping("/reservationList")
 
-        PetSitterDTO petSitterInfo = petSitterService.selectAllInfo(petSitterDTO);
-        List<CareerDTO> careerList = petSitterService.selectAllCareer(petSitterDTO);
-        List<PetTagDTO> petTagList = petSitterService.selectAllTag(petSitterDTO);
+    public  String getReservationList(Model model){
 
-//        MemberDTO memberInfo = petSitterService.selectMemberInfo(petSitterDTO);
-
-        log.info("--petSitterInfo : {}", petSitterInfo);
-        log.info("--careerList : {}", careerList);
-        log.info("--petTagList : {}", petTagList);
-//        log.info("--444444 : {}", memberInfo);
-
-        model.addAttribute("petSitterInfo", petSitterInfo);
-        model.addAttribute("careerList", careerList);
-        model.addAttribute("petTagList", petTagList);
-
-
-        return "petSitter/petSitterProfile";
+        return "petSitter/reservationList";
     }
 
-    @GetMapping(value = "/resRegistSuccess")
-    public String ResRegistSuccess(@AuthenticationPrincipal MemberDTO member, Model model) {
 
-        model.addAttribute("member", member);
+    private  final PetSitterService petSitterService;
 
-        return "petSitter/resRegistSuccess";
+    public PetSitterController(PetSitterService petSitterService){
+
+        this.petSitterService= petSitterService;
     }
 
-    @PostMapping("/reservation")
-    public String registReservation(PetSitterDTO petSitter, ReservationDTO reservation
-            , RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) throws PetSitterRegistException {
+//    @GetMapping("/searchPage")
+//
+//    public  String getPetSitterList(@RequestParam(defaultValue ="1") int page,
+//                                    @RequestParam(required = false) String searchCondition,
+//                                    @RequestParam(required = false) String searchValue){
+//
+//        log.info("petsitterList page : {}", page);
+//        log.info("petsitterList searchCondition : {}", searchCondition);
+//        log.info("petsitterList searchValue : {}", searchValue);
+//
+//        //검색값으로 조회
+//        Map<String, String> searchMap = new HashMap<>();
+//        searchMap.put("searchCondition", searchCondition);
+//        searchMap.put("searchValue", searchValue);
+//
+//
+//        Map<String, Object> petSitterListAndPaging  = petSitterService.selectPetSitterList(searchMap, page);
+//
+//
+//        return "petSitter/searchPage";
+//    }
 
-        // 테스트 회원정보랑 펫시터 정보 받기전에 임시코드
-        petSitter.setPetMemberNo(4);
+    @GetMapping("/searchPage")
 
-        /* ---- 추후에 페이지에서 멤버,펫시터 넘버 받아와야함 */
-        reservation.setResMember(member);
-        reservation.setResPetSitter(petSitter);
+    public  String selectPetSitterList(Model model){
 
-        reservation.setResStatus("대기");
+        List<PetSitterDTO> petSitterDTOList = petSitterService.selectPetSitterList();
+        model.addAttribute("petSitterList",petSitterDTOList);
 
-        petSitterService.registReservation(reservation);
-
-        log.info("-- reservation : {} ", reservation );
-
-        // 회원정보랑 받아와야함 해야될거~~~
-        rttr.addFlashAttribute("resCode", reservation.getResCode());
-        rttr.addFlashAttribute("petMemberNo", reservation.getResPetSitter().getPetMemberNo());
-        rttr.addFlashAttribute("startDateTime", reservation.getStartDateTime());
-        rttr.addFlashAttribute("endDateTime", reservation.getEndDateTime());
-        rttr.addFlashAttribute("resDayCount", reservation.getResDayCount());
-        rttr.addFlashAttribute("timeCount", reservation.getResTimeCount());
-        rttr.addFlashAttribute("totalAmount", reservation.getResTotalAmount());
-
-        return "redirect:/petSitter/resRegistSuccess";
+        log.info("petSitterList : {}", petSitterDTOList);
+        return "petSitter/searchPage";
     }
 
-    // 비동기
-    @PostMapping("/petSitterSchedule")
-    @ResponseBody
-    public List<SitterScheduleDTO> petSitterSchedule(@RequestBody PetSitterDTO petSitter) {
 
-        List<SitterScheduleDTO> sitterSchedule = petSitterService.petSitterSchedule(petSitter);
 
-        log.info("--sitterSchedule : {}", sitterSchedule);
 
-        return sitterSchedule;
-    }
+
 
 }
