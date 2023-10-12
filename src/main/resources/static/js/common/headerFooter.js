@@ -146,7 +146,7 @@ window.onload = function () {
 
         $headerBtn3_2.addEventListener("click", (event) => {
 
-            location.href = "/petSitter/regist";
+            location.href = "/petSitterNew/regist";
         });
 
         $headerBtn3_2.addEventListener("mouseover", (event) => {
