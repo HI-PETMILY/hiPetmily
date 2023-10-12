@@ -1,8 +1,8 @@
-package com.mypet.petmily.petSitter.controller;
+package com.mypet.petmily.petSitterNew.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.*;
-import com.mypet.petmily.petSitter.service.PetSitterService2;
+import com.mypet.petmily.petSitterNew.dto.*;
+import com.mypet.petmily.petSitterNew.service.NewPetSitterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,45 +15,33 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/petSitter")
-public class PetSitterController2 {
+@RequestMapping("/petSitterNew")
+public class NewPetSitterController {
 
     private final MessageSourceAccessor messageSourceAccessor;
-    private final PetSitterService2 petSitterService2;
+    private final NewPetSitterService newPetSitterService;
 
-    public PetSitterController2(MessageSourceAccessor messageSourceAccessor, PetSitterService2 petSitterService2) {
+    public NewPetSitterController(MessageSourceAccessor messageSourceAccessor, NewPetSitterService newPetSitterService) {
         this.messageSourceAccessor = messageSourceAccessor;
-        this.petSitterService2 = petSitterService2;
+        this.newPetSitterService = newPetSitterService;
     }
 
-
-    @GetMapping("/mypage")
-    public String getMypage(Model model){
-
-        return "petSitter/mypage";
-    }
-
-    @GetMapping("/account")
-    public String getAccount(Model model){
-
-        return  "petSitter/account";
-    }
 
     @GetMapping("/regist")
     public String petSitterRegist(){
 
-        return  "petSitter/petSitterRegist";
+        return  "petSitterNew/petSitterRegist";
     }
 
     @GetMapping(value = "/petSitterProfile")
 //    public String PetSitterProfile(PetSitterDTO2 petSitterDTO2, Model model, @AuthenticationPrincipal MemberDTO member) {
-    public String petSitterProfile(PetSitterDTO2 petSitter, Model model) {
+    public String petSitterProfile(NewPetSitterDTO petSitter, Model model) {
 
-        PetSitterDTO2 petSitterInfo = petSitterService2.selectAllInfo(petSitter);
-        List<CareerDTO> careerList = petSitterService2.selectAllCareer(petSitter);
-        List<PetTagDTO> petTagList = petSitterService2.selectAllTag(petSitter);
+        NewPetSitterDTO petSitterInfo = newPetSitterService.selectAllInfo(petSitter);
+        List<CareerDTO> careerList = newPetSitterService.selectAllCareer(petSitter);
+        List<PetTagDTO> petTagList = newPetSitterService.selectAllTag(petSitter);
 
-        PetJsonMemberDTO petJsonMemberInfo = petSitterService2.selectMemberInfo(petSitter);
+        PetJsonMemberDTO petJsonMemberInfo = newPetSitterService.selectMemberInfo(petSitter);
 
         log.info("--petSitterInfo : {}", petSitterInfo);
         log.info("--careerList : {}", careerList);
@@ -66,7 +54,7 @@ public class PetSitterController2 {
         model.addAttribute("memberInfo", petJsonMemberInfo);
 
 
-        return "petSitter/petSitterProfile";
+        return "petSitterNew/petSitterProfile";
     }
 
     @GetMapping(value = "/resRegistSuccess")
@@ -74,14 +62,14 @@ public class PetSitterController2 {
 
         model.addAttribute("member", member);
 
-        return "petSitter/resRegistSuccess";
+        return "petSitterNew/resRegistSuccess";
     }
 
     @PostMapping("/reservation")
     public String registReservation(ReservationDTO reservation,
                                     RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) {
 
-        PetSitterDTO2 petSitter = new PetSitterDTO2();
+        NewPetSitterDTO petSitter = new NewPetSitterDTO();
 
         // 테스트 회원정보랑 펫시터 정보 받기전에 임시코드
         /* ---- 추후에 펫시터 넘버 받아와야함 */
@@ -92,7 +80,7 @@ public class PetSitterController2 {
 
         reservation.setResStatus("대기");
 
-        petSitterService2.registReservation(reservation);
+        newPetSitterService.registReservation(reservation);
 
         log.info("-- reservation : {} ", reservation );
 
@@ -104,15 +92,15 @@ public class PetSitterController2 {
         rttr.addFlashAttribute("timeCount", reservation.getResTimeCount());
         rttr.addFlashAttribute("totalAmount", reservation.getResTotalAmount());
 
-        return "redirect:/petSitter/resRegistSuccess";
+        return "redirect:/petSitterNew/resRegistSuccess";
     }
 
     // 펫시터 스케줄 비동기
     @PostMapping("/petSitterSchedule")
     @ResponseBody
-    public List<SitterScheduleDTO> petSitterSchedule(@RequestBody PetSitterDTO2 petSitter) {
+    public List<SitterScheduleDTO> petSitterSchedule(@RequestBody NewPetSitterDTO petSitter) {
 
-        List<SitterScheduleDTO> sitterSchedule = petSitterService2.petSitterSchedule(petSitter);
+        List<SitterScheduleDTO> sitterSchedule = newPetSitterService.petSitterSchedule(petSitter);
 
         // 해당 비동기 호출 2번(달력 2가지)
         log.info("--sitterSchedule : {}", sitterSchedule);
@@ -123,9 +111,9 @@ public class PetSitterController2 {
     // 카카오 지도 비동기
     @PostMapping("/petSitterAddress")
     @ResponseBody
-    public PetJsonMemberDTO petSitterAddress(@RequestBody PetSitterDTO2 petSitter) {
+    public PetJsonMemberDTO petSitterAddress(@RequestBody NewPetSitterDTO petSitter) {
 
-        PetJsonMemberDTO petJsonMember = petSitterService2.petSitterAddress(petSitter);
+        PetJsonMemberDTO petJsonMember = newPetSitterService.petSitterAddress(petSitter);
 
         log.info("--petSitterAddress : {}", petJsonMember);
 
