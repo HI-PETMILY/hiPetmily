@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>회원가입</title>
-    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" type="text/css" href="/css/member/regist.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer type="text/javascript" src="/js/member/regist.js"></script>
 
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/member/regist.css"/>
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+
 </head>
 
 <body>
@@ -26,33 +28,37 @@
             <div class="notice1">
                 * 은 필수 입력 사항입니다.
                 <div>
-                    <div class="container_email">
+                    <div class="container">
                         <span>
-                            <input type="text" name="memberId" id="email" placeholder=" * 이메일"
+                            <input type="text" name="memberId" id="memberId" placeholder=" * 이메일"
                                    onfocus="this.placeholder=''" onblur="this.placeholder=' * 이메일'" required>
+
+                            <input type="button" value="중복확인" id="duplicationCheck2">
+
                         </span>
                     </div>
 
                     <div>
-                        <div class="container_name">
+                        <div class="container">
                         <span>
-                            <input type="text" maxlength="6" name="memberName" id="name" placeholder=" * 이름"
+                            <input type="text" maxlength="6" name="memberName" id="memberName" placeholder=" * 이름"
                                    onfocus="this.placeholder=''" onblur="this.placeholder=' * 이름'" required>
                         </span>
                         </div>
                     </div>
                     <div>
-                        <div class="container_nickname">
+                        <div class="container">
                         <span>
                             <input type="text" maxlength="13" name="nickName" id="nickName"
                                    placeholder=" * 닉네임" onfocus="this.placeholder=''" onblur="this.placeholder=' * 닉네임'"
                                    required>
+
                             <input type="button" value="중복확인" id="duplicationCheck">
                         </span>
                         </div>
                     </div>
                     <div>
-                        <div class="container_password">
+                        <div class="container">
                         <span>
                             <input type="password" maxlength="13" name="memberPwd" id="password"
                                    placeholder=" * 비밀번호" onfocus="this.placeholder=''"
@@ -61,7 +67,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="container_password2">
+                        <div class="container">
                         <span>
                             <input type="password" maxlength="15" name="memberPwd2" id="password2"
                                    placeholder=" * 비밀번호 확인" onfocus="this.placeholder=''"
@@ -70,18 +76,17 @@
                         </div>
                     </div>
                     <div>
-                        <div class="container_phone">
+                        <div class="container">
                         <span>
                             <input type="text" maxlength="15" name="phone" id="phone" placeholder=" * 휴대전화"
                                    onfocus="this.placeholder=''" onblur="this.placeholder=' * 휴대전화'"  required>
-                            <input type="button" onclick="sendSms()" value="인증번호 발송" id="authenticationNumber">
                         </span>
                         </div>
                     </div>
 
-                    <div class="gender-row">
-                        <div class="gender-label">성별</div>
-                        <div class="gender-container">
+                    <div id="gender-row">
+                        <div id="gender-label" class="container">성별</div>
+                        <div id="gender-container" class="container">
                             <label class="gender-fe">
                                 <input type="radio" name="gender" value="F" checked="checked"/>
                                 <span class="female">여성</span>
@@ -93,7 +98,7 @@
                         </div>
                     </div>
                     <div>
-                        <div id="centerLine">
+                        <div id="centerLine" class="container">
                             <input type="text" value="" name="postNo" id="zipcode" placeholder=" 우편번호 (선택)" readonly>
                             <input type="button" value="우편번호 검색" id="searchZipCode">
                         </div>
@@ -118,12 +123,12 @@
                         <div>
                             <input type="checkbox" class="normal required" id="check_2">
                             <label for="check_2">펫밀리 이용 약관 동의 [필수]</label>
-                            <span>내용보기</span>
+                            <span><a href="/board/terms" style="text-decoration: none; color: #81BDF1;" class="a_text" id="aa_text">내용보기</a></span>
                         </div>
                         <div>
                             <input type="checkbox" class="normal required" id="check_3">
                             <label for="check_3">개인정보 수집 및 이용 동의 [필수]</label>
-                            <span>내용보기</span>
+                            <span><a href="/board/policy" style="text-decoration: none; color: #81BDF1;" class="a_text">내용보기</a></span>
                         </div>
                     </div>
                 </div>
@@ -153,8 +158,8 @@
                             }
                         }).open();
                     }
+
                 </script>
         <div th:replace="common/footer.html"></div>
-
 </body>
 </html>

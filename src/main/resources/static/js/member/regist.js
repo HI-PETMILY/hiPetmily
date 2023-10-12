@@ -1,32 +1,21 @@
-window.onload = function() {
-
-    /* =============================================================================
-                                         mainRegist.html
-   =============================================================================== */
-    /* 회원 가입 mainRegist 창에서 이메일로 가입하기 버튼 누를 시 */
-    if (document.getElementById("regist")) {
-        const $regist = document.getElementById("regist");
-        $regist.onclick = function () {
-            location.href = "/member/regist";
-        }
-    }
-
 
     /* =============================================================================
                                            regist.html
      =============================================================================== */
 
 
-    /* 유효성 검사 나중에 ===================================== */
-
-    /* 닉네임 중복 확인 */
-
-    if(document.getElementById("duplicationCheck")) {
-
+     /* 닉네임 중복 확인 */
+    if (document.getElementById("duplicationCheck")) {
         const $duplication = document.getElementById("duplicationCheck");
+        const $nickNameInput = document.getElementById("nickName");
 
-        $duplication.onclick = function() {
-            let nickName = document.getElementById("nickName").value.trim();
+        $duplication.onclick = function () {
+            let nickName = $nickNameInput.value.trim();
+
+            if (nickName === "") {
+                alert("사용하실 닉네임을 입력하세요.");
+                return; // 닉네임 필드가 비어 있으면 중복 확인을 실행하지 않음
+            }
 
             fetch("/member/nickNameDupCheck", {
                 method: "POST",
@@ -38,19 +27,53 @@ window.onload = function() {
                 .then(result => result.text())
                 .then(result => alert(result))
                 .catch((error) => error.text().then((res) => alert(res)));
-
         }
     }
 
 
+    /* 이메일 중복 확인 */
+    if (document.getElementById("duplicationCheck2")) {
+        const $duplicationEmail = document.getElementById("duplicationCheck2");
+        const $memberId = document.getElementById("memberId");
+
+        $duplicationEmail.onclick = function () {
+            let memberId = $memberId.value.trim();
+
+            if (memberId === "") {
+                alert("사용하실 이메일을 입력하세요.");
+                return; // 이메일 필드가 비어 있으면 중복 확인을 실행하지 않음
+            }
+
+            fetch("/member/idDupCheck", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                body: JSON.stringify({ memberId: memberId })
+            })
+                .then(result => result.text())
+                .then(result => alert(result))
+                .catch((error) => error.text().then((res) => alert(res)));
+
+        }
+    }
+
     /* input에 영어랑 숫자만 입력하게 하기 - 이메일 */
-    const inputEngNum = document.getElementById('email');
+    const inputEngNum = document.getElementById('memberId');
     inputEngNum.addEventListener('input', function (event) {
         const inputValue = event.target.value;
         // event.target은 이벤트를 발생시킨 요소를 가리킨다. -> 입력필드
         event.target.value = inputValue.replace(/[^\w\s@.]/ig, '');
         // event.target.value는 입력 필드의 현재 값을 나타낸다.
         // => 정규 표현식을 사용하여 입력을 필터링하고, 필터링된 결과를 다시 입력 필드에 할당하여 불필요한 문자를 제거한다.
+    });
+
+
+    /* input에 영어랑 한글만 입력하게 하기 - 이름 */
+    const inputEngKor = document.getElementById('memberName');
+    inputEngKor.addEventListener('input', function (event) {
+        const inputValue4 = event.target.value;
+        event.target.value = inputValue4.replace(/[^A-Za-z가-힣\s]/g, '');
     });
 
 
@@ -101,8 +124,7 @@ window.onload = function() {
     const requiredCheckboxes = document.querySelectorAll(".required");
     const submitButton = document.querySelector(".regist_button input[type='submit']");
 
-
-    // 필수 약관 체크박스들 상태 체크
+// 필수 약관 체크박스들 상태 체크
     function updateSubmitButtonState() {
         var allRequiredChecked = true;
 
@@ -118,6 +140,3 @@ window.onload = function() {
 
     updateSubmitButtonState();
 
-    /* 백 연결 ================================================= */
-
-}

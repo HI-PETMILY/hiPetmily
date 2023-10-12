@@ -1,5 +1,7 @@
 package com.mypet.petmily.main.controller;
 
+import com.mypet.petmily.member.dto.MemberDTO;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,17 +52,6 @@ public class MainController {
         return "member/join";
     }
 
-    // 로그인
-//    @GetMapping("/member/login")
-//    public String headerMemberLogin() {
-//        return "member/login";
-//    }
-
-    // 마이페이지
-    @GetMapping("/member/mypage")
-    public String headerMemberMypage() {
-        return "member/mypage";
-    }
 
     // 로그아웃
     @GetMapping("/member/logout")
@@ -95,9 +86,9 @@ public class MainController {
     }
 
     // 자주하는질문
-    @GetMapping("/board/faq")
+    @GetMapping("/board/faq/list")
     public String footerFaq() {
-        return "board/faq";
+        return "board/faq/list";
     }
 
 }

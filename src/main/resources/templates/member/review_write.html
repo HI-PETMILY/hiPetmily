@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/member/event.js"></script>
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+<body>
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div id="review-write" class="myPageMain-container">
+
+    <div class="left-navi"></div>
+
+    <div class="myPageMainWrapper">
+        <h2 class="mainTitle">후기 작성하기</h2>
+        <div class="nav-line"></div>
+
+        <form id="reviewForm" action="/member/review_write" method="post">
+
+            <div class="pet-profile-img review-img">
+                <img class="petProfileImg" src="/static_Image/member/petProfile.png">
+            </div>
+
+            <div style="display: none;">
+                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+            </div>
+
+
+            <div class="nav-line"></div>
+
+            <div class="review-container">
+                    <div class="review-star-exp">
+                        <p>펫시터에 대한 별점</p>
+                    </div>
+
+                    <div class="review-star">
+                        <input type="radio" name="reviewStar" value="5" id="rate1"><label
+                            for="rate1">★</label>
+                        <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                            for="rate2">★</label>
+                        <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                            for="rate3">★</label>
+                        <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                            for="rate4">★</label>
+                        <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                            for="rate5">★</label>
+                    </div>
+            </div>
+
+            <div class="review-text">
+                <textarea class="review-textarea" placeholder="리뷰를 작성해주세요."></textarea>
+            </div>
+
+            <div>
+                <button class="text-button" type="submit">등록하기</button>
+                <button class="text-button" type="button" onclick="location.href='/member/예약조회화면'">취소하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+</body>
+</html>

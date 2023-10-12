@@ -4,20 +4,21 @@ server:
 ## DB config
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
 
 
-## file upload config
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-      location: C:/Lecture/sub_project/hipetmily
+### file upload config
+#  servlet:
+#    multipart:
+#      max-file-size: 10MB
+#      max-request-size: 10MB
+#      location: C:/Lecture/sub_project/hipetmily
 
 
+#
 ## Mybatis config
 mybatis:
   mapper-locations: mappers/**/*.xml

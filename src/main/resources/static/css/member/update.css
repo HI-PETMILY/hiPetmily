@@ -8,8 +8,8 @@
 }
 
 .image-area {
-    width: 245px;
-    height: 265px;
+    width: 235px;
+    height: 255px;
     margin-left: 168px;
     border: 0;
     /*border-radius: 100px;*/
@@ -72,8 +72,6 @@
     background-color: #dbdbdb;
 }
 
-
-
 .info_update {
     margin-left: 35%;
 }
@@ -101,6 +99,7 @@
 }
 
 
-#memberId, #phone {
-    margin-left: 40px;
+#memberId, #phone, #memberName {
+    margin-left: 32px;
+    padding-top: 15px;
 }

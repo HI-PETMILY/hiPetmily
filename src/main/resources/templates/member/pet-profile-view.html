@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/member/event.js"></script>
+<!--    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>-->
+    <link href="/css/member/style_.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/member/mypage.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+</head>
+
+<body>
+
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+
+
+<div id="pet-profile-view" class="myPageMain-container">
+
+    <div class="left-navi"></div>
+
+    <div class="myPageMainWrapper">
+        <h2 class="mainTitle">반려동물 프로필</h2>
+
+        <div class="nav-line"></div>
+
+        <div class="pet-info-top">
+            <div class="petProfile-img-name">
+                <div class="petProfileImg" id="slideShow">
+                    <ul class="slides">
+                        <!--        <li><img th:src="${petProfile.fileList[0].filePath}"></li>-->
+                        <!--{ 모델 객체에 저장된 이름으로 가져오는 것인데  }-->
+                        <!--{컨트롤러 겟매핑 모델 어트리뷰트값, boardDTO에 attachmentList, attachDTO에 썸네일Path}-->
+                        <li><img src="/static_Image/member/petProfileTest1.png" alt="반려동물 프로필 이미지1"></li>
+                        <li><img src="/static_Image/member/petProfileTest2.png" alt="반려동물 프로필 이미지2"></li>
+                        <li><img src="/static_Image/member/petProfileTest3.png" alt="반려동물 프로필 이미지3"></li>
+                        <li><img src="/static_Image/member/petProfileTest4.jpg" alt="반려동물 프로필 이미지4"></li>
+                        <li><img src="/static_Image/member/petProfileTest5.jpg" alt="반려동물 프로필 이미지5"></li>
+                        <li><img src="/static_Image/member/petProfileTest6.jpg" alt="반려동물 프로필 이미지6"></li>
+                    </ul>
+                    <p class="petImgController">
+                        <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
+                        <span class="prev">&lang;</span>
+                        <span class="next">&rang;</span>
+                    </p>
+
+                    <div class="petProfileName">
+                        <p th:text="${petProfile.petName}"></p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                let slides = document.querySelector('.slides');
+                let slideImg = document.querySelectorAll('.slides li');
+                currentIdx = 0;
+                slideCount = slideImg.length;
+                prev = document.querySelector('.prev');
+                next = document.querySelector('.next');
+                slideWidth = 250;   //슬라이드 이미지 넓이
+                slideMargin = 100; //슬라이드 끼리의 마진값
+                makeClone(); // 처음이미지와 마지막 이미지 복사 함수
+                initfunction(); //슬라이드 넓이와 위치값 초기화 함수
+                function makeClone() {
+                    let cloneSlide_first = slideImg[0].cloneNode(true);
+                    let cloneSlide_last = slides.lastElementChild.cloneNode(true);
+                    slides.append(cloneSlide_first);
+                    slides.insertBefore(cloneSlide_last, slides.firstElementChild);
+                }
+
+                function initfunction() {
+                    slides.style.width = (slideWidth + slideMargin) * (slideCount + 2) + 'px';
+                    slides.style.left = -(slideWidth + slideMargin) + 'px';
+                }
+
+                next.addEventListener('click', function () {
+                    //다음 버튼 눌렀을 때
+                    if (currentIdx <= slideCount - 1) {
+                        //슬라이드 이동
+                        slides.style.left = -(currentIdx + 2) * (slideWidth + slideMargin) + 'px';
+                        slides.style.transition = `${0.5}s ease-out`; //이동 속도
+                    }
+                    if (currentIdx === slideCount - 1) {
+                        //마지막 슬라이드 일 때
+                        setTimeout(function () {
+                            //0.5초동안 복사한 첫번째 이미지에서, 진짜 첫번째 위치로 이동
+                            slides.style.left = -(slideWidth + slideMargin) + 'px';
+                            slides.style.transition = `${0}s ease-out`;
+                        }, 500);
+                        currentIdx = -1;
+                    }
+                    currentIdx += 1;
+                });
+                prev.addEventListener('click', function () {
+                    //이전 버튼 눌렀을때
+                    console.log(currentIdx);
+                    if (currentIdx >= 0) {
+                        slides.style.left = -currentIdx * (slideWidth + slideMargin) + 'px';
+                        slides.style.transition = `${0.5}s ease-out`;
+                    }
+                    if (currentIdx === 0) {
+                        setTimeout(function () {
+                            slides.style.left = -slideCount * (slideWidth + slideMargin) + 'px';
+                            slides.style.transition = `${0}s ease-out`;
+                        }, 500);
+                        currentIdx = slideCount;
+                    }
+                    currentIdx -= 1;
+                });
+            </script>
+
+            <div class="basic-info">
+                <div class="basic-info-block">
+                    <div class="basic-info-map">
+                        <div class="basic-info-key">나이</div>
+                        <div class="basic-info-value">
+                            <p th:text="${petProfile.petAge} + 살"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="basic-info-block">
+                    <div class="basic-info-map">
+                        <div class="basic-info-key">성별(중성화)</div>
+                        <div class="basic-info-value">
+                            <p th:text="${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="basic-info-block">
+                    <div class="basic-info-map">
+                        <div class="basic-info-key">견종</div>
+                        <div class="basic-info-value">
+                            <p th:text="${petProfile.petBreed}"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="basic-info-block">
+                    <div class="basic-info-map">
+                        <div class="basic-info-key">몸무게</div>
+                        <div class="basic-info-value">
+                            <p th:text="${petProfile.petWeight} + kg" ></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="regist-pet-regist  dash-line">
+            <h4>반려견 등록</h4>
+            <div class="answer-contain">
+                <label>
+                    <p ><input type="radio" readonly checked th:text="${petProfile.petRegist}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q1  dash-line">
+            <h4>Q. 다른 사람들과의 친화력</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.pSocial}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q2 dash-line">
+            <h4>Q. 다른 반려동물과의 친화력</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.aSocial}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q3 dash-line">
+            <h4>Q. 잘 짖는 편인가요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.barkLevel}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q4 dash-line">
+            <h4>Q. 분리불안 증세가 있나요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.sepAnxiety}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q5">
+            <h4>Q. 앓고있는 지병이나 다친 경험이 있나요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.petDisease}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q5-1 dash-line">
+            <h4>Q. 지병이나 다친 경험이 있다면 주의해야 할 행동과 함께 적어주세요.</h4>
+            <div><p><textarea readonly th:text="${petProfile.petDiseaseExp}"></textarea></p></div>
+        </div>
+
+        <div class="Q6">
+            <h4>Q. 음식 알러지가 있나요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.petAllergy}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q6-1 dash-line">
+            <h4>Q. 알러지가 있다면 어떤 음식인지 적어주세요.</h4>
+            <div><p><textarea readonly th:text="${petProfile.petAllergyExp}"></textarea></p></div>
+        </div>
+
+        <div class="Q7 dash-line">
+            <h4>Q. 대소변은 잘 가리나요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.pottyTrain}"></p>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="Q8 dash-line">
+            <h4>Q. 실내 마킹을 하나요?</h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.markingIn}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q9 dash-line">
+            <h4>Q. 예방접종을 하셨나요? </h4>
+            <div class="answer-contain">
+                <label>
+                    <p><input type="radio" readonly checked th:text="${petProfile.vaccin}"></p>
+                </label>
+            </div>
+        </div>
+
+        <div class="Q10 dash-line">
+            <h4>자주 다니는 병원 정보</h4>
+            <table>
+                <tr align="center">
+                    <th>병원명</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosName}"></p>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <th>전화번호</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosPhone}"></p>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <th>간략주소</th>
+                    <td>
+                        <p><input type="radio" readonly checked th:text="${petProfile.hosAddress}"></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <button class="text-button" type="submit">삭제하기</button>
+            <button class="text-button" type="button" onclick="location.href=''">수정하기</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+
+</body>
+
+</html>
