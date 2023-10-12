@@ -3,18 +3,29 @@ package com.mypet.petmily.board;
 import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 
+
+//접근 레벨이 PRIVATE인 기본 생성자를 생성하는 롬복 어노테이션
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class CreatePagingTag {
+
+    // 페이지 번호, 총 레코드 수, 한 페이지당 행 수, 페이지 URL을 받아 페이징 엘리먼트를 반환하는 메소드
 
     public static String getPagingElement(long total, int page, int row, String pageUrl){
 
         String pageData = "";
+
+
+        // 총 페이지 수 계산
 
         int pages = (total == 0) ? 1 : (int) ((total - 1) / row) + 1;
         int blocks;
         int block;
         int firstPage;
         int lastPage;
+
+
+
+        // 페이지 블록 계산
 
         blocks = (int) Math.ceil(1.0 * pages / 10.0);
         block = (int) Math.ceil(1.0 * page / 10.0);
@@ -23,25 +34,29 @@ public final class CreatePagingTag {
         if (lastPage > pages)
             lastPage = pages;
 
-        pageData = "<a href="+pageUrl+"&page=1  title=\"첫페이지\" class=\"pbtn\">처음</a>";
+
+
+        // 페이징 엘리먼트 구성
+        pageData = "<a href="+pageUrl+"&page=1 class=\"bt first\"><<</a>";
 
         if(block > 1){
-            pageData += "<a href="+pageUrl+"&page="+(firstPage-1)+" title=\"이전페이지\" class=\"pbtn\">이전</a>";
+            pageData += "<a href="+pageUrl+"&page="+(firstPage-1)+" class=\"bt prev\"><</a>";
+
         }
 
         for(int i=firstPage; i <= lastPage; i++){
             if(page == i) {
-                pageData += "<a href="+pageUrl+"&page="+page+" title=\"<s:message code='common.page.now'/>\" class=\"numon\"><strong>"+page+"</strong></a>";
+                pageData += "<a href="+pageUrl+"&page="+page+" class=\"num on\">"+page+"</a>";
             }else{
-                pageData += "<a href="+pageUrl+"&page="+i+" title=\""+i+" 페이지\" class=\"num\">"+i+"</a>";
+                pageData += "<a href="+pageUrl+"&page="+i+" class=\"num\">"+i+"</a>";
             }
         }
 
         if(block < blocks){
-            pageData += "<a href="+pageUrl+"&page="+(lastPage+1)+" title=\"다음페이지\" class=\"pbtn\">다음</a>";
+            pageData += "<a href="+pageUrl+"&page="+(lastPage+1)+" class=\"bt next\">></a>";
         }
 
-        pageData += "<a href="+pageUrl+"&page="+pages+" title=\"마지막페이지\" class=\"pbtn\">마지막</a>";
+        pageData += "<a href="+pageUrl+"&page="+pages+" class=\"bt last\">>></a>";
 
         return pageData;
 

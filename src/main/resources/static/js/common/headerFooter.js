@@ -12,7 +12,9 @@ window.onload = function () {
 
         $headerLogImg.addEventListener("click", (event) => {
 
-            location.href = "/";
+            // location.href = "/";
+            // 임시로 일단 펫시터 프로필 메뉴로 이동시킨다.
+            location.href = "/petSitter/petSitterProfile";
         });
 
     }
@@ -141,7 +143,9 @@ window.onload = function () {
 
         $headerBtn4.addEventListener("click", (event) => {
 
-            location.href = "/board/info";    // 추후 연결
+
+            location.href = "/board/faq/list";    // 추후 연결
+
         });
 
         $headerBtn4.addEventListener("mouseover", (event) => {
@@ -472,7 +476,9 @@ window.onload = function () {
 
         $footerBtn4.addEventListener("click", (event) => {
 
-            location.href = "/board/faq";    // 추후 연결
+
+            location.href = "/board/faq/list";    // 추후 연결
+
         });
 
         $footerBtn4.addEventListener("mouseover", (event) => {

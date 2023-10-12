@@ -19,8 +19,6 @@ public class ReservationDTO {
     private int resVat;
     private String resAppDate;
     private String resUpdateDate;
-//    private int resMemberNo;
-//    private int resPetMemberNo;
     private MemberDTO resMember;
     private PetSitterDTO resPetSitter;
 

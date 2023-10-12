@@ -4,6 +4,7 @@ $(function(){
 
     bannerImgCreate();
 
+
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -17,6 +18,9 @@ $(function(){
 
 
 });
+
+
+
 
 function getReservation() {
 
@@ -228,16 +232,42 @@ function dogSelectBoxAdd() {
 /* 캘린더(flatpickr) API 부분 ---------------------------- */
 function flatpickrApi() {
 
+    // url에 petMemberNo 를 받아옴
+    const urlParams = new URL(location.href).searchParams;
+    const urlPetMemberNo = urlParams.get('petMemberNo');
+    let scheduleArr;
+
     const startDateInput = document.getElementById('startDate');
     const endDateInput = document.getElementById('endDate');
 
+    // 예약불가 스케줄 비동기
+    $.ajax({
+        type: "POST"
+        , url: "/petSitter/petSitterSchedule"
+        , dataType: "JSON"
+        , contentType: "application/json; charset=utf-8"
+        , data : JSON.stringify({
+            petMemberNo :  urlPetMemberNo
+        })
+        , async : false
+        , success: function (data) {
+            let events = [];
+
+            $.each(data, function (index, item) {
+                events.push( item.petMemberResDay );
+            });
+
+            scheduleArr = events;
+        }
+    });
+
     flatpickr(startDateInput, {
-        dateFormat: 'Y-m-d', // 날짜 및 시간 형식 설정 (예: 2023-09-12)
-        enableTime: false,        // 시간 선택 활성화
-        minDate: 'today',        // 오늘 이전 날짜 선택 비활성화
-        // defaultDate: '시작 날짜',
-        disable: ['2023-10-12', '2023-10-15'], // 특정 날짜 비활성화
-        locale: 'ko',            // 한국어로 지역화
+        dateFormat: 'Y-m-d' // 날짜 및 시간 형식 설정 (예: 2023-09-12)
+        , enableTime: false        // 시간 선택 활성화
+        , minDate: 'today'        // 오늘 이전 날짜 선택 비활성화
+        // , defaultDate: '시작 날짜',
+        , disable: scheduleArr // 특정 날짜 비활성화
+        , locale: 'ko',            // 한국어로 지역화
         onOpen: function() {
             // 위젯이 열릴 때 실행할 코드
         },
@@ -253,7 +283,7 @@ function flatpickrApi() {
                 enableTime: false,        // 시간 선택 활성화
                 minDate: selectStartDate,        // 오늘 이전 날짜 선택 비활성화
                 // defaultDate: '종료 날짜',    // 초기 날짜 설정 (현재 날짜와 시간)
-                disable: ['2023-10-12', '2023-10-15'], // 특정 날짜 비활성화
+                disable: scheduleArr, // 특정 날짜 비활성화
                 locale: 'ko',            // 한국어로 지역화
                 onOpen: function(selectedDates, dateStr, instance) {
                     // 위젯이 열릴 때 실행할 코드
@@ -271,6 +301,10 @@ function flatpickrApi() {
 
 /* fullcalendar API 부분 ---------------------------- */
 function fullcalendarApi() {
+
+    // url에 petMemberNo 를 받아옴
+    const urlParams = new URL(location.href).searchParams;
+    const urlPetMemberNo = urlParams.get('petMemberNo');
 
     let calendarEl = document.getElementById('calendar');
     let today = new Date().toISOString().split('T')[0];     // 현재 날짜
@@ -300,21 +334,33 @@ function fullcalendarApi() {
                 domNodes: []
             };
         },
-        events: [
-            {
-                start: '2023-10-10',
-                end: '2023-10-10',
-                display: 'background',
-                backgroundColor: '#2d72f1'
-            },
-            {
-                start: '2023-10-13',
-                end: '2023-10-13',
-                display: 'background',
-                backgroundColor: '#2d72f1'
-            }
-        ],
+        events: function(info, successCallback, failureCallback) {
 
+            $.ajax({
+                type: "POST"
+                , url: "/petSitter/petSitterSchedule"
+                , dataType: "JSON"
+                , contentType: "application/json; charset=utf-8"
+                , data : JSON.stringify({
+                    petMemberNo :  urlPetMemberNo
+                })
+                , async : false
+                , success: function (data) {
+                    let events = [];
+
+                    $.each(data, function (index, item) {
+                        events.push({
+                            start : item.petMemberResDay
+                            ,display: 'background'
+                            ,backgroundColor: '#f15b2d'
+                        });
+                    });
+
+                    successCallback(events);
+                }
+            });
+
+        }
     });
     calendar.render();
 }
