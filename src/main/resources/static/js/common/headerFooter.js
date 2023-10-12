@@ -497,6 +497,5 @@ window.onload = function () {
             $footerBtn4.style.color = "white";
         });
 
-
     }
 }

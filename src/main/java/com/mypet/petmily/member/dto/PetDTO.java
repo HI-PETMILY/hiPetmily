@@ -1,13 +1,11 @@
 package com.mypet.petmily.member.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter @Setter @ToString
+@Getter @Setter @ToString @Data
 public class PetDTO {
 
-    private Long petCode;           // 반려견 코드
+    private int petCode;           // 반려견 코드
     private String petName;         // 반려견 이름
     private String petAge;          // 반려견 나이
     private String petGender;       // 반려견 성별
@@ -29,5 +27,6 @@ public class PetDTO {
     private String hosName;         // 자주 가는 병원 명
     private String hosPhone;        // 자주 가는 병원 전화번호
     private String hosAddress;      // 병원 간략 주소
-    private MemberDTO memberNo;     // 견주의 회원 코드
+    private String registStatus;    // 반려동물 등록 상태(Y, N)
+    private MemberDTO member;       // 견주의 회원 코드
 }
