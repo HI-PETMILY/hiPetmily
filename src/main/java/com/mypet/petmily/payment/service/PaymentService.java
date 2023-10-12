@@ -4,7 +4,7 @@ package com.mypet.petmily.payment.service;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dao.PaymentMapper;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
+import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +20,7 @@ public class PaymentService {
         this.paymentMapper = paymentMapper;
     }
 
-    public List<ReservationDTO> selectReservationHistroyList(MemberDTO loginMember) {
+    public List<ReservationDTO> selectReservationHistoryList(MemberDTO loginMember) {
         return paymentMapper.selectReservationHistoryList(loginMember);
 
 

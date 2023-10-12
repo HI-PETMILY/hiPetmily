@@ -2,18 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mypet.petmily.petSitter.dao.PetSitterMapper">
+<mapper namespace="com.mypet.petmily.payment.dao.PaymentMapper">
 
+<!-- 예약 -->
     <resultMap type="com.mypet.petmily.payment.dto.ReservationHistoryDTO" id="generalReservationResultMap">
-        <id property="code" column="RESERV_CODE" />
-        <result property="startDate" column="RESERV_START"/>
-        <result property="endDate" column="RESERV_END"/>
-        <result property="reStatus" column="RESERV_STATUS"/>
-        <result property="totalAmount" column="RESERV_TOTAL_AMOUNT"/>
-        <result property="dayCount" column="RESERV_DAY_COUNT"/>
-        <result property="timeCount" column="RESERV_TIME_COUNT"/>
-        <result property="vat" column="RESERV_VAT"/>
-        <result property="appDate" column="RESERV_APP_DATE"/>
+        <id property="resCode" column="RESERV_CODE" />
+        <result property="startDateTime" column="RESERV_START"/>
+        <result property="endDateTime" column="RESERV_END"/>
+        <result property="resStatus" column="RESERV_STATUS"/>
+        <result property="restotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="resDayCount" column="RESERV_DAY_COUNT"/>
+        <result property="resTimeCount" column="RESERV_TIME_COUNT"/>
+        <result property="resvat" column="RESERV_VAT"/>
+        <result property="resAppDate" column="RESERV_APP_DATE"/>
 
         <association property="resMember" resultMap="petMemberResultMap"/>
         <association property="resPetSitter" resultMap="petSitterResultMap"/>
@@ -21,8 +22,9 @@
 
     </resultMap>
 
+
     <!-- 펫 주인 -->
-    <resultMap id="petMemberResultMap" type="com.mypet.petmily.petSitter.dto.PetJsonMemberDTO">
+    <resultMap type="com.mypet.petmily.payment.dto.PetMemberDTO" id="petMemberResultMap">
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
@@ -34,8 +36,9 @@
         <result property="memberStat" column="MEMBER_STAT"/>
     </resultMap>
 
+
     <!-- 펫시터 -->
-    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitter.dto.PetSitterDTO">
+    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
         <id property="petMemberNo" column="PET_MEMBER_NO"/>
         <result property="petRegistDate" column="PET_REGIST_DATE"/>
         <result property="petStat" column="PET_STAT"/>
@@ -63,7 +66,7 @@
     </resultMap>
 
     <!-- 펫 -->
-    <resultMap id="petResultMap" type="com.mypet.petmily.member.dto.PetDTO">
+    <resultMap id="petResultMap" type="com.mypet.petmily.payment.dto.PetResDTO">
         <id property="petCode" column="PET_CODE"/>
         <result property="petName" column="PET_NAME"/>
         <result property="petAge" column="PET_AGE"/>
@@ -87,17 +90,19 @@
         <result property="hosPhone" column="HOS_PHONE"/>
         <result property="hosAddress" column="HOS_ADDRESS"/>
         <result property="registStatus" column="REGIST_STATUS"/>
-        <association property="member" resultMap="memberResultMap"/>
+        <association property="member" resultMap="petMemberResultMap"/>
     </resultMap>
 
     <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
         SELECT
-              RESERV_CODE
-            , RESERV_START
-            , P.PET_NAME AS PET_NAME
-            , M.NICKNAME AS NICKNAME
+            RESERV_CODE,
+            RESERV_START,
+            P.PET_NAME,
+            M.NICKNAME
         FROM TBL_RESERVATION R
-        JOIN TBL_PET P ON R.PET_CODE = P.PET_CODE
+        JOIN TBL_PET_SITTER S ON R.PET_MEMBER_NO = S.PET_MEMBER_NO
+        JOIN TBL_MYPET P ON R.PET_MEMBER_NO = P.MEMBER_NO
+        JOIN TBL_MEMBER M ON S.PET_MEMBER_NO = M.MEMBER_NO
     </select>
 
 </mapper>
