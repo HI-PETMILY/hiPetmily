@@ -4,7 +4,6 @@ $(function(){
 
     bannerImgCreate();
 
-
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -14,13 +13,7 @@ $(function(){
     fullcalendarApi();
     kakaoMapApi();
 
-
-
-
 });
-
-
-
 
 function getReservation() {
 
@@ -243,7 +236,7 @@ function flatpickrApi() {
     // 예약불가 스케줄 비동기
     $.ajax({
         type: "POST"
-        , url: "/petSitter/petSitterSchedule"
+        , url: "/petSitterNew/petSitterSchedule"
         , dataType: "JSON"
         , contentType: "application/json; charset=utf-8"
         , data : JSON.stringify({
@@ -338,7 +331,7 @@ function fullcalendarApi() {
 
             $.ajax({
                 type: "POST"
-                , url: "/petSitter/petSitterSchedule"
+                , url: "/petSitterNew/petSitterSchedule"
                 , dataType: "JSON"
                 , contentType: "application/json; charset=utf-8"
                 , data : JSON.stringify({
@@ -376,7 +369,7 @@ function kakaoMapApi() {
 
     $.ajax({
         type: "POST"
-        , url: "/petSitter/petSitterAddress"
+        , url: "/petSitterNew/petSitterAddress"
         , dataType: "JSON"
         , contentType: "application/json; charset=utf-8"
         , data : JSON.stringify({

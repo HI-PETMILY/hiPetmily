@@ -1,4 +1,4 @@
-package com.mypet.petmily.petSitter.dto;
+package com.mypet.petmily.petSitterNew.dto;
 
 import lombok.Getter;
 import lombok.Setter;

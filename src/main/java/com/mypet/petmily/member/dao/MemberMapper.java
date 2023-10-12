@@ -2,7 +2,6 @@ package com.mypet.petmily.member.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
