@@ -43,15 +43,16 @@ public class PetSitterService {
         return petSitterMapper.selectAllTag(petMember);
     }
 
-    public MemberDTO selectMemberInfo(PetSitterDTO petMember) {
+    public PetJsonMemberDTO selectMemberInfo(PetSitterDTO petMember) {
 
-//        return petSitterMapper.selectMemberInfo(petMember);
-        return null;
+        return petSitterMapper.selectMemberInfo(petMember);
     }
 
     public List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO petMember) {
         return petSitterMapper.petSitterSchedule(petMember);
     }
 
-
+    public PetJsonMemberDTO petSitterAddress(PetSitterDTO petMember) {
+        return petSitterMapper.petSitterAddress(petMember);
+    }
 }

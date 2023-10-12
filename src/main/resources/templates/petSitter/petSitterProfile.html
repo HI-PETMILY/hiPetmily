@@ -59,14 +59,14 @@
                 </div>
             </div>
             <div class="psp_item_content">
-                <div class="psp_item_title" th:text="${ petSitterInfo.petTitle }">기본값</div>
+                <div class="psp_item_title" th:text="${ petSitterInfo.petTitle }"></div>
                 <div class="psp_item_box">
-                    <div class="psp_profile_name">김아무개</div>
-                    <div class="psp_profile_address">서울 종로구 인사동길 12</div>
+                    <div class="psp_profile_name" th:text="${ memberInfo.memberName }"></div>
+                    <div class="psp_profile_address" th:text="${ memberInfo.address }"></div>
                 </div>
                 <div class="psp_profile_tag" >
                     <th:block th:each="item : ${ petTagList }">
-                        <div class="tagBox" th:text="${ item.tagContent }">기본값</div>
+                        <div class="tagBox" th:text="${ item.tagContent }"></div>
                     </th:block>
                 </div>
             </div>
@@ -74,13 +74,13 @@
 
         <div class="psp_item">
             <div class="psp_item_title">펫시터 소개</div>
-            <p id="psp_intro_text" class="psp_item_text" th:text="${ petSitterInfo.petIntroduce }">기본값</p>
+            <p id="psp_intro_text" class="psp_item_text" th:text="${ petSitterInfo.petIntroduce }"></p>
         </div>
 
         <div class="psp_item">
             <div class="psp_item_title">경력 / 교육</div>
             <ul class="psp_item_text2" th:each="item : ${ careerList }">
-                <li th:text="${ item.careerContent }">기본값</li>
+                <li th:text="${ item.careerContent }"></li>
             </ul>
         </div>
 
@@ -89,11 +89,11 @@
             <div class="psp_env_box">
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img1">돌봄공간</div>
-                    <div class="env_item_td" th:text="${ petSitterInfo.petPlace } + ' 거주'">기본값</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petPlace } + ' 거주'"></div>
                 </div>
                 <div class="psp_env_item env_item_bc1">
                     <div class="env_item_th th_img2">돌봄가능 반려견수</div>
-                    <div class="env_item_td" th:text="${ petSitterInfo.petCareCount } + ' 마리'">1마리까지</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petCareCount } + ' 마리'"></div>
                 </div>
                 <div class="psp_env_item env_item_bc2">
                     <div class="env_item_th th_img3">12세 이하 아동</div>
@@ -154,11 +154,11 @@
                     <ul>
                         <li>
                             <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
-                            <div th:text="${ petSitterInfo.petCareSize }">기본값</div>
+                            <div th:text="${ petSitterInfo.petCareSize }"></div>
                         </li>
                         <li>
                             <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
-                            <div th:text="${ petSitterInfo.petCareAge }">기본값</div>
+                            <div th:text="${ petSitterInfo.petCareAge }"></div>
                         </li>
                     </ul>
                 </div>
@@ -172,11 +172,11 @@
                     <ul>
                         <li>
                             <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
-                            <div th:text="${ '체크인 : ' + petSitterInfo.petCheckIn }">기본값</div>
+                            <div th:text="${ '체크인 : ' + petSitterInfo.petCheckIn }"></div>
                         </li>
                         <li>
                             <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
-                            <div th:text="${ '체크아웃 : ' + petSitterInfo.petCheckOut }">기본값</div>
+                            <div th:text="${ '체크아웃 : ' + petSitterInfo.petCheckOut }"></div>
                         </li>
                     </ul>
                 </div>
@@ -190,11 +190,11 @@
                     <tbody>
                         <tr>
                             <th scope="row">해주세요!</th>
-                            <td th:text="${ petSitterInfo.petRequest }">기본값</td>
+                            <td th:text="${ petSitterInfo.petRequest }"></td>
                         </tr>
                         <tr>
                             <th scope="row">힘들어요!</th>
-                            <td th:text="${ petSitterInfo.petImpossible }">기본값</td>
+                            <td th:text="${ petSitterInfo.petImpossible }"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -347,7 +347,7 @@
         <div class="psp_map">
             <div class="psp_map_text_box">
                 <div class="map_title1">펫시터님 위치</div>
-                <div class="map_title2">서울 특별시 종로구 인사동길 12</div>
+                <div class="map_title2" th:text="${ memberInfo.address }">서울 특별시 종로구 인사동길 12</div>
             </div>
             <div class="psp_map_box">
                 <div id="map" class="kakaoMap"></div>

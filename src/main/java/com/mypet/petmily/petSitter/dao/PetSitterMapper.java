@@ -15,7 +15,6 @@ public interface PetSitterMapper {
     List<CareerDTO> selectAllCareer(PetSitterDTO petMember);
     List<PetTagDTO> selectAllTag(PetSitterDTO petMember);
     List<SitterScheduleDTO> petSitterSchedule(PetSitterDTO petMember);
-
-//    MemberDTO selectMemberInfo(PetSitterDTO petMember);
-
+    PetJsonMemberDTO selectMemberInfo(PetSitterDTO petMember);
+    PetJsonMemberDTO petSitterAddress(PetSitterDTO petMember);
 }

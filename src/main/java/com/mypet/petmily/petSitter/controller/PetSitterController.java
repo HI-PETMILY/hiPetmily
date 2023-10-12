@@ -49,16 +49,17 @@ public class PetSitterController {
         List<CareerDTO> careerList = petSitterService.selectAllCareer(petSitterDTO);
         List<PetTagDTO> petTagList = petSitterService.selectAllTag(petSitterDTO);
 
-//        MemberDTO memberInfo = petSitterService.selectMemberInfo(petSitterDTO);
+        PetJsonMemberDTO petJsonMemberInfo = petSitterService.selectMemberInfo(petSitterDTO);
 
         log.info("--petSitterInfo : {}", petSitterInfo);
         log.info("--careerList : {}", careerList);
         log.info("--petTagList : {}", petTagList);
-//        log.info("--444444 : {}", memberInfo);
+        log.info("--444444 : {}", petJsonMemberInfo);
 
         model.addAttribute("petSitterInfo", petSitterInfo);
         model.addAttribute("careerList", careerList);
         model.addAttribute("petTagList", petTagList);
+        model.addAttribute("memberInfo", petJsonMemberInfo);
 
 
         return "petSitter/petSitterProfile";
@@ -73,13 +74,15 @@ public class PetSitterController {
     }
 
     @PostMapping("/reservation")
-    public String registReservation(PetSitterDTO petSitter, ReservationDTO reservation
-            , RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) throws PetSitterRegistException {
+    public String registReservation(ReservationDTO reservation,
+                                    RedirectAttributes rttr, @AuthenticationPrincipal MemberDTO member) throws PetSitterRegistException {
+
+        PetSitterDTO petSitter = new PetSitterDTO();
 
         // 테스트 회원정보랑 펫시터 정보 받기전에 임시코드
+        /* ---- 추후에 펫시터 넘버 받아와야함 */
         petSitter.setPetMemberNo(4);
 
-        /* ---- 추후에 페이지에서 멤버,펫시터 넘버 받아와야함 */
         reservation.setResMember(member);
         reservation.setResPetSitter(petSitter);
 
@@ -89,7 +92,6 @@ public class PetSitterController {
 
         log.info("-- reservation : {} ", reservation );
 
-        // 회원정보랑 받아와야함 해야될거~~~
         rttr.addFlashAttribute("resCode", reservation.getResCode());
         rttr.addFlashAttribute("petMemberNo", reservation.getResPetSitter().getPetMemberNo());
         rttr.addFlashAttribute("startDateTime", reservation.getStartDateTime());
@@ -101,7 +103,7 @@ public class PetSitterController {
         return "redirect:/petSitter/resRegistSuccess";
     }
 
-    // 비동기
+    // 펫시터 스케줄 비동기
     @PostMapping("/petSitterSchedule")
     @ResponseBody
     public List<SitterScheduleDTO> petSitterSchedule(@RequestBody PetSitterDTO petSitter) {
@@ -111,6 +113,18 @@ public class PetSitterController {
         log.info("--sitterSchedule : {}", sitterSchedule);
 
         return sitterSchedule;
+    }
+
+    // 카카오 지도 비동기
+    @PostMapping("/petSitterAddress")
+    @ResponseBody
+    public PetJsonMemberDTO petSitterAddress(@RequestBody PetSitterDTO petSitter) {
+
+        PetJsonMemberDTO petJsonMember = petSitterService.petSitterAddress(petSitter);
+
+        log.info("--petSitterAddress : {}", petJsonMember);
+
+        return petJsonMember;
     }
 
 }
