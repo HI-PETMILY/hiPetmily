@@ -66,6 +66,7 @@ public class MemberService {
         if (!(result > 0)) throw new MemberPasswordUpdateException("비밀번호 변경에 실패하였습니다.");
     }
 
+    /* 회원 탈퇴 */
     @Transactional
     public void removeMember(MemberDTO member) throws MemberRemoveException {
         int result = memberMapper.deleteMember(member);
@@ -75,14 +76,20 @@ public class MemberService {
         }
     }
 
-
+    /* 닉네임 중복 확인 */
     public boolean selectMemberByNickName(String nickName){
 
         String result = memberMapper.selectMemberByNickName(nickName);
 
         return result != null;
+    }
 
+    /* 이메일 중복 확인 */
+    public boolean selectMemberByMemberId(String memberId) {
 
+        String result = memberMapper.selectMemberByMemberId(memberId);
+
+        return result != null;
     }
 
     /* 아이디 찾기 */
@@ -169,4 +176,6 @@ public class MemberService {
 
         return null;
     }
+
+
 }

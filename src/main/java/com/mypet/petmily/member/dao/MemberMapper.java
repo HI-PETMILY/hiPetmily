@@ -30,6 +30,8 @@ public interface MemberMapper {
 
     String selectMemberByNickName(String nickName);
 
+    String selectMemberByMemberId(String memberId);
+
     int pwdCheck(MemberDTO dto);
 
     void pwdUpdate(MemberDTO dto);
@@ -40,4 +42,6 @@ public interface MemberMapper {
     List<ReservationDTO> selectReserveList(SelectCriteria selectCriteria);
 
     int selectTotalCount(Map<String, String> searchMap);
+
+
 }
