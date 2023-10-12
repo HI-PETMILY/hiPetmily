@@ -2,7 +2,7 @@ package com.mypet.petmily.payment.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
+import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
