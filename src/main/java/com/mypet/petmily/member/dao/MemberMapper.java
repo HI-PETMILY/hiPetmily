@@ -38,6 +38,7 @@ public interface MemberMapper {
 
     void insertPetProfile(PetDTO pet);
 
+    /* 리뷰 */
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
 
     int selectTotalCount(Map<String, String> searchMap);

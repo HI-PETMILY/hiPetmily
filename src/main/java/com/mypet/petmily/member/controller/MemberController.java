@@ -430,37 +430,6 @@ public class MemberController {
     }
 
 
-    /* 지난 예약 내역 조회 페이지 */
-//    @GetMapping("/reservationList")
-//    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
-//                                         @RequestParam(required = false) String searchCondition,
-//                                         @RequestParam(required = false) String searchValue,
-//                                         Model model){
-//        log.info("reserveList page : {}", page);
-//        log.info("reserveList searchCondition : {}", searchCondition);
-//        log.info("reserveList searchValue : {}", searchValue);
-//
-//        Map<String, String> searchMap = new HashMap<>();
-//        searchMap.put("searchCondition", searchCondition);
-//        searchMap.put("searchValue", searchValue);
-//
-//        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
-//        model.addAttribute("paging", reserveListAndPaging.get("paging"));
-//        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
-//
-//        return "/member/reservationList";
-//    }
-
-    /* 예약 내역 조회 페이지 만들기 */
-    @GetMapping("/reservationList")
-    public String getReserveList(@RequestParam(defaultValue = "1") int page) {
-
-        log.info("reservationList page : {}", page);
-
-       Map<String, Object> reservationListAndPaging = memberService.selectReservationList(page);
-
-        return "/member/reservationList";
-    }
 
 
     /* 후기 작성 페이지 */

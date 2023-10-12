@@ -10,7 +10,6 @@ import lombok.ToString;
 public class SelectCriteria {
 
     private int page;
-    private int totalCount;
     private int limit;
     private int buttonAmount;
     private int maxPage;
@@ -18,6 +17,4 @@ public class SelectCriteria {
     private int endPage;
     private int startRow;
     private int endRow;
-    private String searchCondition;
-    private String searchValue;
 }
