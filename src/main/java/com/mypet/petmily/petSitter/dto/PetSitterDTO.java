@@ -1,6 +1,5 @@
 package com.mypet.petmily.petSitter.dto;
 
-import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class PetSitterDTO2 {
+public class PetSitterDTO {
 
 
 

@@ -91,7 +91,7 @@ public class PetSitterController {
 
     public  String selectPetSitterList(Model model){
 
-       List<PetSitterDTO> petSitterDTOList = petSitterService.selectPetSitterList();
+        List<PetSitterDTO> petSitterDTOList = petSitterService.selectPetSitterList();
         model.addAttribute("petSitterList",petSitterDTOList);
 
         log.info("petSitterList : {}", petSitterDTOList);

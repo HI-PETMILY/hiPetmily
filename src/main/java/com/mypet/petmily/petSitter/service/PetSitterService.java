@@ -1,15 +1,12 @@
 package com.mypet.petmily.petSitter.service;
 
-import com.mypet.petmily.board.dao.BoardMapper;
 import com.mypet.petmily.petSitter.dao.PetSitterMapper;
-import com.mypet.petmily.petSitter.dto.Pagenation.Pagenation;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
-import com.mypet.petmily.petSitter.dto.SelectCriteria.SelectCriteria;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+
 @Slf4j
 @Service
 public class PetSitterService {
