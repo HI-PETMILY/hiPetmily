@@ -103,8 +103,8 @@
 
                     <div class="regist-pet-gender  dash-line">
                         <h4>성별</h4>
-                        <label><input type="radio" name="petGender" value="여" checked>여아&nbsp;&nbsp; </label>
-                        <label><input type="radio" name="petGender" value="남">남아</label>
+                        <label><input type="radio" name="petGender" value="여" th:checked="${petProfile.petGender == '여'}">여아&nbsp;&nbsp; </label>
+                        <label><input type="radio" name="petGender" value="남" th:checked="${petProfile.petGender == '남'}">남아</label>
                     </div>
                 </div>
 
@@ -126,8 +126,8 @@
 
                     <div class="regist-pet-neutering  dash-line">
                         <h4>중성화</h4>
-                        <label><input type="radio" name="neutralYn" value="예" checked>예 &nbsp;&nbsp; </label>
-                        <label><input type="radio" name="neutralYn" value="아니오">아니오</label>
+                        <label><input type="radio" name="neutralYn" value="예" th:checked="${petProfile.neutralYn == '예'}">예 &nbsp;&nbsp; </label>
+                        <label><input type="radio" name="neutralYn" value="아니오" th:checked="${petProfile.neutralYn == '아니오'}">아니오</label>
                     </div>
                 </div>
             </div>
@@ -135,57 +135,57 @@
             <div class="regist-pet-regist  dash-line">
                 <h4>반려견 등록</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petRegist" value="내장형" checked>내장형 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="외장형">외장형 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="등록인식표">등록인식표 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="하지않음">하지않음 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petRegist" value="내장형" th:checked="${petProfile.petRegist == '내장형'}">내장형 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petRegist" value="외장형" th:checked="${petProfile.petRegist == '외장형'}">외장형 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petRegist" value="등록인식표" th:checked="${petProfile.petRegist == '등록인식표'}">등록인식표 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petRegist" value="하지않음" th:checked="${petProfile.petRegist == '하지않음'}">하지않음 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q1  dash-line">
                 <h4>Q. 다른 사람들과의 친화력</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="pSocial" value="매우 좋아요">매우좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="좋아요">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="보통이에요" checked>보통이에요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="수줍어해요">수줍어해요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="공격적이에요">공격적이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="매우 좋아요" th:checked="${petProfile.pSocial == '매우 좋아요'}">매우좋아요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="좋아요" th:checked="${petProfile.pSocial == '좋아요'}">좋아요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="보통이에요" th:checked="${petProfile.pSocial == '보통이에요'}">보통이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="수줍어해요" th:checked="${petProfile.pSocial == '수줍어해요'}">수줍어해요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pSocial" value="공격적이에요" th:checked="${petProfile.pSocial == '공격적이에요'}">공격적이에요 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q2 dash-line">
                 <h4>Q. 다른 반려동물과의 친화력</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="aSocial" value="매우좋아요">매우좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="좋아요">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="보통이에요" checked>보통이에요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="수줍어해요">수줍어해요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="공격적이에요">공격적이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="매우좋아요" th:checked="${petProfile.aSocial == '매우좋아요'}">매우좋아요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="좋아요" th:checked="${petProfile.aSocial == '좋아요'}">좋아요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="보통이에요" th:checked="${petProfile.aSocial == '보통이에요'}">보통이에요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="수줍어해요" th:checked="${petProfile.aSocial == '수줍어해요'}">수줍어해요 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="aSocial" value="공격적이에요" th:checked="${petProfile.aSocial == '공격적이에요'}">공격적이에요 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q3 dash-line">
                 <h4>Q. 잘 짖는 편인가요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="barkLevel" value="예">예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="barkLevel" value="보통" checked>보통 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="barkLevel" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="barkLevel" value="예" th:checked="${petProfile.barkLevel == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="barkLevel" value="보통" th:checked="${petProfile.barkLevel == '보통'}">보통 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="barkLevel" value="아니오" th:checked="${petProfile.barkLevel == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q4 dash-line">
                 <h4>Q. 분리불안 증세가 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="sepAnxiety" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="sepAnxiety" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="sepAnxiety" value="예" th:checked="${petProfile.sepAnxiety == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="sepAnxiety" value="아니오" th:checked="${petProfile.sepAnxiety == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q5">
                 <h4>Q. 앓고있는 지병이나 다친 경험이 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petDisease" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petDisease" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petDisease" value="예" th:checked="${petProfile.petDisease == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petDisease" value="아니오" th:checked="${petProfile.petDisease == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
@@ -197,8 +197,8 @@
             <div class="Q6">
                 <h4>Q. 음식 알러지가 있나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="petAllergy" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petAllergy" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petAllergy" value="예" th:checked="${petProfile.petAllergy == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="petAllergy" value="아니오" th:checked="${petProfile.petAllergy == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
@@ -210,8 +210,8 @@
             <div class="Q7 dash-line">
                 <h4>Q. 대소변은 잘 가리나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="pottyTrain" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pottyTrain" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pottyTrain" value="예" th:checked="${petProfile.pottyTrain == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="pottyTrain" value="아니오" th:checked="${petProfile.pottyTrain == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
@@ -219,19 +219,19 @@
             <div class="Q8 dash-line">
                 <h4>Q. 실내 마킹을 하나요?</h4>
                 <div class="answer-contain">
-                    <label><input type="radio" name="markingIn" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="markingIn" value="아니오">아니오 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="markingIn" value="예" th:checked="${petProfile.markingIn == '예'}">예 &nbsp;&nbsp;</label>
+                    <label><input type="radio" name="markingIn" value="아니오" th:checked="${petProfile.markingIn == '아니오'}">아니오 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
             <div class="Q9 dash-line">
                 <h4>Q. 예방접종을 하셨나요? </h4>
                 <div class="answer-contain">
-                    <label><input type="checkbox" name="vaccin" value="혼합예방주사(DHPPL)">혼합예방주사(DHPPL) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="코로나장염(연 1회)">코로나장염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="관견병">관견병 &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="기관지염(연 1회">기관지염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)">심장사상충(월 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="혼합예방주사(DHPPL)" th:checked="${petProfile.vaccin == '혼합예방주사(DHPPL)'}">혼합예방주사(DHPPL) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="코로나장염(연 1회)" th:checked="${petProfile.vaccin == '코로나장염(연 1회)'}">코로나장염(연 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="광견병" th:checked="${petProfile.vaccin == '광견병'}">광견병 &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="기관지염(연 1회" th:checked="${petProfile.vaccin == '기관지염(연 1회)'}">기관지염(연 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)" th:checked="${petProfile.vaccin == '심장사상충(월 1회)'}">심장사상충(월 1회) &nbsp;&nbsp;</label>
                 </div>
             </div>
 

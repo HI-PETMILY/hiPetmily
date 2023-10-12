@@ -44,10 +44,10 @@
                     </th:block>
                     <!-- 반려동물 프로필이 있는 경우 -->
                     <th:block th:if="${petProfile != null}">
-                    <p id="" th:text="${petProfile.petName}"></p>
-                    <p class="pet_info" th:text="${petProfile.petAge} +살"></p>
-                    <p class="pet_info" th:text="${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
-                    <p class="pet_info" th:text="${petProfile.petWeight}+kg"></p>
+                    <p id="" th:text="이름 + ' : '  + ${petProfile.petName}"></p>
+                    <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
+                    <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
+                    <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
                     </th:block>
                 </div>
                 <div>
