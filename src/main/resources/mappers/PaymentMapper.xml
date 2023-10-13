@@ -93,6 +93,26 @@
         <association property="member" resultMap="petMemberResultMap"/>
     </resultMap>
 
+    <!-- 예약 resultMap 관련 -->
+    <resultMap id="resResultMap" type="com.mypet.petmily.payment.dto.ProgressReserveDTO">
+        <id property="reserveCode" column="RESERV_CODE"/>
+        <result property="startDateTime" column="RESERV_START"/>
+        <result property="endDateTime" column="RESERV_END"/>
+        <result property="reserveStatus" column="RESERV_STATUS"/>
+        <result property="accum" column="RESERV_ACCUM"/>
+        <result property="TotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="reserveDayCount" column="RESERV_DAY_COUNT"/>
+        <result property="reserveTimeCount" column="RESERV_TIME_COUNT"/>
+        <result property="reserveVat" column="RESERV_VAT"/>
+        <result property="reserveAppDate" column="RESERV_APP_DATE"/>
+        <result property="reserveUpdateDate" column="RESERV_UPDATE_DATE"/>
+
+        <result property="petSitterNickname" column="SITTER_NICKNAME"/> <!-- ? -->
+
+        <association property="reserveMember" resultMap="petMemberResultMap"/>
+
+    </resultMap>
+
     <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
         SELECT
             R.RESERV_CODE,
@@ -104,6 +124,20 @@
         JOIN TBL_MYPET P ON R.PET_MEMBER_NO = P.MEMBER_NO
         JOIN TBL_MEMBER M ON S.PET_MEMBER_NO = M.MEMBER_NO
         WHERE M.MEMBER_NO = #{memberNo}
+    </select>
+
+    <select id="selectProgressReserveList" resultMap="resResultMap">
+        SELECT
+               M.NICKNAME
+             , R.RESERV_CODE
+             , R.RESERV_START
+             , R.RESERV_END
+             , P.PET_CODE
+          FROM TBL_RESERVATION R
+          JOIN TBL_PET_SITTER S ON R.PET_MEMBER_NO = S.PET_MEMBER_NO
+          JOIN TBL_MEMBER M ON S.PET_MEMBER_NO = M.MEMBER_NO
+          JOIN TBL_MYPET P ON S.PET_MEMBER_NO = P.MEMBER_NO
+         WHERE R.MEMBER_NO = #{memberNo}
     </select>
 
 </mapper>

@@ -26,8 +26,8 @@
         <h2 class="mainTitle">진행 중인 예약</h2>
         <div class="nav-line grey-line"></div>
 
-        <!-- 예약 수만큼 reservation-box가 반복 돼야 함 -->
-        <div class="reservation-box">
+        <!-- 예약 수만큼 reservation-box가 반복 -->
+        <div class="reservation-box" th:each="reservation : ${progressReserveList}">
             <div class="reserve-info">
                 <div class="sitter-profile">
                     <div class="sitter-profileImg">
@@ -35,19 +35,20 @@
 
                     </div>
                     <div class="sitter-nickname">
-                        <p>펫시터 닉네임</p>
+                        <p th:text="${reservation.petSitterNickname}"></p>
                     </div>
                 </div>
 
                 <div class="reserve-detail">
-                    <div class="reserve-code">예약 코드 : 12345678</div>
-                    <div class="reserve-text">펫시터닉네임 님에게 돌봄 서비스를 예약하셨어요.</div>
+                    <div class="reserve-code"><p th:text="예약 코드 + ':' + ${reservation.reserveCode}"></p></div>
+                    <div class="reserve-text">
+                        <p th:text="${reservation.petSitterNickname} 님에게 돌봄 서비스를 예약하셨어요." ></p></div>
                     <div class="nav-line grey-line"></div>
                     <div class="reserve-text-box">
                         <h3 class="reserve-service-exp">펫시터 돌봄 서비스</h3>
                         <!--                    <div><p th:text="${}"></p> </div>-->
-                        <div class="reserve-date"><p>2023 10월 22일 예약</p></div>
-                        <div class="reserve-pet"><p>돌봄대상 (이)가 서비스를 받을 예정입니다.</p></div>
+                        <div class="reserve-date"><p th:text="${reservation.startDateTime} 예약"></p></div>
+                        <div class="reserve-pet"><p th:text="${reservation.reserveMember.petList.petCode}">돌봄대상 (이)가 서비스를 받을 예정입니다.</p></div>
                     </div>
                 </div>
             </div>

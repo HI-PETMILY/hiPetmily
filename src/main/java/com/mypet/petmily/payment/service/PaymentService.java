@@ -4,6 +4,7 @@ package com.mypet.petmily.payment.service;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dao.PaymentMapper;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
@@ -25,4 +26,10 @@ public class PaymentService {
 
 
     }
+
+    /* 진행 중인 예약 조회 페이지 */
+    public List<ProgressReserveDTO> selectProgressReserveList(MemberDTO loginMember) {
+        return paymentMapper.selectProgressReserveList(loginMember);
+    }
+
 }
