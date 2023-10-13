@@ -64,7 +64,7 @@
             <!-- 로그인해서 관리자만 보여지는 버튼 -->
             <li id="headerAdmin" class="headerAdmin" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                 <div class="header_right_img">
-                    <a href="/admin">
+                    <a href="admin/main-member">
                         <img src="/static_Image/common/main/admin_wh.png" id="headerAdminImg" alt="관리자">
                     </a>
                 </div>

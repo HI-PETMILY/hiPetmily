@@ -2,7 +2,7 @@ package com.mypet.petmily.admin.paging;
 
 public class Pagenation {
 
-    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, String searchCondition, String searchValue) {
+    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, String searchCondition, String searchValue, String rating) {
         /* 총 페이지 수 계산 */
         int maxPage = (int) Math.ceil((double) totalCount / limit);
 
@@ -26,6 +26,6 @@ public class Pagenation {
         int endRow = startRow + limit - 1;
 
         return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
-                startRow, endRow, searchCondition, searchValue);
+                startRow, endRow, searchCondition, searchValue, rating);
     }
 }
