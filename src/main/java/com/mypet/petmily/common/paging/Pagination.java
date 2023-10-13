@@ -3,12 +3,11 @@ package com.mypet.petmily.common.paging;
 import java.util.HashMap;
 import java.util.Map;
 
-public class
-Pagenation {
-    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap) {
+public class Pagination {
+    public static SelectCriteria getSelectCriteria(int page, int limit, int buttonAmount) {
 
         /* 총 페이지 수 계산 */
-        int maxPage = (int) Math.ceil((double) totalCount / limit);
+        int maxPage = (int) Math.ceil((double) limit);
 
         /* 페이징바 시작 숫자 */
         int startPage = (int) (Math.ceil((double) page / buttonAmount) - 1) * buttonAmount + 1;
@@ -29,12 +28,11 @@ Pagenation {
         int startRow = (page - 1) * limit + 1;
         int endRow = startRow + limit - 1;
 
-        return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage,
-                                  endPage, startRow, endRow, searchMap.get("searchCondition"),
-                                  searchMap.get("searchValue"));
+        return new SelectCriteria(page, limit, buttonAmount, maxPage, startPage,
+                                  endPage, startRow, endRow);
     }
 
     public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount) {
-        return getSelectCriteria(page, totalCount, limit, buttonAmount, new HashMap<>());
+        return getSelectCriteria(page, limit, buttonAmount);
     }
 }
