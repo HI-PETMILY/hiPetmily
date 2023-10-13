@@ -18,7 +18,12 @@
             <ul>
                 <li id="headerBtn1">공지사항</li>
                 <li id="headerBtn2">펫시터 찾기</li>
-                <li id="headerBtn3">펫시터 지원</li>
+                <th:block sec:authorize="isAnonymous()">
+                    <li id="headerBtn3_1">펫시터 지원</li>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                    <li id="headerBtn3_2">펫시터 지원</li>
+                </th:block>
                 <li id="headerBtn4">고객센터</li>
             </ul>
         </div>

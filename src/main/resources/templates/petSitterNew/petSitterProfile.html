@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HI-PETMILY</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href='/css/petSitter/fullCalendarMain.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="/css/petSitter/petSitterProfile.css"/>
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+
+    <!-- 카카오 map -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=68154c095d8912e06ea592d8c09349d8&libraries=services"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- flatpicker Calendar -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <!-- fullCalendar -->
+    <script src='/js/petSitter/fullCalendarMain.js'></script>
+    <script src='/js/petSitter/fullCalendarLocales-all.js'></script>
+
+    <script defer type="text/javascript" src="/js/petSitter/petSitterProfile.js"></script>
+
+</head>
+
+<body>
+<!-- common header -->
+<div th:replace="common/header_white.html"></div>
+
+<div class="psp_container">
+    <!-- left -->
+    <div class="psp_left">
+
+        <div class="psp_img">
+            <div class="psp_img_main"></div>
+            <ul class="psp_img_sub"></ul>
+        </div>
+
+        <div class="psp_profile">
+            <div class="psp_profile_box">
+                <div class="psp_profile_img">
+                    <img src="/static_Image/petSitter/profile_img.png" alt="프로필이미지">
+                </div>
+                <div class="psp_profile_star">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                </div>
+            </div>
+            <div class="psp_item_content">
+                <div class="psp_item_title" th:text="${ petSitterInfo.petTitle }"></div>
+                <div class="psp_item_box">
+                    <div class="psp_profile_name" th:text="${ memberInfo.memberName }"></div>
+                    <div class="psp_profile_address" th:text="${ memberInfo.address }"></div>
+                </div>
+                <div class="psp_profile_tag" >
+                    <th:block th:each="item : ${ petTagList }">
+                        <div class="tagBox" th:text="${ item.tagContent }"></div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">펫시터 소개</div>
+            <p id="psp_intro_text" class="psp_item_text" th:text="${ petSitterInfo.petIntroduce }"></p>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">경력 / 교육</div>
+            <ul class="psp_item_text2" th:each="item : ${ careerList }">
+                <li th:text="${ item.careerContent }"></li>
+            </ul>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">돌봄환경</div>
+            <div class="psp_env_box">
+                <div class="psp_env_item env_item_bc1">
+                    <div class="env_item_th th_img1">돌봄공간</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petPlace } + ' 거주'"></div>
+                </div>
+                <div class="psp_env_item env_item_bc1">
+                    <div class="env_item_th th_img2">돌봄가능 반려견수</div>
+                    <div class="env_item_td" th:text="${ petSitterInfo.petCareCount } + ' 마리'"></div>
+                </div>
+                <div class="psp_env_item env_item_bc2">
+                    <div class="env_item_th th_img3">12세 이하 아동</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petBabyYn.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petBabyYn.toString().equals('N') }">없어요.</div>
+                </div>
+                <div class="psp_env_item env_item_bc2">
+                    <div class="env_item_th th_img4">반려견 펜스</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petPence.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petPence.toString().equals('N') }">없어요.</div>
+                </div>
+                <div class="psp_env_item env_item_bc1">
+                    <div class="env_item_th th_img5">동거 반려동물</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petMypetYn.toString().equals('Y') }">있어요.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petMypetYn.toString().equals('N') }">없어요.</div>
+                </div>
+                <div class="psp_env_item env_item_bc1">
+                    <div class="env_item_th th_img6">실내흡연</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petSmokYn.toString().equals('Y') }">흡연자 입니다.</div>
+                    <div class="env_item_td" th:if="${ petSitterInfo.petSmokYn.toString().equals('N') }">비흡연자 입니다.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">이용금액</div>
+            <div class="psp_pay_box">
+                <table class="psp_table">
+                    <tbody>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">중소형(15kg미만)</th>
+                        <th scope="col">대형(15kg이상)</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">1박케어 (24시간)</th>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') }"></td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petL_DayPay, 3, 'COMMA') }"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">타임케어 (1시간)</th>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') }"></td>
+                        <td th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petL_TimePay, 3, 'COMMA') }"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="psp_dogDetail">
+            <div class="psp_dogDetail_img">
+                <img src="/static_Image/petSitter/dog.png" alt="개 이미지">
+            </div>
+            <div class="psp_dogDetail_text1">
+                <div class="psp_dogDetail_title">돌봄가능 반려견 크기, 나이</div>
+                <div class="psp_dogDetail_con">
+                    <ul>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ petSitterInfo.petCareSize }"></div>
+                        </li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ petSitterInfo.petCareAge }"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="psp_dogDetail_img">
+                <img src="/static_Image/petSitter/watch.png" alt="시계이미지">
+            </div>
+            <div class="psp_dogDetail_text2">
+                <div class="psp_dogDetail_title">체크인, 체크아웃 시간</div>
+                <div class="psp_dogDetail_con">
+                    <ul>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ '체크인 : ' + petSitterInfo.petCheckIn }"></div>
+                        </li>
+                        <li>
+                            <img src="/static_Image/petSitter/dog_next.png" alt="화살표">
+                            <div th:text="${ '체크아웃 : ' + petSitterInfo.petCheckOut }"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">이용규칙</div>
+            <div class="psp_rule_box">
+                <table class="psp_table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">해주세요!</th>
+                            <td th:text="${ petSitterInfo.petRequest }"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">힘들어요!</th>
+                            <td th:text="${ petSitterInfo.petImpossible }"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="psp_item">
+            <div class="psp_item_title">펫시터 반려동물소개</div>
+            <div class="psp_mypet">
+                <div class="psp_mypet_img">
+                    <img src="/static_Image/petSitter/petsitterPet.png" alt="반려견">
+                </div>
+                <div>
+                    <div class="psp_mypet_name">대한 / 민국</div>
+                    <div>리트리버 / 남아,남아 / 4살,3살 / 32kg, 30kg</div>
+                    <div class="psp_mypet_btn">상세보기</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="psp_item_last">
+            <div class="psp_item_title flex_row">
+                후기
+                <span class="psp_review_star">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                </span>
+            </div>
+            <div class="psp_review">
+                <div class="psp_review_box1">
+                    <div class="psp_review_img">
+                        <img src="/static_Image/petSitter/reviewProfile.png" alt="후기프로필">
+                    </div>
+                    <div class="psp_review_nickname">닉네임</div>
+                </div>
+                <div class="psp_review_box2">
+                    <div class="psp_review_text">생각보다 길게 여행을 가게되어 펫시터를 찾아보다 김아무개님을 알게되었어요.
+                        처음 맡기게 되어서 괜찮을까 걱정을 살짝 했는데 걱정이 무색하게 잘 돌봐주시고 사진도 잘 올려주셔서
+                        걱정없이 여행을 다녀올 수 있었습니다.^^...
+                        ..>>더보기
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Right -->
+    <div class="psp_right">
+
+        <form action="/petSitterNew/reservation" method="post">
+            <div class="psp_res">
+
+                <div class="psp_res_item1">
+                    <div class="psp_res_titleBox">
+                        <div class="psp_item_title">예약하기</div>
+                        <div class="psp_res_smTitle">예약을 원하는 날짜와 시간을 선택하세요!</div>
+                    </div>
+                    <div class="psp_res_inputDate">
+                        <div class="psp_res_start">
+                            <input type="text" id="startDate" placeholder="시작 날짜" readonly required>
+                        </div>
+                        <div class="psp_res_mid">~</div>
+                        <div class="psp_res_end">
+                            <input type="text" id="endDate" placeholder="종료 날짜" readonly required>
+                        </div>
+                    </div>
+
+                    <div class="psp_res_inputDate">
+                        <div class="psp_res_startTime">
+                            <select id="startTime" class="resTime_selectBox res_startTime"></select>
+                        </div>
+                        <div class="psp_res_mid">~</div>
+                        <div class="psp_res_endTime">
+                            <select id="endTime" class="resTime_selectBox res_endTime"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="psp_res_item2">
+                    <div class="psp_res_pay">
+                        <div class="res_pay_left">
+                            <div class="pay_left_text">24H 케어 /
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') + ' 원' }">35,000원</span>
+                            </div>
+                            <div class="pay_left_text">1H 케어 /
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') + ' 원' }">2,500원</span>
+                            </div>
+                        </div>
+                        <div class="res_pay_right">
+                            <div class="pay_right_text">15kg 미만 기준</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="psp_res_item3">
+                    <div class="psp_res_dogSelect">
+                        <div class="dogSelect_title">맡기실 반려견 선택하기</div>
+                        <div class="dogSelect_box">
+                            <select id="dogSelect" class="dog_selectBox"></select>
+                        </div>
+                    </div>
+                    <div class="psp_res_calBox">
+                        <div id="pay_day">1박 0원</div>
+                        <div id="pay_hour">1시간 0원</div>
+                        <div id="pay_vat">부가세 0원</div>
+                        <div id="pay_total" class="pay_total">총 합계 0원</div>
+
+                        <input type="hidden" id="startDateTime" name="startDateTime" required>
+                        <input type="hidden" id="endDateTime" name="endDateTime" required>
+                        <input type="hidden" id="resDayCount" name="resDayCount" required>
+                        <input type="hidden" id="resTimeCount" name="resTimeCount" required>
+                        <input type="hidden" id="resVat" name="resVat" required>
+                        <input type="hidden" id="resTotalAmount" name="resTotalAmount" required>
+                        <input type="hidden" id="resAppDate" name="resAppDate" required>
+                        <input type="hidden" id="resUpdateDate" name="resUpdateDate" required>
+                    </div>
+                </div>
+
+                <div class="psp_res_item4">
+                    <ul>
+                        <li>펫시터는 하루에 1건만 예약 가능합니다.</li>
+                        <li>1시간 이하 이용시 1시간 비용으로 적용됩니다.</li>
+                        <li>펫시터 예약승인(문자발송) 이후에 결제가 진행되니 바로 '예약요청'하시는게 편리합니다.</li>
+                        <li>본 사이트 외부에서 대화를 나누거나 결제 또는 송금을 진행하지 마세요. 피싱이나 금융사기 등의 위험이 있습니다.</li>
+                        <li>본 사이트 외부에서 진행된 결제 건에 대해서는 당사는 책임지지 않습니다.</li>
+                    </ul>
+                </div>
+                <div class="psp_res_btn">
+                    <button type="submit" id="req_btn" class="req_btn">예약 요청하기</button>
+                    <button type="button" id="qna_btn" class="qna_btn">문의하기</button>
+                </div>
+
+            </div>
+        </form>
+
+        <!-- Calendar -->
+        <div class="psp_calendar">
+            <div class="psp_calendar_title">예약 가능 날짜</div>
+            <div class="psp_calendar_box">
+                <div id='calendar'></div>
+            </div>
+            <div>※ 붉은색은 불가능한 날짜입니다.</div>
+        </div>
+
+        <!-- Map -->
+        <div class="psp_map">
+            <div class="psp_map_text_box">
+                <div class="map_title1">펫시터님 위치</div>
+                <div class="map_title2" th:text="${ memberInfo.address }"></div>
+            </div>
+            <div class="psp_map_box">
+                <div id="map" class="kakaoMap"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- common footer -->
+<div th:replace="common/footer.html"></div>
+</body>
+
+</html>

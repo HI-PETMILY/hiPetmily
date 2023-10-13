@@ -14,7 +14,7 @@ window.onload = function () {
 
             // location.href = "/";
             // 임시로 일단 펫시터 프로필 메뉴로 이동시킨다.
-            location.href = "/petSitter/petSitterProfile";
+            location.href = "/petSitterNew/petSitterProfile";
         });
 
     }
@@ -44,7 +44,7 @@ window.onload = function () {
 
         $headerBtn1.addEventListener("click", (event) => {
 
-            location.href = "/board/notice/list";    // 추후 연결
+            location.href = "/board/notice/list";
         });
 
         $headerBtn1.addEventListener("mouseover", (event) => {
@@ -103,35 +103,71 @@ window.onload = function () {
 
     }
 
-    // 펫시터 지원 버튼
-    if(document.getElementById("headerBtn3")) {
+    // 펫시터 지원 버튼(로그인 전)
+    if(document.getElementById("headerBtn3_1")) {
 
-        const $headerBtn3 = document.getElementById("headerBtn3");
+        const $headerBtn3_1 = document.getElementById("headerBtn3_1");
 
-        $headerBtn3.addEventListener("click", (event) => {
+        $headerBtn3_1.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            alert("비회원은 회원가입부터 해주세요.\n회원일 경우 로그인하고 다시 눌러주세요.");
+
+            location.href = "/member/mainRegist";
+
         });
 
-        $headerBtn3.addEventListener("mouseover", (event) => {
+        $headerBtn3_1.addEventListener("mouseover", (event) => {
 
-            $headerBtn3.style.color = "#81BDF1";
-            $headerBtn3.style.transform = "scale(1.07)";
-            $headerBtn3.style.zIndex = "1";
-            $headerBtn3.style.transition = "all 0.1s";
+            $headerBtn3_1.style.color = "#81BDF1";
+            $headerBtn3_1.style.transform = "scale(1.07)";
+            $headerBtn3_1.style.zIndex = "1";
+            $headerBtn3_1.style.transition = "all 0.1s";
         });
 
-        $headerBtn3.addEventListener("mouseleave", (event) => {
+        $headerBtn3_1.addEventListener("mouseleave", (event) => {
 
             if( classList.contains("white") ) {
-                $headerBtn3.style.color = "#364f6b";
+                $headerBtn3_1.style.color = "#364f6b";
             } else {
-                $headerBtn3.style.color = "white";
+                $headerBtn3_1.style.color = "white";
             }
 
-            $headerBtn3.style.transform = "scale(1)";
-            $headerBtn3.style.zIndex = "0";
-            $headerBtn3.style.transition = "all 0.1s";
+            $headerBtn3_1.style.transform = "scale(1)";
+            $headerBtn3_1.style.zIndex = "0";
+            $headerBtn3_1.style.transition = "all 0.1s";
+        });
+
+    }
+
+    // 펫시터 지원 버튼(로그인상태)
+    if(document.getElementById("headerBtn3_2")) {
+
+        const $headerBtn3_2 = document.getElementById("headerBtn3_2");
+
+        $headerBtn3_2.addEventListener("click", (event) => {
+
+            location.href = "/petSitter/regist";
+        });
+
+        $headerBtn3_2.addEventListener("mouseover", (event) => {
+
+            $headerBtn3_2.style.color = "#81BDF1";
+            $headerBtn3_2.style.transform = "scale(1.07)";
+            $headerBtn3_2.style.zIndex = "1";
+            $headerBtn3_2.style.transition = "all 0.1s";
+        });
+
+        $headerBtn3_2.addEventListener("mouseleave", (event) => {
+
+            if( classList.contains("white") ) {
+                $headerBtn3_2.style.color = "#364f6b";
+            } else {
+                $headerBtn3_2.style.color = "white";
+            }
+
+            $headerBtn3_2.style.transform = "scale(1)";
+            $headerBtn3_2.style.zIndex = "0";
+            $headerBtn3_2.style.transition = "all 0.1s";
         });
 
     }
@@ -144,7 +180,9 @@ window.onload = function () {
         $headerBtn4.addEventListener("click", (event) => {
 
 
-            location.href = "/board/faq/list";    // 추후 연결
+
+            location.href = "/board/service";    // 추후 연결
+
 
         });
 
@@ -179,7 +217,7 @@ window.onload = function () {
 
         $headerJoin.addEventListener("click", (event) => {
 
-            location.href = "/member/mainRegist";    // 추후 연결
+            location.href = "/member/mainRegist";
         });
 
         $headerJoin.addEventListener("mouseover", (event) => {
@@ -220,7 +258,7 @@ window.onload = function () {
 
         $headerLogin.addEventListener("click", (event) => {
 
-            location.href = "/member/login";    // 추후 연결
+            location.href = "/member/login";
         });
 
         $headerLogin.addEventListener("mouseover", (event) => {
@@ -260,7 +298,7 @@ window.onload = function () {
 
         $headerMypage.addEventListener("click", (event) => {
 
-            location.href = "/member/mypage";    // 추후 연결
+            location.href = "/member/mypage";
         });
 
         $headerMypage.addEventListener("mouseover", (event) => {
@@ -300,7 +338,7 @@ window.onload = function () {
 
         $headerLogout.addEventListener("click", (event) => {
 
-            location.href = "/member/logout";    // ㅜ또르륵.....
+            location.href = "/member/logout";
         });
 
         $headerLogout.addEventListener("mouseover", (event) => {
@@ -379,7 +417,7 @@ window.onload = function () {
 
         $footerLogImg.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/";
         });
 
     }
@@ -391,7 +429,7 @@ window.onload = function () {
 
         $footerBtn1.addEventListener("click", (event) => {
 
-            location.href = "/board/terms";    // 추후 연결
+            location.href = "/board/terms";
         });
 
         $footerBtn1.addEventListener("mouseover", (event) => {
@@ -419,7 +457,7 @@ window.onload = function () {
 
         $footerBtn2.addEventListener("click", (event) => {
 
-            location.href = "/board/policy";    // 추후 연결
+            location.href = "/board/policy";
         });
 
         $footerBtn2.addEventListener("mouseover", (event) => {
@@ -448,7 +486,7 @@ window.onload = function () {
 
         $footerBtn3.addEventListener("click", (event) => {
 
-            location.href = "/board/safe";    // 추후 연결
+            location.href = "/board/safe";
         });
 
         $footerBtn3.addEventListener("mouseover", (event) => {
@@ -477,7 +515,7 @@ window.onload = function () {
         $footerBtn4.addEventListener("click", (event) => {
 
 
-            location.href = "/board/faq/list";    // 추후 연결
+            location.href = "/board/faq/list";
 
         });
 

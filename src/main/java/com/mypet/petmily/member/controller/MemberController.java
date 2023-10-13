@@ -1,13 +1,10 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.*;
-import com.mypet.petmily.common.paging.Pagenation;
-import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;

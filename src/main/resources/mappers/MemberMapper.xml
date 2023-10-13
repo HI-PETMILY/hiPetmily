@@ -36,10 +36,6 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
-    <resultMap id="reservationMap" type="com.mypet.petmily.petSitter.dto.ReservationDTO">
-
-    </resultMap>
-
     <resultMap id="petResultMap" type="com.mypet.petmily.member.dto.PetDTO">
         <id property="petCode" column="PET_CODE"/>
         <result property="petName" column="PET_NAME"/>
