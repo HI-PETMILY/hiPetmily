@@ -31,47 +31,187 @@ body,html{
 /*    text-align: center;*/
 /*    border-radius: 5px;*/
 /*    font-size: 15px;*/
-/*}*/
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
 
 .petsitter-box{
 
-
-    width: 1200px;
+    width: 1028px;
     height: 100%;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 12px 0px;
+    display: flex;
 
 
-}
-
-.petsitter-info{
-    width: 1200px;
-    height: 400px;
-    background-color: #FFDD69;
     margin-top: 200px;
 
-    margin-bottom: 80px;
 
 }
 
-.petsitter-poto{
+.profile{
+    display: flex;
+    flex-direction: row;
+    height: 54px;
+    border-radius: 15px;
+    /*border: 1px solid #EBEBEB;*/
+    /*box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 12px 0px;*/
 
-    width: 400px;
-    height: 400px;
-    background-color: seagreen;
+}
+
+.petsitter-photo2{
+
+    width: 120px;
+    height: 50px;
+
+}
+
+
+
+.petsitter-info{
+    width: 1028px;
+    /*border: 1px solid rgb(235,235,235);*/
+    border-radius: 8px;
+    margin-top: 200px;
+    margin-bottom: 80px;
+    cursor: pointer;
+
+
+
+}
+
+.petsitter-wrap{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 80px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 12px 0px;
+    border: 1px solid #EBEBEB;
+}
+
+.petsitter-photo{
+
+    width: 390px;
+    height: 346px;
+
+}
+
+.dog-photo{
+
+    object-fit: cover;
+}
+
+.photo{
+
+    border-radius: 8px;
+}
+
+
+.petsitter-content{
+
+    background-color: white;
+
 
 
 }
 
 .title{
 
-    width: 800px;
+    width: 638px;
     height: 200px;
-    color: #007bff;
+    color: #383C48;
     padding: 20px 20px;
+
+}
+
+.comment{
+    width: 100%;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .first-comment1{
 
     width: 800px;
     height: 100px;
-    font-size: 70px;
+    font-size: 35px;
+}
+
+.petsitter-nickname{
+
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+
+
+
+
+
+
+.tag-collection{
+display: flex;
+
+}
+
+.tagname{
+
+    width: 100px;
+    height: 50px;
+    background-color: lightskyblue;
+    border-radius: 8px;
+    /*text-align: center;*/
+    flex-direction: row;
+    margin-right: 15px;
+
+    /*vertical-align: center;*/
+    line-height: 40px;
+    display: flex;
+
+}
+
+.tag-text{
+
+
+    text-align: center;
+    vertical-align: center;
+
+
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.tag-collection :nth-child(1) {margin-left: 15px;
+
+}
+
+.price-box{
+    height: 50px;
+    display: flex;
+}
+
+.price{
+    flex-direction: column;
+    line-height: 60px;
+    font-size: 20px;
+    margin-left: 15px;
+
+}
+
+
+
+.review-content{
+
+    display: flex;
+    line-height: 60px;
+    margin-left: 20px;
+
 }

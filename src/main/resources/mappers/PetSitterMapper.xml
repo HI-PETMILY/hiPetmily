@@ -29,8 +29,8 @@
         <result property="petBankName" column="PET_BANK_NAME"/>
         <result property="nickname" column="NICKNAME"/>
         <collection property="tagContentList" resultMap="petTagResultMap"/>
-        <collection property="revScore" resultMap="reviewResultMap"/>
-        <collection property="revContent" resultMap="reviewResultMap"/>
+        <collection property="reviewList" resultMap="reviewResultMap"/>
+<!--        <collection property="revContent" resultMap="reviewResultMap"/>-->
     </resultMap>
 
     <resultMap type="com.mypet.petmily.member.dto.MemberDTO" id="memberResultMap">
@@ -56,18 +56,20 @@
     <resultMap type="com.mypet.petmily.petSitterNew.dto.PetTagDTO" id="petTagResultMap">
         <id property="tagNo" column="TAG_NO"/>
         <result property="tagContent" column="TAG_CONTENT"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
     </resultMap>
 
     <resultMap type="com.mypet.petmily.petSitter.dto.ReviewDTO" id="reviewResultMap">
         <id property="revCode" column="REV_CODE"/>
         <result property="revScore" column="REV_SCORE"/>
         <result property="revContent" column="REV_CONTENT"/>
-        <result property="revCreatedDt" column="REV_CREATED_DATE"/>
-        <result property="revModifyDt" column="REV_MODIFY_DATE"/>
-        <result property="revDeleteDt" column="REV_DELETE_DATE"/>
+        <result property="revCreateDate" column="REV_CREATED_DATE"/>
+        <result property="revModifyDate" column="REV_MODIFY_DATE"/>
+        <result property="revStatus" column="REV_STATUS"/>
+        <result property="revDeleteDate" column="REV_DELETE_DATE"/>
         <result property="memberNo" column="MEMBER_NO"/>
         <result property="petMemberNO" column="PET_MEMBER_NO"/>
-        <result property="reservCode" column="RESERV_CODE"/>
+<!--        <result property="reservCode" column="RESERV_CODE"/>-->
     </resultMap>
 
 
