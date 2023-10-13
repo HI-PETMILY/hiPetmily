@@ -31,24 +31,6 @@ $(document).ready(function () {
     });
 });
 
-// 맨위 검색 체크 박스 전체 선택/해제
-function selectAll(selectAll) {
-    const checkboxes = document.querySelectorAll('input[name="rating"]');
-    const entireCheckbox = document.getElementById('entire');
-
-    checkboxes.forEach((checkbox) => {
-        checkbox.checked = selectAll.checked;
-    });
-
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', function () {
-            //전체 체크에서 개별 체크를 눌렀을때 전체 체크 풀림
-            if (!this.checked) {
-                entireCheckbox.checked = false;
-            }
-        });
-    });
-}
 
 /*==============팝업창*/
 document.getElementById("passwordChangeButton").addEventListener("click", openPasswordChangePopup);
@@ -69,67 +51,39 @@ function openInquiryPopup() {
 
 function openManagementPopup() {
     // "관리" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
-    var popup =window.open("popManagement", "ManagementPopup", "width=750, height=800, left=650, top=180");
+    var popup = window.open("popManagement", "ManagementPopup", "width=750, height=800, left=650, top=180");
+
 }
 
+// 체크 박스 전체 선택/해제=========================
 
-/* =====================검색 부분 ==========================*/
-function searchMembers() {
-    var searchValue = document.getElementById("searchInput").value; // 검색 입력란의 값을 가져옵니다.
+// 'selectAll' 함수를 정의합니다. 이 함수는 체크박스 전체 선택/해제 동작을 수행합니다.
+function selectAll(selectAll) {
+    // 'chkList' 이름 속성을 가진 모든 입력(체크박스) 요소를 선택합니다.
+    const checkboxes = document.querySelectorAll('input[name="chkList"]');
 
-    // "rating" 이름을 가진 체크박스들의 NodeList를 만듭니다 (등급으로 필터링하려고 가정).
-    var checkboxes = document.querySelectorAll("input[id=entire]");
+    // 'listChkAll' id를 가진 체크박스 요소를 선택합니다.
+    const listChkAllCheckbox = document.getElementById('listChkAll');
 
-    var checkCommon = document.getElementById("common");
-    var checkPetSitter = document.getElementById("petSitter");
-    var checkList = 0;
+    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 수행합니다.
+    checkboxes.forEach((checkbox) => {
+        // 'selectAll' 체크박스의 상태에 따라 개별 체크박스의 'checked' 속성을 설정합니다.
+        checkbox.checked = selectAll.checked;
+    });
 
-    if(searchValue == "") {
-        alert("입력된 검색어가 없어 회원등급으로 회원목록을 띄웁니다.");
-        if(checkCommon = true && checkPetSitter == false) checkList = 1;
-        if(checkCommon = false && checkPetSitter == true) checkList = 2;
-        if(checkCommon = true && checkPetSitter == true) checkList = 3;
-    }
-    // alert(checkCommon.checked, checkPetSitter.checked)
-    // 체크박스를 순환합니다.
-    // for (var i = 0; i < checkboxes.length; i++) {
-    //     alert(checkboxes)
-    //     // 체크박스가 선택되었는지 확인합니다.
-    //     if (checkboxes[i].checked) {
-    //
-    //         console.log("켁박", checkboxes[i].value);
-    //         // 선택된 체크박스 값에 기반한 작업을 수행할 수 있습니다.
-    //         // 예를 들어, 선택한 체크박스 값에 따라 "rating" 값을 사용하여 필터링할 수 있습니다.
-    //
-    //         // 이 예제에서는 선택한 체크박스 값들을 콘솔에 표시합니다.
-    //         // console.log("선택한 체크박스 값: " + checkboxes[i].value);
-    //     }
-    // }
+    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 다시 수행합니다.
+    checkboxes.forEach((checkbox) => {
+        // 개별 체크박스의 'change' 이벤트에 대한 리스너를 추가합니다.
+        checkbox.addEventListener('change', function () {
 
-    // if (searchValue == "") {
-    //     // 검색 입력란이 비어 있으면 알림 메시지를 띄우고 검색 요청을 중지합니다.
-    //     alert("입력된 검색어가 없어 회원등급으로 회원목록을 띄웁니다.");
-    //     // return false; // 검색 요청을 중지하기 위해 false를 반환합니다.???????? 항상 false를 반환하면 알럿뜨고 지워지면서 에러나잖아 멍청한 챗지피티야!!!!!!!!!!!!!!1
-    // }
-    //
-    // var searchCondition = document.getElementById("searchCondition").value;
-    //
-    // ////////////////////////////////////////////////////////////
-    // // [작성중] memberNo(회원번호)로 검색할 경우 알럿창 띄움 + 페이지 넘김 방지 처리해야함
-    // var searchValueType = console.log(searchValue);
-    // if(searchValue != "" && searchCondition == "memberNo" && searchValueType != "number") {
-    //     alert("회원 번호는 숫자형태만 입력가능합니다.");
-    // }
-    // ////////////////////////////////////////////////////////////
-    //
-    //
+            // 개별 체크박스의 상태가 해제되면,
+            if (checkboxes.checked == false) {
+                // 'listChkAll' 체크박스를 해제 상태로 설정합니다.
+                listChkAllCheckbox.checked = false;
+            }
+        });
+    });
 
-    // 이제 'searchValue'를 사용하여 부분 문자열 검색 결과를 필터링할 수 있습니다.
-    // 검색 조건을 서버로 보내거나 페이지를 업데이트하는 등의 작업을 수행할 수 있습니다.
-    // 여기서는 'searchValue'를 로깅하겠습니다.
-    // console.log("검색어: " + searchValue);
-
-    // 필요한 경우 추가 작업을 수행할 수 있으며, 실제 검색을 위해서는 검색 조건을 서버로 보내고 데이터베이스 쿼리를 처리해야 합니다.
 
 
 

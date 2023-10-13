@@ -24,8 +24,12 @@ public class AdminController {
     public String getMemberList(@RequestParam(defaultValue = "1") int page,
                                 @RequestParam(required = false) String searchCondition,
                                 @RequestParam(required = false) String searchValue,
-                                @RequestParam(required = false) List<String> rating,	    //등급별 검색을 위해 추가
+                                @RequestParam(required = false) String rating, // 여기서 "rating" 파라미터를 받음
                                 Model model){
+
+        if (rating == null) {
+            rating = "전체";
+        }
 
         log.info("검색버튼 클릭 시 들어오는 체크박스 선택 값 : {}", rating);                      //등급 체크박스 값 넘어오는지 확인
 // 서비스 클래스에서 총 회원 수와 페이징 처리된 회원 목록을 가져오기
@@ -38,7 +42,7 @@ public class AdminController {
         /////////////////////////////////////////////////////////////////////////////////////
 
         List<MemberDTO> memberList = (List<MemberDTO>) memberListAndPaging.get("memberList");
-        int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue);
+        int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue, rating);
 
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("memberList", memberList);
