@@ -366,7 +366,7 @@ public class MemberController {
     @GetMapping("/pet-profile-list")
     public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-        model.addAttribute("loginMember", loginMember.getMemberId());
+       // model.addAttribute("loginMember", loginMember.getMemberId());
 
         List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
 
@@ -456,10 +456,6 @@ public class MemberController {
 
         return "member/review-list";
     }
-
-    /* 진행 중인 예약 페이지 */
-    @GetMapping("/reservation-in-progress")
-    public void progressReservationPage(){}
 
 
 

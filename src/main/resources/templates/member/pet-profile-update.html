@@ -227,11 +227,12 @@
             <div class="Q9 dash-line">
                 <h4>Q. 예방접종을 하셨나요? </h4>
                 <div class="answer-contain">
-                    <label><input type="checkbox" name="vaccin" value="혼합예방주사(DHPPL)" th:checked="${petProfile.vaccin == '혼합예방주사(DHPPL)'}">혼합예방주사(DHPPL) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="코로나장염(연 1회)" th:checked="${petProfile.vaccin == '코로나장염(연 1회)'}">코로나장염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="광견병" th:checked="${petProfile.vaccin == '광견병'}">광견병 &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="기관지염(연 1회" th:checked="${petProfile.vaccin == '기관지염(연 1회)'}">기관지염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)" th:checked="${petProfile.vaccin == '심장사상충(월 1회)'}">심장사상충(월 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="혼합예방주사(DHPPL)" th:checked="${petProfile.vaccin.contains('혼합예방주사(DHPPL)')}">혼합예방주사(DHPPL) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="코로나장염(연 1회)" th:checked="${petProfile.vaccin.contains('코로나장염(연 1회)')}">코로나장염(연 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="광견병" th:checked="${petProfile.vaccin.contains('광견병')}">광견병 &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="기관지염(연 1회" th:checked="${petProfile.vaccin.contains('기관지염(연 1회)')}">기관지염(연 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)" th:checked="${petProfile.vaccin.contains('심장사상충(월 1회)')}">심장사상충(월 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)" th:checked="${petProfile.vaccin.contains('하지않음')}">하지않음 &nbsp;&nbsp;</label>
                 </div>
             </div>
 
