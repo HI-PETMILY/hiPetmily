@@ -89,16 +89,16 @@
                 <form>
 
                     <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
-                    <button class="search-button" type="submit" onclick="searchMembers();">검색</button>
+                    <button class="search-button" type="submit" onclick="location.href='main-member'">검색</button>
 
-                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="entire" name="rating" value="selectAll" onclick='selectAll(this)'>
+                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating" value="전체" onclick='selectAll(this)'>
 
                         <label for="entire">전체</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="checkbox" id="common" name="rating" value="일반회원" >
+                        <input type="radio" id="common" name="rating" value="일반회원" >
                         <label for="common">일반회원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="checkbox" id="petSitter" name="rating" value="펫시터회원">
+                        <input type="radio" id="petSitter" name="rating" value="펫시터회원">
                         <label for="petSitter">펫시터회원</label></li>
 
 
@@ -111,8 +111,9 @@
                         <option value="memberName" th:selected="${ paging.searchCondition eq 'memberName'}">이름</option>
                         <option value="memberId" th:selected="${ paging.searchCondition eq 'memberId'}">아이디</option>
                     </select>
-                    <input type="search" name="searchValue" th:value="${ paging.searchValue }"
-                           placeholder=" 검색어를 입력해주세요." id="searchInput">
+
+                    <input type="search" name="searchValue" id="searchInput"
+                           placeholder=" 검색어를 입력해주세요.">
 
                 </form>
             </ul>
@@ -147,8 +148,8 @@
                     <thead>
                     <tr>
                         <th>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="allCheckBox" name="chkList" value="allCheckList">
+                            <label class="checkbox-inline" id="listChkAll">
+                                <input type="checkbox" id="listChkAll" name="chkList" value="selectAll" onclick='selectAll(this)'> <!--회원 리스트 전체 체크박스-->
                                 <!--=======================================-->
                             </label>
                         </th>
@@ -165,7 +166,7 @@
 
                     <!-- 회원 목록 데이터를 Thymeleaf 반복문을 사용하여 출력 -->
                     <tr class="memberfont" th:each="member : ${memberList}">
-                        <td><input type="checkbox" id="CheckBoxs" class="chk" value="selectAll"></td>
+                        <td><input type="checkbox" id="CheckBoxs" class="chk" name="chkList" value="selectAll"></td>
                         <td th:text="${member.memberNo}"></td>
                         <td th:text="${member.memberId}"></td>
                         <td th:text="${member.memberName}"></td>
@@ -200,13 +201,13 @@
             th:if="${ paging.searchCondition != null and paging.searchValue != null }">
         <!-- 맨 앞으로 이동 -->
         <button
-                th:onclick="'location.href=\'/admin/main-member?page=1&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">
+                th:onclick="'location.href=\'/admin/main-member?page=1&searchCondition=' + @{${paging.searchCondition}} + '&rating=' + @{${paging.rating}} +  '&searchValue=' + @{${paging.searchValue}} + '\''">
             &lt;&lt;
         </button>
 
         <!-- 이전 페이지로 이동 -->
         <button
-                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page - 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page - 1}} + '&rating=' + @{${paging.rating}} +  '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
                 th:disabled="${ paging.page <= 1 }">&lt;
         </button>
 
@@ -214,24 +215,24 @@
         <th:block
                 th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
             <button
-                    th:onclick="'location.href=\'/admin/main-member?page=' + @{${page}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                    th:onclick="'location.href=\'/admin/main-member?page=' + @{${page}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
                     th:text="${ page }" th:disabled="${ paging.page eq page }">
             </button>
         </th:block>
 
         <!-- 다음 페이지로 이동 -->
         <button
-                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page + 1}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page + 1}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
                 th:disabled="${ paging.page >= paging.maxPage }">>
         </button>
 
         <!-- 맨 끝으로 이동 -->
         <button
-                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.maxPage}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.maxPage}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">
             >>
         </button>
-
     </th:block>
+
 
     <th:block
             th:if="${ paging.searchCondition == null  || paging.searchValue == null }">
