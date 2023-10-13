@@ -430,33 +430,6 @@ public class MemberController {
     }
 
 
-
-
-    /* 후기 작성 페이지 */
-    @GetMapping("/review_write")
-    public void reviewWritePage(){}
-
-    /* 후기 전체 조회 페이지 */
-    @GetMapping("/review-list")
-    public String reviewListPage(@RequestParam(defaultValue = "1") int page,
-                                         @RequestParam(required = false) String searchCondition,
-                                         @RequestParam(required = false) String searchValue,
-                                         Model model) {
-        log.info("reviewList page : {}", page);
-        log.info("reviewList searchCondition : {}", searchCondition);
-        log.info("reviewList searchValue : {}", searchValue);
-
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
-
-        Map<String, Object> reviewListAndPaging = memberService.selectReviewList(searchMap, page);
-        model.addAttribute("paging", reviewListAndPaging.get("paging"));
-        model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
-
-        return "member/review-list";
-    }
-
     /* 진행 중인 예약 페이지 */
     @GetMapping("/reservation-in-progress")
     public void progressReservationPage(){}

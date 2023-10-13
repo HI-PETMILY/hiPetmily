@@ -2,6 +2,7 @@ package com.mypet.petmily.review.dto;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
+import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.*;
 
 import java.util.Date;
@@ -18,8 +19,7 @@ public class ReviewDTO {
     private Date revModifyDate;             // 수정일
     private String revStatus;               // 상태(Y=등록, N=삭제)
     private Date revDeleteDate;             // 삭제일
-    private MemberDTO memberNo;             // 회원 코드
-    private PetSitterDTO petMemberNo;       // 펫시터 코드
-    // private ReservationDTO reserveCode;  // 예약 코드
+    private MemberDTO member;              // 회원 코드
+    private ReservationDTO reservation;     // 예약 코드
     //private List<FileDTO> attachmentList; // 첨부파일(사진)
 }
