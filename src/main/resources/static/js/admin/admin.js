@@ -1,3 +1,4 @@
+/* 네비바 + 메뉴바 */
 $(document).ready(function () {
     // 초기 상태 설정
     $('.bar-menu').hide(); // 모든 관리 메뉴 숨김
@@ -30,70 +31,78 @@ $(document).ready(function () {
     });
 });
 
-//체크박스 전체 선택/해제
-function selectAll(selectAll)  {
-    const checkboxes
-        = document.getElementsByName('rating');
 
+/*==============팝업창*/
+document.getElementById("passwordChangeButton").addEventListener("click", openPasswordChangePopup);
+
+function openPasswordChangePopup() {
+    // 사용자 클릭에 의한 팝업 열기
+    var popup = window.open("popPasswordChange", "PasswordChangePopup", "width=750,height=800,left=650,top=180");
+    if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+        // 팝업 창이 차단되었거나 팝업 창이 닫힌 경우 처리
+        alert("팝업 창이 차단되었거나 팝업 창이 닫혔습니다. 팝업 차단을 확인하세요.");
+    }
+}
+
+function openInquiryPopup() {
+    // "1대1문의" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
+    var popup =window.open("popInquiry", "InquiryPopup", "width=750, height=800, left=650, top=180");
+}
+
+function openManagementPopup() {
+    // "관리" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
+    var popup = window.open("popManagement", "ManagementPopup", "width=750, height=800, left=650, top=180");
+
+}
+
+// 체크 박스 전체 선택/해제=========================
+
+// 'selectAll' 함수를 정의합니다. 이 함수는 체크박스 전체 선택/해제 동작을 수행합니다.
+function selectAll(selectAll) {
+    // 'chkList' 이름 속성을 가진 모든 입력(체크박스) 요소를 선택합니다.
+    const checkboxes = document.querySelectorAll('input[name="chkList"]');
+
+    // 'listChkAll' id를 가진 체크박스 요소를 선택합니다.
+    const listChkAllCheckbox = document.getElementById('listChkAll');
+
+    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 수행합니다.
     checkboxes.forEach((checkbox) => {
+        // 'selectAll' 체크박스의 상태에 따라 개별 체크박스의 'checked' 속성을 설정합니다.
         checkbox.checked = selectAll.checked;
-    })
-}
-
-//================= 회원 리스트 표 ==========================
-//체크박스 전체 선택 클릭 이벤트
-function allChecked(target){
-
-    //전체 체크박스 버튼
-    const checkbox = document.getElementById('allCheckBox');
-
-    //전체 체크박스 버튼 체크 여부
-    const is_checked = checkbox.checked;
-
-    //전체 체크박스 제외한 모든 체크박스
-    if(is_checked){
-        //체크박스 전체 체크
-        chkAllChecked()
-    }
-
-    else{
-        //체크박스 전체 해제
-        chkAllUnChecked()
-    }
-}
-
-//자식 체크박스 클릭 이벤트
-function chkClicked(){
-
-    //체크박스 전체개수
-    const allCount = document.querySelectorAll(".chk").length;
-
-    //체크된 체크박스 전체개수
-    const query = 'input[name="chk"]:checked'
-    const selectedElements = document.querySelectorAll(query)
-    const selectedElementsCnt = selectedElements.length;
-
-    //체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 전체 체크박스 체크
-    if(allCount == selectedElementsCnt){
-        document.getElementById('allCheckBox').checked = true;
-    }
-
-    //같지않으면 전체 체크박스 해제
-    else{
-        document.getElementById('allCheckBox').checked = false;
-    }
-}
-
-//체크박스 전체 체크
-function chkAllChecked(){
-    document.querySelectorAll(".chk").forEach(function(v, i) {
-        v.checked = true;
     });
+
+    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 다시 수행합니다.
+    checkboxes.forEach((checkbox) => {
+        // 개별 체크박스의 'change' 이벤트에 대한 리스너를 추가합니다.
+        checkbox.addEventListener('change', function () {
+
+            // 개별 체크박스의 상태가 해제되면,
+            if (checkboxes.checked == false) {
+                // 'listChkAll' 체크박스를 해제 상태로 설정합니다.
+                listChkAllCheckbox.checked = false;
+            }
+        });
+    });
+
+
+
+
 }
 
-//체크박스 전체 체크 해제
-function chkAllUnChecked(){
-    document.querySelectorAll(".chk").forEach(function(v, i) {
-        v.checked = false;
-    });
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

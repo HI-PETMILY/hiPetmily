@@ -30,6 +30,8 @@ public interface MemberMapper {
 
     String selectMemberByNickName(String nickName);
 
+    String selectMemberByMemberId(String memberId);
+
     int pwdCheck(MemberDTO dto);
 
     void pwdUpdate(MemberDTO dto);
@@ -48,5 +50,7 @@ public interface MemberMapper {
 
     PetDTO viewFirstPetProfile(MemberDTO member);
 
-    PetDTO petProfileUpdate(MemberDTO loginMember);
+    void petProfileUpdate(PetDTO pet);
+
+    int deletePetProfile(int petCode);
 }

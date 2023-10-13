@@ -12,8 +12,12 @@
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/board/useful.css"/>
+    <link rel="stylesheet" href="/css/board/service.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        Kakao.init('6dafd4516f3c23851f6d3355f6b5a121'); // 사용하려는 앱의 JavaScript 키 입력
+    </script>
 </head>
 <body>
 <div th:replace="common/header_white.html"></div>
@@ -65,34 +69,82 @@
 
 <div class="useful_wrap">
     <div class="useful_title">
-        <strong>펫밀리 고객지원</strong>
+        <strong>펫밀리 고객센터</strong>
     </div>
     <div class="useful_view_wrap">
-        <h2>고객지원</h2>
+        <h2>펫밀리 고객지원센터에 오신것을 환영합니다</h2>
 
-        <div
-                id="kakao-talk-channel-add-button"
-                data-channel-public-id="_petmily"
-                data-size="large"
-                data-support-multiple-densities="true"
-        ></div>
+        <div class="img_boxing_petmily">
+            <img class="img_petimily" src="/static_Image/board/petmily-service.png">
+        </div>
 
 
+        <div class="img_boxing_petmily">
+            <img class="img_petimily" src="/static_Image/board/petmily-service2.png">
+        </div>
 
+        <div class="img_boxing_petmily">
+            <img class="img_petimily" src="/static_Image/board/petmily-service3.png">
+        </div>
+
+        <div class="img_boxing_petmily_kakao">
+
+            <div
+                 id="kakao-talk-channel-add-button"
+                 data-channel-public-id="_FaQCG"
+                 data-size="large"
+                 data-support-multiple-densities="true"
+            ></div>
+
+            <div class="kakao_chat"
+                 id="kakao-talk-channel-chat-button"
+                 data-channel-public-id="_FaQCG"
+                 data-title="consult"
+                 data-size="large"
+                 data-color="yellow"
+                 data-shape="pc"
+                 data-support-multiple-densities="true"
+            ></div>
+
+        </div>
+
+
+        <!--펫밀리 카카오톡 채널추가 -->
+<!--        <div class="kakao_add"-->
+<!--                id="kakao-talk-channel-add-button"-->
+<!--                data-channel-public-id="_FaQCG"-->
+<!--                data-size="large"-->
+<!--                data-support-multiple-densities="true"-->
+<!--        ></div>-->
+
+
+        <!-- 펫밀리 실시간 상담 -->
+<!--        <div class="kakao_chat"-->
+<!--                id="kakao-talk-channel-chat-button"-->
+<!--                data-channel-public-id="_FaQCG"-->
+<!--                data-title="consult"-->
+<!--                data-size="large"-->
+<!--                data-color="yellow"-->
+<!--                data-shape="pc"-->
+<!--                data-support-multiple-densities="true"-->
+<!--        ></div>-->
 
 
     </div>
-</div>
 </div>
 
 
 <div th:replace="common/footer.html"></div>
 </body>
 
+
 <script>
     window.kakaoAsyncInit = function() {
         Kakao.Channel.createAddChannelButton({
             container: '#kakao-talk-channel-add-button',
+        });
+        Kakao.Channel.createChatButton({
+            container: '#kakao-talk-channel-chat-button',
         });
     };
 
@@ -106,5 +158,6 @@
         fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'kakao-js-sdk');
 </script>
-</script>
+
+
 </html>

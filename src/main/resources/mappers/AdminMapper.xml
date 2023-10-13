@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mypet.petmily.admin.member.dao.AdminMapper">
+
+    <resultMap type="com.mypet.petmily.member.dto.MemberDTO" id="generalMemberResultMap">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <collection property="memberCode" resultMap="authorityResultMap"/>
+    </resultMap>
+
+    <resultMap type="com.mypet.petmily.member.dto.AuthorityDTO" id="authorityResultMap">
+        <id property="code" column="AUTHORITY_CODE"/>
+        <result property="name" column="AUTHORITY_NAME"/>
+        <result property="desc" column="AUTHORITY_DESC"/>
+    </resultMap>
+
+    <!--     회원 목록 조회 + 검색 연동 쿼리-->
+    <select id="selectMemberList" resultMap="generalMemberResultMap">
+        <!-- 회원 데이터를 검색하는 쿼리 -->
+        SELECT
+        A.MEMBER_NO
+        , A.MEMBER_ID
+        , A.MEMBER_NAME
+        , B.AUTHORITY_CODE
+        , A.MEMBER_STAT
+        , A.REGIST_DATE
+        FROM (
+        <!-- 서브 쿼리: 페이징을 위한 ROWNUM 적용 -->
+        SELECT
+        ROWNUM RNUM
+        , B.MEMBER_NO
+        , B.MEMBER_ID
+        , B.MEMBER_NAME
+        , B.MEMBER_STAT
+        , B.REGIST_DATE
+        FROM (
+        <!-- 회원 데이터를 가져오는 쿼리 -->
+        SELECT
+        C.MEMBER_NO
+        , C.MEMBER_ID
+        , C.MEMBER_NAME
+        , C.MEMBER_STAT
+        , C.REGIST_DATE
+        FROM TBL_MEMBER C
+        <!-- 동적으로 생성되는 WHERE 절 -->
+        <where>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberNo'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberNo' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_NO = #{searchValue}
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberName'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberName' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_NAME LIKE '%' || #{searchValue} || '%'
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberId'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
+            AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
+            </if>
+        </where>
+        ORDER BY C.MEMBER_NO DESC
+        )B
+        <![CDATA[
+            WHERE ROWNUM <= #{ endRow }
+        ]]>
+        )A
+        <!-- 최종 결과에 대한 조인 -->
+        JOIN TBL_ROLE B ON (A.MEMBER_NO = B.MEMBER_NO)
+        WHERE A.RNUM >= #{ startRow }
+        <if test="rating == '일반회원'">
+            AND B.AUTHORITY_CODE = 3
+        </if>
+        <if test="rating == '펫시터회원'">
+            AND B.AUTHORITY_CODE = 2
+        </if>
+        ORDER BY 1 DESC
+    </select>
+
+    <!-- 검색에 따른 해당 목록 조회 + 전체 회원 수 가져오는 조건쿼리 -->
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT COUNT(*) AS totalCount
+        FROM TBL_MEMBER C
+        JOIN TBL_ROLE B ON (C.MEMBER_NO = B.MEMBER_NO)
+        <where>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberNo'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberNo' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_NO = #{searchValue}
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberName'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberName' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_NAME LIKE '%' || #{searchValue} || '%'
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberId'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
+            </if>
+            <if test="rating == '일반회원'">
+                AND B.AUTHORITY_CODE = 3
+            </if>
+            <if test="rating == '펫시터회원'">
+                AND B.AUTHORITY_CODE = 2
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

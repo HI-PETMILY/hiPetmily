@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 부트스트랩 CSS 라이브러리 추가 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- jQuery 라이브러리를 추가 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <link rel="stylesheet" href="/css/admin/admin.css">
     <script src="/js/admin/admin.js"></script>
     <title>Title</title>
 </head>
 <body>
+<script>
+    var memberList = "[[${memberList}]]";
+    //console.log(memberList);
+    for (i = 0; i < memberList.length; i++) {
+        // console.log(memberList[i]);
+    }
+</script>
 
 <div class="navbar-title navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -70,51 +78,57 @@
     <div>
         <h4><b>❙ 회원 리스트</b></h4>
     </div>
-    <div class="details">
-        <div class="tab-details tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <br>
-                <div class="choose">
-                    <ul>
-                        <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="entire" name="rating"
-                                                                               value="selectAll"
-                                                                               onclick='selectAll(this)'>
-                            <label for="entire">전체</label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="common" name="rating" value="일반회원"
-                                                                 checked>
-                            <label for="common">일반회원</label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="petSitter" name="rating"
-                                                                 value="펫시터회원">
-                            <label for="petSitter">펫시터회원</label></li>
 
-                        <button class="search-button" onclick="search()">검색</button>
 
-                        <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email"
-                                                                               name="marketing"
-                                                                               value="이메일" checked>
-                            <label for="email">이메일</label></li>
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br>
+        <div class="choose">
+            <ul class="chkchoose">
 
-                        <li><b>• 검색어</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <select id="age" name="age">
-                                <option value="number">번호</option>
-                                <option value="name">이름</option>
-                                <option value="id">아이디</option>
-                                <div class="search">
-                                    <input type="text" placeholder=" 검색어를 입력해주세요.">
-                                </div>
-                            </select>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+                <form>
+
+                    <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
+                    <button class="search-button" type="submit" onclick="location.href='main-member'">검색</button>
+
+                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating" value="전체" onclick='selectAll(this)'>
+
+                        <label for="entire">전체</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="radio" id="common" name="rating" value="일반회원" >
+                        <label for="common">일반회원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <input type="radio" id="petSitter" name="rating" value="펫시터회원">
+                        <label for="petSitter">펫시터회원</label></li>
+
+
+<!--                    <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email" name="marketing" value="이메일" checked>-->
+<!--                        <label for="email">이메일</label></li>-->
+
+                    <b>• 검색어</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select id="searchCondition" name="searchCondition">
+                        <option value="memberNo" th:selected="${ paging.searchCondition eq 'memberNo'}">번호</option>
+                        <option value="memberName" th:selected="${ paging.searchCondition eq 'memberName'}">이름</option>
+                        <option value="memberId" th:selected="${ paging.searchCondition eq 'memberId'}">아이디</option>
+                    </select>
+
+                    <input type="search" name="searchValue" id="searchInput"
+                           placeholder=" 검색어를 입력해주세요.">
+
+                </form>
+            </ul>
         </div>
     </div>
+
+
 </div>
+
 
 <!--==================== 회원 목록 표 -->
 <div class="overall-list">
     <div>
-        <p class="result-text" style="margin-bottom: 0rem">검색결과 : 15 / 총 15명 검색 결과</p>
+        <p class="result-text" style="margin-bottom: 0rem"
+           th:text="${memberList != null ? '검색결과 : ' + #lists.size(memberList) + ' / 총 ' + (totalCount != null ? totalCount : '0') + '명' : '검색 결과가 없습니다.'}"></p>
     </div>
 
     <div class="member-list">
@@ -134,8 +148,9 @@
                     <thead>
                     <tr>
                         <th>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="allCheckBox" class="chk">
+                            <label class="checkbox-inline" id="listChkAll">
+                                <input type="checkbox" id="listChkAll" name="chkList" value="selectAll" onclick='selectAll(this)'> <!--회원 리스트 전체 체크박스-->
+                                <!--=======================================-->
                             </label>
                         </th>
                         <th>번호</th>
@@ -147,24 +162,29 @@
                         <th class="management-button">관리</th>
                     </tr>
                     </thead>
-
                     <tbody>
-                    <tr>
-                        <td>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" class="chk" name="chk" value="">
-                            </label>
-                        <td>1</td>
-                        <td>test1</td>
-                        <td>테스트</td>
-                        <td>일반</td>
-                        <td>정상</td>
-                        <td>2022.08.01</td>
+
+                    <!-- 회원 목록 데이터를 Thymeleaf 반복문을 사용하여 출력 -->
+                    <tr class="memberfont" th:each="member : ${memberList}">
+                        <td><input type="checkbox" id="CheckBoxs" class="chk" name="chkList" value="selectAll"></td>
+                        <td th:text="${member.memberNo}"></td>
+                        <td th:text="${member.memberId}"></td>
+                        <td th:text="${member.memberName}"></td>
+                        <td th:if="${member.memberCode.code == 1}" th:text="관리자"></td>
+                        <td th:if="${member.memberCode.code == 2}" th:text="펫시터"></td>
+                        <td th:if="${member.memberCode.code == 3}" th:text="일반회원"></td>
+                        <td th:text="${member.memberStat}"></td>
+                        <td th:text="${#dates.format(member.registDate, 'yyyy-MM-dd')}"></td>
+
+                        <div id="btnWrap">
                             <td class="management-button">
-                                <button onclick="">비번변경</button>
-                                <button onclick="">1대1문의</button>
-                                <button onclick="">관리</button>
+                                <!-- 팝업창 3개 -->
+                                <button type="button" class="mbtn mbtn-primary" onclick="openPasswordChangePopup()">비번변경</button>
+                                <button type="button" class="mbtn mbtn-primary" onclick="openInquiryPopup()">1대1문의</button>
+                                <button type="button" class="mbtn mbtn-primary" onclick="openManagementPopup()">관리</button>
                             </td>
+                        </div>
+
                     </tr>
                     </tbody>
                 </table>
@@ -174,35 +194,91 @@
     </div>
 </div>
 
-<nav class="container d-flex justify-content-center"
-     aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<!--페이징 바======================-->
+<div class="paging" id="paging" align="center">
+
+    <th:block
+            th:if="${ paging.searchCondition != null and paging.searchValue != null }">
+        <!-- 맨 앞으로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=1&searchCondition=' + @{${paging.searchCondition}} + '&rating=' + @{${paging.rating}} +  '&searchValue=' + @{${paging.searchValue}} + '\''">
+            &lt;&lt;
+        </button>
+
+        <!-- 이전 페이지로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page - 1}} + '&rating=' + @{${paging.rating}} +  '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                th:disabled="${ paging.page <= 1 }">&lt;
+        </button>
+
+        <!-- 숫자 버튼 -->
+        <th:block
+                th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
+            <button
+                    th:onclick="'location.href=\'/admin/main-member?page=' + @{${page}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                    th:text="${ page }" th:disabled="${ paging.page eq page }">
+            </button>
+        </th:block>
+
+        <!-- 다음 페이지로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page + 1}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''"
+                th:disabled="${ paging.page >= paging.maxPage }">>
+        </button>
+
+        <!-- 맨 끝으로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.maxPage}} + '&rating=' + @{${paging.rating}} + '&searchCondition=' + @{${paging.searchCondition}} + '&searchValue=' + @{${paging.searchValue}} + '\''">
+            >>
+        </button>
+    </th:block>
+
+
+    <th:block
+            th:if="${ paging.searchCondition == null  || paging.searchValue == null }">
+        <!-- 맨 앞으로 이동 -->
+        <button th:onclick="'location.href=\'/admin/main-member?page=1\''">&lt;&lt;</button>
+
+        <!-- 이전 페이지로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page - 1}} + '\''"
+                th:disabled="${ paging.page <= 1 }">&lt;
+        </button>
+
+        <!-- 숫자 버튼 -->
+        <th:block
+                th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">
+            <button
+                    th:onclick="'location.href=\'/admin/main-member?page=' + @{${page}} + '\''"
+                    th:text="${ page }" th:disabled="${ paging.page eq page }">
+            </button>
+        </th:block>
+
+        <!-- 다음 페이지로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.page + 1}} + '\''"
+                th:disabled="${ paging.page >= paging.maxPage }">>
+        </button>
+
+        <!-- 맨 끝으로 이동 -->
+        <button
+                th:onclick="'location.href=\'/admin/main-member?page=' + @{${paging.maxPage}} + '\''">>>
+        </button>
+    </th:block>
+
+</div>
+
 
 <!-- 하단 기능 버튼들 -->
 <footer class="easy-skill-button">
     <div class="test1">
-    <b>회원 일괄처리</b>
-    <button onclick="">메일발송</button>
-    <button onclick="">등급변경</button>
-    <button onclick="">정지처리</button><b class="Orange-text">x체크한 회원만 처리됩니다</b>
+        <b>회원 일괄처리</b>
+        <button onclick="">메일발송</button>
+        <button onclick="">등급변경</button>
+        <button onclick="">정지처리</button>
+        <b class="Orange-text"> x체크한 회원만 처리됩니다</b>
     </div>
 </footer>
-
 
 
 </body>

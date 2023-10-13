@@ -1,6 +1,7 @@
 package com.mypet.petmily.member.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class MemberDTO implements UserDetails {
 
     private int memberNo;          // 회원코드
@@ -31,6 +33,10 @@ public class MemberDTO implements UserDetails {
     private int warningCount;       // 경고 횟수
     private int signupPathCode;     // 가입경로 코드
     private List<MemberRoleDTO> memberRoleList;
+    private AuthorityDTO memberCode;
+
+
+
     // 한 멤버는 여러 권한을 가질 수 있다
     private List<PetDTO> petList;   // 회원의 반려견 코드
 
@@ -73,5 +79,8 @@ public class MemberDTO implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public MemberDTO(long aLong, String string, String string1, String string2, String rsString, java.sql.Date date) {
     }
 }
