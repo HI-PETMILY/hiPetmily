@@ -11,9 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -30,25 +27,16 @@ public class NewPetSitterController {
     }
 
     @GetMapping(value = "/petSitterProfile")
-//    public String PetSitterProfile(NewPetSitterDTO petSitter, Model model, @AuthenticationPrincipal MemberDTO member) {
-    public String petSitterProfile(NewPetSitterDTO petSitter, Model model) {
+    public String PetSitterProfile(NewPetSitterDTO petSitter, Model model, @AuthenticationPrincipal MemberDTO member) {
 
-        NewPetSitterDTO petSitterInfo = newPetSitterService.selectAllInfo(petSitter);
-        List<CareerDTO> careerList = newPetSitterService.selectAllCareer(petSitter);
-        List<PetTagDTO> petTagList = newPetSitterService.selectAllTag(petSitter);
+        petSitter = newPetSitterService.petSitterProfile(petSitter);
 
-        PetJsonMemberDTO petJsonMemberInfo = newPetSitterService.selectMemberInfo(petSitter);
+        log.info("--afterPetSitterDTO : {}", petSitter);
 
-        log.info("--petSitterInfo : {}", petSitterInfo);
-        log.info("--careerList : {}", careerList);
-        log.info("--petTagList : {}", petTagList);
-        log.info("--petJsonMemberInfo : {}", petJsonMemberInfo);
-
-        model.addAttribute("petSitterInfo", petSitterInfo);
-        model.addAttribute("careerList", careerList);
-        model.addAttribute("petTagList", petTagList);
-        model.addAttribute("memberInfo", petJsonMemberInfo);
-
+        model.addAttribute("petSitterInfo", petSitter );
+        model.addAttribute("careerList", petSitter.getCareerList());
+        model.addAttribute("petTagList", petSitter.getPetTagList());
+        model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
 
         return "petSitterNew/petSitterProfile";
     }
@@ -74,50 +62,17 @@ public class NewPetSitterController {
     public String petSitterRegist(NewPetSitterDTO petSitter, RedirectAttributes rttr
             , @AuthenticationPrincipal MemberDTO member
             , @RequestParam(value = "tagContent", required = false) List<String> petTagList
-            , @RequestParam(value = "careerContent", required = false) List<String> careerList ){
+            , @RequestParam(value = "careerContent", required = false) List<String> careerList
+            , @RequestParam(value = "petMemberResDay", required = false) String schedule ){
 
         int memberNo = member.getMemberNo();
-
-        // 현재 날짜 로직
-        Date now = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-        String formatedNow = formatter.format(now);
-
-        // 회원넘버 == 펫시터넘버
+        // 로그인한 회원넘버 == 펫시터넘버
         petSitter.setPetMemberNo(memberNo);
-        // 현재날짜
-        petSitter.setPetRegistDate(formatedNow);
-        // 초기 가입시 대기상태
-        petSitter.setPetStat("대기");
+        petSitter.setRegPetTagList(petTagList);
+        petSitter.setRegCareerList(careerList);
+        petSitter.setSchedule(schedule);
 
-        // 태그정보 테이블에 추가
-        if ( !(petTagList.isEmpty()) ) {
-
-            PetTagDTO petTag = new PetTagDTO();
-            petTag.setPetMemberNo( memberNo );
-
-            for (int i = 0; i < petTagList.size(); i++) {
-                petTag.setTagContent( petTagList.get(i) );
-                newPetSitterService.insertTag( petTag );
-            }
-        }
-
-        // 경력정보 테이블에 추가
-        if ( !(careerList.isEmpty()) ) {
-
-            CareerDTO career = new CareerDTO();
-            career.setPetMemberNo( memberNo );
-
-            for (int i = 0; i < careerList.size(); i++) {
-                career.setCareerContent( careerList.get(i) );
-                newPetSitterService.insertCareer( career );
-            }
-        }
-
-        log.info("-------1 {}", petSitter);
-
-
-
+        newPetSitterService.petSitterRegist(petSitter);
 
         return "redirect:/petSitterNew/sitterRegistSuccess";
     }

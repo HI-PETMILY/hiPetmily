@@ -230,6 +230,10 @@
         VALUES(SEQ_TBL_CAREER_NO.NEXTVAL, #{ careerContent }, #{ petMemberNo } )
     </insert>
 
+    <insert id="insertSchedule">
+        INSERT INTO TBL_SITTER_SCHEDULE(PET_MEMBER_RES_NO,PET_MEMBER_REG_DAY,PET_MEMBER_STATUS,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_SITTER_SCHEDULE_NO.NEXTVAL, #{ petMemberResDay }, #{ petMemberStatus }, #{ petMemberNo })
+    </insert>
 
 
 </mapper>

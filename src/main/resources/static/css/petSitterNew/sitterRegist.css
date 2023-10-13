@@ -214,11 +214,8 @@ select {
     margin-top: 40px;
 }
 
-.reg_add_div input[type=text] {
-    width: 220px;
-}
-
 .reg_add_div {
+    width: 600px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -226,3 +223,30 @@ select {
     margin: 30px auto;
 }
 
+.reg_add_div input[type=text] {
+    width: 220px;
+}
+
+.reg_add_div input[type=button] {
+    width: 50px;
+    border: 1px solid #dde2e6;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.scheduleBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+}
+
+.scheduleBox input[type=text] {
+    width: 305px;
+}
+
+.reg_schedule_div {
+    padding-bottom: 60px;
+    margin-bottom: 30px;
+}

@@ -17,6 +17,6 @@ public interface NewPetSitterMapper {
     PetJsonMemberDTO petSitterAddress(NewPetSitterDTO petMember);
     void insertTag(PetTagDTO petTag);
     void insertCareer(CareerDTO career);
-
+    void insertSchedule(SitterScheduleDTO sitterSchedule);
 
 }
