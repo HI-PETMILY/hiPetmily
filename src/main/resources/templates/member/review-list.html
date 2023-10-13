@@ -28,8 +28,8 @@
 
         <table align="center" class="reviewList-table">
             <tr>
-                <th class="col1">예약 일자</th>
-                <th class="col2">돌봄 대상</th>
+                <th class="col1">작성일</th>
+                <th class="col2">예약 코드</th>
                 <th class="col3">펫시터</th>
                 <th class="col4">별점</th>
                 <th class="col5">작성 내용</th>
@@ -39,9 +39,9 @@
                     !</td>
             </tr>
             <tr th:each="review : ${reviewList}" th:unless="${#lists.isEmpty(list)}">
-                <td class="col1" th:text="${review.reserveCode.예약일자}"></td>
-                <td class="col2" th:text="${review.reserveCode.돌봄대상}"></td>
-                <td class="col3" th:text="${review.reserveCode.펫시터}"></td>
+                <td class="col1" th:text="${review.revCreatedDate}"></td>
+                <td class="col2" th:text="${review.reservation.resCode}"></td>
+<!--                <td class="col3" th:text="${review.petSitter}"></td>-->     <!--펫시터닉네임 어케불러와ㅠ-->
                 <td class="col4" th:text="${review.revScore}"></td>
                 <td class="col4" th:text="${review.revContent}"></td>
             </tr>

@@ -6,19 +6,90 @@
 
     <resultMap id="reviewResultMap" type="com.mypet.petmily.review.dto.ReviewDTO">
         <id property="revCode" column="REV_CODE"/>
-        <result property="revScore" column=""/>
-        <result property="revContent" column=""/>
-        <result property="revCreateDate" column=""/>
-        <result property="revModifyDate" column=""/>
-        <result property="revStatus" column=""/>
-        <result property="revDeleteDate" column=""/>
+        <result property="revScore" column="REV_SCORE"/>
+        <result property="revContent" column="REV_CONTENT"/>
+        <result property="revCreatedDate" column="REV_CREATED_DATE"/>
+        <result property="revModifyDate" column="REV_MODIFY_DATE"/>
+        <result property="revStatus" column="REV_STATUS"/>
+        <result property="revDeleteDate" column="REV_DELETE_DAE"/>
 
-        <association property="member" resultMap=""/>
-        <association property="reservation" resultMap=""/>
+        <association property="member" resultMap="memberResultMap"/>
+        <association property="petSitter" resultMap="petSitterResultMap"/>
+        <association property="reservation" resultMap="resResultMap"/>
     </resultMap>
 
     <insert id="registReview">
-
+        INSERT INTO TBL_REVIEW
+        (
+           REV_CODE
+         , REV_SCORE
+         , REV_CONTENT
+         , REV_CREATED_DATE
+         , REV_MODIFY_DATE
+         , REV_STATUS
+         , MEMBER_NO
+         , RESERV_CODE
+        )
+        VALUES
+            (SEQ_TBL_REVIEW_NO.NEXTVAL
+            , #{revScore}
+            , #{revContent}
+            , #{revCreatedDate}
+            , #{revModifyDate}
+            , #{revStatus}
+            , #{member.memberNo}
+            , 1
+            )
     </insert>
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+               COUNT(*)
+          FROM TBL_REVIEW
+         WHERE MEMBER_NO = #{member.memberNo}
+           AND REV_STATUS = 'Y'
+    </select>
+
+    <select id="selectReviewList" resultMap="reviewResultMap">
+        SELECT
+               A.REV_CODE
+             , A.REV_SCORE
+             , A.REV_CONTENT
+             , A.REV_CREATED_DATE
+             , A.MEMBER_NO
+             , R.RESERV_CODE
+             , M.NICKNAME
+             FROM (SELECT
+                  ROWNUM RNUM
+                  , B.REV_CODE
+                  , B.REV_SCORE
+                  , B.REV_CONTENT
+                  , B.REV_CREATED_DATE
+                  , B.MEMBER_NO
+                  , B.RESERV_CODE
+                  , B.NICKNAME
+                  FROM (SELECT
+                        C.REV_CODE
+                        , C.REV_SCORE
+                        , C.REV_CONTENT
+                        , C.REV_CREATED_DATE
+                        , C.MEMVER_NO
+                        , C.RESERV_CODE
+                        , C.NICKNAME
+                        FROM TBL_REVIEW C
+                        WHERE C.REVIEW_STATUS = 'Y'
+                        ORDER BY C.REV_CODE DESC
+                        ) B
+                 <![CDATA[
+                   WHERE ROWNUM <= #{ endRow }
+                   ]]>
+                   ) A
+                JOIN TBL_RESERVATION R ON (A.RESERV_CODE = R.RESERV_CODE)
+                JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
+                JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
+                WHERE C.MEMBER_NO = #{memberNo}
+                  AND A.RNUM >= #{startRow}
+                ORDER BY 1DESC
+    </select>
 
 </mapper>

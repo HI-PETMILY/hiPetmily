@@ -233,13 +233,6 @@
            AND ROWNUM = 1
     </select>
 
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
-        SELECT
-               COUNT(*)
-          FROM TBL_RESERVATION
-        <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
-    </select>
-
     <!-- 반려동물 프로필 등록 -->
     <insert id="insertPetProfile">
         INSERT INTO TBL_MYPET

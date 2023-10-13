@@ -17,6 +17,5 @@ public interface ReviewMapper {
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
 
     int selectTotalCount(Map<String, String> searchMap);
-    // xml 작성해야 함
 
 }

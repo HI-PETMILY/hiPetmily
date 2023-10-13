@@ -35,30 +35,43 @@ public class ReviewController {
 
         review.setMember(loginMember);
 
+        log.info("loginMember : {}", loginMember);
+
         reviewService.registReview(review);
 
-        return "예약 조회 화면";
+        log.info("review : {}", review);
+
+        return "redirect:/member/reservationList";
     }
 
     /* 후기 전체 조회 페이지 */
     @GetMapping("/review-list")
     public String reviewListPage(@RequestParam(defaultValue = "1") int page,
-                                 @RequestParam(required = false) String searchCondition,
-                                 @RequestParam(required = false) String searchValue,
                                  Model model) {
         log.info("reviewList page : {}", page);
-        log.info("reviewList searchCondition : {}", searchCondition);
-        log.info("reviewList searchValue : {}", searchValue);
 
         Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
 
         Map<String, Object> reviewListAndPaging = reviewService.selectReviewList(searchMap, page);
         model.addAttribute("paging", reviewListAndPaging.get("paging"));
         model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
 
         return "member/review-list";
+    }
+
+    /* 후기 상세 조회 페이지 */
+    @GetMapping("/review-view")
+    public void reviewViewPage(){}
+
+    /* 후기 수정 페이지 */
+    @GetMapping("/review-update")
+    public void reviewUpdate(){}
+
+    /* 후기 삭제 */
+    @GetMapping("/review-delete")
+    public String reviewDelete(){
+
+        return "redirect:/member/review-list";
     }
 
 }

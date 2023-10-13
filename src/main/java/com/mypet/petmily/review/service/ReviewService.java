@@ -25,7 +25,7 @@ public class ReviewService {
     /* 후기 작성 */
     public void registReview(ReviewDTO review) {
 
-        review.setRevCreateDate(new Date());
+        review.setRevCreatedDate(new Date());
         review.setRevModifyDate(new Date());
         review.setRevStatus("Y");
 
@@ -46,7 +46,7 @@ public class ReviewService {
 
         /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
         List<ReviewDTO> reviewList = reviewMapper.selectReviewList(selectCriteria);
-        log.info("board : {}", reviewList);
+        log.info("reviewList : {}", reviewList);
 
         Map<String, Object> reviewListAndPaging = new HashMap<>();
         reviewListAndPaging.put("paging", selectCriteria);
