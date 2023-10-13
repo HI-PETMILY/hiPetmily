@@ -111,6 +111,22 @@
         }
     }
 
+    /* 마이 페이지 -> 내가 쓴 후기 페이지로 이동 */
+    if (document.getElementById("my_review")) {
+        const $update = document.getElementById("my_review");
+        $update.onclick = function () {
+            location.href = "/member/review-list";
+        }
+    }
+
+    /* 마이 페이지 -> 내가 쓴 후기 페이지로 이동 */
+    if (document.getElementById("res_ing")) {
+        const $update = document.getElementById("res_ing");
+        $update.onclick = function () {
+            location.href = "/member/reservation-in-progress";
+        }
+    }
+
     /* 마이 페이지 -> 공지사항 */
     if (document.getElementById("notice")) {
         const $update = document.getElementById("notice");
