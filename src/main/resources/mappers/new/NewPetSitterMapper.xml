@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mypet.petmily.petSitterNew.dao.NewPetSitterMapper">
+
+    <!-- petSitter resultMap 관련 -->
+    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
+        <id property="petMemberNo" column="PET_MEMBER_NO"/>
+        <result property="petRegistDate" column="PET_REGIST_DATE"/>
+        <result property="petStat" column="PET_STAT"/>
+        <result property="petTitle" column="PET_TITLE"/>
+        <result property="petIntroduce" column="PET_INTRODUCE"/>
+        <result property="petPlace" column="PET_PLACE"/>
+        <result property="petCareCount" column="PET_CARE_COUNT"/>
+        <result property="petBabyYn" column="PET_BABY_YN"/>
+        <result property="petPence" column="PET_PENCE"/>
+        <result property="petMypetYn" column="PET_MYPET_YN"/>
+        <result property="petSmokYn" column="PET_SMOK_YN"/>
+        <result property="petCareSize" column="PET_CARE_SIZE"/>
+        <result property="petCareAge" column="PET_CARE_AGE"/>
+        <result property="petCheckIn" column="PET_CHECKIN"/>
+        <result property="petCheckOut" column="PET_CHECKOUT"/>
+        <result property="petRequest" column="PET_REQUEST"/>
+        <result property="petImpossible" column="PET_IMPOSSIBLE"/>
+        <result property="petM_DayPay" column="PET_M_DAY_PAY"/>
+        <result property="petM_TimePay" column="PET_M_TIME_PAY"/>
+        <result property="petL_DayPay" column="PET_L_DAY_PAY"/>
+        <result property="petL_TimePay" column="PET_L_TIME_PAY"/>
+        <result property="petBank" column="PET_BANK"/>
+        <result property="petBankNo" column="PET_BANK_NO"/>
+        <result property="petBankName" column="PET_BANK_NAME"/>
+    </resultMap>
+    <!-- petSitter resultMap 관련 -->
+
+    <!-- member resultMap 관련 -->
+    <resultMap id="petMemberResultMap" type="com.mypet.petmily.petSitterNew.dto.PetJsonMemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+    </resultMap>
+    <!-- member resultMap 관련 -->
+
+    <!-- petSitter career resultMap 관련 -->
+    <resultMap id="petSitterCareerResultMap" type="com.mypet.petmily.petSitterNew.dto.CareerDTO">
+        <id property="careerNo" column="CAREER_NO"/>
+        <result property="careerContent" column="CAREER_CONTENT"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
+    </resultMap>
+    <!-- petSitter career resultMap 관련 -->
+
+    <!-- petSitter tag resultMap 관련 -->
+    <resultMap id="petSitterTagResultMap" type="com.mypet.petmily.petSitterNew.dto.PetTagDTO">
+        <id property="tagNo" column="TAG_NO"/>
+        <result property="tagContent" column="TAG_CONTENT"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
+    </resultMap>
+    <!-- petSitter tag resultMap 관련 -->
+
+    <!-- petSitter schedule resultMap 관련 -->
+    <resultMap id="petSitterScheduleResultMap" type="com.mypet.petmily.petSitterNew.dto.SitterScheduleDTO">
+        <id property="petMemberResNo" column="PET_MEMBER_RES_NO"/>
+        <result property="petMemberResDay" column="PET_MEMBER_REG_DAY"/>
+        <result property="petMemberStatus" column="PET_MEMBER_STATUS"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
+    </resultMap>
+    <!-- petSitter tag resultMap 관련 -->
+
+    <!-- 예약 resultMap 관련 -->
+    <resultMap id="resResultMap" type="com.mypet.petmily.petSitterNew.dto.ReservationDTO">
+        <id property="resCode" column="RESERV_CODE"/>
+        <result property="startDateTime" column="RESERV_START"/>
+        <result property="endDateTime" column="RESERV_END"/>
+        <result property="resStatus" column="RESERV_STATUS"/>
+        <result property="accum" column="RESERV_ACCUM"/>
+        <result property="resTotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="resDayCount" column="RESERV_DAY_COUNT"/>
+        <result property="resTimeCount" column="RESERV_TIME_COUNT"/>
+        <result property="resVat" column="RESERV_VAT"/>
+        <result property="resAppDate" column="RESERV_APP_DATE"/>
+        <result property="resUpdateDate" column="RESERV_UPDATE_DATE"/>
+
+        <association property="resMember" resultMap="petMemberResultMap"/>
+        <association property="resPetSitter" resultMap="petSitterResultMap"/>
+    </resultMap>
+    <!-- 예약 resultMap 관련 -->
+
+
+    <!-- 펫시터 전체 정보 -->
+    <select id="selectAllInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterResultMap">
+        SELECT
+            PET_MEMBER_NO
+            , PET_REGIST_DATE
+            , PET_STAT
+            , PET_TITLE
+            , PET_INTRODUCE
+            , PET_PLACE
+            , PET_CARE_COUNT
+            , PET_BABY_YN
+            , PET_PENCE
+            , PET_MYPET_YN
+            , PET_SMOK_YN
+            , PET_CARE_SIZE
+            , PET_CARE_AGE
+            , PET_CHECKIN
+            , PET_CHECKOUT
+            , PET_REQUEST
+            , PET_IMPOSSIBLE
+            , PET_M_DAY_PAY
+            , PET_M_TIME_PAY
+            , PET_L_DAY_PAY
+            , PET_L_TIME_PAY
+            , PET_BANK
+            , PET_BANK_NO
+            , PET_BANK_NAME
+        FROM TBL_PET_SITTER
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <!-- 펫시터 경력 전체 정보 -->
+    <select id="selectAllCareer" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterCareerResultMap">
+        SELECT
+            CAREER_NO
+            , CAREER_CONTENT
+            , PET_MEMBER_NO
+        FROM TBL_CAREER
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <!-- 펫시터 태그 전체 정보 -->
+    <select id="selectAllTag" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterTagResultMap">
+        SELECT
+            TAG_NO
+            , TAG_CONTENT
+            , PET_MEMBER_NO
+        FROM TBL_PET_TAG
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+
+    <!-- 예약 등록 -->
+    <insert id="registReservation">
+        <selectKey keyProperty="resCode" resultType="_int" order="AFTER">
+            SELECT SEQ_TBL_RESERVATION_NO.currval FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_RESERVATION (
+            RESERV_CODE
+            , RESERV_START
+            , RESERV_END
+            , RESERV_STATUS
+            , RESERV_ACCUM
+            , RESERV_TOTAL_AMOUNT
+            , RESERV_DAY_COUNT
+            , RESERV_TIME_COUNT
+            , RESERV_VAT
+            , RESERV_APP_DATE
+            , RESERV_UPDATE_DATE
+            , MEMBER_NO
+            , PET_MEMBER_NO
+        ) VALUES(
+            SEQ_TBL_RESERVATION_NO.NEXTVAL
+            , #{ startDateTime }
+            , #{ endDateTime }
+            , #{ resStatus }
+            , #{ accum }
+            , #{ resTotalAmount }
+            , #{ resDayCount }
+            , #{ resTimeCount }
+            , #{ resVat }
+            , #{ resAppDate }
+            , #{ resUpdateDate }
+            , #{ resMember.memberNo }
+            , #{ resPetSitter.petMemberNo }
+        )
+    </insert>
+
+    <select id="petSitterSchedule" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterScheduleResultMap">
+        SELECT
+            PET_MEMBER_RES_NO
+            , PET_MEMBER_REG_DAY
+            , PET_MEMBER_STATUS
+            , PET_MEMBER_NO
+        FROM TBL_SITTER_SCHEDULE
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
+        SELECT
+            MEMBER_NO
+            , MEMBER_ID
+            , MEMBER_PWD
+            , MEMBER_NAME
+            , NICKNAME
+            , PHONE
+            , GENDER
+            , POST_NO
+            , ADDRESS
+            , ADDRESS2
+            , POINT
+            , MEMBER_STAT
+            , MEMBER_STAT_DATE
+            , REGIST_DATE
+            , WARNING_COUNT
+            , SIGNUP_PATH_CODE
+        FROM TBL_MEMBER
+        WHERE MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
+        SELECT
+            MEMBER_NO
+            , ADDRESS
+        FROM TBL_MEMBER
+        WHERE MEMBER_NO = #{ petMemberNo }
+    </select>
+
+</mapper>

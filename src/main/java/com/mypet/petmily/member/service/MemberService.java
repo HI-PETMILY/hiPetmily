@@ -5,11 +5,9 @@ import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -137,10 +135,17 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 업데이트 */
-    public PetDTO petProfileUpdate(MemberDTO loginMember) {
-        return memberMapper.petProfileUpdate(loginMember);
+    public void petProfileUpdate(PetDTO pet) {
+        memberMapper.petProfileUpdate(pet);
     }
 
+    /* 반려동물 프로필 삭제 */
+    public void removePetProfile(int petCode) throws PetRemoveException {
+
+        int result = memberMapper.deletePetProfile(petCode);
+
+        if(!(result > 0)) throw new PetRemoveException("반려동물 프로필 삭제에 실패했습니다.");
+    }
 
     /* 예약 내역 조회 */
 //    public Map<String, Object> selectReserveList(Map<String, String> searchMap, int page) {
@@ -205,6 +210,5 @@ public class MemberService {
 
         return null;
     }
-
 
 }

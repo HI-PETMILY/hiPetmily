@@ -2,7 +2,6 @@ package com.mypet.petmily.member.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.ReservationDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -41,12 +40,9 @@ public interface MemberMapper {
 
     List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
 
-    /* 예약 조회 */
-    List<ReservationDTO> selectReserveList(SelectCriteria selectCriteria);
-
     int selectTotalCount(Map<String, String> searchMap);
+    // xml 작성해야 함
 
-  
     List<PetDTO> selectPetProfileList(MemberDTO loginMember);
 
     PetDTO viewPetProfile(MemberDTO loginMember, int petCode);
@@ -54,6 +50,7 @@ public interface MemberMapper {
 
     PetDTO viewFirstPetProfile(MemberDTO member);
 
-    PetDTO petProfileUpdate(MemberDTO loginMember);
+    void petProfileUpdate(PetDTO pet);
 
+    int deletePetProfile(int petCode);
 }

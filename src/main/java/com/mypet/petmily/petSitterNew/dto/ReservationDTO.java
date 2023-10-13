@@ -1,4 +1,4 @@
-package com.mypet.petmily.petSitter.dto;
+package com.mypet.petmily.petSitterNew.dto;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import lombok.Getter;
@@ -20,6 +20,6 @@ public class ReservationDTO {
     private String resAppDate;
     private String resUpdateDate;
     private MemberDTO resMember;
-    private PetSitterDTO resPetSitter;
+    private NewPetSitterDTO resPetSitter;
 
 }
