@@ -220,4 +220,16 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <insert id="insertTag">
+        INSERT INTO TBL_PET_TAG(TAG_NO,TAG_CONTENT,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_PET_TAG_NO.NEXTVAL, #{ tagContent }, #{ petMemberNo } )
+    </insert>
+
+    <insert id="insertCareer">
+        INSERT INTO TBL_CAREER(CAREER_NO,CAREER_CONTENT,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_CAREER_NO.NEXTVAL, #{ careerContent }, #{ petMemberNo } )
+    </insert>
+
+
+
 </mapper>

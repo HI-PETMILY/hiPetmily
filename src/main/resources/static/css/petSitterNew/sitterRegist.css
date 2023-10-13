@@ -39,15 +39,8 @@ table {
     border-spacing: 0;
 }
 
-/* container ----------------------------------- */
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 150px auto 100px;
-
+h3 {
+    margin-bottom: 10px;
 }
 
 input[type=text]{
@@ -67,6 +60,29 @@ textarea{
     resize: none;
     font-size: 12px;
     padding: 10px;
+}
+
+select {
+    width: 100px;
+    font-family: inherit;
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin: 5px;
+    -webkit-appearance: button;
+    -moz-appearance: button-arrow-down;
+}
+
+/* container ----------------------------------- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 150px auto 100px;
+
 }
 
 .btn{
@@ -141,73 +157,72 @@ textarea{
     margin-bottom: 20px;
 }
 
+.reg_careBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 
+.reg_careBox input[type=text] {
+    width: 300px;
+}
 
+.reg_payBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.reg_ML_payBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
-/*.inputForm{*/
-/*    margin-bottom: 16px;*/
-/*}*/
+.reg_ML_payBox input[type=text] {
+    width: 200px;
+}
 
+.reg_bankBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 
+.reg_bankBox input[type=text] {
+    width: 180px;
+}
 
-/*.nav-line{*/
-/*    width: 100%;*/
-/*    height: 1px;*/
-/*    background-color: #363636;*/
-/*    margin: 30px 0;*/
-/*}*/
+.borderBottomLine {
+    border-bottom: 1px solid #dde2e6;
+    padding: 20px 0 15px;
+}
 
-/*.myPageMainWrapper {*/
-/*    position: relative;*/
-/*    margin: 20px auto 0;*/
-/*    padding: 0 20px;*/
-/*    width: 100%;*/
-/*    max-width: 70%;*/
-/*}*/
+.reg_bankBox {
+    margin-top: 20px;
+}
 
-/*.myPageMain-container{*/
-/*    margin: 15% 0;*/
-/*}*/
+.reg_banner {
+    width: 900px;
+}
 
-/*.dash-line{*/
-/*    width: 100%;*/
-/*    margin: 10px 0;*/
-/*    padding-bottom: 6px;*/
-/*    border-bottom: 1px dashed #bebebe;*/
-/*}*/
+.contentBox {
+    margin-top: 40px;
+}
 
+.reg_add_div input[type=text] {
+    width: 220px;
+}
 
-
-/*.pet-profile-img-table{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
-
-/*.pet-profile-img{*/
-/*    width: 180px;*/
-/*    margin: auto;*/
-/*    border: solid 1px #bebebe;*/
-/*    border-radius: 15px;*/
-/*    max-height: 170px;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
-
-/*.profile-regist{*/
-/*    display: flex;*/
-/*    justify-content: space-around;*/
-/*}*/
-
-/*.profile-regist-left, .profile-regist-right{*/
-/*    width: 45%;*/
-/*}*/
-
-
-
-/*.answer-contain{*/
-/*    margin-left: 10px;*/
-/*}*/
-
-
+.reg_add_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px auto;
+}
 

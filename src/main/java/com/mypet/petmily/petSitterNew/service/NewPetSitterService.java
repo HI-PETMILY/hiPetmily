@@ -50,4 +50,12 @@ public class NewPetSitterService {
         return newPetSitterMapper.petSitterAddress(petMember);
     }
 
+    public void insertTag(PetTagDTO petTag) {
+        newPetSitterMapper.insertTag(petTag);
+    }
+
+    public void insertCareer(CareerDTO career) {
+        newPetSitterMapper.insertCareer(career);
+    }
+
 }

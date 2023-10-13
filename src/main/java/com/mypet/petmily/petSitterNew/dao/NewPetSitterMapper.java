@@ -15,5 +15,8 @@ public interface NewPetSitterMapper {
     List<SitterScheduleDTO> petSitterSchedule(NewPetSitterDTO petMember);
     PetJsonMemberDTO selectMemberInfo(NewPetSitterDTO petMember);
     PetJsonMemberDTO petSitterAddress(NewPetSitterDTO petMember);
+    void insertTag(PetTagDTO petTag);
+    void insertCareer(CareerDTO career);
+
 
 }
