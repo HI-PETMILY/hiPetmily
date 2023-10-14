@@ -1,6 +1,5 @@
 package com.mypet.petmily.member.dto;
 
-import com.mypet.petmily.payment.dto.PetMemberDTO;
 import lombok.*;
 
 @Getter @Setter @ToString @Data

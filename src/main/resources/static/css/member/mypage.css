@@ -68,16 +68,17 @@ body {
 
 #dog_pic_box {
     border: 4px solid;
-    border-color: #81BDF1;;
+    border-color: #81BDF1;
     display: flex;
     border-radius: 10px;
+    width: 600px;
 
 }
 
 #dog_pic {
     border: 2px solid;
     border-color: #81BDF1;
-    width: 148px;
+    width: 25%;
     height: 148px;
     border-radius: 50%;
     margin-top: 10px;
@@ -88,15 +89,14 @@ body {
 
 
 #dog_profile {
-    margin-top: 35px;
-    margin-left: 20px;
-
+    margin: auto;
+    width: 45%;
 }
 
 
 /* 등록 버튼 */
 #pet_regist {
-    margin: 125px 20px 0px 250px;
+    margin: 125px 20px 0px;
     width: 55px;
     height: 28px;
     border: 0;
