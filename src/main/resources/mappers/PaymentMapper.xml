@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mypet.petmily.payment.dao.PaymentMapper">
 
-<!-- 예약 -->
+    <!-- 예약 -->
     <resultMap type="com.mypet.petmily.payment.dto.ReservationHistoryDTO" id="generalReservationResultMap">
         <id property="resCode" column="RESERV_CODE" />
         <result property="startDateTime" column="RESERV_START"/>
@@ -34,6 +34,11 @@
         <result property="address2" column="ADDRESS2"/>
         <result property="point" column="POINT"/>
         <result property="memberStat" column="MEMBER_STAT"/>
+    </resultMap>
+
+    <resultMap id="memberNicknameResultMap" type="com.mypet.petmily.payment.dto.PetMemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberName" column="MEMBER_NAME"/>
     </resultMap>
 
 
@@ -95,14 +100,34 @@
 
     <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
         SELECT
-            R.RESERV_CODE,
-            R.RESERV_APP_DATE,
-            R.RESERV_START,
-            M.NICKNAME,
-            R.RESERV_STATUS
-        FROM TBL_RESERVATION R
-        JOIN TBL_MEMBER M ON M.MEMBER_NO = R.PET_MEMBER_NO
-        WHERE M.MEMBER_NO = #{memberNo}
+                RESERV_CODE,
+                RESERV_APP_DATE,
+                RESERV_START,
+                RESERV_STATUS,
+                PET_MEMBER_NO
+        FROM TBL_RESERVATION
+        WHERE MEMBER_NO = #{memberNo}
     </select>
 
+
+
+<!-- 체크 -->
+    <select id="selectReservationTotalCount" resultType="_int">
+        SELECT
+        COUNT(*)
+        FROM TBL_RESERVATION R
+<!--        WHERE R.MEMBER_NO = #{memberNo}-->
+    </select>
+
+
+<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
+<!--        SELECT-->
+<!--            RESERV_CODE,-->
+<!--            RESERV_APP_DATE,-->
+<!--            RESERV_START,-->
+<!--            RESERV_STATUS,-->
+<!--            PET_MEMBER_NO-->
+<!--        FROM TBL_RESERVATION-->
+<!--        WHERE MEMBER_NO = #{memberNo}-->
+<!--    </select>-->
 </mapper>

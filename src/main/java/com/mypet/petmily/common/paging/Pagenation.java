@@ -1,9 +1,6 @@
 package com.mypet.petmily.common.paging;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Pagination {
+public class Pagenation {
     public static SelectCriteria getSelectCriteria(int page, int limit, int buttonAmount) {
 
         /* 총 페이지 수 계산 */
