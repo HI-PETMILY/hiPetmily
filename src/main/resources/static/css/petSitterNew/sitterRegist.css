@@ -250,3 +250,25 @@ select {
     padding-bottom: 60px;
     margin-bottom: 30px;
 }
+
+.sitterReg_imgTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sitterReg_imgBox {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: solid 1px #bebebe;
+    border-radius: 15px;
+}
+
+.sitterReg_img {
+    width: 200px;
+    height: 150px;
+}
