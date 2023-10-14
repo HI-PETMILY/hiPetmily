@@ -36,7 +36,6 @@
         <result property="memberStat" column="MEMBER_STAT"/>
     </resultMap>
 
-
     <!-- 펫시터 -->
     <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
         <id property="petMemberNo" column="PET_MEMBER_NO"/>
@@ -95,14 +94,13 @@
 
     <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
         SELECT
-            R.RESERV_CODE,
-            R.RESERV_APP_DATE,
-            R.RESERV_START,
-            M.NICKNAME,
-            R.RESERV_STATUS
-        FROM TBL_RESERVATION R
-        JOIN TBL_MEMBER M ON M.MEMBER_NO = R.PET_MEMBER_NO
-        WHERE M.MEMBER_NO = #{memberNo}
+               RESERV_CODE,
+               RESERV_APP_DATE,
+               RESERV_START,
+               RESERV_STATUS,
+               PET_MEMBER_NO
+          FROM TBL_RESERVATION
+         WHERE MEMBER_NO = #{memberNo}
     </select>
 
 </mapper>

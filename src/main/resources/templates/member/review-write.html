@@ -24,9 +24,12 @@
 
     <div class="myPageMainWrapper">
         <h2 class="mainTitle">후기 작성하기</h2>
+
         <div class="nav-line"></div>
 
-        <form id="reviewForm" action="/member/review_write" method="post">
+        <form id="reviewForm" action="/member/review-write" method="post">
+
+            <input type="hidden" name="petMemberNo" th:value="${reservInfo.resPetSitter.petMemberNo}">
 
             <div class="pet-profile-img review-img">
                 <img class="petProfileImg" src="/static_Image/member/petProfile.png">

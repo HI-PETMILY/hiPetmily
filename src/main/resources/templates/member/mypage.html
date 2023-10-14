@@ -119,11 +119,19 @@
         }
     }
 
-    /* 마이 페이지 -> 내가 쓴 후기 페이지로 이동 */
+    /* 마이 페이지 -> 진행중인 예약 페이지로 이동 */
     if (document.getElementById("res_ing")) {
         const $update = document.getElementById("res_ing");
         $update.onclick = function () {
             location.href = "/member/reservation-in-progress";
+        }
+    }
+
+    /* 마이 페이지 -> 지난 예약 페이지로 이동 */
+    if (document.getElementById("past_res")) {
+        const $update = document.getElementById("past_res");
+        $update.onclick = function () {
+            location.href = "/member/reservationList";
         }
     }
 

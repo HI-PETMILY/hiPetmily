@@ -1,5 +1,6 @@
 package com.mypet.petmily.payment.dto;
 
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class ReservationHistoryDTO {
     private String resAppDate;
     private String resUpdateDate;
     private PetMemberDTO resMember;
-    private PetSitterDTO resPetSitter;
+    private NewPetSitterDTO resPetSitter;
     private PetResDTO resPet;
 
 }
