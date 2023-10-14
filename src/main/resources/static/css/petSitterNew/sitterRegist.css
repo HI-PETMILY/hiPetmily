@@ -1,0 +1,274 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* common ----------------------------------- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* em -> 부모
+        rem -> 최상위 부모 */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body, p {
+    height: 100%;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;      /* 하이퍼 링크 밑줄 x */
+}
+
+span {
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    font-weight: 400;
+    border-spacing: 0;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+input[type=text]{
+    width: 600px;
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin: 5px;
+}
+
+textarea{
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    width: 100%;
+    height: 200px;
+    resize: none;
+    font-size: 12px;
+    padding: 10px;
+}
+
+select {
+    width: 100px;
+    font-family: inherit;
+    border: solid 1px #bfbfbf;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 3px 10px;
+    margin: 5px;
+    -webkit-appearance: button;
+    -moz-appearance: button-arrow-down;
+}
+
+/* container ----------------------------------- */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 150px auto 100px;
+
+}
+
+.btn{
+    padding: 10px 23px;
+    height: 40px;
+    width: 100px;
+    background-color: #81BDF1;
+    border: 1px solid #dde2e6;
+    border-radius: 4px;
+    margin: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.container_title {
+    margin-bottom: 35px;
+}
+
+.formTag {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container_box1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1400px;
+    margin: 0 auto;
+}
+
+.reg_radioBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg_radio_row {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reg_radio_div {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.reg_checkTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg_checkTime_row {
+    width: 250px;
+}
+
+.reg_checkTime_row input[type=text] {
+    width: 200px;
+}
+
+.marginBotton20 {
+    margin-bottom: 20px;
+}
+
+.reg_careBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reg_careBox input[type=text] {
+    width: 300px;
+}
+
+.reg_payBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg_ML_payBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg_ML_payBox input[type=text] {
+    width: 200px;
+}
+
+.reg_bankBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reg_bankBox input[type=text] {
+    width: 180px;
+}
+
+.borderBottomLine {
+    border-bottom: 1px solid #dde2e6;
+    padding: 20px 0 15px;
+}
+
+.reg_bankBox {
+    margin-top: 20px;
+}
+
+.reg_banner {
+    width: 900px;
+}
+
+.contentBox {
+    margin-top: 40px;
+}
+
+.reg_add_div {
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.reg_add_div input[type=text] {
+    width: 220px;
+}
+
+.reg_add_div input[type=button] {
+    width: 50px;
+    border: 1px solid #dde2e6;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.scheduleBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+}
+
+.scheduleBox input[type=text] {
+    width: 305px;
+}
+
+.reg_schedule_div {
+    padding-bottom: 60px;
+    margin-bottom: 30px;
+}
+
+.sitterReg_imgTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sitterReg_imgBox {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: solid 1px #bebebe;
+    border-radius: 15px;
+}
+
+.sitterReg_img {
+    width: 200px;
+    height: 150px;
+}

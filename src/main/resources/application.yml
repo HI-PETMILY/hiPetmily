@@ -1,4 +1,6 @@
 
+#server:
+#  port: 8081
 
 ## DB config
 spring:
