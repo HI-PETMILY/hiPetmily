@@ -41,7 +41,7 @@
             <tr th:each="review : ${reviewList}" th:unless="${#lists.isEmpty(list)}">
                 <td class="col1" th:text="${review.revCreatedDate}"></td>
                 <td class="col2" th:text="${review.reservation.resCode}"></td>
-<!--                <td class="col3" th:text="${review.petSitter}"></td>-->     <!--펫시터닉네임 어케불러와ㅠ-->
+                <td class="col3" th:text="${review.petSitter.nickName}"></td>     펫시터닉네임 어케불러와ㅠ
                 <td class="col4" th:text="${review.revScore}"></td>
                 <td class="col4" th:text="${review.revContent}"></td>
             </tr>
