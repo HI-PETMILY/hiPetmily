@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="/css/petSitterNew/resRegistSuccess.css"/>
+    <link rel="stylesheet" href="/css/petSitterNew/sitterRegistSuccess.css"/>
     <title>HI-PETMILY</title>
 </head>
 <body>
@@ -14,16 +14,13 @@
 <div class="container">
     <div class="container_box">
         <div>
-            <p class="big_petmily" th:text="${member.getNickName()} + '님, 예약이 완료되었습니다!'"></p><br>
-            <p class="small_petmily" th:text="'예약번호 : ' + ${resCode} + '번 입니다.'"></p>
-            <p class="small_petmily" th:text="'예약기간 : ' + ${startDateTime} + ' ~ '+ ${endDateTime}"></p>
-            <p class="small_petmily" th:text="'결제금액 : ' + ${resDayCount} + '박 '
-                + ${timeCount} + '시간 ' + ${#numbers.formatInteger(totalAmount, 3, 'COMMA')} + ' 원 입니다.'"></p><br>
-            <p class="big_petmily">펫시터가 예약승인 이후에 결제가 진행되니 잠시 기다려주세요.</p>
+            <p class="big_petmily" th:text="${member.getMemberName()} + '님, 펫시터 신청이 감사합니다!'"></p><br>
+            <p class="big_petmily">심사후 펫시터로 활동 하실수 있습니다.</p><br>
+            <p class="big_petmily">1~2일 정도 소요됩니다. 기다려주세요.</p>
         </div>
     </div>
     <div>
-        <button type="button" class="btn1" th:onclick="|location.href='/petSitterNew/petSitterProfile?petMemberNo=' + ${petMemberNo}|">전 페이지로 돌아가기</button>
+        <button type="button" class="btn1" th:onclick="|location.href='/'|">메인 페이지로</button>
     </div>
 </div>
 

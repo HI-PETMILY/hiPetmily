@@ -1,5 +1,6 @@
 package com.mypet.petmily.petSitterNew.service;
 
+import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
 import com.mypet.petmily.petSitterNew.dao.NewPetSitterMapper;
 import com.mypet.petmily.petSitterNew.dto.*;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ public class NewPetSitterService {
         return newPetSitterMapper.petSitterAddress(petMember);
     }
 
-    public void petSitterRegist( NewPetSitterDTO petSitter ) {
+    public void petSitterRegist( NewPetSitterDTO petSitter ) throws PetSitterRegistException {
 
         int loginMemberNo = petSitter.getPetMemberNo();
         List<String> regPetTagList = petSitter.getRegPetTagList();
@@ -80,6 +81,7 @@ public class NewPetSitterService {
                 petTag.setTagContent( regPetTagList.get(i) );
                 newPetSitterMapper.insertTag( petTag );
             }
+            log.info("--regPetTagList : {}", regPetTagList);
         }
 
         // 경력정보 테이블에 추가
@@ -92,6 +94,7 @@ public class NewPetSitterService {
                 career.setCareerContent( regCareerList.get(i) );
                 newPetSitterMapper.insertCareer( career );
             }
+            log.info("--regCareerList : {}", regCareerList);
         }
 
         // 펫시터 예약불가 날짜
@@ -106,9 +109,21 @@ public class NewPetSitterService {
                 sitterSchedule.setPetMemberResDay( days[ i ] );
                 newPetSitterMapper.insertSchedule( sitterSchedule );
             }
+            log.info("--sitterSchedule : {}", sitterSchedule);
+        }
+
+        // 펫시터 기본정보 등록
+        int result = newPetSitterMapper.insetInfo( petSitter );
+
+        if (result <= 0) {
+            throw new PetSitterRegistException("펫시터 등록에 실패하였습니다.");
         }
 
     }
+
+
+
+
 
 
 }

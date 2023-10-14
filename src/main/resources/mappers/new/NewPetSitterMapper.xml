@@ -220,6 +220,60 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <insert id="insetInfo">
+        INSERT INTO TBL_PET_SITTER(
+            PET_MEMBER_NO
+            ,PET_REGIST_DATE
+            ,PET_STAT
+            ,PET_TITLE
+            ,PET_INTRODUCE
+            ,PET_PLACE
+            ,PET_CARE_COUNT
+            ,PET_BABY_YN
+            ,PET_PENCE
+            ,PET_MYPET_YN
+            ,PET_SMOK_YN
+            ,PET_CARE_SIZE
+            ,PET_CARE_AGE
+            ,PET_CHECKIN
+            ,PET_CHECKOUT
+            ,PET_REQUEST
+            ,PET_IMPOSSIBLE
+            ,PET_M_DAY_PAY
+            ,PET_M_TIME_PAY
+            ,PET_L_DAY_PAY
+            ,PET_L_TIME_PAY
+            ,PET_BANK
+            ,PET_BANK_NO
+            ,PET_BANK_NAME
+        ) VALUES(
+            #{ petMemberNo }
+            , #{ petRegistDate }
+            , #{ petStat }
+            , #{ petTitle }
+            , #{ petIntroduce }
+            , #{ petPlace }
+            , #{ petCareCount }
+            , #{ petBabyYn }
+            , #{ petPence }
+            , #{ petMypetYn }
+            , #{ petSmokYn }
+            , #{ petCareSize }
+            , #{ petCareAge }
+            , #{ petCheckIn }
+            , #{ petCheckOut }
+            , #{ petRequest }
+            , #{ petImpossible }
+            , #{ petM_DayPay }
+            , #{ petM_TimePay }
+            , #{ petL_DayPay }
+            , #{ petL_TimePay }
+            , #{ petBank }
+            , #{ petBankNo }
+            , #{ petBankName }
+        )
+    </insert>
+
     <insert id="insertTag">
         INSERT INTO TBL_PET_TAG(TAG_NO,TAG_CONTENT,PET_MEMBER_NO)
         VALUES(SEQ_TBL_PET_TAG_NO.NEXTVAL, #{ tagContent }, #{ petMemberNo } )

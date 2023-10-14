@@ -18,5 +18,6 @@ public interface NewPetSitterMapper {
     void insertTag(PetTagDTO petTag);
     void insertCareer(CareerDTO career);
     void insertSchedule(SitterScheduleDTO sitterSchedule);
+    int insetInfo(NewPetSitterDTO petSitter);
 
 }

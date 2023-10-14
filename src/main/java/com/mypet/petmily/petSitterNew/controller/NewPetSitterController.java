@@ -1,10 +1,10 @@
 package com.mypet.petmily.petSitterNew.controller;
 
+import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitterNew.dto.*;
 import com.mypet.petmily.petSitterNew.service.NewPetSitterService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,9 @@ import java.util.List;
 @RequestMapping("/petSitterNew")
 public class NewPetSitterController {
 
-    private final MessageSourceAccessor messageSourceAccessor;
     private final NewPetSitterService newPetSitterService;
 
-    public NewPetSitterController(MessageSourceAccessor messageSourceAccessor, NewPetSitterService newPetSitterService) {
-        this.messageSourceAccessor = messageSourceAccessor;
+    public NewPetSitterController(NewPetSitterService newPetSitterService) {
         this.newPetSitterService = newPetSitterService;
     }
 
@@ -63,7 +61,7 @@ public class NewPetSitterController {
             , @AuthenticationPrincipal MemberDTO member
             , @RequestParam(value = "tagContent", required = false) List<String> petTagList
             , @RequestParam(value = "careerContent", required = false) List<String> careerList
-            , @RequestParam(value = "petMemberResDay", required = false) String schedule ){
+            , @RequestParam(value = "petMemberResDay", required = false) String schedule ) throws PetSitterRegistException {
 
         int memberNo = member.getMemberNo();
         // 로그인한 회원넘버 == 펫시터넘버
