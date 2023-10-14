@@ -35,8 +35,6 @@ public class PaymentController {
     public void reservationHistoryPage(@AuthenticationPrincipal MemberDTO loginMember,
                                        Model model, @ModelAttribute ReservationHistoryDTO selectReserve) {
 
-//        selectReserve.setResMember(loginMember);
-
         model.addAttribute("loginMember", loginMember.getMemberNo());
         log.info("loginMember : {}", loginMember);
         List<ReservationDTO> reservationHistoryList = paymentService.selectReservationHistoryList(loginMember);
