@@ -1,11 +1,15 @@
 package com.mypet.petmily.petSitterNew.service;
 
+import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
 import com.mypet.petmily.petSitterNew.dao.NewPetSitterMapper;
 import com.mypet.petmily.petSitterNew.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -23,23 +27,23 @@ public class NewPetSitterService {
 
         newPetSitterMapper.registReservation(reservation);
     }
+    public NewPetSitterDTO petSitterProfile(NewPetSitterDTO petSitter) {
 
-    public NewPetSitterDTO selectAllInfo(NewPetSitterDTO petMember) {
+        NewPetSitterDTO petSitterInfo = newPetSitterMapper.selectAllInfo(petSitter);
+        List<CareerDTO> careerList = newPetSitterMapper.selectAllCareer(petSitter);
+        List<PetTagDTO> petTagList = newPetSitterMapper.selectAllTag(petSitter);
+        PetJsonMemberDTO petJsonMemberInfo = newPetSitterMapper.selectMemberInfo(petSitter);
 
-        return newPetSitterMapper.selectAllInfo(petMember);
-    }
+        log.info("--petSitterInfo : {}", petSitterInfo);
+        log.info("--careerList : {}", careerList);
+        log.info("--petTagList : {}", petTagList);
+        log.info("--petJsonMemberInfo : {}", petJsonMemberInfo);
 
-    public List<CareerDTO> selectAllCareer(NewPetSitterDTO petMember) {
-        return newPetSitterMapper.selectAllCareer(petMember);
-    }
+        petSitterInfo.setCareerList(careerList);
+        petSitterInfo.setPetTagList(petTagList);
+        petSitterInfo.setPetJsonMemberInfo(petJsonMemberInfo);
 
-    public List<PetTagDTO> selectAllTag(NewPetSitterDTO petMember) {
-        return newPetSitterMapper.selectAllTag(petMember);
-    }
-
-    public PetJsonMemberDTO selectMemberInfo(NewPetSitterDTO petMember) {
-
-        return newPetSitterMapper.selectMemberInfo(petMember);
+        return petSitterInfo;
     }
 
     public List<SitterScheduleDTO> petSitterSchedule(NewPetSitterDTO petMember) {
@@ -49,5 +53,77 @@ public class NewPetSitterService {
     public PetJsonMemberDTO petSitterAddress(NewPetSitterDTO petMember) {
         return newPetSitterMapper.petSitterAddress(petMember);
     }
+
+    public void petSitterRegist( NewPetSitterDTO petSitter ) throws PetSitterRegistException {
+
+        int loginMemberNo = petSitter.getPetMemberNo();
+        List<String> regPetTagList = petSitter.getRegPetTagList();
+        List<String> regCareerList = petSitter.getRegCareerList();
+        String schedule = petSitter.getSchedule();
+
+        // 현재 날짜 로직
+        Date now = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+        String formatedNow = formatter.format(now);
+
+        // 현재날짜
+        petSitter.setPetRegistDate(formatedNow);
+        // 초기 가입시 대기상태
+        petSitter.setPetStat("대기");
+
+        // 태그정보 테이블에 추가
+        if ( !regPetTagList.isEmpty() ) {
+
+            PetTagDTO petTag = new PetTagDTO();
+            petTag.setPetMemberNo( loginMemberNo );
+
+            for (int i = 0; i < regPetTagList.size(); i++) {
+                petTag.setTagContent( regPetTagList.get(i) );
+                newPetSitterMapper.insertTag( petTag );
+            }
+            log.info("--regPetTagList : {}", regPetTagList);
+        }
+
+        // 경력정보 테이블에 추가
+        if ( !regCareerList.isEmpty() ) {
+
+            CareerDTO career = new CareerDTO();
+            career.setPetMemberNo( loginMemberNo );
+
+            for (int i = 0; i < regCareerList.size(); i++) {
+                career.setCareerContent( regCareerList.get(i) );
+                newPetSitterMapper.insertCareer( career );
+            }
+            log.info("--regCareerList : {}", regCareerList);
+        }
+
+        // 펫시터 예약불가 날짜
+        if( schedule != "" ) {
+
+            String[] days = schedule.split(", ");
+            SitterScheduleDTO sitterSchedule = new SitterScheduleDTO();
+            sitterSchedule.setPetMemberNo( loginMemberNo );
+            sitterSchedule.setPetMemberStatus("예약불가");
+
+            for (int i = 0; i < days.length; i++) {
+                sitterSchedule.setPetMemberResDay( days[ i ] );
+                newPetSitterMapper.insertSchedule( sitterSchedule );
+            }
+            log.info("--sitterSchedule : {}", sitterSchedule);
+        }
+
+        // 펫시터 기본정보 등록
+        int result = newPetSitterMapper.insetInfo( petSitter );
+
+        if (result <= 0) {
+            throw new PetSitterRegistException("펫시터 등록에 실패하였습니다.");
+        }
+
+    }
+
+
+
+
+
 
 }

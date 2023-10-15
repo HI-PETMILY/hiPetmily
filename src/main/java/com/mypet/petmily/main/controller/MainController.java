@@ -35,9 +35,9 @@ public class MainController {
     }
 
     // 펫시터 지원
-    @GetMapping("/petSitter/join")
+    @GetMapping("/petSitterNew/regist")
     public String headerPetsitterJoin() {
-        return "petSitter/join";
+        return "petSitterNew/petSitterRegist";
     }
 
     // 고객센터

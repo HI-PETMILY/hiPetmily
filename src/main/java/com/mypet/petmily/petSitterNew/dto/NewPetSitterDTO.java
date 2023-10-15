@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -33,6 +35,17 @@ public class NewPetSitterDTO {
     private String petBank;
     private String petBankNo;
     private String petBankName;
+
+    /* 펫시터 Profile 화면 */
+    private List<CareerDTO> careerList;
+    private List<PetTagDTO> petTagList;
+    private PetJsonMemberDTO petJsonMemberInfo;
+
+    /* 펫시터 regist */
+    private int loginMemberNo;
+    private List<String> regPetTagList;
+    private List<String> regCareerList;
+    private String schedule;
 
 }
 

@@ -1,10 +1,10 @@
 package com.mypet.petmily.petSitterNew.controller;
 
+import com.mypet.petmily.common.exception.petSitter.PetSitterRegistException;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitterNew.dto.*;
 import com.mypet.petmily.petSitterNew.service.NewPetSitterService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,41 +18,23 @@ import java.util.List;
 @RequestMapping("/petSitterNew")
 public class NewPetSitterController {
 
-    private final MessageSourceAccessor messageSourceAccessor;
     private final NewPetSitterService newPetSitterService;
 
-    public NewPetSitterController(MessageSourceAccessor messageSourceAccessor, NewPetSitterService newPetSitterService) {
-        this.messageSourceAccessor = messageSourceAccessor;
+    public NewPetSitterController(NewPetSitterService newPetSitterService) {
         this.newPetSitterService = newPetSitterService;
     }
 
-
-    @GetMapping("/regist")
-    public String petSitterRegist(){
-
-        return  "petSitterNew/petSitterRegist";
-    }
-
     @GetMapping(value = "/petSitterProfile")
-//    public String PetSitterProfile(PetSitterDTO2 petSitterDTO2, Model model, @AuthenticationPrincipal MemberDTO member) {
-    public String petSitterProfile(NewPetSitterDTO petSitter, Model model) {
+    public String PetSitterProfile(NewPetSitterDTO petSitter, Model model, @AuthenticationPrincipal MemberDTO member) {
 
-        NewPetSitterDTO petSitterInfo = newPetSitterService.selectAllInfo(petSitter);
-        List<CareerDTO> careerList = newPetSitterService.selectAllCareer(petSitter);
-        List<PetTagDTO> petTagList = newPetSitterService.selectAllTag(petSitter);
+        petSitter = newPetSitterService.petSitterProfile(petSitter);
 
-        PetJsonMemberDTO petJsonMemberInfo = newPetSitterService.selectMemberInfo(petSitter);
+        log.info("--afterPetSitterDTO : {}", petSitter);
 
-        log.info("--petSitterInfo : {}", petSitterInfo);
-        log.info("--careerList : {}", careerList);
-        log.info("--petTagList : {}", petTagList);
-        log.info("--petJsonMemberInfo : {}", petJsonMemberInfo);
-
-        model.addAttribute("petSitterInfo", petSitterInfo);
-        model.addAttribute("careerList", careerList);
-        model.addAttribute("petTagList", petTagList);
-        model.addAttribute("memberInfo", petJsonMemberInfo);
-
+        model.addAttribute("petSitterInfo", petSitter );
+        model.addAttribute("careerList", petSitter.getCareerList());
+        model.addAttribute("petTagList", petSitter.getPetTagList());
+        model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
 
         return "petSitterNew/petSitterProfile";
     }
@@ -63,6 +45,34 @@ public class NewPetSitterController {
         model.addAttribute("member", member);
 
         return "petSitterNew/resRegistSuccess";
+    }
+
+    @GetMapping(value = "/sitterRegistSuccess")
+    public String sitterRegistSuccess(@AuthenticationPrincipal MemberDTO member, Model model) {
+
+        model.addAttribute("member", member);
+
+        return "petSitterNew/sitterRegistSuccess";
+    }
+
+
+    @PostMapping("/regist")
+    public String petSitterRegist(NewPetSitterDTO petSitter, RedirectAttributes rttr
+            , @AuthenticationPrincipal MemberDTO member
+            , @RequestParam(value = "tagContent", required = false) List<String> petTagList
+            , @RequestParam(value = "careerContent", required = false) List<String> careerList
+            , @RequestParam(value = "petMemberResDay", required = false) String schedule ) throws PetSitterRegistException {
+
+        int memberNo = member.getMemberNo();
+        // 로그인한 회원넘버 == 펫시터넘버
+        petSitter.setPetMemberNo(memberNo);
+        petSitter.setRegPetTagList(petTagList);
+        petSitter.setRegCareerList(careerList);
+        petSitter.setSchedule(schedule);
+
+        newPetSitterService.petSitterRegist(petSitter);
+
+        return "redirect:/petSitterNew/sitterRegistSuccess";
     }
 
     @PostMapping("/reservation")
