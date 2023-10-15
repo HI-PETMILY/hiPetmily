@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
     <title>공지사항</title>
     <link rel="stylesheet" href="/css/board/qna.css">
@@ -40,14 +40,14 @@
 	                </div>
 	                <div class="cont" th:text="${boardDTO.boardDetail}"></div>
 	            </div>
-	            <div class="bt_wrap">
-					<!-- 답변등록상태가 N이고 질문번호(부모번호 refBoardNo)가 없을때 답변등록이 가능함.-->
-	                <a th:href="@{/board/qna/write(refBoardNo= ${boardDTO.boardNo})}" th:if="${boardDTO.boardHasReply == 'N' and boardDTO.refBoardNo == null }">답변등록</a>
-	                <a href="/board/qna/list" class="on">목록</a>
-	                <!-- 버튼은 나중에 관리자만 가능하도록 권한체크를 해야한다-->
-	                <a href="#" id="modBtn">수정</a>
-	                <a href="#" id="deleteBtn">삭제</a>
-	            </div>
+				<div class="bt_wrap">
+					<!— 답변등록상태가 N이고 질문번호(부모번호 refBoardNo)가 없을때 답변등록이 가능함.—>
+					<a th:href="@{/board/qna/write(refBoardNo= ${boardDTO.boardNo})}" th:if="${boardDTO.boardHasReply == 'N' and boardDTO.refBoardNo == null and memberRole == '[ROLE_ADMIN]'}">답변등록</a>
+					<a href="/board/qna/list" class="on">목록</a>
+					<!— 버튼은 나중에 관리자만 가능하도록 권한체크를 해야한다—>
+					<a href="#" id="modBtn" th:if="${#authentication.name == boardDTO.memberId}" >수정</a>
+					<a href="#" id="deleteBtn" th:if="${#authentication.name == boardDTO.memberId}" >삭제</a>
+				</div>
 	        </div>
         </form>
     </div>
