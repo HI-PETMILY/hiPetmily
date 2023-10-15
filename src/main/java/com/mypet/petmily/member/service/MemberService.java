@@ -1,7 +1,7 @@
 package com.mypet.petmily.member.service;
 
 import com.mypet.petmily.common.exception.member.*;
-import com.mypet.petmily.common.paging.Pagination;
+import com.mypet.petmily.common.paging.Pagenation;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
@@ -156,7 +156,7 @@ public class MemberService {
         /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
         int limit = 10;         // 한 페이지에 보여줄 게시물(컨텐츠)의 수
         int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
-        SelectCriteria selectCriteria = Pagination.getSelectCriteria(page, limit, buttonAmount);
+        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, limit, buttonAmount);
         log.info("boardList selectCriteria : {}", selectCriteria);
 
         /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */

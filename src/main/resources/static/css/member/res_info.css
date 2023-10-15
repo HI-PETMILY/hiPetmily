@@ -1,0 +1,24 @@
+/* 전체 가운데 정렬 */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0% auto;
+}
+
+.main {
+    padding-top: 15px;
+    text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+#title, #writer, #tag, #price {
+    padding-top: 10px; /* 각 항목 사이의 간격 조정 */
+}

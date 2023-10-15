@@ -1,11 +1,9 @@
 package com.mypet.petmily.petSitter.dto.Pagenation;
 
-import com.mypet.petmily.petSitter.dto.SelectCriteria.SelectCriteria;
-
-import java.util.Map;
+import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 
 public class Pagenation {
-    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap) {
+    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount) {
 
    /* 총 페이지수 계산*/
 
