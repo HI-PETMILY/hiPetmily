@@ -1,17 +1,20 @@
 package com.mypet.petmily.payment.controller;
 
 
-import com.mypet.petmily.common.exception.member.ReservationListException;
+import com.mypet.petmily.common.exception.member.reservationDetailException;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 import com.mypet.petmily.payment.service.PaymentService;
+import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.coyote.Request;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -23,9 +26,11 @@ import java.util.Map;
 public class PaymentController {
 
     private final PaymentService paymentService;
+    private final MessageSourceAccessor messageSourceAccessor;
 
-    public PaymentController(PaymentService paymentService) {
+    public PaymentController(PaymentService paymentService, MessageSourceAccessor messageSourceAccessor) {
         this.paymentService = paymentService;
+        this.messageSourceAccessor = messageSourceAccessor;
     }
 
 
@@ -58,9 +63,7 @@ public class PaymentController {
     @GetMapping("/reservationList")
     public String listReservations(@AuthenticationPrincipal MemberDTO loginMember,
                                    @RequestParam(defaultValue = "1") int page,
-                                   Model model)
-            throws ReservationListException {
-
+                                   Model model) {
         Map<String, Object> ReservationListAndPaging = paymentService.selectReservationList(loginMember.getMemberNo(), page);
         model.addAttribute("paging", ReservationListAndPaging.get("paging"));
         model.addAttribute("reservationList", ReservationListAndPaging.get("reservationList"));
@@ -68,9 +71,23 @@ public class PaymentController {
 //        model.addAttribute("endRow", ReservationListAndPaging.get("endRow"));
         log.info("reservationList : {}", ReservationListAndPaging.get("reservationList"));
 
-
-
-
         return "/member/reservationlist";
+    }
+
+
+    @GetMapping("reservationDetail")
+    public String detailReservation(@AuthenticationPrincipal MemberDTO loginMember, Model model,
+                                    @RequestParam int resCode, RedirectAttributes rttr)
+    throws reservationDetailException {
+
+        model.addAttribute("loginMember", loginMember.getMemberNo());
+        log.info("loginMember : {}", loginMember);
+        List<ReservationDTO> detailReservation = paymentService.selectDetailReservation(loginMember, resCode);
+        model.addAttribute("detailReservation", detailReservation);
+        log.info("detailReservation : {}", detailReservation);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("res.detail.select"));
+
+        return "member/reservationDetail";
     }
 }

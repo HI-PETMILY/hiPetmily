@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
+<!--    <script type="text/javascript" src="/js/member/event.js"></script>-->
+    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
+    <link href="/css/member/reservationDetail.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
+    <link rel="stylesheet" href="/css/common/headerFooter.css"/>
+</head>
+<body>
+<!--<div th:replace="common/header_white.html"></div>-->
+<div class="res_history_box" th:each="resDetail : ${ detailReservation }">
+    <table align="center" class="reserve-table">
+
+        <td class="col1" th:text="${ resDetail.resCode }"></td>
+        <td class="col2" th:text="${ resDetail.startDateTime }"></td>
+        <td class="col3" th:text="${ resDetail.endDateTime }"></td>
+        <td class="col5" th:text="${ resDetail.resTotalAmount }"></td>
+        <td class="col5" th:text="${ resDetail.resVat }"></td>
+        <td class="col5" th:text="${ resDetail.resTotalAmount }"></td>
+
+    </table>
+</div>
+
+<!--<div th:replace="common/footer.html"></div>-->
+</body>
+</html>

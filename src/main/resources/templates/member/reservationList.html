@@ -41,7 +41,7 @@
 
             <table align="center" class="reserve-table">
 
-                <td class="col1" th:text="${ resHistory.resCode }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
+                <td class="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col2" th:text="${ resHistory.resAppDate }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
                 <td class="col3" th:text="${ resHistory.startDateTime }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
                 <td class="col5" th:text="${ resHistory.resStatus }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
