@@ -16,12 +16,11 @@
         <result property="resvat" column="RESERV_VAT"/>
         <result property="resAppDate" column="RESERV_APP_DATE"/>
 
-        <association property="resMember" resultMap="petMemberResultMap"/>
+        <association property="resMember" resultMap="memberResultMap"/>
         <association property="resPetSitter" resultMap="petSitterResultMap"/>
         <association property="resPet" resultMap="petResultMap"/>
 
     </resultMap>
-
 
     <!-- 펫 주인 -->
     <resultMap type="com.mypet.petmily.payment.dto.PetMemberDTO" id="petMemberResultMap">
@@ -36,11 +35,37 @@
         <result property="memberStat" column="MEMBER_STAT"/>
     </resultMap>
 
-    <resultMap id="memberNicknameResultMap" type="com.mypet.petmily.payment.dto.PetMemberDTO">
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
         <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPwd" column="MEMBER_PWD"/>
         <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="gender" column="GENDER"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
+        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
+        <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
 
+    <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
+        <id property="memberNo" column="REF_MEMBER_NO"/>
+        <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+        <association property="authority" resultMap="authorityResultMap"/>
+    </resultMap>
+
+    <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
+        <id property="code" column="REF_AUTHORITY_CODE2"/>
+        <result property="name" column="AUTHORITY_NAME"/>
+        <result property="desc" column="AUTHORITY_DESC"/>
+    </resultMap>
 
     <!-- 펫시터 -->
     <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
@@ -98,36 +123,27 @@
         <association property="member" resultMap="petMemberResultMap"/>
     </resultMap>
 
-    <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
+
+    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">
         SELECT
                 RESERV_CODE,
                 RESERV_APP_DATE,
                 RESERV_START,
                 RESERV_STATUS,
                 PET_MEMBER_NO
-        FROM TBL_RESERVATION
-        WHERE MEMBER_NO = #{memberNo}
+        FROM TBL_RESERVATION R
+        JOIN TBL_MEMBER M ON(R.MEMBER_NO = M.MEMBER_NO)
+        WHERE M.MEMBER_NO = #{memberNo}
+        ORDER BY RESERV_CODE DESC
     </select>
 
-
-
-<!-- 체크 -->
     <select id="selectReservationTotalCount" resultType="_int">
         SELECT
-        COUNT(*)
-        FROM TBL_RESERVATION R
-<!--        WHERE R.MEMBER_NO = #{memberNo}-->
+             COUNT(*)
+        FROM TBL_RESERVATION
+
     </select>
 
 
-<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
-<!--        SELECT-->
-<!--            RESERV_CODE,-->
-<!--            RESERV_APP_DATE,-->
-<!--            RESERV_START,-->
-<!--            RESERV_STATUS,-->
-<!--            PET_MEMBER_NO-->
-<!--        FROM TBL_RESERVATION-->
-<!--        WHERE MEMBER_NO = #{memberNo}-->
-<!--    </select>-->
+
 </mapper>

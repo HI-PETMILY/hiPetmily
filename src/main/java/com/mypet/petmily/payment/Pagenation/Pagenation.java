@@ -26,6 +26,7 @@ public class Pagenation {
         /* 조회 시작 행과 마지막 행 계산 */
         int startRow = (page - 1) * limit + 1;
         int endRow = startRow + limit - 1;
+//        int endRow = page * limit;
 
         return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
                 startRow, endRow);

@@ -8,12 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface PaymentMapper {
-    /* 예약 조회 */
-    List<ReservationDTO> selectReservationHistoryList(MemberDTO loginMember);
-
-
 
     /* 예약 조회 페이징 */
     int selectReservationTotalCount();
-//    List<ReservationDTO> selectReservationBoardList(SelectCriteria selectCriteria);
+
+    List<ReservationDTO> selectReservationBoardList(int memberNo, SelectCriteria selectCriteria);
+
+
 }

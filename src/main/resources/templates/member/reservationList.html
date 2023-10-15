@@ -33,7 +33,7 @@
                 <th class="col6">후기작성</th>
             </tr>
         </table>
-        <div class="res_history_box" th:each="resHistory : ${ reservationHistoryList }">
+        <div class="res_history_box" th:each="resHistory : ${ reservationList }">
 
 
 
@@ -45,7 +45,6 @@
                 <td class="col1" th:text="${ resHistory.resCode }"></td>
                 <td class="col2" th:text="${ resHistory.resAppDate }"></td>
                 <td class="col3" th:text="${ resHistory.startDateTime }"></td>
-<!--                <td class="col4" th:text="${ member.nickName }"></td>-->
                 <td class="col5" th:text="${ resHistory.resStatus }"></td>
                 <td class="col6">
                     <span th:if="${ resHistory.resStatus == '완료' }">
@@ -57,6 +56,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="paging" align="center">
     <!-- 맨 앞으로 이동 -->
@@ -86,7 +86,10 @@
             th:onclick="'location.href=\'/member/reservationList?page=' + @{${paging.maxPage}} + '\''">>></button>
     </th:block>
 </div>
+
+
 <!-- common footer -->
 <div th:replace="common/footer.html"></div>
 </body>
 </html>
+
