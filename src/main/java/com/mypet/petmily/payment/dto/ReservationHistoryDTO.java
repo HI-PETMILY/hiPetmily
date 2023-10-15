@@ -22,7 +22,7 @@ public class ReservationHistoryDTO {
     private String resAppDate;
     private String resUpdateDate;
     private PetMemberDTO resMember;
-    private PetSitterDTO resPetSitter;
+    private NewPetSitterDTO resPetSitter;
     private PetResDTO resPet;
 
 }
