@@ -2,6 +2,7 @@ package com.mypet.petmily.review.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
+import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import com.mypet.petmily.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
@@ -61,9 +62,12 @@ public class ReviewController {
 
         log.info("reviewList page : {}", page);
 
+        ReservationInfoDTO reservInfo = reviewService.selectReserveInfo(loginMember);
+        model.addAttribute("reservInfo", reservInfo);
+
         Map<String, Object> reviewListAndPaging = reviewService.selectReviewList(page, loginMember);
         model.addAttribute("paging", reviewListAndPaging.get("paging"));
-        model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
+        model.addAttribute("reviewList", reviewListAndPaging.get("reviewList"));
 
         return "member/review-list";
     }

@@ -12,13 +12,11 @@
         <result property="revModifyDate" column="REV_MODIFY_DATE"/>
         <result property="revStatus" column="REV_STATUS"/>
         <result property="revDeleteDate" column="REV_DELETE_DAE"/>
-<!--        <result property="memberNo" column="MEMBER_NO"/>-->
         <result property="petMemberNo" column="PET_MEMBER_NO"/>
-        <result property="resCode" column="RESERV_CODE"/>
 
         <association property="member" resultMap="memberResultMap"/>
-       <!-- <association property="petSitter" resultMap="petSitterResultMap"/>
-        <association property="reservation" resultMap="ReservationResultMap"/>-->
+       <!-- <association property="petSitter" resultMap="petSitterResultMap"/>-->
+<!--        <association property="reservation" resultMap="ReservationResultMap"/>-->
     </resultMap>
 
     <!-- 예약 -->
@@ -38,8 +36,38 @@
         <association property="resPet" resultMap="petResultMap"/>
     </resultMap>
 
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPwd" column="MEMBER_PWD"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="gender" column="GENDER"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
+        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
+        <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
+    </resultMap>
+    <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
+        <id property="memberNo" column="REF_MEMBER_NO"/>
+        <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+        <association property="authority" resultMap="authorityResultMap"/>
+    </resultMap>
+    <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
+        <id property="code" column="REF_AUTHORITY_CODE2"/>
+        <result property="name" column="AUTHORITY_NAME"/>
+        <result property="desc" column="AUTHORITY_DESC"/>
+    </resultMap>
+
     <!-- 펫 주인 -->
-    <resultMap id="petMemberResultMap" type="com.mypet.petmily.payment.dto.PetMemberDTO">
+    <resultMap type="com.mypet.petmily.payment.dto.PetMemberDTO" id="petMemberResultMap">
         <id property="memberNo" column="MEMBER_NO"/>
         <result property="memberName" column="MEMBER_NAME"/>
         <result property="nickName" column="NICKNAME"/>
@@ -156,7 +184,7 @@
              , A.REV_CONTENT
              , A.REV_CREATED_DATE
              , A.MEMBER_NO
-             , R.RESERV_CODE
+             , A.RESERV_CODE
              FROM (SELECT
                   ROWNUM RNUM
                   , B.REV_CODE
@@ -164,12 +192,14 @@
                   , B.REV_CONTENT
                   , B.REV_CREATED_DATE
                   , B.MEMBER_NO
+                  , B.RESERV_CODE
                   FROM (SELECT
                         C.REV_CODE
                         , C.REV_SCORE
                         , C.REV_CONTENT
                         , C.REV_CREATED_DATE
                         , C.MEMBER_NO
+                        , C.RESERV_CODE
                         FROM TBL_REVIEW C
                         WHERE C.REV_STATUS = 'Y'
                         ORDER BY C.REV_CODE DESC
@@ -178,9 +208,9 @@
                    WHERE ROWNUM <= #{ selectCriteria.endRow }
                    ]]>
                    ) A
-                JOIN TBL_RESERVATION R ON (C.RESERV_CODE = R.RESERV_CODE)
-                JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
-                JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
+                /*JOIN TBL_RESERVATION R ON (A.RESERV_CODE = R.RESERV_CODE)*/
+                /*JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)*/
+                /*JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)*/
                 WHERE A.RNUM >= #{selectCriteria.startRow}
                 ORDER BY 1 DESC
     </select>

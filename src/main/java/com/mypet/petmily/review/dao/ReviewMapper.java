@@ -3,7 +3,7 @@ package com.mypet.petmily.review.dao;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
-import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
+import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,4 +24,5 @@ public interface ReviewMapper {
 
     int selectTotalCount(MemberDTO loginMember);
 
+    ReservationInfoDTO selectReserveInfo(MemberDTO loginMember);
 }

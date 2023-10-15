@@ -29,8 +29,8 @@
 
         <form id="reviewForm" action="/member/review-write" method="post">
 
-            <input type="hidden" name="resCode" th:value="${reservInfo.resCode}" />
-<!--            <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />-->
+            <input type="hidden" name="resCode" th:value="${reservInfo.resCode}"/>
+            <!--            <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />-->
             <div class="pet-profile-img review-img">
                 <img class="petProfileImg" src="/static_Image/member/petProfile.png">
             </div>
@@ -43,22 +43,22 @@
             <div class="nav-line"></div>
 
             <div class="review-container">
-                    <div class="review-star-exp">
-                        <p>펫시터에 대한 별점</p>
-                    </div>
+                <div class="review-star-exp">
+                    <p>펫시터에 대한 별점</p>
+                </div>
 
-                    <div class="review-star">
-                        <input type="radio" name="revScore" value="5" id="rate1"><label
-                            for="rate1">★</label>
-                        <input type="radio" name="revScore" value="4" id="rate2"><label
-                            for="rate2">★</label>
-                        <input type="radio" name="revScore" value="3" id="rate3"><label
-                            for="rate3">★</label>
-                        <input type="radio" name="revScore" value="2" id="rate4"><label
-                            for="rate4">★</label>
-                        <input type="radio" name="revScore" value="1" id="rate5"><label
-                            for="rate5">★</label>
-                    </div>
+                <div class="review-star">
+                    <input type="radio" name="revScore" value="5" id="rate1"><label
+                        for="rate1">★</label>
+                    <input type="radio" name="revScore" value="4" id="rate2"><label
+                        for="rate2">★</label>
+                    <input type="radio" name="revScore" value="3" id="rate3"><label
+                        for="rate3">★</label>
+                    <input type="radio" name="revScore" value="2" id="rate4"><label
+                        for="rate4">★</label>
+                    <input type="radio" name="revScore" value="1" id="rate5"><label
+                        for="rate5">★</label>
+                </div>
             </div>
 
             <div class="review-text">
@@ -67,7 +67,8 @@
 
             <div>
                 <button class="text-button" type="submit">등록하기</button>
-                <button class="text-button" type="button" onclick="location.href='/member/예약조회화면'">취소하기</button>
+                <button class="text-button" type="button" onclick="location.href='/member/reservationList'">취소하기
+                </button>
             </div>
         </form>
     </div>

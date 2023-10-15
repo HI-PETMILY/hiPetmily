@@ -5,6 +5,7 @@ import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
 import com.mypet.petmily.review.dao.ReviewMapper;
+import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -62,4 +63,7 @@ public class ReviewService {
         return reviewListAndPaging;
     }
 
+    public ReservationInfoDTO selectReserveInfo(MemberDTO loginMember) {
+        return reviewMapper.selectReserveInfo(loginMember);
+    }
 }
