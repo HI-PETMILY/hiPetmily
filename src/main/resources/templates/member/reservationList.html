@@ -48,7 +48,11 @@
                 <td class="col5" th:text="${ resHistory.resStatus }"></td>
                 <td class="col6">
                     <span th:if="${ resHistory.resStatus == '완료' }">
+                        <form action="/member/review-write" method="post">
+                        <input type="hidden" name="resCode" th:value="${resHistory.resCode}" />
+<!--                        <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />-->
                     <a th:href="'/member/review-write?resCode=' + ${ resHistory.resCode }">후기작성</a>
+                        </form>
                     </span></td>
                 <td class="col6" th:if="${ resHistory.resStatus == '취소' }">예약취소</td>
 

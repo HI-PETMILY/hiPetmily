@@ -4,7 +4,6 @@ import com.mypet.petmily.common.paging.Pagination;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
-import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import com.mypet.petmily.review.dao.ReviewMapper;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
