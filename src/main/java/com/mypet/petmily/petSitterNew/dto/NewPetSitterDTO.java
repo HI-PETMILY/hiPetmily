@@ -1,14 +1,14 @@
 package com.mypet.petmily.petSitterNew.dto;
 
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 public class NewPetSitterDTO {
 
     private int petMemberNo;
@@ -46,6 +46,10 @@ public class NewPetSitterDTO {
     private List<String> regPetTagList;
     private List<String> regCareerList;
     private String schedule;
+
+    /* 파일업로드 */
+    private List<MultipartFile> attachImage;
+    private FileUploadDTO regFileUpload;
 
 }
 

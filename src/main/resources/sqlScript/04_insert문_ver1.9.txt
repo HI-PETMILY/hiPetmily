@@ -82,7 +82,7 @@ commit;
 
 -- 펫시터 테이블 정보 추가
 INSERT INTO TBL_PET_SITTER(PET_MEMBER_NO,PET_REGIST_DATE,PET_STAT,PET_TITLE,PET_INTRODUCE,PET_PLACE,PET_CARE_COUNT,PET_BABY_YN,PET_PENCE,PET_MYPET_YN,PET_SMOK_YN,PET_CARE_SIZE,PET_CARE_AGE,PET_CHECKIN,PET_CHECKOUT,PET_REQUEST,PET_IMPOSSIBLE,PET_M_DAY_PAY,PET_M_TIME_PAY,PET_L_DAY_PAY,PET_L_TIME_PAY,PET_BANK,PET_BANK_NO,PET_BANK_NAME)
-VALUES(4,'23-10-10','대기','애견전공/공원산책/미끄럼방지바닥시공/애기 안심하고 맡겨주세요!','안녕하세요. 포메라니안 10살 남아를 키우고 있는 쮸삐 맘입니다 ^^
+VALUES(4,'23-10-10','승인','애견전공/공원산책/미끄럼방지바닥시공/애기 안심하고 맡겨주세요!','안녕하세요. 포메라니안 10살 남아를 키우고 있는 쮸삐 맘입니다 ^^
 우리 아이처럼 사랑으로 케어 해서 편안하게 함께 있을 수 있습니다....
 어릴 때부터 강아지를 너무 좋아해서 강아지 키우는 친구들 집에 매일 놀러 갈 정도였어요.
 대형견부터 작은 아이들까지 그리고 쮸삐와 함께 한 추억이 많습니다.
@@ -111,6 +111,13 @@ INSERT INTO TBL_MYPET(PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED,
 
 commit;
 
+
+-- 첨부파일 테이블 정보 추가
+INSERT INTO TBL_FILE(FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
+    VALUES(SEQ_TBL_FILE_NO.NEXTVAL,'test정보','test정보','test정보','test정보','test정보','test정보',0,0,0,0,0);
+
+
+commit;
 
 
 -- -- 적립금 테이블 정보 추가
@@ -170,9 +177,5 @@ commit;
 --
 -- commit;
 --
--- -- 첨부파일 테이블 정보 추가
--- INSERT INTO TBL_FILE(FILE_NO,FILE_NAME,FILE_PATH_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_VOLUME,FILE_TYPE,PET_CODE,BOARD_NO,REV_CODE,MEMBER_NO,PET_MEMBER_NO)
--- VALUES(SEQ_TBL_FILE_NO.NEXTVAL,'','','','',0,'',0,0,0,0,0);
---
---
--- commit;
+
+
