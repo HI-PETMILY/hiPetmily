@@ -31,21 +31,15 @@ public class PaymentService {
 
         int limit= 5;
         int buttonAmount = 3;
-
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount);
         log.info("reservation selectCriteria : {}", selectCriteria);
 
-        /* 체크 */
-
+        List<ReservationDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
+        log.info("reservation reservationList : {}", reservationList);
 
         Map<String, Object> reservationListAndPaging = new HashMap<>();
         reservationListAndPaging.put("paging", selectCriteria);
-
-        List<ReservationDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria);
-        log.info("reservation reservationList : {}", reservationList);
-
         reservationListAndPaging.put("reservationList", reservationList);
-//        reservationListAndPaging.put("memberNo", memberNo);
         log.info("reservationListAndPaging : {}", reservationListAndPaging);
         return reservationListAndPaging;
     }

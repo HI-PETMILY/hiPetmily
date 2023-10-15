@@ -26,6 +26,8 @@ public class SelectCriteria { // 조회 조건이라는 뜻
     public SelectCriteria() {
     }
 
+
+
     public SelectCriteria(int page, int totalCount, int limit, int buttonAmount, int maxPage, int startPage, int endPage, int startRow, int endRow) {
         this.page = page;
         this.totalCount = totalCount;

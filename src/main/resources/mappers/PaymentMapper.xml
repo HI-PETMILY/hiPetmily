@@ -124,23 +124,107 @@
     </resultMap>
 
 
+<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
+<!--        SELECT-->
+<!--                RESERV_CODE,-->
+<!--                RESERV_APP_DATE,-->
+<!--                RESERV_START,-->
+<!--                RESERV_STATUS,-->
+<!--                PET_MEMBER_NO-->
+<!--        FROM TBL_RESERVATION R-->
+<!--        JOIN TBL_MEMBER M ON(R.MEMBER_NO = M.MEMBER_NO)-->
+<!--        WHERE M.MEMBER_NO = #{memberNo}-->
+<!--        ORDER BY RESERV_CODE DESC-->
+<!--    </select>-->
+
     <select id="selectReservationBoardList" resultMap="generalReservationResultMap">
+        SELECT * FROM (
         SELECT
-                RESERV_CODE,
-                RESERV_APP_DATE,
-                RESERV_START,
-                RESERV_STATUS,
-                PET_MEMBER_NO
+        RESERV_CODE,
+        RESERV_APP_DATE,
+        RESERV_START,
+        RESERV_STATUS,
+        PET_MEMBER_NO,
+        ROWNUM AS rn
         FROM TBL_RESERVATION R
-        JOIN TBL_MEMBER M ON(R.MEMBER_NO = M.MEMBER_NO)
+        JOIN TBL_MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
         WHERE M.MEMBER_NO = #{memberNo}
         ORDER BY RESERV_CODE DESC
+        )
+        WHERE rn BETWEEN #{startRow} AND #{endRow}
     </select>
+
+<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
+<!--        SELECT * FROM (-->
+<!--                        SELECT-->
+<!--                                RESERV_CODE,-->
+<!--                                RESERV_APP_DATE,-->
+<!--                                RESERV_START,-->
+<!--                                RESERV_STATUS,-->
+<!--                                PET_MEMBER_NO-->
+<!--                        FROM (-->
+<!--                            SELECT-->
+<!--                                    R.RESERV_CODE,-->
+<!--                                    R.RESERV_APP_DATE,-->
+<!--                                    R.RESERV_START,-->
+<!--                                    R.RESERV_STATUS,-->
+<!--                                    R.PET_MEMBER_NO,-->
+<!--                                    ROWNUM-->
+<!--                         FROM (-->
+<!--                                SELECT-->
+<!--                                        R.RESERV_CODE,-->
+<!--                                        R.RESERV_APP_DATE,-->
+<!--                                        R.RESERV_START,-->
+<!--                                        R.RESERV_STATUS,-->
+<!--                                        R.PET_MEMBER_NO-->
+<!--                                        FROM TBL_RESERVATION R-->
+<!--                                        JOIN TBL_MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)-->
+<!--                                        WHERE M.MEMBER_NO = #{memberNo}-->
+<!--                                        ORDER BY R.RESERV_CODE DESC-->
+<!--                                  ) R-->
+<!--                                WHERE ROWNUM <= #{endRow}-->
+<!--                                )-->
+<!--                           )-->
+<!--                      WHERE ROWNUM >= #{startRow}-->
+<!--    </select>-->
+
+<!--    <select id="selectThumbnailBoardList" resultMap="thumbnailBoardResultMap">-->
+<!--        SELECT-->
+<!--                A.RESERV_CODE,-->
+<!--                A.RESERV_APP_DATE,-->
+<!--                A.RESERV_START,-->
+<!--                A.RESERV_STATUS,-->
+<!--                A.PET_MEMBER_NO-->
+<!--             FROM (-->
+<!--                SELECT-->
+<!--                       B.ROWNUM RNUM,-->
+<!--                        B.RESERV_CODE,-->
+<!--                        B.RESERV_APP_DATE,-->
+<!--                        B.RESERV_START,-->
+<!--                        B.RESERV_STATUS,-->
+<!--                        B.PET_MEMBER_NO-->
+<!--                 FROM (SELECT-->
+<!--                               C.RESERV_CODE,-->
+<!--                                C.RESERV_APP_DATE,-->
+<!--                                C.RESERV_START,-->
+<!--                                C.RESERV_STATUS,-->
+<!--                                C.PET_MEMBER_NO-->
+<!--                           FROM TBL_RESERVATION C-->
+<!--                           ORDER BY RESERV_CODE DESC-->
+<!--                        ) B-->
+<!--                 <![CDATA[-->
+<!--                       WHERE ROWNUM <= #{ endRow }-->
+<!--                       ]]>-->
+<!--                ) A-->
+<!--                JOIN TBL_MEMBER M ON(C.MEMBER_NO = M.MEMBER_NO)-->
+<!--                WHERE C.RNUM >= #{ startRow }-->
+<!--                ORDER BY 1 DESC-->
+<!--    </select>-->
 
     <select id="selectReservationTotalCount" resultType="_int">
         SELECT
              COUNT(*)
-        FROM TBL_RESERVATION
+        FROM TBL_RESERVATION A
 
     </select>
 

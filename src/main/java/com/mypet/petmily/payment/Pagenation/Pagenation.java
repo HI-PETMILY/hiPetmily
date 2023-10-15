@@ -21,6 +21,8 @@ public class Pagenation {
             maxPage = startPage;
             endPage = startPage;
             // 컨텐츠가 없는 경우에 startPage로 값을 변경해서 1 페이지인데 없다로 보이게 한다.
+
+
         }
 
         /* 조회 시작 행과 마지막 행 계산 */
@@ -29,7 +31,8 @@ public class Pagenation {
 //        int endRow = page * limit;
 
         return new SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
-                startRow, endRow);
+                startRow, endRow
+        );
 
     }
 
