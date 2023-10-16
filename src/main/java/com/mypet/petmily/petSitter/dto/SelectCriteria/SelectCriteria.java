@@ -37,4 +37,6 @@ private String searchCondition;
 private String searchValue;
 
 
+    public SelectCriteria(int page, int totalCount, int limit, int buttonAmount, int maxPage, int startPage, int endPage, int startRow, int endRow) {
+    }
 }
