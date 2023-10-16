@@ -10,6 +10,13 @@ spring:
     password: PETMILY
 
 
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+
 ### file upload config
 #  servlet:
 #    multipart:
