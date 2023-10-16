@@ -83,7 +83,7 @@ table {
     height: 108px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     padding: 5px 0 7px;
     text-align: center;
@@ -94,7 +94,7 @@ table {
     display: block;
     float: left;
     width: calc((100% - 61px)/6);
-    margin: 0 auto;
+    margin: 0 5px;
     cursor: pointer;
 }
 

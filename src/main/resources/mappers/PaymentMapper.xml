@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mypet.petmily.payment.dao.PaymentMapper">
 
-<!-- 예약 -->
+    <!-- 예약 -->
     <resultMap type="com.mypet.petmily.payment.dto.ReservationHistoryDTO" id="generalReservationResultMap">
         <id property="resCode" column="RESERV_CODE" />
         <result property="startDateTime" column="RESERV_START"/>
@@ -16,12 +16,11 @@
         <result property="resvat" column="RESERV_VAT"/>
         <result property="resAppDate" column="RESERV_APP_DATE"/>
 
-        <association property="resMember" resultMap="petMemberResultMap"/>
+        <association property="resMember" resultMap="memberResultMap"/>
         <association property="resPetSitter" resultMap="petSitterResultMap"/>
         <association property="resPet" resultMap="petResultMap"/>
 
     </resultMap>
-
 
     <!-- 펫 주인 -->
     <resultMap type="com.mypet.petmily.payment.dto.PetMemberDTO" id="petMemberResultMap">
@@ -34,6 +33,38 @@
         <result property="address2" column="ADDRESS2"/>
         <result property="point" column="POINT"/>
         <result property="memberStat" column="MEMBER_STAT"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberPwd" column="MEMBER_PWD"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="gender" column="GENDER"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+        <result property="memberStatDate" column="MEMBER_STAT_DATE"/>
+        <result property="registDate" column="REGIST_DATE"/>
+        <result property="warningCount" column="WARNING_COUNT"/>
+        <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
+        <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
+        <id property="memberNo" column="REF_MEMBER_NO"/>
+        <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
+        <association property="authority" resultMap="authorityResultMap"/>
+    </resultMap>
+
+    <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
+        <id property="code" column="REF_AUTHORITY_CODE2"/>
+        <result property="name" column="AUTHORITY_NAME"/>
+        <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
     <!-- 펫시터 -->
@@ -92,15 +123,109 @@
         <association property="member" resultMap="petMemberResultMap"/>
     </resultMap>
 
-    <select id="selectReservationHistoryList" resultMap="generalReservationResultMap">
+
+<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
+<!--        SELECT-->
+<!--                RESERV_CODE,-->
+<!--                RESERV_APP_DATE,-->
+<!--                RESERV_START,-->
+<!--                RESERV_STATUS,-->
+<!--                PET_MEMBER_NO-->
+<!--        FROM TBL_RESERVATION R-->
+<!--        JOIN TBL_MEMBER M ON(R.MEMBER_NO = M.MEMBER_NO)-->
+<!--        WHERE M.MEMBER_NO = #{memberNo}-->
+<!--        ORDER BY RESERV_CODE DESC-->
+<!--    </select>-->
+
+    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">
+        SELECT * FROM (
         SELECT
-               RESERV_CODE,
-               RESERV_APP_DATE,
-               RESERV_START,
-               RESERV_STATUS,
-               PET_MEMBER_NO
-          FROM TBL_RESERVATION
-         WHERE MEMBER_NO = #{memberNo}
+        RESERV_CODE,
+        RESERV_APP_DATE,
+        RESERV_START,
+        RESERV_STATUS,
+        PET_MEMBER_NO,
+        ROWNUM AS rn
+        FROM TBL_RESERVATION R
+        JOIN TBL_MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
+        WHERE M.MEMBER_NO = #{memberNo}
+        ORDER BY RESERV_CODE DESC
+        )
+        WHERE rn BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+<!--    <select id="selectReservationBoardList" resultMap="generalReservationResultMap">-->
+<!--        SELECT * FROM (-->
+<!--                        SELECT-->
+<!--                                RESERV_CODE,-->
+<!--                                RESERV_APP_DATE,-->
+<!--                                RESERV_START,-->
+<!--                                RESERV_STATUS,-->
+<!--                                PET_MEMBER_NO-->
+<!--                        FROM (-->
+<!--                            SELECT-->
+<!--                                    R.RESERV_CODE,-->
+<!--                                    R.RESERV_APP_DATE,-->
+<!--                                    R.RESERV_START,-->
+<!--                                    R.RESERV_STATUS,-->
+<!--                                    R.PET_MEMBER_NO,-->
+<!--                                    ROWNUM-->
+<!--                         FROM (-->
+<!--                                SELECT-->
+<!--                                        R.RESERV_CODE,-->
+<!--                                        R.RESERV_APP_DATE,-->
+<!--                                        R.RESERV_START,-->
+<!--                                        R.RESERV_STATUS,-->
+<!--                                        R.PET_MEMBER_NO-->
+<!--                                        FROM TBL_RESERVATION R-->
+<!--                                        JOIN TBL_MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)-->
+<!--                                        WHERE M.MEMBER_NO = #{memberNo}-->
+<!--                                        ORDER BY R.RESERV_CODE DESC-->
+<!--                                  ) R-->
+<!--                                WHERE ROWNUM <= #{endRow}-->
+<!--                                )-->
+<!--                           )-->
+<!--                      WHERE ROWNUM >= #{startRow}-->
+<!--    </select>-->
+
+<!--    <select id="selectThumbnailBoardList" resultMap="thumbnailBoardResultMap">-->
+<!--        SELECT-->
+<!--                A.RESERV_CODE,-->
+<!--                A.RESERV_APP_DATE,-->
+<!--                A.RESERV_START,-->
+<!--                A.RESERV_STATUS,-->
+<!--                A.PET_MEMBER_NO-->
+<!--             FROM (-->
+<!--                SELECT-->
+<!--                       B.ROWNUM RNUM,-->
+<!--                        B.RESERV_CODE,-->
+<!--                        B.RESERV_APP_DATE,-->
+<!--                        B.RESERV_START,-->
+<!--                        B.RESERV_STATUS,-->
+<!--                        B.PET_MEMBER_NO-->
+<!--                 FROM (SELECT-->
+<!--                               C.RESERV_CODE,-->
+<!--                                C.RESERV_APP_DATE,-->
+<!--                                C.RESERV_START,-->
+<!--                                C.RESERV_STATUS,-->
+<!--                                C.PET_MEMBER_NO-->
+<!--                           FROM TBL_RESERVATION C-->
+<!--                           ORDER BY RESERV_CODE DESC-->
+<!--                        ) B-->
+<!--                 <![CDATA[-->
+<!--                       WHERE ROWNUM <= #{ endRow }-->
+<!--                       ]]>-->
+<!--                ) A-->
+<!--                JOIN TBL_MEMBER M ON(C.MEMBER_NO = M.MEMBER_NO)-->
+<!--                WHERE C.RNUM >= #{ startRow }-->
+<!--                ORDER BY 1 DESC-->
+<!--    </select>-->
+
+    <select id="selectReservationTotalCount" resultType="_int">
+        SELECT
+             COUNT(*)
+        FROM TBL_RESERVATION A
+
     </select>
 
 </mapper>

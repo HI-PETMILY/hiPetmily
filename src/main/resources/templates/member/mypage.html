@@ -143,10 +143,19 @@
         }
     }
 
+    /* 일대일 문의 */
     if (document.getElementById("one_contact")) {
         const $update = document.getElementById("one_contact");
         $update.onclick = function () {
             location.href = "/no..";
+        }
+    }
+
+    /* 지난 예약 */
+    if (document.getElementById("past_res")) {
+        const $update = document.getElementById("past_res");
+        $update.onclick = function () {
+            location.href = "/member/reservationList";
         }
     }
 

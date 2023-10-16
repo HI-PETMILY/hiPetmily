@@ -16,7 +16,7 @@ VALUES(SEQ_TBL_MEMBER_NO.NEXTVAL,'test1@gmail.com','$2a$12$OoovdT4FMf7vszMob7Sei
 INSERT INTO TBL_MEMBER(MEMBER_NO,MEMBER_ID,MEMBER_PWD,MEMBER_NAME,NICKNAME,PHONE,GENDER,POST_NO,ADDRESS,ADDRESS2,POINT,MEMBER_STAT,MEMBER_STAT_DATE,REGIST_DATE,WARNING_COUNT,SIGNUP_PATH_CODE)
 VALUES(SEQ_TBL_MEMBER_NO.NEXTVAL,'test2@gmail.com','$2a$12$OoovdT4FMf7vszMob7SeiODn7HNJHNZDr6BJhSZ5XaLqs/IFyYckS','테스트2','테스트2','01012345678','F',03148,'서울 종로구','인사동 12길',9000,'탈퇴','2023-09-24','2023-09-24',0,1);
 INSERT INTO TBL_MEMBER(MEMBER_NO,MEMBER_ID,MEMBER_PWD,MEMBER_NAME,NICKNAME,PHONE,GENDER,POST_NO,ADDRESS,ADDRESS2,POINT,MEMBER_STAT,MEMBER_STAT_DATE,REGIST_DATE,WARNING_COUNT,SIGNUP_PATH_CODE)
-VALUES(SEQ_TBL_MEMBER_NO.NEXTVAL,'123@naver.com','$2a$10$3Vw7wYbmxMgw5MwJO7BxReqqRKoTlla7D6qa8BP5Ea7lIsikZhc4W','홍길동','붉은동전','01012345678','M',03148,'서울 강서구 강서로 462','999호',9000,'활동','2023-10-12','2023-10-12',0,1);
+VALUES(SEQ_TBL_MEMBER_NO.NEXTVAL,'123@naver.com','$2a$10$3Vw7wYbmxMgw5MwJO7BxReqqRKoTlla7D6qa8BP5Ea7lIsikZhc4W','고길동','호이호히','01012345678','M',03148,'서울 강서구 강서로 462','999호',9000,'활동','2023-10-12','2023-10-12',0,1);
 
 commit;
 
@@ -82,7 +82,7 @@ commit;
 
 -- 펫시터 테이블 정보 추가
 INSERT INTO TBL_PET_SITTER(PET_MEMBER_NO,PET_REGIST_DATE,PET_STAT,PET_TITLE,PET_INTRODUCE,PET_PLACE,PET_CARE_COUNT,PET_BABY_YN,PET_PENCE,PET_MYPET_YN,PET_SMOK_YN,PET_CARE_SIZE,PET_CARE_AGE,PET_CHECKIN,PET_CHECKOUT,PET_REQUEST,PET_IMPOSSIBLE,PET_M_DAY_PAY,PET_M_TIME_PAY,PET_L_DAY_PAY,PET_L_TIME_PAY,PET_BANK,PET_BANK_NO,PET_BANK_NAME)
-VALUES(4,'23-10-10','대기','애견전공/공원산책/미끄럼방지바닥시공/애기 안심하고 맡겨주세요!','안녕하세요. 포메라니안 10살 남아를 키우고 있는 쮸삐 맘입니다 ^^
+VALUES(4,'23-10-10','승인','애견전공/공원산책/미끄럼방지바닥시공/애기 안심하고 맡겨주세요!','안녕하세요. 포메라니안 10살 남아를 키우고 있는 쮸삐 맘입니다 ^^
 우리 아이처럼 사랑으로 케어 해서 편안하게 함께 있을 수 있습니다....
 어릴 때부터 강아지를 너무 좋아해서 강아지 키우는 친구들 집에 매일 놀러 갈 정도였어요.
 대형견부터 작은 아이들까지 그리고 쮸삐와 함께 한 추억이 많습니다.
@@ -105,12 +105,19 @@ commit;
 
  -- 반려견 테이블 정보 추가
 INSERT INTO TBL_MYPET(PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED,PET_WEIGHT,PET_REGIST,P_SOCIAL,A_SOCIAL,BARK_LEVEL,SEP_ANXIETY,PET_DISEASE,PET_DISEASE_EXP,PET_ALLERGY,PET_ALLERGY_EXP,POTTY_TRAIN,MARKING_IN,VACCIN,HOS_NAME,HOS_PHONE,HOS_ADDRESS,MEMBER_NO,REGIST_STATUS)
-    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'코끼리','1','F','예','코끼리',100,'내장형','보통이에요','보통이에요','보통','예','예','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병','참조은동물병원','02-0000-0000','서울시 동작구',4,'Y');
+    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'코끼리','1','여','예','코끼리',100,'내장형','보통이에요','보통이에요','보통','예','예','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병','참조은동물병원','02-0000-0000','서울시 동작구',4,'Y');
 INSERT INTO TBL_MYPET(PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED,PET_WEIGHT,PET_REGIST,P_SOCIAL,A_SOCIAL,BARK_LEVEL,SEP_ANXIETY,PET_DISEASE,PET_DISEASE_EXP,PET_ALLERGY,PET_ALLERGY_EXP,POTTY_TRAIN,MARKING_IN,VACCIN,HOS_NAME,HOS_PHONE,HOS_ADDRESS,MEMBER_NO,REGIST_STATUS)
-    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'숭냥','3','M','예','골댕',25,'외장형','좋아요','수줍어해요','아니오','아니오','아니오','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병,기관지염(연 1회,심장사상충(월 1회)','참안조은병원','031-000-0000','수원시 영통구',4,'Y');
+    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'숭냥','3','남','예','골댕',25,'외장형','좋아요','수줍어해요','아니오','아니오','아니오','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병,기관지염(연 1회,심장사상충(월 1회)','참안조은병원','031-000-0000','수원시 영통구',4,'Y');
 
 commit;
 
+
+-- 첨부파일 테이블 정보 추가
+INSERT INTO TBL_FILE(FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
+    VALUES(SEQ_TBL_FILE_NO.NEXTVAL,'test정보','test정보','test정보','test정보','test정보','test정보',0,0,0,0,0);
+
+
+commit;
 
 
 -- -- 적립금 테이블 정보 추가
@@ -170,9 +177,5 @@ commit;
 --
 -- commit;
 --
--- -- 첨부파일 테이블 정보 추가
--- INSERT INTO TBL_FILE(FILE_NO,FILE_NAME,FILE_PATH_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_VOLUME,FILE_TYPE,PET_CODE,BOARD_NO,REV_CODE,MEMBER_NO,PET_MEMBER_NO)
--- VALUES(SEQ_TBL_FILE_NO.NEXTVAL,'','','','',0,'',0,0,0,0,0);
---
---
--- commit;
+
+
