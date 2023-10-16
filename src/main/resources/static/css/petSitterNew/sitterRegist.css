@@ -269,6 +269,11 @@ select {
 }
 
 .sitterReg_img {
-    width: 200px;
-    height: 150px;
+    width: 270px;
+    height: 170px;
+    border-radius: 15px;
+}
+
+.marginTop20 {
+    margin-top: 20px;
 }

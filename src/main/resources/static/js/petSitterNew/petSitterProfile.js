@@ -2,8 +2,6 @@
 
 $(function(){
 
-    bannerImgCreate();
-
     flatpickrApi();
     timeSelectBoxAdd();
     dogSelectBoxAdd();
@@ -152,32 +150,17 @@ function getReservation() {
 }
 
 
-function bannerImgCreate() {
-
-    // 메인 배너 생성
-    $(".psp_img_main").append("<img id='mainImg' src='/static_Image/petSitter/profile_sub"+1+".png'>");
-
-    for (let i = 1; i < 7; i++) {
-
-        // li 추가
-        $(".psp_img_sub").append("<li class='psp_img_subImg'><img id='subImg_"+i+"' src='/static_Image/petSitter/profile_sub"+i+".png'></li>");
-
-        // 서브 이미지 클릭 이벤트 추가
-        $("#subImg_"+i).click(function () {
-            $("#mainImg").attr("src", "/static_Image/petSitter/profile_sub"+i+".png");
-        });
-
-        // 서브 이미지 마우스오버 이벤트 추가
-        $("#subImg_"+i).mouseover(function () {
-            $("#subImg_"+i).css({ "transform" : "scale(1.05)", "zIndex" : "1", "transition" : "all 0.1s" });
-        }).mouseout(function () {
-            $("#subImg_"+i).css({ "transform" : "scale(1)", "zIndex" : "0", "transition" : "all 0.1s" });
-        });
-
-    }
-
+function subImgClickEvent( path ) {
+    $("#mainImg").attr("src", path);
 }
 
+function subImgMouseoverEvent( index ) {
+    $("#subImg_"+ index).css({ "transform" : "scale(1.05)", "zIndex" : "1", "transition" : "all 0.1s" });
+}
+
+function subImgMouseoutEvent( index ) {
+    $("#subImg_"+ index).css({ "transform" : "scale(1)", "zIndex" : "0", "transition" : "all 0.1s" });
+}
 
 
 function timeSelectBoxAdd() {
@@ -211,7 +194,7 @@ function dogSelectBoxAdd() {
 
     for(let i = 0 ; i < 2; i++){
         if(i == 0){
-            dogSelect += '<option value="'+'0'+i+'">---- 선택하기 ----</option>';
+            dogSelect += '<option value="'+'0'+i+'">&nbsp ---- 선택하기 ----</option>';
         } else {
             dogSelect += '<option value="'+'0'+i+'">중소형(15kg미만)</option>';
         }

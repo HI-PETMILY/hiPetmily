@@ -244,6 +244,4 @@
          WHERE R.RESERV_CODE = #{ resCode }
     </select>
 
-
-
 </mapper>
