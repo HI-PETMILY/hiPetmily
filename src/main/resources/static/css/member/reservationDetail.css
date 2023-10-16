@@ -1,0 +1,12 @@
+
+.container {
+    display:block;
+    justify-content: center;
+    align-items: center;
+    margin: 200px 800px 0 700px;
+    max-width: 800px;
+}
+
+.reserve-table{
+    display: flex;
+}

@@ -375,4 +375,58 @@
     <!--        SELECT-->
     <!--             A.-->
     <!--    </select>-->
+
+    <insert id="insertReview">
+        INSERT
+        INTO TBL_REVIEW A
+            (
+        A.REVIEW_NO
+        , A.REVIEW_TITLE
+        , A.REVIEW_BODY
+        , A.REVIEW_COUNT
+        , A.REVIEW_CREATED_DATE
+        , A.MEMBER_NO
+        , A.REVIEW_STATUS
+        , A.ORDER_CODE
+        , A.RATING
+        )
+        VALUES
+            (
+            SEQ_REVIEW_NO.NEXTVAL
+                , #{ title }
+                , #{ body }
+                , 0
+                , SYSDATE
+                , #{ writer.memberNo }
+                , 'Y'
+                , #{ orderCode }
+                , #{ rating }
+            )
+    </insert>
+
+    <insert id="insertMemberImg">
+        INSERT
+        INTO ATTACHED_FILE A
+            (
+          A.ATTACHED_FILE_NO
+        , A.ATTACHED_FILE_NAME
+        , A.ATTACHED_FILE_ROUTE
+        , A.ATTACHED_FILE_SAVE_NAME
+        , A.ATTACHED_FILE_EXTENSION
+        , A.ATTACHED_FILE_SIZE
+        , A.REVIEW_NO
+        , A.ATTACHED_FILE_THUMBNAIL
+        )
+        VALUES
+            (
+            SEQ_ATTACHED_FILE_NO.NEXTVAL
+                , #{ name }
+                , #{ route }
+                , #{ savedName }
+                , #{ extension }
+                , #{ size }
+                , SEQ_REVIEW_NO.CURRVAL
+                , #{ thumbnail }
+            )
+    </insert>
 </mapper>

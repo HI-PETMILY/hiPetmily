@@ -3,6 +3,8 @@ package com.mypet.petmily.member.service;
 import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.common.paging.Pagination;
 import com.mypet.petmily.common.paging.SelectCriteria;
+import com.mypet.petmily.fileUpload.dao.FileUploadMapper;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
@@ -147,11 +149,12 @@ public class MemberService {
         if(!(result > 0)) throw new PetRemoveException("반려동물 프로필 삭제에 실패했습니다.");
     }
 
-    public Map<String, Object> selectReservationList(int page) {
 
-        /*  */
+    /* 회원 이미지 첨부파일 */
+    public void registMemberImg(MemberDTO modifyMember, FileUploadDTO fileUploadList) {
 
-        return null;
+        modifyMember.setMemberStat("활동");
+        FileUploadMapper.insertMemberImg(fileUploadList);
     }
 
 }

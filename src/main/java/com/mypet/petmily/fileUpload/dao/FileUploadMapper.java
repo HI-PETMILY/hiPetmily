@@ -9,6 +9,10 @@ import java.util.List;
 @Mapper
 public interface FileUploadMapper {
 
+    /* 멤버 이미지 */
+    static void insertMemberImg(FileUploadDTO fileUploadList) {
+    }
+
     // 펫시터 등록시 이미지 파일 추가
     void petSitterAddImage(NewPetSitterDTO petSitter);
     // 펫시터 등록시 이미지 파일 조회

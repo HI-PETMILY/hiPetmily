@@ -44,7 +44,6 @@
                 <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col" id="col5">
                     <span th:if="${ resHistory.resStatus == '결제완료' }">
-                    <a href="후기 작성 주소로 연결" th:href="'/member/review-write?no=' + ${ resHistory.resCode }">작성하기</a>
                         <form action="/member/review-write" method="post">
                         <input type="hidden" name="resCode" th:value="${resHistory.resCode}" />
                             <!--<input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />-->
