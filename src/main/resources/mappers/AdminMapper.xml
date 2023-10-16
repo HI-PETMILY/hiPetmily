@@ -60,22 +60,22 @@
         WHERE C.MEMBER_NO = #{id}
     </select>
 
-    <!--     회원 정보 수정(멤버 테이블)-->
-    <update id="upMember" parameterType="com.mypet.petmily.member.dto.MemberDTO">
-        UPDATE TBL_MEMBER
-        SET AUTHORITY_DESC = #{desc},
-            MEMBER_STAT = #{memberStat},
-            WARNING_COUNT = #{warningCount},
-            POINT = #{point}
-        WHERE MEMBER_NO = #{no}
-    </update>
+<!--    &lt;!&ndash;     회원 정보 수정(멤버 테이블)&ndash;&gt;-->
+<!--    <update id="upMember" parameterType="com.mypet.petmily.member.dto.MemberDTO">-->
+<!--        UPDATE TBL_MEMBER-->
+<!--        SET AUTHORITY_DESC = #{desc},-->
+<!--            MEMBER_STAT = #{memberStat},-->
+<!--            WARNING_COUNT = #{warningCount},-->
+<!--            POINT = #{point}-->
+<!--        WHERE MEMBER_NO = #{no}-->
+<!--    </update>-->
 
-    <!--     회원 등급 수정 (테이블 따로라서)-->
-    <update id="upRoleMember" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">
-        UPDATE TBL_ROLE
-        SET AUTHORITY_CODE = #{authority}
-        WHERE MEMBER_NO = #{memberNo}
-    </update>
+<!--    &lt;!&ndash;     회원 등급 수정 (테이블 따로라서)&ndash;&gt;-->
+<!--    <update id="upRoleMember" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">-->
+<!--        UPDATE TBL_ROLE-->
+<!--        SET AUTHORITY_CODE = #{authority}-->
+<!--        WHERE MEMBER_NO = #{memberNo}-->
+<!--    </update>-->
 
     <!--     회원 목록 조회 + 검색 연동 쿼리-->
     <select id="selectMemberList" resultMap="generalMemberResultMap">
