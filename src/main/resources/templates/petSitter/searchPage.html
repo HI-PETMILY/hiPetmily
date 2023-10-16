@@ -21,61 +21,39 @@
 <body>
 <div th:replace="common/header_white.html"></div>
 
-<!--<div class="search-data">-->
-<!--    <div class="search-box">-->
-<!--        <form name="" method="get" action="">-->
-<!--            <input type="hidden" name="Tag" value>-->
-<!--            <input type="hidden" name="" value="">-->
+<div class="sub_container">
+<div class="search-data">
+    <form id="search-box" action="/petSitter/searchPage">
 
-<!--        </form>-->
-<!--        <div class="search-area">-->
-<!--        <label>-->
-<!--            <input type="radio" name=""  onclick="">전체-->
-<!--        </label>-->
-<!--            <label>-->
-<!--                <input type="radio" name=""  onclick="">서울-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <input type="radio" name=""  onclick="">경기-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <input type="radio" name=""  onclick="">부산-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <input type="radio" name=""  onclick="">대구-->
-<!--            </label>-->
-<!--            <label>-->
-<!--                <input type="radio" name="" onclick="">대전-->
-<!--            </label>-->
-<!--        </div>-->
+        <div class="input-area">
+            <div class="search1" name="searchCondition">지역찾기</div>
+       <label>
+           <input class="region" name="searchValue"  placeholder="주소를 입력해주세요" value maxlength="50">
+       </label>
+        </div>
 
-<!--        <div class="input-area">-->
-<!--            <h3>지역찾기</h3>-->
-<!--       <label>-->
-<!--           <input class="text" name="address" placeholder="주소를 입력해주세요" value maxlength="50">-->
-<!--       </label>-->
-<!--        </div>-->
 
-<!--        <div class="reservation-date">-->
-<!--            <input type="text" name="" class ="" >-->
-<!--            <input type="text" name=" " class="">-->
+    </form>
 
-<!--        </div>-->
 
-<!--<div>-->
-<!--    <button class="search-btn" name="" onclick="">찾기</button>-->
-<!--    <button class="search-init" name="" onclick="">초기화</button>-->
-<!--</div>-->
+<div class="search-btn-box"
+     th:onclick="|location.href='/petSitter/searchPage?searchCondition=${address}&searchValue=${searchValue}'|">
+    <button type="submit" class="search-btn"  value="검색">찾기</button>
+    <button class="search-init" name="init-btn" value="초기화">초기화</button>
+</div>
 
-<!--    </div>-->
-<!--</div>-->
+
+</div>
+</div>
+
+
 <div class="container">
 
 <div class="petsitter-box">
 
-<div class="petsitter-info">
+<div class="petsitter-info" th:each="petSitter : ${petSitterList}"
+                            th:onclick="|location.href='/petSitterNew/petSitterProfile?petMemberNo=${petSitter.petMemberNo}'|">
 
-    <th:block th:each="petSitter : ${petSitterList}" th:onclick="|location.href='/petSitter/petSitterProfile?petMemberNo=${petSitter.petMemberNo}'|">
         <div class="petsitter-wrap">
         <div class="petsitter-photo">
         <a ><img src="/static_Image/petSitter/photo1.png" class="photo"></a>
@@ -83,7 +61,7 @@
         <div class="petsitter-content">
          <div class="title">
         <div  class="comment">
-            <div th:text ="${petSitter.petTitle}" class="first-comment1">
+            <div th:text ="${petSitter.petTitle}" class="first-comment1" name="petTitle">
 
             </div>
             <div class="profile">
@@ -91,7 +69,7 @@
                     <img src=/static_Image/petSitter/profileDog.png class="dog-photo">
                 </div>
 
-            <div th:text ="${petSitter.nickname}" class="petsitter-nickname">
+            <div th:text ="${petSitter.nickname}" class="petsitter-nickname" name="nickname ">
 
             </div>
             </div>
@@ -111,23 +89,6 @@
             <div th:if="${petSitter.petLDayPay != 0}"  class="price">대형견 1박 : <span th:text="${petSitter.petLDayPay}" ></span> </div>
             <div th:if="${petSitter.petLTimePay != 0}" class="price">대형견 1시간 : <span  th:text="${petSitter.petLTimePay}" ></span></div>
         </div>
-
-<!--        <div class="price-box">-->
-<!--            <div  th:if="${petSitter.petMDayPay != null and }" class="price" >중소형 1박 <span th:text="${petSitter.petMDayPay}" ></span> </div>-->
-<!--            <div th:if="${petSitter.petMTimePay != null}" class="price">중소형 1시간 <span th:text="${petSitter.petMTimePay}" ></span> </div>-->
-<!--            <div th:if="${petSitter.petLDayPay != null}"  class="price">대형견 1박<span th:text="${petSitter.petLDayPay}" ></span> </div>-->
-<!--            <div th:if="${petSitter.petLTimePay != null}" class="price">대형견 1시간<span  th:text="${petSitter.petLTimePay}" ></span></div>-->
-<!--        </div>-->
-<!--            <div class="price-box">-->
-<!--                &lt;!&ndash; 중소형 1박 가격 &ndash;&gt;-->
-<!--                <div th:if="${petSitter.petMDayPay != null and petSitter.petCareSize == '중소형'}" class="price">중소형 1박 <span th:text="${petSitter.petMDayPay}"></span> </div>-->
-<!--                &lt;!&ndash; 중소형 1시간 가격 &ndash;&gt;-->
-<!--                <div th:if="${petSitter.petMTimePay != null and petSitter.petCareSize == '중소형'}" class="price">중소형 1시간 <span th:text="${petSitter.petMTimePay}"></span> </div>-->
-<!--                &lt;!&ndash; 대형견 1박 가격 &ndash;&gt;-->
-<!--                <div th:if="${petSitter.petLDayPay != null and petSitter.petCareSize == '대형'}" class="price">대형견 1박 <span th:text="${petSitter.petLDayPay}"></span> </div>-->
-<!--                &lt;!&ndash; 대형견 1시간 가격 &ndash;&gt;-->
-<!--                <div th:if="${petSitter.petLTimePay != null and petSitter.petCareSize == '대형'}" class="price">대형견 1시간 <span th:text="${petSitter.petLTimePay}"></span></div>-->
-<!--            </div>-->
 
 
         <div class="review-box">
@@ -157,7 +118,6 @@
     </div>
 
         </div>
-    </th:block>
 
 
 
@@ -167,7 +127,8 @@
 </div>
 
 
-<!--<div th:replace="common/footer.html"></div>-->
+
 </div>
+<div th:replace="common/footer.html"></div>
 </body>
 </html>
