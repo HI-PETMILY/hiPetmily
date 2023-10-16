@@ -168,7 +168,7 @@
 		BOARD_SORT(boardSort)
 		1 = 공지
 		2 = 질문과답변
-		3 = 자주하는질문
+		3 = 자주하는질문 ->정적으로 변경
 	 -->
     <select id="selectBoardList" resultType="com.mypet.petmily.board.dto.BoardDTO">
 		/*게시판 목록조회 SQL com.mypet.petmily.board.dao.BoardMapper.selectBoardList*/

@@ -38,11 +38,6 @@ public interface MemberMapper {
 
     void insertPetProfile(PetDTO pet);
 
-    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
-
-    int selectTotalCount(Map<String, String> searchMap);
-
-  
     List<PetDTO> selectPetProfileList(MemberDTO loginMember);
 
     PetDTO viewPetProfile(MemberDTO loginMember, int petCode);
@@ -50,6 +45,7 @@ public interface MemberMapper {
 
     PetDTO viewFirstPetProfile(MemberDTO member);
 
-    PetDTO petProfileUpdate(MemberDTO loginMember);
+    void petProfileUpdate(PetDTO pet);
 
+    int deletePetProfile(int petCode);
 }

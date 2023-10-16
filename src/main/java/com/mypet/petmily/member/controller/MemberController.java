@@ -20,10 +20,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 @Slf4j
@@ -243,9 +245,8 @@ public class MemberController {
 
     /* 비밀번호 찾기 결과 */
     @PostMapping("/find_pwd")
-    public String findPwdCheck(HttpServletRequest request, Model model,
-                               @RequestParam String memberName, @RequestParam String memberId,
-                               MemberDTO dto){
+    public String findPwdCheck( Model model, @RequestParam String memberName,
+                                @RequestParam String memberId, MemberDTO dto){
 
         try{
             dto.setMemberId(memberId);
@@ -367,7 +368,7 @@ public class MemberController {
     @GetMapping("/pet-profile-list")
     public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-        model.addAttribute("loginMember", loginMember.getMemberId());
+       // model.addAttribute("loginMember", loginMember.getMemberId());
 
         List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
 
@@ -390,74 +391,46 @@ public class MemberController {
         return "member/pet-profile-view";
     }
 
-    /* 반려동물 프로필 업데이트 */
+    /* 반려동물 프로필 수정 페이지 */
     @GetMapping("/pet-profile-update")
-    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public void petProfileUpdatePage(@AuthenticationPrincipal MemberDTO loginMember,
+                                     @RequestParam int petCode,Model model){
 
-        PetDTO petProfile = memberService.petProfileUpdate(loginMember);
+        PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
 
         model.addAttribute("petProfile", petProfile);
     }
 
+
+    /* 반려동물 프로필 수정 */
+    @PostMapping("/pet-profile-update")
+    public String petProfileUpdate(@AuthenticationPrincipal MemberDTO loginMember, Model model,
+                                   RedirectAttributes rttr, @ModelAttribute PetDTO updatePet){
+
+        updatePet.setMember(loginMember);
+        memberService.petProfileUpdate(updatePet);
+
+        log.info("update pet info : {}", updatePet);
+
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.pet-profile-update"));
+
+        return "redirect:/member/pet-profile-list";
+    }
+
+
     /* 반려동물 프로필 삭제 */
+    @GetMapping("/pet-profile-delete")
+    public String petProfileDelete(@RequestParam int petCode, RedirectAttributes rttr) throws PetRemoveException {
 
-    /* 지난 예약 내역 조회 페이지 */
-//    @GetMapping("/reservationList")
-//    public String reservationHistoryPage(@RequestParam(defaultValue = "1") int page,
-//                                         @RequestParam(required = false) String searchCondition,
-//                                         @RequestParam(required = false) String searchValue,
-//                                         Model model){
-//        log.info("reserveList page : {}", page);
-//        log.info("reserveList searchCondition : {}", searchCondition);
-//        log.info("reserveList searchValue : {}", searchValue);
-//
-//        Map<String, String> searchMap = new HashMap<>();
-//        searchMap.put("searchCondition", searchCondition);
-//        searchMap.put("searchValue", searchValue);
-//
-//        Map<String, Object> reserveListAndPaging = memberService.selectReserveList(searchMap, page);
-//        model.addAttribute("paging", reserveListAndPaging.get("paging"));
-//        model.addAttribute("reserveList", reserveListAndPaging.get("reserveList"));
-//
-//        return "/member/reservationList";
-//    }
+        log.info("want to delete pet info : {}", petCode);
 
-    /* 예약 내역 조회 페이지 만들기 */
-    @GetMapping("/reservationList")
-    public String getReserveList(@RequestParam(defaultValue = "1") int page) {
+        memberService.removePetProfile(petCode);
 
-        log.info("reservationList page : {}", page);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("message.pet-profile-delete"));
 
-       Map<String, Object> reservationListAndPaging = memberService.selectReservationList(page);
-
-        return "/member/reservationList";
+        return "redirect:/member/pet-profile-list";
     }
 
-
-    /* 후기 작성 페이지 */
-    @GetMapping("/review_write")
-    public void reviewWritePage(){}
-
-    /* 후기 전체 조회 페이지 */
-    @GetMapping("/review-list")
-    public String reviewListPage(@RequestParam(defaultValue = "1") int page,
-                                         @RequestParam(required = false) String searchCondition,
-                                         @RequestParam(required = false) String searchValue,
-                                         Model model) {
-        log.info("reviewList page : {}", page);
-        log.info("reviewList searchCondition : {}", searchCondition);
-        log.info("reviewList searchValue : {}", searchValue);
-
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
-
-        Map<String, Object> reviewListAndPaging = memberService.selectReviewList(searchMap, page);
-        model.addAttribute("paging", reviewListAndPaging.get("paging"));
-        model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
-
-        return "member/review-list";
-    }
 
     /* 진행 중인 예약 페이지 */
     @GetMapping("/reservation-in-progress")

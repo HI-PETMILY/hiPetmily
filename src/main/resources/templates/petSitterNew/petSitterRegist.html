@@ -9,13 +9,18 @@
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
-    <link rel="stylesheet" href="/css/member/style_.css"/>
+    <link rel="stylesheet" href="/css/petSitterNew/sitterRegist.css"/>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!--    <script defer type="text/javascript" src="/js/petSitter/petSitterProfile.js"></script>-->
+    <!-- flatpicker Calendar -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+    <script defer type="text/javascript" src="/js/petSitterNew/petSitterRegist.js"></script>
 
 </head>
 
@@ -24,246 +29,206 @@
 <!-- common header -->
 <div th:replace="common/header_white.html"></div>
 
-<div id="pet-profile-regist" class="myPageMain-container">
-
-    <div class="left-navi"></div>
-
-    <div class="myPageMainWrapper">
-        <h2 class="mainTitle">반려동물 등록</h2>
-        <div class="nav-line"></div>
-        <form id="petProfileRegistForm" action="/member/pet-profile-regist" method="post" enctype="multipart/form-data">
-            <table class="pet-profile-img-table" align="center">
-                <tr>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="pet-profile-img">
-                            <img class="petProfileImg" src="/static_Image/member/petProfile.png">
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div style="display: none;">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-            </div>
-
-            <script>
-
-            </script>
-
-            <div class="profile-regist">
-                <div class="profile-regist-left">
-                    <div class="regist-pet-name dash-line">
-                        <h4>이름</h4>
-                        <div class="signIn inputForm">
-                            <input type="text" name="petName" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder=''" class="registPet" required>
-                        </div>
-                    </div>
-
-                    <div class="regist-pet-age  dash-line">
-                        <h4>나이</h4>
-                        <div class="signIn inputForm">
-                            <input type="text" name="petAge" onfocus="this.placeholder=''" onblur="this.placeholder=''"
-                                   class="registPet" required>세
-                        </div>
-                    </div>
-
-
-                    <div class="regist-pet-gender  dash-line">
-                        <h4>성별</h4>
-                        <label><input type="radio" name="petGender" value="F" checked>여아&nbsp;&nbsp; </label>
-                        <label><input type="radio" name="petGender" value="M">남아</label>
-                    </div>
-                </div>
-
-                <div class="profile-regist-right">
-
-                    <div class="regist-pet-breed  dash-line">
-                        <h4>견종</h4>
-                        <div class="signIn inputForm">
-                            <input type="text" name="petBreed" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder=''" class="registPet" required>
-                        </div>
-                    </div>
-
-                    <div class="regist-pet-weight  dash-line">
-                        <h4>몸무게</h4>
-                        <div class="signIn inputForm">
-                            <input type="text" name="petWeight" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder=''" class="registPet" required>kg
-                        </div>
-                    </div>
-
-                    <div class="regist-pet-neutering  dash-line">
-                        <h4>중성화</h4>
-                        <label><input type="radio" name="neutralYn" value="예" checked>예 &nbsp;&nbsp; </label>
-                        <label><input type="radio" name="neutralYn" value="아니오">아니오</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="regist-pet-regist  dash-line">
-                <h4>반려견 등록</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="petRegist" value="내장형" checked>내장형 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="외장형">외장형 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="등록인식표">등록인식표 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petRegist" value="하지않음">하지않음 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q1  dash-line">
-                <h4>Q. 다른 사람들과의 친화력</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="pSocial" value="매우 좋아요">매우좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="좋아요">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="보통이에요" checked>보통이에요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="수줍어해요">수줍어해요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pSocial" value="공격적이에요">공격적이에요 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q2 dash-line">
-                <h4>Q. 다른 반려동물과의 친화력</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="aSocial" value="매우좋아요">매우좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="좋아요">좋아요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="보통이에요" checked>보통이에요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="수줍어해요">수줍어해요 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="aSocial" value="공격적이에요">공격적이에요 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q3 dash-line">
-                <h4>Q. 잘 짖는 편인가요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="barkLevel" value="예">예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="barkLevel" value="보통" checked>보통 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="barkLevel" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q4 dash-line">
-                <h4>Q. 분리불안 증세가 있나요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="sepAnxiety" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="sepAnxiety" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q5">
-                <h4>Q. 앓고있는 지병이나 다친 경험이 있나요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="petDisease" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petDisease" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q5-1 dash-line">
-                <h4>Q. 지병이나 다친 경험이 있다면 주의해야 할 행동과 함께 적어주세요.</h4>
-                <textarea name="petDiseaseExp"></textarea>
-            </div>
-
-            <div class="Q6">
-                <h4>Q. 음식 알러지가 있나요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="petAllergy" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="petAllergy" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q6-1 dash-line">
-                <h4>Q. 알러지가 있다면 어떤 음식인지 적어주세요.</h4>
-                <textarea name="petAllergyExp"></textarea>
-            </div>
-
-            <div class="Q7 dash-line">
-                <h4>Q. 대소변은 잘 가리나요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="pottyTrain" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="pottyTrain" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-
-            <div class="Q8 dash-line">
-                <h4>Q. 실내 마킹을 하나요?</h4>
-                <div class="answer-contain">
-                    <label><input type="radio" name="markingIn" value="예" checked>예 &nbsp;&nbsp;</label>
-                    <label><input type="radio" name="markingIn" value="아니오">아니오 &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q9 dash-line">
-                <h4>Q. 예방접종을 하셨나요? </h4>
-                <div class="answer-contain">
-                    <label><input type="checkbox" name="vaccin" value="혼합예방주사(DHPPL)">혼합예방주사(DHPPL) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="코로나장염(연 1회)">코로나장염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="관견병">관견병 &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="기관지염(연 1회">기관지염(연 1회) &nbsp;&nbsp;</label>
-                    <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)">심장사상충(월 1회) &nbsp;&nbsp;</label>
-                </div>
-            </div>
-
-            <div class="Q10 dash-line">
-                <h4>자주 다니는 병원 정보</h4>
-                <table>
-                    <tr align="center">
-                        <td>병원명</td>
-                        <td><input type="text" name="hosName" placeholder="병원명" onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='병원명'" required></td>
+<div class="container">
+    <div class="container_title">
+        <h1>펫시터 지원</h1>
+    </div>
+    <form class="formTag" action="/petSitterNew/regist" method="post" enctype="multipart/form-data">
+        <div class="container_box1" >
+            <div class="reg_banner borderBottomLine">
+                <h3>ο 펫시터 소개페이지 배너사진 등록</h3>
+                <table class="sitterReg_imgTable marginBotton20">
+                    <tr>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
                     </tr>
-                    <tr align="center">
-                        <td>전화번호</td>
-                        <td><input type="text" name="hosPhone" placeholder="ex) 02-0000-0000"
-                                   onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='02-0000-0000'" required></td>
-                    </tr>
-                    <tr align="center">
-                        <td>간략주소</td>
-                        <td><input type="text" name="hosAddress" placeholder="ex) 서울시 종로구 인사동"
-                                   onfocus="this.placeholder=''"
-                                   onblur="this.placeholder='서울시 종로구 인사동'" required></td>
+                    <tr>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="sitterReg_imgBox">
+                                <img class="sitterReg_img" src="/static_Image/petSitter/zoomAdd.png">
+                            </div>
+                        </td>
                     </tr>
                 </table>
+                <h5>※ 1번째 이미지가 메인이미지 입니다.</h5>
+                <div style="display: none">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                    <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
+                </div>
             </div>
+            <div class="contentBox">
+                <div class="marginBotton20">
+                    <h3>ο 대표문구</h3>
+                    <input type="text" name="petTitle" placeholder="ex) 애견전공/공원산책/애기 안심하고 맡겨주세요!" required>
+                </div>
+                <div class="marginBotton20 borderBottomLine">
+                    <h3>ο 소개글</h3>
+                    <textarea name="petIntroduce" placeholder="자유롭게 소개해주세요."></textarea>
+                </div>
+                <div class="reg_careBox">
+                    <div class="marginBotton20">
+                        <h3>ο 돌봄공간</h3>
+                        <input type="text" name="petPlace" placeholder="아파트, 빌라, 오피스텔 등" required>
+                    </div>
+                    <div class="marginBotton20">
+                        <h3>ο 돌봄가능 반려견수</h3>
+                        <select name="petCareCount">
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reg_radioBox marginBotton20 borderBottomLine">
+                    <div class="reg_radio_row">
+                        <div class="reg_radio_div">
+                            <h3>ο 12세 이하 아동 유무</h3>
+                            <label><input type="radio" name="petBabyYn" value="Y" checked>예 &nbsp;&nbsp; </label>
+                            <label><input type="radio" name="petBabyYn" value="N">아니오</label>
+                        </div>
+                        <div class="reg_radio_div">
+                            <h3>ο 반려견 펜스 유무</h3>
+                            <label><input type="radio" name="petPence" value="Y" checked>예 &nbsp;&nbsp; </label>
+                            <label><input type="radio" name="petPence" value="N">아니오</label>
+                        </div>
+                    </div>
+                    <div class="reg_radio_row">
+                        <div class="reg_radio_div">
+                            <h3>ο 반려견 유무</h3>
+                            <label><input type="radio" name="petMypetYn" value="Y" checked>예 &nbsp;&nbsp; </label>
+                            <label><input type="radio" name="petMypetYn" value="N">아니오</label>
+                        </div>
+                        <div class="reg_radio_div">
+                            <h3>ο 흡연 유무</h3>
+                            <label><input type="radio" name="petSmokYn" value="Y">예 &nbsp;&nbsp; </label>
+                            <label><input type="radio" name="petSmokYn" value="N" checked>아니오</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="marginBotton20 borderBottomLine">
+                    <div class="marginBotton20">
+                        <h3>ο 돌봄가능 반려견 크기</h3>
+                        <input type="text" name="petCareSize" placeholder="소/중/대 몇 kg까지" required>
+                    </div>
+                    <div>
+                        <h3>ο 돌봄가능 반려견 나이</h3>
+                        <input type="text" name="petCareAge" placeholder="몇세까지, 노령견 특이사항" required>
+                    </div>
+                </div>
+                <div class="reg_checkTime marginBotton20 borderBottomLine">
+                    <div class="reg_checkTime_row">
+                        <h3>ο 체크인 시간</h3>
+                        <input type="text" name="petCheckIn" placeholder="ex) 09:00 ~ 23:00" required>
+                    </div>
+                    <div class="reg_checkTime_row">
+                        <h3>ο 체크아웃 시간</h3>
+                        <input type="text" name="petCheckOut" placeholder="ex) 09:00 ~ 23:00" required>
+                    </div>
+                </div>
+                <div class="borderBottomLine">
+                    <div class="marginBotton20">
+                        <h3>ο 요청글</h3>
+                        <input type="text" name="petRequest" placeholder="ex) 평소먹는 펫푸드/간식, 애착장난감 등" required>
+                    </div>
+                    <div class="marginBotton20">
+                        <h3>ο 불가글</h3>
+                        <input type="text" name="petImpossible" placeholder="ex) 심한 하우링, 물거나 공격적인아이, 마킹 심한아이 등" required>
+                    </div>
+                </div>
+                <div class="reg_payBox borderBottomLine">
+                    <div class="reg_ML_payBox">
+                        <div class="marginBotton20">
+                            <h3>ο 중소형 1박 이용금액</h3>
+                            <input type="text" name="petM_DayPay" placeholder="콤마없이 작성해주세요" required>
+                        </div>
+                        <div class="marginBotton20">
+                            <h3>ο 중소형 1시간 이용금액</h3>
+                            <input type="text" name="petM_TimePay" placeholder="콤마없이 작성해주세요" required>
+                        </div>
+                    </div>
+                    <div class="reg_ML_payBox">
+                        <div class="marginBotton20">
+                            <h3>ο 대형 1박 이용금액</h3>
+                            <input type="text" name="petL_DayPay" placeholder="콤마없이 작성해주세요" required>
+                        </div>
+                        <div class="marginBotton20">
+                            <h3>ο 대형 1시간 이용금액</h3>
+                            <input type="text" name="petL_TimePay" placeholder="콤마없이 작성해주세요" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="reg_bankBox borderBottomLine">
+                    <div class="marginBotton20">
+                        <h3>ο 은행이름</h3>
+                        <input type="text" name="petBank" placeholder="ex) 국민은행" required>
+                    </div>
+                    <div class="marginBotton20">
+                        <h3>ο 계좌번호</h3>
+                        <input type="text" name="petBankNo" placeholder="ex) 000000-00-000000" required>
+                    </div>
+                    <div class="marginBotton20">
+                        <h3>ο 예금주</h3>
+                        <input type="text" name="petBankName" placeholder="ex) 홍길동" required>
+                    </div>
+                </div>
+                <div class="reg_add_div">
+                    <div class="reg_tagBox">
+                        <h3>ο 입력하고 싶은 태그</h3>
+                        <div class="tag_buttons">
+                            <input type="text" name="tagContent" placeholder="ex) 실외배변"> <input type="button" class="tagBtnAdd" value="추가"><br>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>ο 경력교육</h3>
+                        <div class="career_buttons">
+                            <input type="text" name="careerContent" placeholder="ex) 반려견 양육경험 약10년"> <input type="button" class="careerBtnAdd" value="추가"><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="reg_schedule_div borderBottomLine">
+                    <h3>ο 예약 일정 등록</h3>
+                    <div class="scheduleBox">
+                        <input type="text" id="flatpickrDate" name="petMemberResDay" placeholder="※ 불가능한 날짜를 선택해주세요." readonly required>
+                        <h5 class="marginTop20">※ 불가능한 날짜를 선택해주세요.(다중선택가능)</h5>
+                    </div>
 
-            <div>
-                <input id="petRegistSubmit" class="submitButton" type="submit" value="저장">
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+        <div>
+            <button type="submit" class="btn">신청하기</button>
+            <button type="reset" class="btn">다시작성</button>
+        </div>
+    </form>
 </div>
 
 <!-- common footer -->

@@ -14,5 +14,6 @@ public interface AdminMapper {
 
     List<MemberDTO> selectMemberList(SelectCriteria selectCriteria);
 
-    int selectTotalCount(String searchCondition, String searchValue);
+
+    int selectTotalCount(String searchCondition, String searchValue, String rating);
 }

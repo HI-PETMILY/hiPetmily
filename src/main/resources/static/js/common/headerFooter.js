@@ -146,7 +146,7 @@ window.onload = function () {
 
         $headerBtn3_2.addEventListener("click", (event) => {
 
-            location.href = "/petSitter/regist";
+            location.href = "/petSitterNew/regist";
         });
 
         $headerBtn3_2.addEventListener("mouseover", (event) => {
@@ -180,7 +180,9 @@ window.onload = function () {
         $headerBtn4.addEventListener("click", (event) => {
 
 
-            location.href = "/board/faq/list";
+
+            location.href = "/board/service";    // 추후 연결
+
 
         });
 

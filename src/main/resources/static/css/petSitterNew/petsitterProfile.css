@@ -1,0 +1,768 @@
+@charset "UTF-8"; /* 인코딩 문자 깨짐 방지 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* common ----------------------------------- */
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* em -> 부모
+        rem -> 최상위 부모 */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body, p {
+    height: 100%;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;      /* 하이퍼 링크 밑줄 x */
+}
+
+span {
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    font-weight: 400;
+    border-spacing: 0;
+}
+
+/* container ----------------------------------- */
+
+.psp_container {
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 150px auto 0;
+    background-color: white;
+    position: relative;
+    color: #666;
+    letter-spacing: -0.5px;
+}
+
+.psp_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    width: calc(66.6% - 20px);
+    margin-right: 20px;
+}
+
+.psp_img {
+    width: 100%;
+    height: 670px;
+}
+
+.psp_img_main {
+    width: 100%;
+    height: 560px;
+}
+
+.psp_img_main img {
+    width: 100%;
+    height: 560px;
+    border-radius: 20px;
+}
+
+.psp_img_sub {
+    width: 100%;
+    height: 108px;
+    display: flex;
+    flex-direction: row;
+    /*justify-content: center;*/
+    align-items: center;
+    padding: 5px 0 7px;
+    text-align: center;
+}
+
+.psp_img_subImg {
+    height: 85px;
+    display: block;
+    float: left;
+    width: calc((100% - 61px)/6);
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.psp_img_subImg img{
+    width: 100%;
+    height: 85px;
+    border-radius: 20px;
+}
+
+.psp_profile {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 15px auto;
+}
+
+.psp_profile_box {
+    width: 15%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.psp_profile_img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 10px;
+    padding: 2px;
+    margin-top: 15px;
+    border: 1px solid #D7B59C;
+}
+
+.psp_profile_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.psp_profile_star {
+    width: 90px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.psp_profile_star img {
+    width: 15px;
+    height: 15px;
+}
+
+.psp_item_content {
+    width: 85%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+}
+
+.psp_item_title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.psp_item_box {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.psp_profile_name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.psp_profile_address {
+    font-size: 12px;
+    line-height: 18px;
+    height: 18px;
+    display: inline-block;
+    margin-left: 12px;
+    margin-top: 8px;
+}
+
+.psp_profile_tag {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-top: 10px !important;
+}
+
+.tagBox {
+    display: inline-block;
+    background: #81BDF1;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.psp_item_text {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.psp_item_text2 {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.psp_item_text2 li {
+    list-style-type: disc;
+}
+
+.psp_env_box {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.psp_env_item {
+    width: 48%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    font-size: 14px;
+    line-height: 46px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-left: 13px;
+}
+
+.env_item_th {
+    padding-left: 50px;
+    width: calc((100% - 14px)/2);
+    margin-right: 12px;
+    position: relative;
+    height: 46px;
+}
+
+.env_item_td {
+    font-weight: 500;
+}
+
+.env_item_bc1 {
+    background-color: #e1f0fd;
+}
+
+.env_item_bc2 {
+    background-color: #f4faff;
+}
+
+.th_img1{
+    background: url(/static_Image/petSitter/env_home.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img2{
+    background: url(/static_Image/petSitter/env_count.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img3{
+    background: url(/static_Image/petSitter/env_baby.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img4{
+    background: url(/static_Image/petSitter/env_fence.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img5{
+    background: url(/static_Image/petSitter/env_dog.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.th_img6{
+    background: url(/static_Image/petSitter/env_smoke.png) no-repeat 16px center;
+    background-size: 20px;
+}
+
+.psp_item {
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dashed #e3e3e3;
+    padding-bottom: 20px;
+    margin: 15px auto 0px;
+}
+
+.psp_table tr th {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #e1f0fd;
+    padding: 8px 8px;
+    border-radius: 5px;
+}
+
+.psp_table tr td {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    background: #f4faff;
+    padding: 8px 6px;
+    border-radius: 5px;
+}
+
+.psp_pay_box {
+    width: 100%;
+}
+
+.psp_dogDetail {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px dashed #e3e3e3;
+    padding-bottom: 20px;
+    margin: 15px auto 0px;
+}
+
+.psp_dogDetail_img {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.psp_dogDetail_text1 {
+    width: 370px;
+    margin-right: 10px;
+}
+
+.psp_dogDetail_text2 {
+    width: 180px;
+}
+
+.psp_dogDetail_title {
+    font-weight: 600;
+    line-height: 2;
+}
+
+.psp_dogDetail_con ul li {
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_dogDetail_con img {
+    width: 11px;
+    height: 11px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.psp_rule_box {
+    width: 100%;
+}
+
+.psp_mypet {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_mypet_img {
+    width: 100px;
+    height: 70px;
+    margin-right: 10px;
+}
+
+.psp_mypet_img img {
+    width: 100px;
+    height: 70px;
+    border-radius: 15px;
+}
+
+.psp_mypet_name {
+    font-weight: 600;
+    line-height: 2;
+}
+
+.psp_mypet_btn {
+    color: #81BDF1;
+}
+
+.psp_review_star {
+    width: 90px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_review_star img {
+    width: 15px;
+    height: 15px;
+}
+
+.psp_review {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+}
+
+.psp_review_box1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    margin-right: 20px;
+}
+
+.psp_review_nickname {
+    width: 50px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.psp_review_img {
+    width: 70px;
+    height: 70px;
+}
+
+.psp_review_box2 {
+    width: 623px;
+}
+
+.psp_review_text {
+    width: 100%;
+    height: 100%;
+}
+
+.psp_bottom_mg {
+    margin-bottom: 30px;
+}
+
+.psp_item_last {
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin: 15px auto 100px;
+}
+
+.psp_right {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.psp_res {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto 15px;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
+}
+
+.psp_res_item1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+}
+
+.psp_res_titleBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.psp_res_smTitle {
+    font-size: 13px;
+    line-height: 40px;
+    margin-left: 10px;
+}
+
+.psp_res_inputDate {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.psp_res_start {
+    width: 100px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+}
+
+.psp_res_start input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+}
+
+.psp_res_end {
+    width: 100px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+}
+
+.psp_res_end input {
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+}
+
+.psp_res_mid {
+    width: 30px;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 0px 10px;
+}
+
+.resTime_selectBox {
+    width: 100px;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.res_startTime {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+}
+
+.res_endTime {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+}
+
+.psp_res_item2 {
+    width: 100%;
+}
+
+.psp_res_pay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+}
+
+.res_pay_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.pay_left_text {
+    font-size: 16px;
+}
+
+.pay_left_text span {
+    font-weight: 600;
+    color: #81BDF1;
+}
+
+.res_pay_right {
+    width: 100px;
+    height: 25px;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+.psp_res_item3 {
+    width: 100%;
+}
+
+.psp_res_dogSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+}
+
+.dogSelect_title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.dogSelect_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.dogSelect_box_title {
+    margin-right: 30px;
+}
+
+.dog_selectBox {
+    width: 120px;
+    font-family: 'Noto Sans KR','Roboto', sans-serif;
+    color: #E3A802;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+    border: 1px solid #e3e3e3;
+}
+
+.psp_res_calBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e3e3e3;
+    margin: 0px auto 15px;
+    line-height: 2;
+}
+
+.pay_total {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.psp_res_item4 {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    margin: 10px 25px;
+    line-height: 1.5;
+}
+
+.psp_res_item4 ul li {
+    list-style-type: disc;
+}
+
+.psp_res_btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.req_btn {
+    width: 100px;
+    height: 25px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+.qna_btn {
+    width: 100px;
+    height: 25px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.psp_calendar {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.psp_calendar_title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.psp_calendar_box {
+    width: 100%;
+}
+
+.psp_map {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgb(223, 227, 234);
+    box-shadow: rgba(0, 0, 0, 0.07) 1px 3px 7px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.psp_map_text_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 35px auto;
+}
+
+.map_title1 {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.2px;
+    line-height: 25px;
+}
+
+.map_title2 {
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    line-height: 20px;
+    color: rgb(119, 119, 119);
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.psp_map_box {
+    width: 100%;
+    height: 100%;
+}
+
+.kakaoMap {
+    width: 355px;
+    height: 350px;
+}
+
+
+
