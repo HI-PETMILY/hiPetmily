@@ -44,6 +44,10 @@ public class PaymentService {
         return reservationListAndPaging;
     }
 
+    public List<ReservationDTO> selectDetailReservation(MemberDTO loginMember, int resCode) {
+        return paymentMapper.selectDeatilReservation(loginMember, resCode);
+    }
+
 
 
 

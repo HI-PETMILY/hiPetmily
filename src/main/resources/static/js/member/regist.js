@@ -73,7 +73,7 @@
     const inputEngKor = document.getElementById('memberName');
     inputEngKor.addEventListener('input', function (event) {
         const inputValue4 = event.target.value;
-        event.target.value = inputValue4.replace(/[^A-Za-z가-힣\s]/g, '');
+        event.target.value = inputValue4.replace(/[^A-Za-z가-힣ㄱ-ㅎ\s]/g, '');
     });
 
 
@@ -124,7 +124,7 @@
     const requiredCheckboxes = document.querySelectorAll(".required");
     const submitButton = document.querySelector(".regist_button input[type='submit']");
 
-// 필수 약관 체크박스들 상태 체크
+    // 필수 약관 체크박스들 상태 체크
     function updateSubmitButtonState() {
         var allRequiredChecked = true;
 
