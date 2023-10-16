@@ -24,5 +24,5 @@ public interface ReviewMapper {
 
     int selectTotalCount(MemberDTO loginMember);
 
-    ReservationInfoDTO selectReserveInfo(MemberDTO loginMember);
+    /*ReservationHistoryDTO reserveInfo(MemberDTO loginMember);*/
 }

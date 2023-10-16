@@ -62,8 +62,8 @@ public class ReviewController {
 
         log.info("reviewList page : {}", page);
 
-        ReservationInfoDTO reservInfo = reviewService.selectReserveInfo(loginMember);
-        model.addAttribute("reservInfo", reservInfo);
+        /*ReservationHistoryDTO reserveInfo = reviewService.selectReserveInfo(loginMember);
+        model.addAttribute("reserveInfo", reserveInfo);*/
 
         Map<String, Object> reviewListAndPaging = reviewService.selectReviewList(page, loginMember);
         model.addAttribute("paging", reviewListAndPaging.get("paging"));

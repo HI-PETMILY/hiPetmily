@@ -33,6 +33,5 @@ public class NewPetSitterDTO {
     private String petBank;
     private String petBankNo;
     private String petBankName;
-
 }
 

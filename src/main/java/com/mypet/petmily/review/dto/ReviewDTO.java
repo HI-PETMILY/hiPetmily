@@ -1,6 +1,7 @@
 package com.mypet.petmily.review.dto;
 
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,5 +23,6 @@ public class ReviewDTO {
     private MemberDTO member;                      // 회원
 //    private String petMemberNo;             // 펫시터
     private String resCode;     // 예약
+//    private ReservationInfoDTO resCode;
     //private List<FileDTO> attachmentList; // 첨부파일(사진)
 }

@@ -63,7 +63,7 @@ public class ReviewService {
         return reviewListAndPaging;
     }
 
-    public ReservationInfoDTO selectReserveInfo(MemberDTO loginMember) {
-        return reviewMapper.selectReserveInfo(loginMember);
-    }
+    /*public ReservationHistoryDTO selectReserveInfo(MemberDTO loginMember) {
+        return reviewMapper.reserveInfo(loginMember);
+    }*/
 }
