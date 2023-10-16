@@ -39,10 +39,34 @@
 <div class="psp_container">
     <!-- left -->
     <div class="psp_left">
-
         <div class="psp_img">
-            <div class="psp_img_main"></div>
-            <ul class="psp_img_sub"></ul>
+            <th:block th:if="${ !sitterImgList.isEmpty() }">
+            <div class="psp_img_main" th:if="${ sitterImgList.get(0).getFile_T_PathName() != null }">
+                <img id='mainImg' th:src="${ sitterImgList.get(0).getFile_T_PathName() }">
+            </div>
+            <ul class="psp_img_sub">
+                <li class='psp_img_subImg' th:if="${ sitterImgList.size() > 1 }"
+                                            th:each="index : ${ #numbers.sequence(0, sitterImgList.size() - 1) }">
+                    <img th:id="'subImg_' + ${index}" th:src="${ sitterImgList.get(index).getFilePathName() + sitterImgList.get(index).getFileSaveName() }"
+                        th:onclick="subImgClickEvent([[${ sitterImgList.get(index).getFilePathName() + sitterImgList.get(index).getFileSaveName() }]])"
+                        th:onmouseover="subImgMouseoverEvent([[${index}]])"
+                        th:onmouseout="subImgMouseoutEvent([[${index}]])">
+                </li>
+            </ul>
+            </th:block>
+            <th:block th:if="${ sitterImgList.isEmpty() }">
+                <div class="psp_img_main">
+                    <img id='mainImg' src="/static_Image/petSitter/zoomAdd.png">
+                </div>
+                <ul class="psp_img_sub">
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                </ul>
+            </th:block>
         </div>
 
         <div class="psp_profile">
@@ -281,10 +305,10 @@
                     <div class="psp_res_pay">
                         <div class="res_pay_left">
                             <div class="pay_left_text">24H 케어 /
-                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') + ' 원' }">35,000원</span>
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_DayPay, 3, 'COMMA') + ' 원' }"></span>
                             </div>
                             <div class="pay_left_text">1H 케어 /
-                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') + ' 원' }">2,500원</span>
+                                <span th:text="${ '￦' + #numbers.formatInteger(petSitterInfo.petM_TimePay, 3, 'COMMA') + ' 원' }"></span>
                             </div>
                         </div>
                         <div class="res_pay_right">

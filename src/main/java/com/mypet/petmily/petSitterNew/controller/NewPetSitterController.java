@@ -33,6 +33,7 @@ public class NewPetSitterController {
         log.info("--afterPetSitterDTO : {}", petSitter);
 
         model.addAttribute("petSitterInfo", petSitter );
+        model.addAttribute("sitterImgList", petSitter.getSitterImgList());
         model.addAttribute("careerList", petSitter.getCareerList());
         model.addAttribute("petTagList", petSitter.getPetTagList());
         model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
@@ -96,6 +97,7 @@ public class NewPetSitterController {
             // 이미지 첨부파일
             petSitter.setAttachImage(attachImage);
 
+            // 통합 등록
             newPetSitterService.petSitterRegist(petSitter);
 
             return "redirect:/petSitterNew/sitterRegistSuccess";

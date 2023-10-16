@@ -50,6 +50,7 @@ public class NewPetSitterDTO {
     /* 파일업로드 */
     private List<MultipartFile> attachImage;
     private FileUploadDTO regFileUpload;
+    private List<FileUploadDTO> sitterImgList;
 
 }
 

@@ -43,15 +43,18 @@ public class NewPetSitterService {
     public NewPetSitterDTO petSitterProfile(NewPetSitterDTO petSitter) {
 
         NewPetSitterDTO petSitterInfo = newPetSitterMapper.selectAllInfo(petSitter);
+        List<FileUploadDTO> fileUpload = fileUploadMapper.selectSitterImg(petSitter);
         List<CareerDTO> careerList = newPetSitterMapper.selectAllCareer(petSitter);
         List<PetTagDTO> petTagList = newPetSitterMapper.selectAllTag(petSitter);
         PetJsonMemberDTO petJsonMemberInfo = newPetSitterMapper.selectMemberInfo(petSitter);
 
         log.info("--petSitterInfo : {}", petSitterInfo);
+        log.info("--fileUpload : {}", fileUpload);
         log.info("--careerList : {}", careerList);
         log.info("--petTagList : {}", petTagList);
         log.info("--petJsonMemberInfo : {}", petJsonMemberInfo);
 
+        petSitterInfo.setSitterImgList(fileUpload);
         petSitterInfo.setCareerList(careerList);
         petSitterInfo.setPetTagList(petTagList);
         petSitterInfo.setPetJsonMemberInfo(petJsonMemberInfo);
@@ -197,9 +200,6 @@ public class NewPetSitterService {
         /* 업로드 파일에 대한 정보를 담을 리스트 */
         List<FileUploadDTO> fileUploadList = new ArrayList<>();
 
-
-        // 여기 만약에 조회할때 기본 이미지 보여주는거 처리 못하면 수정해야함 if 다음으로
-        // 강제로 이미지 넣어주는 로직 필요
         try {
             for (int i = 0; i < attachImageList.size(); i++) {
                 /* 첨부파일이 실제로 존재하는 경우에만 로직 수행 */
@@ -209,7 +209,7 @@ public class NewPetSitterService {
                     log.info("--originalFileName : {}", originalFileName);
 
                     String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-                    String savedFileName = UUID.randomUUID() + ext;
+                    String savedFileName = i + "_img_" + UUID.randomUUID() + ext;
                     log.info("--savedFileName : {}", savedFileName);
 
                     /* 서버의 설정 디렉토리에 파일 저장하기
@@ -219,11 +219,11 @@ public class NewPetSitterService {
                     /* DB에 저장할 파일의 정보 처리 */
                     FileUploadDTO fileInfo = new FileUploadDTO();
 
-                    fileInfo.setFileOriName(originalFileName);     // 오지리날 파일명 저장
-                    fileInfo.setFileExtName(ext);               // 확장명 저장
-                    fileInfo.setFileSaveName(savedFileName);    // 저장용 파일명 저장
-                    fileInfo.setFileSitterNo(loginMemberNo);    // 이미지 소유자 번호 저장
-                    fileInfo.setFileMemberNo(loginMemberNo);    // 이미지 소유자 번호 저장
+                    fileInfo.setFileOriName(originalFileName);      // 오지리날 파일명 저장
+                    fileInfo.setFileExtName(ext);                   // 확장명 저장
+                    fileInfo.setFileSaveName(savedFileName);        // 저장용 파일명 저장
+                    fileInfo.setFileSitterNo(loginMemberNo);        // 이미지 소유자 번호 저장
+                    fileInfo.setFileMemberNo(loginMemberNo);        // 이미지 소유자 번호 저장
 
                     // 경로에 맨뒤쪽 / 필수로 넣어야 한다.
                     // 요청할때 필요한 경로를 입력해주는 것.
