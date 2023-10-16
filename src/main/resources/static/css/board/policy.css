@@ -20,11 +20,12 @@ a {
 
 .useful_wrap {
     width: 1000px;
-    margin: 100px auto;
+    margin: 140px auto;
 }
 
 .useful_title {
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .useful_title strong {
@@ -255,7 +256,7 @@ body {
     min-height: var(--side-bar-height);
     /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
     /*margin-top: calc((100vh - var(--side-bar-height)) / 2);    !* 사이드바 위와 아래의 마진을 동일하게 지정 *!*/
-    margin-top: 74px;
+    margin-top: 140px;
 }
 
 /* 모든 메뉴의 a에 속성값 부여 */

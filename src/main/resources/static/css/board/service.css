@@ -30,6 +30,7 @@ a {
 }
 
 .useful_title {
+    margin-top: 40px;
 }
 
 .useful_title strong {
@@ -246,6 +247,7 @@ body {
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
+
     --side-bar-width: 250px;
     --side-bar-height: 95vh;
 
@@ -358,6 +360,7 @@ body {
     border-radius: 20px;
     transform: translate(calc(var(--side-bar-width) * -0.8), 0);  /* X축 이동, Y축 고정 */
     transition: .6s;
+    margin-top: 40px;
 }
 
 /* 마우스 인식 시 원래의 위치로 이동 */

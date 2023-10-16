@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="">
 <head>
     <meta charset="UTF-8">
-    <title>list</title>
+    <title>공지사항</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/favicon.ico">
-
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="/static_Image/common/main/favicon.ico">
 	<link rel="stylesheet" href="/css/common/headerFooter.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <link rel="stylesheet" href="/css/board/qna.css"/>-->
@@ -63,8 +62,8 @@
 			<div th:utext="${pagingHtml}"></div>
 		</div>
 		<div class="bt_wrap">
-			<a href="/board/notice/write" class="on">등록</a>
-			<!--<a href="#">수정</a>-->
+			<a href="/board/notice/write" class="on" th:if="${memberRole} == '[ROLE_ADMIN]'">등록</a>
+			<!--<a href="#">수정, 등록</a>-->
 		</div>
 	</div>
 	<div th:replace="common/footer.html"></div>

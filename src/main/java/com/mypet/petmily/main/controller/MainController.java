@@ -92,9 +92,10 @@ MainController {
     }
 
     // 자주하는질문
+/*
     @GetMapping("/board/faq/list")
     public String footerFaq() {
         return "board/faq/list";
     }
-
+*/
 }
