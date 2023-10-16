@@ -71,6 +71,36 @@
         WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!-- 반려동물 프로필 이미지 등록 -->
+    <insert id="insertAttachment">
+        INSERT INTO TBL_FILE(
+        FILE_NO
+        ,FILE_ORI_NAME
+        ,FILE_SAVE_NAME
+        ,FILE_EXT_NAME
+        ,FILE_PATH_NAME
+        ,FILE_T_PATH_NAME
+        ,FILE_TYPE
+        ,PET_NO
+        ,BOARD_NO
+        ,REV_NO
+        ,MEMBER_NO
+        ,PET_MEMBER_NO
+        ) VALUES (
+        SEQ_TBL_FILE_NO.NEXTVAL
+        , #{ fileOriName }
+        , #{ fileSaveName }
+        , #{ fileExtName }
+        , #{ filePathName }
+        , #{ file_T_PathName, jdbcType=VARCHAR }
+        , #{ fileType }
+        , #{ filePetNo }
+        , #{ fileBoardNo }
+        , #{ fileRevNo }
+        , #{ fileMemberNo }
+        , #{ fileSitterNo }
+        )
+    </insert>
 
 
 </mapper>

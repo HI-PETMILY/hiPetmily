@@ -1,6 +1,9 @@
 package com.mypet.petmily.member.dto;
 
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import lombok.*;
+
+import java.util.List;
 
 @Getter @Setter @ToString @Data
 public class PetDTO {
@@ -29,5 +32,6 @@ public class PetDTO {
     private String hosAddress;      // 병원 간략 주소
     private String registStatus;    // 반려동물 등록 상태(Y, N)
     private MemberDTO member;       // 견주의 회원 코드
+    private List<FileUploadDTO> petImgList;
 
 }

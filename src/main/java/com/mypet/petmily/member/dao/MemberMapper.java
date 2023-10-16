@@ -1,6 +1,7 @@
 package com.mypet.petmily.member.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
@@ -48,4 +49,5 @@ public interface MemberMapper {
     void petProfileUpdate(PetDTO pet);
 
     int deletePetProfile(int petCode);
+
 }

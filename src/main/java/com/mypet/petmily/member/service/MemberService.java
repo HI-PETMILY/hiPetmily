@@ -3,6 +3,8 @@ package com.mypet.petmily.member.service;
 import com.mypet.petmily.common.exception.member.*;
 import com.mypet.petmily.common.paging.Pagination;
 import com.mypet.petmily.common.paging.SelectCriteria;
+import com.mypet.petmily.fileUpload.dao.FileUploadMapper;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dao.MemberMapper;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
@@ -23,10 +25,12 @@ public class MemberService {
 
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
+    private final FileUploadMapper fileUploadMapper;
 
-    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
+    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder, FileUploadMapper fileUploadMapper) {
         this.memberMapper = memberMapper;
         this.passwordEncoder = passwordEncoder;
+        this.fileUploadMapper = fileUploadMapper;
     }
 
     /* 회원 가입 */
@@ -114,13 +118,15 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 등록 */
-    public void registPetProfile(PetDTO pet) throws PetProfileException {
+    public void registPetProfile(PetDTO pet){
 
         pet.setRegistStatus("Y");
         memberMapper.insertPetProfile(pet);      // 반려동물 테이블에 데이터 저장
 
+        for(FileUploadDTO fileUpload : pet.getPetImgList()){
+            fileUploadMapper.insertAttachment(fileUpload);
+        }
 
-        //memberMapper.insertAttachment(review.getAttachment());
     }
 
     /* 반려동물 프로필 리스트 조회 */
