@@ -56,15 +56,15 @@
             </th:block>
             <th:block th:if="${ sitterImgList.isEmpty() }">
                 <div class="psp_img_main">
-                    <img id='mainImg' src="/static_Image/petSitter/zoomAdd.png">
+                    <img src="/static_Image/petSitter/zoomAdd.png">
                 </div>
                 <ul class="psp_img_sub">
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
-                    <li class='psp_img_subImg'><img id='subImg' src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
+                    <li class='psp_img_subImg'><img src="/static_Image/petSitter/zoomAdd.png"></li>
                 </ul>
             </th:block>
         </div>
@@ -227,14 +227,16 @@
 
         <div class="psp_item">
             <div class="psp_item_title">펫시터 반려동물소개</div>
-            <div class="psp_mypet">
+            <div class="psp_mypet" th:each="item : ${ myPetList }">
                 <div class="psp_mypet_img">
                     <img src="/static_Image/petSitter/petsitterPet.png" alt="반려견">
                 </div>
                 <div>
-                    <div class="psp_mypet_name">대한 / 민국</div>
-                    <div>리트리버 / 남아,남아 / 4살,3살 / 32kg, 30kg</div>
-                    <div class="psp_mypet_btn">상세보기</div>
+                    <div class="psp_mypet_name" th:text="${ item.getPetName() }"></div>
+                    <div th:text="${ '견종 : ' + item.petBreed + ' / 성별 : ' + item.petGender + ' / 나이 : ' + item.petAge + '세 / 몸무게 : ' + item.petWeight + 'kg' }"></div>
+                    <div th:id="'myPetBtn_' + ${item.petCode}" class="psp_mypet_btn" th:onclick="|location.href='/member/pet-profile-view?petCode=${item.petCode}'|"
+                                                th:onmouseover="mypetMouseoverEvent([[${ item.petCode }]])"
+                                                th:onmouseout="mypetMouseoutEvent([[${ item.petCode }]])">상세보기</div>
                 </div>
             </div>
         </div>
@@ -330,6 +332,7 @@
                         <div id="pay_vat">부가세 0원</div>
                         <div id="pay_total" class="pay_total">총 합계 0원</div>
 
+                        <input type="hidden" id="resSitterNo" name="resSitterNo" required>
                         <input type="hidden" id="startDateTime" name="startDateTime" required>
                         <input type="hidden" id="endDateTime" name="endDateTime" required>
                         <input type="hidden" id="resDayCount" name="resDayCount" required>

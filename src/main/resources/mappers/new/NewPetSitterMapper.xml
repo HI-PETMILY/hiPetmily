@@ -91,6 +91,20 @@
     </resultMap>
     <!-- 예약 resultMap 관련 -->
 
+    <!-- pet resultMap 관련 -->
+    <resultMap id="petResultMap" type="com.mypet.petmily.member.dto.PetDTO">
+        <id property="petCode" column="PET_CODE"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petAge" column="PET_AGE"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="neutralYn" column="NEUTRAL_YN"/>
+        <result property="petBreed" column="PET_BREED"/>
+        <result property="petWeight" column="PET_WEIGHT"/>
+        <result property="petRegist" column="PET_REGIST"/>
+        <result property="registStatus" column="REGIST_STATUS"/>
+    </resultMap>
+    <!-- pet resultMap 관련 -->
+
 
     <!-- 펫시터 전체 정보 -->
     <select id="selectAllInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterResultMap">
@@ -303,6 +317,38 @@
         INSERT INTO TBL_SITTER_SCHEDULE(PET_MEMBER_RES_NO,PET_MEMBER_REG_DAY,PET_MEMBER_STATUS,PET_MEMBER_NO)
         VALUES(SEQ_TBL_SITTER_SCHEDULE_NO.NEXTVAL, #{ petMemberResDay }, #{ petMemberStatus }, #{ petMemberNo })
     </insert>
+
+    <!-- 펫시터 반려견 조회 -->
+    <select id="selectMyPet" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petResultMap">
+        SELECT
+            PET_CODE
+            , PET_NAME
+            , PET_AGE
+            , PET_GENDER
+            , NEUTRAL_YN
+            , PET_BREED
+            , PET_WEIGHT
+            , PET_REGIST
+            , P_SOCIAL
+            , A_SOCIAL
+            , BARK_LEVEL
+            , SEP_ANXIETY
+            , PET_DISEASE
+            , PET_DISEASE_EXP
+            , PET_ALLERGY
+            , PET_ALLERGY_EXP
+            , POTTY_TRAIN
+            , MARKING_IN
+            , VACCIN
+            , HOS_NAME
+            , HOS_PHONE
+            , HOS_ADDRESS
+            , REGIST_STATUS
+            , MEMBER_NO
+        FROM TBL_MYPET
+        WHERE MEMBER_NO = #{ petMemberNo }
+        AND REGIST_STATUS = 'Y'
+    </select>
 
 
 </mapper>

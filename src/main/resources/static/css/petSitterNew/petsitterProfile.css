@@ -375,6 +375,7 @@ table {
     width: 720px;
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 .psp_mypet_img {
@@ -396,6 +397,9 @@ table {
 
 .psp_mypet_btn {
     color: #81BDF1;
+    font-weight: 600;
+    width: 60px;
+    cursor: pointer;
 }
 
 .psp_review_star {

@@ -1,5 +1,6 @@
 package com.mypet.petmily.petSitterNew.dao;
 
+import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.petSitterNew.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,5 +21,6 @@ public interface NewPetSitterMapper {
     void insertSchedule(SitterScheduleDTO sitterSchedule);
     int insetInfo(NewPetSitterDTO petSitter);
     String petSitterCheck(NewPetSitterDTO petSitter);
+    List<PetDTO> selectMyPet(NewPetSitterDTO petSitter);
 
 }

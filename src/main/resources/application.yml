@@ -1,5 +1,5 @@
-server:
-  port: 8081
+#server:
+#  port: 8081
 
 ## DB config
 spring:
@@ -8,8 +8,6 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
-
-
 
 
   ## file upload config

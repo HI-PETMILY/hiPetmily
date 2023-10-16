@@ -37,6 +37,7 @@ public class NewPetSitterController {
         model.addAttribute("careerList", petSitter.getCareerList());
         model.addAttribute("petTagList", petSitter.getPetTagList());
         model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
+        model.addAttribute("myPetList", petSitter.getMyPetList());
 
         return "petSitterNew/petSitterProfile";
     }
@@ -112,9 +113,11 @@ public class NewPetSitterController {
 
         NewPetSitterDTO petSitter = new NewPetSitterDTO();
 
-        // 테스트 회원정보랑 펫시터 정보 받기전에 임시코드
-        /* ---- 추후에 펫시터 넘버 받아와야함 */
-        petSitter.setPetMemberNo(4);
+        // 여기부분 if문 걸어서 로그인 번호 없으면 로그인 먼저 하라고 예외처리
+        // memberNo 0일 경우 어쩌고 리다이렉트 주소를 로그인창으로
+
+        // 예약을 받는 펫시터 번호
+        petSitter.setPetMemberNo(reservation.getResSitterNo());
 
         reservation.setResMember(member);
         reservation.setResPetSitter(petSitter);

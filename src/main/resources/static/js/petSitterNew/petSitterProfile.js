@@ -135,6 +135,11 @@ function getReservation() {
             let resStartDate = $("#startDate").val().concat(' ', startTime.slice(0,2) + ":" + startTime.slice(2,4) );
             let resEndDate = $("#endDate").val().concat(' ', endTime.slice(0,2) + ":" + endTime.slice(2,4) );
 
+            // url에 petMemberNo 를 받아옴
+            const urlParams = new URL(location.href).searchParams;
+            const urlPetMemberNo = urlParams.get('petMemberNo');
+
+            $("#resSitterNo").val(urlPetMemberNo);
             $("#startDateTime").val(resStartDate);
             $("#endDateTime").val(resEndDate);
             $("#resDayCount").val(dayCount);
@@ -149,17 +154,29 @@ function getReservation() {
 
 }
 
-
+// 이미지 마우스 클릭 이벤트
 function subImgClickEvent( path ) {
     $("#mainImg").attr("src", path);
 }
 
+// 이미지 마우스오버 이벤트
 function subImgMouseoverEvent( index ) {
     $("#subImg_"+ index).css({ "transform" : "scale(1.05)", "zIndex" : "1", "transition" : "all 0.1s" });
 }
 
+// 이미지 마우스아웃 이벤트
 function subImgMouseoutEvent( index ) {
     $("#subImg_"+ index).css({ "transform" : "scale(1)", "zIndex" : "0", "transition" : "all 0.1s" });
+}
+
+// 반려견 마우스오버 이벤트
+function mypetMouseoverEvent( index ) {
+    $("#myPetBtn_"+ index).css({ "transform" : "scale(1.05)", "zIndex" : "1", "transition" : "all 0.1s" });
+}
+
+// 반려견 마우스아웃 이벤트
+function mypetMouseoutEvent( index ) {
+    $("#myPetBtn_"+ index).css({ "transform" : "scale(1)", "zIndex" : "0", "transition" : "all 0.1s" });
 }
 
 

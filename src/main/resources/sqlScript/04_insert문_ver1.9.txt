@@ -105,9 +105,9 @@ commit;
 
  -- 반려견 테이블 정보 추가
 INSERT INTO TBL_MYPET(PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED,PET_WEIGHT,PET_REGIST,P_SOCIAL,A_SOCIAL,BARK_LEVEL,SEP_ANXIETY,PET_DISEASE,PET_DISEASE_EXP,PET_ALLERGY,PET_ALLERGY_EXP,POTTY_TRAIN,MARKING_IN,VACCIN,HOS_NAME,HOS_PHONE,HOS_ADDRESS,MEMBER_NO,REGIST_STATUS)
-    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'코끼리','1','여','예','코끼리',100,'내장형','보통이에요','보통이에요','보통','예','예','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병','참조은동물병원','02-0000-0000','서울시 동작구',4,'Y');
+    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'토리','1','여','예','푸들',100,'내장형','보통이에요','보통이에요','보통','예','예','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병','참조은동물병원','02-0000-0000','서울시 동작구',4,'Y');
 INSERT INTO TBL_MYPET(PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED,PET_WEIGHT,PET_REGIST,P_SOCIAL,A_SOCIAL,BARK_LEVEL,SEP_ANXIETY,PET_DISEASE,PET_DISEASE_EXP,PET_ALLERGY,PET_ALLERGY_EXP,POTTY_TRAIN,MARKING_IN,VACCIN,HOS_NAME,HOS_PHONE,HOS_ADDRESS,MEMBER_NO,REGIST_STATUS)
-    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'숭냥','3','남','예','골댕',25,'외장형','좋아요','수줍어해요','아니오','아니오','아니오','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병,기관지염(연 1회,심장사상충(월 1회)','참안조은병원','031-000-0000','수원시 영통구',4,'Y');
+    VALUES(SEQ_TBL_MYPET_NO.NEXTVAL,'숭냥','3','남','예','골든리트리버',25,'외장형','좋아요','수줍어해요','아니오','아니오','아니오','예','예','예','예','예','혼합예방주사(DHPPL),코로나장염(연 1회),관견병,기관지염(연 1회,심장사상충(월 1회)','참안조은병원','031-000-0000','수원시 영통구',4,'Y');
 
 commit;
 
