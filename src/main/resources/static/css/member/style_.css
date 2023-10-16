@@ -148,7 +148,7 @@ header {
     border-bottom: 1px dashed #bebebe;
 }
 
-input[type=text]{
+input[type=text], input[type=number]{
     border: solid 1px #bfbfbf;
     border-radius: 5px;
     font-size: 12px;
@@ -386,8 +386,55 @@ li {
 table.reserve-table tr, table.reviewList-table tr{
     border-bottom: solid 1px #cecece;
     display: flex;
-    justify-content: space-around;
+
 }
+
+.myPageMain-container {
+    margin: 15% 0 10% 0;
+}
+
+.myPageMainWrapper {
+    max-width: 1100px;
+}
+
+#paging {
+    margin-top: -10vh;
+    margin-bottom: 15vh;
+}
+
+.col {
+    margin: 2% 0 2% 0;
+}
+
+.col_m {
+    margin-top: -15px;
+    margin-bottom: 10px;
+    margin-left: 4.5%;
+    margin-right: 7%
+}
+
+.col{
+    margin-left: 5.5%;
+    margin-right: 8%
+
+}
+
+#col_m4 {
+    padding-left: 3.1%;
+}
+
+#col_m3 {
+    padding-left: 0.9%
+}
+
+#col_m5 {
+    padding-left: 0.9%
+}
+
+
+
+
+
 
 /*==================================================*/
 /* 진행중인 예약 조회 화면 */

@@ -190,7 +190,7 @@
 
 
 
-<!--    /* 회원 정보 수정 */-->
+    <!-- 회원 정보 수정 -->
     <update id="updateMember">
         UPDATE
             TBL_MEMBER
@@ -231,13 +231,6 @@
           FROM TBL_MYPET
          WHERE MEMBER_NO = #{memberNo}
            AND ROWNUM = 1
-    </select>
-
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
-        SELECT
-               COUNT(*)
-          FROM TBL_RESERVATION
-        <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
     </select>
 
     <!-- 반려동물 프로필 등록 -->

@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -39,20 +38,19 @@ public class SpringSecurityConfiguration {
                 .authorizeHttpRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 /* hasRole 에 전달하는 값은 "ROLE_"가 자동으로 앞에 붙는다. */
-//                .antMatchers("/member/mypage").hasRole("MEMBER")
-//                .antMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
-//                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 /* 위에 서술 된 패턴 외의 요청은 인증 되지 않은 사용자도 요청 허가 */
                 .anyRequest().permitAll()
                 .and()
                 /* 로그인 설정 */
-//                .formLogin()
-//                .loginPage("/member/login")
-//                .defaultSuccessUrl("/")
-//                .failureForwardUrl("/member/loginfail")
-//                .usernameParameter("memberId")
-//                .passwordParameter("memberPwd")
-//                .and()
+                .formLogin()
+                .loginPage("/member/login")
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/member/loginfail")
+                .usernameParameter("memberId")
+                .passwordParameter("memberPwd")
+                .and()
                 /* 로그아웃 설정 */
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))

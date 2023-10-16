@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <title>HI-PETMILY</title>
     <meta charset="UTF-8"/>
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/member/event.js"></script>
-    <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
     <link href="/css/member/style_.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
           rel="stylesheet">
@@ -90,7 +90,7 @@
                     <div class="regist-pet-age  dash-line">
                         <h4>나이</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petAge" onfocus="this.placeholder=''" onblur="this.placeholder=''"
+                            <input type="number" name="petAge" onfocus="this.placeholder=''" onblur="this.placeholder=''"
                                    class="registPet" required>세
                         </div>
                     </div>
@@ -98,8 +98,8 @@
 
                     <div class="regist-pet-gender  dash-line">
                         <h4>성별</h4>
-                        <label><input type="radio" name="petGender" value="F" checked>여아&nbsp;&nbsp; </label>
-                        <label><input type="radio" name="petGender" value="M">남아</label>
+                        <label><input type="radio" name="petGender" value="여아" checked>여아&nbsp;&nbsp; </label>
+                        <label><input type="radio" name="petGender" value="남아">남아</label>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                     <div class="regist-pet-weight  dash-line">
                         <h4>몸무게</h4>
                         <div class="signIn inputForm">
-                            <input type="text" name="petWeight" onfocus="this.placeholder=''"
+                            <input type="number" name="petWeight" onfocus="this.placeholder=''"
                                    onblur="this.placeholder=''" class="registPet" required>kg
                         </div>
                     </div>
@@ -229,8 +229,29 @@
                     <label><input type="checkbox" name="vaccin" value="광견병">광견병 &nbsp;&nbsp;</label>
                     <label><input type="checkbox" name="vaccin" value="기관지염(연 1회">기관지염(연 1회) &nbsp;&nbsp;</label>
                     <label><input type="checkbox" name="vaccin" value="심장사상충(월 1회)">심장사상충(월 1회) &nbsp;&nbsp;</label>
+                    <label><input type="checkbox" name="vaccin" value="하지않음">하지않음 &nbsp;&nbsp;</label>
                 </div>
             </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function(){
+                   var form = document.getElementById("PetProfileRegistForm");
+                   form.onsubmit = function (event){
+                       var checkboxes = document.getElementsByName('vaccin');
+                       var isChecked = false;
+                       for(var i =0; i < checkboxes.length; i++){
+                           if(checkboxes[i].checked){
+                               isChecked = true;
+                               break;
+                           }
+                       }
+                       if(!isChecked){
+                           alert('예방접종을 선택해주세요.');
+                           event.preventDefault(); //폼 제출 중단
+                       }
+                   }
+                });
+            </script>
 
             <div class="Q10 dash-line">
                 <h4>자주 다니는 병원 정보</h4>

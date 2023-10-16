@@ -1,5 +1,7 @@
 package com.mypet.petmily.member.dto;
 
+import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
+import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,29 +18,27 @@ import java.util.*;
 @NoArgsConstructor
 public class MemberDTO implements UserDetails {
 
-    private int memberNo;          // 회원코드
-    private String memberId;        // 사용자 ID
-    private String memberPwd;       // 패스워드
-    private String memberName;      // 이름
-    private String nickName;        // 닉네임
-    private String phone;           // 연락처
-    private String gender;          // 성별
-    private Integer postNo;         // 우편번호
-    private String address;         // 주소
-    private String address2;        // 상세주소
-    private int point;              // 적립금
-    private String memberStat;      // 상태
-    private Date memberStatDate;    // 상태 변경일
-    private Date registDate;        // 가입일
-    private int warningCount;       // 경고 횟수
-    private int signupPathCode;     // 가입경로 코드
-    private List<MemberRoleDTO> memberRoleList;
+    private int memberNo;                            // 회원코드
+    private String memberId;                         // 사용자 ID
+    private String memberPwd;                        // 패스워드
+    private String memberName;                       // 이름
+    private String nickName;                         // 닉네임
+    private String phone;                            // 연락처
+    private String gender;                           // 성별
+    private Integer postNo;                          // 우편번호
+    private String address;                          // 주소
+    private String address2;                         // 상세주소
+    private int point;                               // 적립금
+    private String memberStat;                       // 상태
+    private Date memberStatDate;                     // 상태 변경일
+    private Date registDate;                         // 가입일
+    private int warningCount;                        // 경고 횟수
+    private int signupPathCode;                      // 가입경로 코드
+    private List<MemberRoleDTO> memberRoleList;      // 한 멤버는 여러 권한을 가질 수 있다
     private AuthorityDTO memberCode;
-
-
-
-    // 한 멤버는 여러 권한을 가질 수 있다
-    private List<PetDTO> petList;   // 회원의 반려견 코드
+    private List<PetDTO> petList;                    // 회원의 반려견
+    private List<ReviewDTO> reviewList;
+    private List<ReservationDTO> reservationList;
 
 
     /* 나중에 GrantedAuthority 객체 */

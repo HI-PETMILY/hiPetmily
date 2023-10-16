@@ -77,7 +77,7 @@ window.onload = function () {
 
         $headerBtn2.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/petSitter/searchPage";    // 추후 연결
         });
 
         $headerBtn2.addEventListener("mouseover", (event) => {
@@ -146,7 +146,7 @@ window.onload = function () {
 
         $headerBtn3_2.addEventListener("click", (event) => {
 
-            location.href = "/petSitter/regist";
+            location.href = "/petSitterNew/regist";
         });
 
         $headerBtn3_2.addEventListener("mouseover", (event) => {

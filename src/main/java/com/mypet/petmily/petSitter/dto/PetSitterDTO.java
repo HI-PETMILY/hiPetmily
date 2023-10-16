@@ -70,9 +70,9 @@ public class PetSitterDTO {
     //태그 내용
     private List<PetTagDTO> tagContentList;
 
-    private List<ReviewDTO> revScore;
+    private List<ReviewDTO> reviewList;
 
-    private List<ReviewDTO> revContent;
+//    private List<ReviewDTO> revContent;
 
 
 

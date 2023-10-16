@@ -1,13 +1,18 @@
 package com.mypet.petmily.main.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
-public class MainController {
+public class
+MainController {
 
     /* Main Default */
     @GetMapping(value = {"/", "/main"})
@@ -30,14 +35,15 @@ public class MainController {
 
     // 펫시터 찾기
     @GetMapping("/petSitter/search")
-    public String headerPetsitterSearch() {
-        return "petSitter/search";
+    public String headerPetsitterSearch( Model model) {
+
+       return "petSitter/searchPage";
     }
 
     // 펫시터 지원
-    @GetMapping("/petSitter/join")
+    @GetMapping("/petSitterNew/regist")
     public String headerPetsitterJoin() {
-        return "petSitter/join";
+        return "petSitterNew/petSitterRegist";
     }
 
     // 고객센터
