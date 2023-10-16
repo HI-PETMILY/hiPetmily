@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class NewPetSitterController {
         log.info("--afterPetSitterDTO : {}", petSitter);
 
         model.addAttribute("petSitterInfo", petSitter );
+        model.addAttribute("sitterImgList", petSitter.getSitterImgList());
         model.addAttribute("careerList", petSitter.getCareerList());
         model.addAttribute("petTagList", petSitter.getPetTagList());
         model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
@@ -55,10 +57,17 @@ public class NewPetSitterController {
         return "petSitterNew/sitterRegistSuccess";
     }
 
+    @GetMapping(value = "/sitterRegistFail")
+    public String sitterRegistFail(@AuthenticationPrincipal MemberDTO member, Model model) {
+
+        model.addAttribute("member", member);
+
+        return "petSitterNew/sitterRegistFail";
+    }
 
     @PostMapping("/regist")
     public String petSitterRegist(NewPetSitterDTO petSitter, RedirectAttributes rttr
-            , @AuthenticationPrincipal MemberDTO member
+            , List<MultipartFile> attachImage, @AuthenticationPrincipal MemberDTO member
             , @RequestParam(value = "tagContent", required = false) List<String> petTagList
             , @RequestParam(value = "careerContent", required = false) List<String> careerList
             , @RequestParam(value = "petMemberResDay", required = false) String schedule ) throws PetSitterRegistException {
@@ -66,13 +75,35 @@ public class NewPetSitterController {
         int memberNo = member.getMemberNo();
         // 로그인한 회원넘버 == 펫시터넘버
         petSitter.setPetMemberNo(memberNo);
-        petSitter.setRegPetTagList(petTagList);
-        petSitter.setRegCareerList(careerList);
-        petSitter.setSchedule(schedule);
 
-        newPetSitterService.petSitterRegist(petSitter);
 
-        return "redirect:/petSitterNew/sitterRegistSuccess";
+        // 펫시터 중복체크
+        if ( newPetSitterService.petSitterCheck( petSitter ) ) {
+
+            petSitter = newPetSitterService.petSitterStat( petSitter );
+            rttr.addFlashAttribute("getPetStat", petSitter.getPetStat());
+
+            // 중복가입 안내페이지
+            return "redirect:/petSitterNew/sitterRegistFail";
+
+        } else {
+
+            // 태그 정보
+            petSitter.setRegPetTagList(petTagList);
+            // 경력 정보
+            petSitter.setRegCareerList(careerList);
+            // 펫시터 예약불가 스케줄
+            petSitter.setSchedule(schedule);
+            // 이미지 첨부파일
+            petSitter.setAttachImage(attachImage);
+
+            // 통합 등록
+            newPetSitterService.petSitterRegist(petSitter);
+
+            return "redirect:/petSitterNew/sitterRegistSuccess";
+
+        }
+
     }
 
     @PostMapping("/reservation")

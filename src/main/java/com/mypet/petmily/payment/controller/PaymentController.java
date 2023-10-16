@@ -70,7 +70,6 @@ public class PaymentController {
 
 
 
-
         return "/member/reservationlist";
     }
 }

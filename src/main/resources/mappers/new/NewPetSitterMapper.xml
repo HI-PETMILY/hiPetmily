@@ -180,6 +180,7 @@
         )
     </insert>
 
+    <!-- 예약 불가 날짜 조회 -->
     <select id="petSitterSchedule" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterScheduleResultMap">
         SELECT
             PET_MEMBER_RES_NO
@@ -190,6 +191,7 @@
         WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!-- 펫시터 멤버정보 조회 -->
     <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
@@ -212,6 +214,7 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!--  지도용 주소 정보  -->
     <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
@@ -220,6 +223,15 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!-- 펫시터 중복 가입 확인 -->
+    <select id="petSitterCheck" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultType="string">
+        SELECT
+            PET_STAT
+        FROM TBL_PET_SITTER
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <!-- 펫시터 기본 정보 등록 -->
     <insert id="insetInfo">
         INSERT INTO TBL_PET_SITTER(
             PET_MEMBER_NO
@@ -274,16 +286,19 @@
         )
     </insert>
 
+    <!-- 펫시터 태그 등록 -->
     <insert id="insertTag">
         INSERT INTO TBL_PET_TAG(TAG_NO,TAG_CONTENT,PET_MEMBER_NO)
         VALUES(SEQ_TBL_PET_TAG_NO.NEXTVAL, #{ tagContent }, #{ petMemberNo } )
     </insert>
 
+    <!-- 펫시터 경력 등록 -->
     <insert id="insertCareer">
         INSERT INTO TBL_CAREER(CAREER_NO,CAREER_CONTENT,PET_MEMBER_NO)
         VALUES(SEQ_TBL_CAREER_NO.NEXTVAL, #{ careerContent }, #{ petMemberNo } )
     </insert>
 
+    <!-- 펫시터 예약불가 날짜 등록 -->
     <insert id="insertSchedule">
         INSERT INTO TBL_SITTER_SCHEDULE(PET_MEMBER_RES_NO,PET_MEMBER_REG_DAY,PET_MEMBER_STATUS,PET_MEMBER_NO)
         VALUES(SEQ_TBL_SITTER_SCHEDULE_NO.NEXTVAL, #{ petMemberResDay }, #{ petMemberStatus }, #{ petMemberNo })
