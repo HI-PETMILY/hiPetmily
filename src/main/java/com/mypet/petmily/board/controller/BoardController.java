@@ -95,11 +95,11 @@ public class BoardController {
     	log.info("Controller @GetMapping(/board/"+boardType+"/insert) 게시판 등록 페이지 이동 >>>>>>>>>>>>>>> ");
 
 		//로그인을 한 사용자만 등록하는 페이지를 접근할 수 있다.
-		/*
+
 		if(memberDTO == null){
 			throw new Exception("로그인 후 이용 해주세요.");
 		}
-		*/
+
 		// 데이터와 뷰를 동시에 설정이 가능
 		ModelAndView mv = new ModelAndView(); 
 		
