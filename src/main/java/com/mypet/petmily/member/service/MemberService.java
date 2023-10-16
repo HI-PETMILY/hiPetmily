@@ -126,7 +126,6 @@ public class MemberService {
         for(FileUploadDTO fileUpload : pet.getPetImgList()){
             fileUploadMapper.insertAttachment(fileUpload);
         }
-
     }
 
     /* 반려동물 프로필 리스트 조회 */
@@ -138,6 +137,10 @@ public class MemberService {
     public PetDTO viewPetProfile(MemberDTO loginMember, int petCode) {
 
         return memberMapper.viewPetProfile(loginMember, petCode);
+    }
+
+    public FileUploadDTO petProfileImg(int petCode) {
+        return fileUploadMapper.petProfileImg(petCode);
     }
 
     /* 반려동물 프로필 업데이트 */
@@ -159,5 +162,4 @@ public class MemberService {
 
         return null;
     }
-
 }
