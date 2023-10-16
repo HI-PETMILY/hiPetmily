@@ -141,6 +141,8 @@
         SELECT * FROM (
         SELECT
         RESERV_CODE,
+<!--        SUBSTR(RESERV_APP_DATE, 1, 11),-->
+<!--        SUBSTR(RESERV_START, 1, 10),-->
         RESERV_APP_DATE,
         RESERV_START,
         RESERV_STATUS,

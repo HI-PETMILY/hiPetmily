@@ -26,36 +26,33 @@
         <div class="nav-line"></div>
         <table align="center" class="reserve-table">
             <tr>
-                <th class="col1">예약코드</th>
-                <th class="col2">예약 일자</th>
-                <th class="col3">서비스 일자</th>
-                <th class="cos5">예약상태</th>
-                <th class="col6">후기작성</th>
-            </tr>
-        </table>
-        <div class="res_history_box" th:each="resHistory : ${ reservationList }">
-
-            <tr th:if="${ #lists.isEmpty(resHistory) }">
-                <td colspan="5">예약 결과가 존재하지 않습니다. 펫밀리의 서비스를 이용해보세요!</td>
+                <th class="col_m">예약코드</th>
+                <th class="col_m">예약일자</th>
+                <th class="col_m" id="col_m3">서비스일자</th>
+                <th class="col_m" id="col_m4">예약상태</th>
+                <th class="col_m" id="col_m5">상세내역</th>
             </tr>
 
-            <table align="center" class="reserve-table">
-
-                <td class="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
-                <td class="col2" th:text="${ resHistory.resAppDate }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
-                <td class="col3" th:text="${ resHistory.startDateTime }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
-                <td class="col5" th:text="${ resHistory.resStatus }" onclick="navigateToDetail('${ resHistory.resCode }')"></td>
-                <td class="col6">
-                    <span th:if="${ resHistory.resStatus == '완료' }">
-                    <a href="후기 작성 주소로 연결" th:href="'/member/review-write?no=' + ${ resHistory.resCode }">작성하기</a>
-                    </span></td>
-                <td class="col6" th:if="${ resHistory.resStatus == '취소' }">예약취소</td>
-
+                <tr th:if="${ #lists.isEmpty(reservationList) }">
+                    <td colspan="5">예약 결과가 존재하지 않습니다. 펫밀리의 서비스를 이용해보세요!</td>
+                </tr>
+                <tr class="res_history_box" th:each="resHistory : ${ reservationList }" th:unless="${#lists.isEmpty(reservationList)}">
+                <td class="col" id="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <td class="col" id="col2" th:text="${ #strings.substring(resHistory.resAppDate, 0, 11) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <td class="col" id="col3" th:text="${ #strings.substring(resHistory.startDateTime, 0, 10) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <td class="col" id="col5">
+                    <span th:if="${ resHistory.resStatus == '결제완료' }">
+                    <a href="후기 작성 주소로 연결" th:href="'/member/review-write?no=' + ${ resHistory.resCode }">후기작성</a>
+                    </span>
+                    <span th:if="${ resHistory.resStatus == '예약취소' }">취소내역</span>
+                    <span th:if="${ resHistory.resStatus == '결제취소' }">취소내역</span>
+                </td>
+<!--                <td class="col" id="col6" th:if="${ resHistory.resStatus == '대기' }">예약대기</td>-->
+                </tr>
             </table>
         </div>
     </div>
-</div>
-
 
 <div id="paging" align="center">
     <!-- 맨 앞으로 이동 -->
