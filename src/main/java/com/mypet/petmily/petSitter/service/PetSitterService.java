@@ -1,7 +1,7 @@
 package com.mypet.petmily.petSitter.service;
 
 import com.mypet.petmily.petSitter.dao.PetSitterMapper;
-import com.mypet.petmily.petSitter.dto.Pagenation;
+import com.mypet.petmily.petSitter.pagnation.Pagenation;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitter.dto.SelectCriteria;
 import lombok.extern.slf4j.Slf4j;

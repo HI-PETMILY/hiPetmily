@@ -1,4 +1,6 @@
-package com.mypet.petmily.petSitter.dto;
+package com.mypet.petmily.petSitter.pagnation;
+
+import com.mypet.petmily.petSitter.dto.SelectCriteria;
 
 import java.util.Map;
 

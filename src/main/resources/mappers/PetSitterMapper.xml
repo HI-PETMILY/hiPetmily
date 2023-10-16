@@ -117,7 +117,7 @@
                 <if test="searchCondition == 'petCheckOut'">
                     P.PET_CHECKOUT '%' || #{ searchValue } || '%'
                 </if>
-                AND P.PET_STAT = '활동'
+                AND P.PET_STAT = '승인'
             </where>
         </select>
 
@@ -138,7 +138,7 @@
         JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )
         LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
         LEFT JOIN TBL_PET_TAG T ON(P.PET_MEMBER_NO = T.PET_MEMBER_NO)
-        WHERE  P.PET_STAT= '활동'
+        WHERE  P.PET_STAT= '승인'
     </select>
 
 
