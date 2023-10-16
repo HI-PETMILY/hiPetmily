@@ -44,10 +44,10 @@
                     </th:block>
                     <!-- 반려동물 프로필이 있는 경우 -->
                     <th:block th:if="${petProfile != null}">
-                    <p id="" th:text="${petProfile.petName}"></p>
-                    <p class="pet_info" th:text="${petProfile.petAge} +살"></p>
-                    <p class="pet_info" th:text="${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
-                    <p class="pet_info" th:text="${petProfile.petWeight}+kg"></p>
+                    <p id="" th:text="이름 + ' : '  + ${petProfile.petName}"></p>
+                    <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
+                    <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
+                    <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
                     </th:block>
                 </div>
                 <div>
@@ -108,6 +108,30 @@
         const $update = document.getElementById("my_info");
         $update.onclick = function () {
             location.href = "/member/update";
+        }
+    }
+
+    /* 마이 페이지 -> 내가 쓴 후기 페이지로 이동 */
+    if (document.getElementById("my_review")) {
+        const $update = document.getElementById("my_review");
+        $update.onclick = function () {
+            location.href = "/member/review-list";
+        }
+    }
+
+    /* 마이 페이지 -> 진행중인 예약 페이지로 이동 */
+    if (document.getElementById("res_ing")) {
+        const $update = document.getElementById("res_ing");
+        $update.onclick = function () {
+            location.href = "/member/reservation-in-progress";
+        }
+    }
+
+    /* 마이 페이지 -> 지난 예약 페이지로 이동 */
+    if (document.getElementById("past_res")) {
+        const $update = document.getElementById("past_res");
+        $update.onclick = function () {
+            location.href = "/member/reservationList";
         }
     }
 

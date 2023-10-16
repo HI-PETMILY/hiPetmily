@@ -1,5 +1,6 @@
 package com.mypet.petmily.payment.dto;
 
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO;
 import lombok.Getter;
 import lombok.Setter;
