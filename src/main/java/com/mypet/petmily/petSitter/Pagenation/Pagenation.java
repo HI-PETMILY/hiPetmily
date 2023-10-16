@@ -1,4 +1,4 @@
-package com.mypet.petmily.petSitter.dto.Pagenation;
+package com.mypet.petmily.petSitter.Pagenation;
 
 import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 

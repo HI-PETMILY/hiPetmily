@@ -69,14 +69,15 @@ public class AdminController {
 
     /* 팝업 ===========================================*/
 
-    @GetMapping("/popInquiry")/* 1대1문의 팝업 */
+    /* 1대1문의 팝업 @@@@@@@@@@@@@@@*/
+    @GetMapping("/popInquiry")
     public String getPoP_inquiryPage() {
 
         return "admin/member/popInquiry";
     }
 
-
-    @GetMapping("/popManagement")/* 화원 정보 관리 팝업 */
+    /* 화원 정보 관리 팝업 @@@@@@@@@@@@*/
+    @GetMapping("/popManagement")
     public String getPoP_managementPage(@RequestParam("id") int id, Model model) {
 
         // 회원정보 보기 //
