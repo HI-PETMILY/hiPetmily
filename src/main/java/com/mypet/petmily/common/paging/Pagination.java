@@ -1,6 +1,6 @@
 package com.mypet.petmily.common.paging;
 
-public class Pagenation {
+public class Pagination {
     public static SelectCriteria getSelectCriteria(int page, int limit, int buttonAmount) {
 
         /* 총 페이지 수 계산 */
