@@ -13,7 +13,7 @@
         <result property="revStatus" column="REV_STATUS"/>
         <result property="revDeleteDate" column="REV_DELETE_DAE"/>
         <association property="member" resultMap="memberResultMap"/>
-        <association property="petMember" resultMap="sitterInfoResultMap"/>
+        <association property="petSitter" resultMap="sitterInfoResultMap"/>
         <association property="reserve" resultMap="progressReservationResultMap"/>
     </resultMap>
 
@@ -40,7 +40,6 @@
     </resultMap>
 
     <resultMap id="sitterInfoResultMap" type="com.mypet.petmily.payment.dto.SitterInfoDTO">
-        <id property="sitterCode" column="PET_MEMBER_NO"/>
         <association property="memberInfo" resultMap="memberResultMap"/>
     </resultMap>
 
@@ -56,8 +55,8 @@
              , R.RESERV_CODE
              , M.MEMBER_NO
           FROM TBL_RESERVATION R
-          JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
-          JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
+          LEFT JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
+          LEFT JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
          WHERE R.MEMBER_NO = #{memberNo}
            AND R.RESERV_CODE = #{reserveCode}
     </select>
@@ -84,7 +83,7 @@
             , #{revStatus}
             , #{member.memberNo}
             , #{reserve.reserveCode}
-            , #{petMember.sitterCode}
+            , #{reserve.petSitter.memberInfo.memberNo}
             )
     </insert>
 

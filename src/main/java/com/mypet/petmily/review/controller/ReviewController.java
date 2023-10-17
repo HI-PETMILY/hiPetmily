@@ -2,19 +2,13 @@ package com.mypet.petmily.review.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ProgressReserveDTO;
-import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
-import com.mypet.petmily.payment.dto.SitterInfoDTO;
-import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import com.mypet.petmily.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -37,18 +31,16 @@ public class ReviewController {
 
         requestMap.put("memberNo", loginMember.getMemberNo());
 
-        ProgressReserveDTO reservationInfo = reviewService.viewReservationInfo(requestMap);
-        log.info("후기 작성 페이지 reservationInfo : {}" , reservationInfo);
-        model.addAttribute("reservInfo", reservationInfo);
+        ProgressReserveDTO reserve = reviewService.viewReservationInfo(requestMap);
+        log.info("후기 작성 페이지 reserve Info : {}" , reserve);
+        model.addAttribute("reserve", reserve);
 
     }
 
     @PostMapping("/review-write")
-    public String reviewWrite(ReviewDTO review, @AuthenticationPrincipal MemberDTO loginMember, Model model){
+    public String reviewWrite(@ModelAttribute("review") ReviewDTO review, @AuthenticationPrincipal MemberDTO loginMember){
 
         review.setMember(loginMember);
-        review.setPetMember(review.getPetMember());
-        review.setReserve(review.getReserve());
 
         reviewService.registReview(review);
 

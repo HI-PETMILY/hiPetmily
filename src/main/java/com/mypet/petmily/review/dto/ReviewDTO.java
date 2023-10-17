@@ -3,7 +3,6 @@ package com.mypet.petmily.review.dto;
 import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ProgressReserveDTO;
-import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
 import com.mypet.petmily.payment.dto.SitterInfoDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +23,7 @@ public class ReviewDTO {
     private String revStatus;                      // 상태(Y=등록, N=삭제)
     private Date revDeleteDate;                    // 삭제일
     private MemberDTO member;                      // 회원
-    private SitterInfoDTO petMember;             // 펫시터
+    private SitterInfoDTO petSitter;             // 펫시터
     private ProgressReserveDTO reserve;     // 예약
     private FileUploadDTO reviewImgFile; // 첨부파일(사진)
 }

@@ -51,7 +51,7 @@
                     <span th:if="${ resHistory.reserveStatus == '결제완료' }">
                         <form action="/member/review-write" method="post">
                         <input type="hidden" name="reserveCode" th:value="${resHistory.reserveCode}" />
-                        <input type="hidden" name="petMemberNo" th:value="${resHistory.petSitter.sitterCode}" />
+                        <input type="hidden" name="memberNo" th:value="${resHistory.petSitter.memberInfo.memberNo}" />
                             <a th:href="'/member/review-write?reserveCode=' + ${ resHistory.reserveCode }">후기작성</a>
                         </form>
                     </span>
