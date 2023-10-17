@@ -1,7 +1,9 @@
 package com.mypet.petmily.review.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
+import com.mypet.petmily.payment.dto.SitterInfoDTO;
 import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import com.mypet.petmily.review.service.ReviewService;
@@ -35,10 +37,10 @@ public class ReviewController {
 
         requestMap.put("memberNo", loginMember.getMemberNo());
 
-        ReservationHistoryDTO reservationInfo = reviewService.viewReservationInfo(requestMap);
-
+        ProgressReserveDTO reservationInfo = reviewService.viewReservationInfo(requestMap);
         log.info("후기 작성 페이지 reservationInfo : {}" , reservationInfo);
         model.addAttribute("reservInfo", reservationInfo);
+
     }
 
     @PostMapping("/review-write")
@@ -61,9 +63,6 @@ public class ReviewController {
                                  Model model, @AuthenticationPrincipal MemberDTO loginMember) {
 
         log.info("reviewList page : {}", page);
-
-        /*ReservationHistoryDTO reserveInfo = reviewService.selectReserveInfo(loginMember);
-        model.addAttribute("reserveInfo", reserveInfo);*/
 
         Map<String, Object> reviewListAndPaging = reviewService.selectReviewList(page, loginMember);
         model.addAttribute("paging", reviewListAndPaging.get("paging"));
