@@ -208,6 +208,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /* ========================================== 로그인 ============================================ */
 
     /* 로그인 화면 */
     @GetMapping("/login")
@@ -219,6 +220,8 @@ public class MemberController {
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
         return "redirect:/member/login";
     }
+
+    /* ========================================== 아이디 비밀번호 찾기 ============================================ */
 
     /* 아이디 찾기 화면 */
     @GetMapping("/find_id")
@@ -279,7 +282,7 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
-    /* ============================ 마이페이지 ============================ */
+    /* ========================================== 마이페이지 ============================================ */
 
     @GetMapping("/mypage")
     public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member, Model model) {
@@ -292,6 +295,8 @@ public class MemberController {
 
         return "member/mypage";
     }
+
+    /* ========================================== 반려동물 프로필 ============================================ */
 
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
@@ -452,6 +457,8 @@ public class MemberController {
 
         return "redirect:/member/pet-profile-list";
     }
+
+    /* ========================================== 반려동물 프로필 끝 ============================================ */
 
 
     /* 진행 중인 예약 페이지 */
