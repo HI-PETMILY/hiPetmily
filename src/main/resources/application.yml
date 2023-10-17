@@ -17,13 +17,15 @@ spring:
       max-request-size: 300MB
       # 각자 자기 프로젝트 환경에 맞는거 입력해두고 주석 풀고 걸고 사용
       # 형수
-      location: D:/2.Dev/studyPj/sub_project/petmily
+#      location: D:/2.Dev/studyPj/sub_project/petmily
       # 수현
 #      location:
       # 미림
 #      location:
-      # 서현
-#      location:
+      # 서현 학원
+      location: C:/Lecture/sub-project/petmily
+      # 서현 노트북
+#      location: C:/Lecture/subProject/hiPetmily
       # 유리
 #      location:
       # 소정

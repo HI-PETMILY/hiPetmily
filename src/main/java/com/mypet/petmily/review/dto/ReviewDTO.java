@@ -21,7 +21,7 @@ public class ReviewDTO {
     private String revStatus;                      // 상태(Y=등록, N=삭제)
     private Date revDeleteDate;                    // 삭제일
     private MemberDTO member;                      // 회원
-//    private String petMemberNo;             // 펫시터
+    private String petMemberNo;             // 펫시터
     private String resCode;     // 예약
 //    private ReservationInfoDTO resCode;
     //private List<FileDTO> attachmentList; // 첨부파일(사진)
