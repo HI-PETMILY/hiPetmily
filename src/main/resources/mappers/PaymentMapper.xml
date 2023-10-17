@@ -10,10 +10,10 @@
         <result property="startDateTime" column="RESERV_START"/>
         <result property="endDateTime" column="RESERV_END"/>
         <result property="resStatus" column="RESERV_STATUS"/>
-        <result property="restotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="resTotalAmount" column="RESERV_TOTAL_AMOUNT"/>
         <result property="resDayCount" column="RESERV_DAY_COUNT"/>
         <result property="resTimeCount" column="RESERV_TIME_COUNT"/>
-        <result property="resvat" column="RESERV_VAT"/>
+        <result property="resVat" column="RESERV_VAT"/>
         <result property="resAppDate" column="RESERV_APP_DATE"/>
 
         <association property="resMember" resultMap="memberResultMap"/>
@@ -141,6 +141,8 @@
         SELECT * FROM (
         SELECT
         RESERV_CODE,
+<!--        SUBSTR(RESERV_APP_DATE, 1, 11),-->
+<!--        SUBSTR(RESERV_START, 1, 10),-->
         RESERV_APP_DATE,
         RESERV_START,
         RESERV_STATUS,
@@ -225,7 +227,21 @@
         SELECT
              COUNT(*)
         FROM TBL_RESERVATION A
+    </select>
 
+    <select id="selectDeatilReservation" resultMap="generalReservationResultMap">
+        SELECT
+               R.RESERV_CODE
+             , R.RESERV_START
+             , R.RESERV_END
+             , R.RESERV_TOTAL_AMOUNT
+             , R.RESERV_VAT
+             , P.PAY_DATE
+             , P.PAY_PRICE
+             , P.PAY_STAT
+          FROM TBL_RESERVATION R
+          JOIN TBL_PAYMENT P ON(R.RESERV_CODE = P.RESERV_CODE)
+         WHERE R.RESERV_CODE = #{ resCode }
     </select>
 
 </mapper>
