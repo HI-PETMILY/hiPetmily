@@ -206,7 +206,7 @@ if(document.getElementById("detail_button_search")) {
 
     $detail_button_search.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        location.href = "/petSitter/searchPage";
     });
 }
 
@@ -241,7 +241,7 @@ if(document.getElementById("detail_button_terms")) {
 
     $detail_button_terms.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        location.href = "/board/usingprocess";        // 추후 연결
     });
 }
 

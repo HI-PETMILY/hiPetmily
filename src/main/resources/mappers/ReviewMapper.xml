@@ -13,6 +13,7 @@
         <result property="revStatus" column="REV_STATUS"/>
         <result property="revDeleteDate" column="REV_DELETE_DAE"/>
         <result property="resCode" column="RESERV_CODE"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
 
         <association property="member" resultMap="memberResultMap"/>
        <!-- <association property="petSitter" resultMap="petSitterResultMap"/>-->
@@ -135,6 +136,7 @@
          , REV_STATUS
          , MEMBER_NO
          , RESERV_CODE
+         , PET_MEMBER_NO
         )
         VALUES
             (SEQ_TBL_REVIEW_NO.NEXTVAL
@@ -145,6 +147,7 @@
             , #{revStatus}
             , #{member.memberNo}
             , #{resCode}
+            , #{petMemberNo}
             )
     </insert>
 

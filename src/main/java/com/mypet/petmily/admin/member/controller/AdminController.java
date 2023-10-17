@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +45,7 @@ public class AdminController {
 
         List<MemberDTO> memberList = (List<MemberDTO>) memberListAndPaging.get("memberList");
         int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue, rating);
+//        int searchResultCount = memberList.size(); // 검색 결과의 일치하는 전체 회원 수
 
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("memberList", memberList);
@@ -66,13 +69,6 @@ public class AdminController {
 
     /* 팝업 ===========================================*/
 
-    @GetMapping("/popPasswordChange") /* 비번변경 팝업 */
-    public String getPoP_password_changePage(){
-
-        return "admin/member/popPasswordChange";
-    }
-
-
     @GetMapping("/popInquiry")/* 1대1문의 팝업 */
     public String getPoP_inquiryPage() {
 
@@ -81,7 +77,13 @@ public class AdminController {
 
 
     @GetMapping("/popManagement")/* 화원 정보 관리 팝업 */
-    public String getPoP_managementPage() {
+    public String getPoP_managementPage(@RequestParam("id") int id, Model model) {
+
+        // 회원정보 보기 //
+         //ID를 기반으로 멤버의 상세 정보를 검색하고 해당 정보를 뷰로 전달.
+        List<MemberDTO> member = adminService.getPoP_managementPageById(id);
+        model.addAttribute("member", member);
+        log.info("member 잘 전달되냐? : {}" , member);
 
         return "admin/member/popManagement";
     }
