@@ -23,13 +23,11 @@
         <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
         <collection property="memberRoleList" resultMap="memberRoleResultMap"/>
     </resultMap>
-
     <resultMap id="memberRoleResultMap" type="com.mypet.petmily.member.dto.MemberRoleDTO">
         <id property="memberNo" column="REF_MEMBER_NO"/>
         <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
         <association property="authority" resultMap="authorityResultMap"/>
     </resultMap>
-
     <resultMap id="authorityResultMap" type="com.mypet.petmily.member.dto.AuthorityDTO">
         <id property="code" column="REF_AUTHORITY_CODE2"/>
         <result property="name" column="AUTHORITY_NAME"/>
@@ -61,7 +59,25 @@
         <result property="hosAddress" column="HOS_ADDRESS"/>
         <result property="registStatus" column="REGIST_STATUS"/>
         <association property="member" resultMap="memberResultMap"/>
+        <association property="petImgList" resultMap="fileUploadResultMap"/>
     </resultMap>
+
+    <!-- fileUpload resultMap 관련 -->
+    <resultMap id="fileUploadResultMap" type="com.mypet.petmily.fileUpload.dto.FileUploadDTO">
+        <id property="fileNo" column="FILE_NO"/>
+        <result property="fileOriName" column="FILE_ORI_NAME"/>
+        <result property="fileSaveName" column="FILE_SAVE_NAME"/>
+        <result property="fileExtName" column="FILE_EXT_NAME"/>
+        <result property="filePathName" column="FILE_PATH_NAME"/>
+        <result property="file_T_PathName" column="FILE_T_PATH_NAME"/>
+        <result property="fileType" column="FILE_TYPE"/>
+        <result property="filePetNo" column="PET_NO"/>
+        <result property="fileBoardNo" column="BOARD_NO"/>
+        <result property="fileRevNo" column="REV_NO"/>
+        <result property="fileMemberNo" column="MEMBER_NO"/>
+        <result property="fileSitterNo" column="PET_MEMBER_NO"/>
+    </resultMap>
+    <!-- fileUpload resultMap 관련 -->
 
     <select id="findMemberById" resultMap="memberResultMap">
         SELECT
@@ -223,21 +239,27 @@
     <!-- 마이페이지 대표 반려동물 프로필 간략 조회 -->
     <select id="viewFirstPetProfile" resultMap="petResultMap">
         SELECT
-               PET_NAME
-             , PET_AGE
-             , PET_GENDER
-             , NEUTRAL_YN
-             , PET_WEIGHT
-          FROM TBL_MYPET
-         WHERE MEMBER_NO = #{memberNo}
+               P.PET_NAME
+             , P.PET_AGE
+             , P.PET_GENDER
+             , P.NEUTRAL_YN
+             , P.PET_WEIGHT
+             , F.FILE_NO
+             , F.FILE_ORI_NAME
+             , F.FILE_SAVE_NAME
+             , F.FILE_EXT_NAME
+             , F.FILE_PATH_NAME
+             , F.FILE_T_PATH_NAME
+             , F.FILE_TYPE
+             , F.PET_NO
+             , F.BOARD_NO
+             , F.REV_NO
+             , F.MEMBER_NO
+             , F.PET_MEMBER_NO
+          FROM TBL_MYPET P
+          JOIN TBL_FILE F ON (F.PET_NO = P.PET_CODE)
+         WHERE P.MEMBER_NO = #{memberNo}
            AND ROWNUM = 1
-    </select>
-
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
-        SELECT
-               COUNT(*)
-          FROM TBL_RESERVATION
-        <!-- where절로 memberId나 memberNo로 자신 것만 걸러야하나? -->
     </select>
 
     <!-- 반려동물 프로필 등록 -->
@@ -301,46 +323,90 @@
     <!-- 반려동물 프로필 조회 -->
     <select id="viewPetProfile" resultMap="petResultMap"  parameterType="int">
         SELECT
-               PET_CODE
-             , PET_NAME
-             , PET_AGE
-             , PET_GENDER
-             , NEUTRAL_YN
-             , PET_BREED
-             , PET_WEIGHT
-             , PET_REGIST
-             , P_SOCIAL
-             , A_SOCIAL
-             , BARK_LEVEL
-             , SEP_ANXIETY
-             , PET_DISEASE
-             , PET_DISEASE_EXP
-             , PET_ALLERGY
-             , PET_ALLERGY_EXP
-             , POTTY_TRAIN
-             , MARKING_IN
-             , VACCIN
-             , HOS_NAME
-             , HOS_PHONE
-             , HOS_ADDRESS
-             , REGIST_STATUS
+               P.PET_CODE
+             , P.PET_NAME
+             , P.PET_AGE
+             , P.PET_GENDER
+             , P.NEUTRAL_YN
+             , P.PET_BREED
+             , P.PET_WEIGHT
+             , P.PET_REGIST
+             , P.P_SOCIAL
+             , P.A_SOCIAL
+             , P.BARK_LEVEL
+             , P.SEP_ANXIETY
+             , P.PET_DISEASE
+             , P.PET_DISEASE_EXP
+             , P.PET_ALLERGY
+             , P.PET_ALLERGY_EXP
+             , P.POTTY_TRAIN
+             , P.MARKING_IN
+             , P.VACCIN
+             , P.HOS_NAME
+             , P.HOS_PHONE
+             , P.HOS_ADDRESS
+             , P.REGIST_STATUS
+             , P.MEMBER_NO
+             , F.FILE_NO
+             , F.FILE_ORI_NAME
+             , F.FILE_SAVE_NAME
+             , F.FILE_EXT_NAME
+             , F.FILE_PATH_NAME
+             , F.FILE_T_PATH_NAME
+             , F.FILE_TYPE
+             , F.PET_NO
+             , F.BOARD_NO
+             , F.REV_NO
+             , F.MEMBER_NO
+             , F.PET_MEMBER_NO
+          FROM TBL_MYPET P
+          JOIN TBL_FILE F ON(P.PET_CODE = F.PET_NO)
+         WHERE P.MEMBER_NO = #{loginMember.memberNo}
+           AND P.PET_CODE = #{petCode}
+           AND P.REGIST_STATUS = 'Y'
+    </select>
+
+    <select id="">
+        SELECT
+            FILE_NO
+             , FILE_ORI_NAME
+             , FILE_SAVE_NAME
+             , FILE_EXT_NAME
+             , FILE_PATH_NAME
+             , FILE_T_PATH_NAME
+             , FILE_TYPE
+             , PET_NO
+             , BOARD_NO
+             , REV_NO
              , MEMBER_NO
-          FROM TBL_MYPET
-         WHERE MEMBER_NO = #{loginMember.memberNo}
-           AND PET_CODE = #{petCode}
-           AND REGIST_STATUS = 'Y'
+             , PET_MEMBER_NO
+        FROM TBL_FILE
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
     <select id="selectPetProfileList" resultMap="petResultMap">
         SELECT
-               PET_CODE
-             , PET_NAME
-             , PET_REGIST
-             , PET_AGE
-             , PET_WEIGHT
-          FROM TBL_MYPET
-         WHERE MEMBER_NO = #{memberNo}
-           AND REGIST_STATUS = 'Y'
+               P.PET_CODE
+             , P.PET_NAME
+             , P.PET_REGIST
+             , P.PET_AGE
+             , P.PET_WEIGHT
+             , F.FILE_NO
+             , F.FILE_ORI_NAME
+             , F.FILE_SAVE_NAME
+             , F.FILE_EXT_NAME
+             , F.FILE_PATH_NAME
+             , F.FILE_T_PATH_NAME
+             , F.FILE_TYPE
+             , F.PET_NO
+             , F.BOARD_NO
+             , F.REV_NO
+             , F.MEMBER_NO
+             , F.PET_MEMBER_NO
+          FROM TBL_MYPET P
+          JOIN TBL_FILE F ON (P.PET_CODE = F.PET_NO)
+         WHERE P.MEMBER_NO = #{memberNo}
+           AND P.REGIST_STATUS = 'Y'
     </select>
 
     <update id="petProfileUpdate" parameterType="com.mypet.petmily.member.dto.PetDTO">

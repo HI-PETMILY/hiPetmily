@@ -210,14 +210,27 @@ if(document.getElementById("detail_button_search")) {
     });
 }
 
-// 컨테이너 펫시터 지원 버튼
-if(document.getElementById("detail_button_apply")) {
+// 컨테이너 펫시터 지원 버튼(로그인 전)
+if(document.getElementById("detail_button_apply1")) {
 
-    const $detail_button_apply = document.getElementById("detail_button_apply");
+    const $detail_button_apply = document.getElementById("detail_button_apply1");
 
     $detail_button_apply.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        alert("비회원은 회원가입부터 해주세요.\n회원일 경우 로그인하고 다시 눌러주세요.");
+
+        location.href = "/member/mainRegist";
+    });
+}
+
+// 컨테이너 펫시터 지원 버튼(로그인상태)
+if(document.getElementById("detail_button_apply2")) {
+
+    const $detail_button_apply = document.getElementById("detail_button_apply2");
+
+    $detail_button_apply.addEventListener("click", (event) => {
+
+        location.href = "/petSitterNew/regist";
     });
 }
 
@@ -228,7 +241,7 @@ if(document.getElementById("detail_button_terms")) {
 
     $detail_button_terms.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        location.href = "/board/usingprocess";        // 추후 연결
     });
 }
 

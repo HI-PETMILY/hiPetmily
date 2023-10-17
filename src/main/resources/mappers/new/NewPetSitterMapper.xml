@@ -180,6 +180,7 @@
         )
     </insert>
 
+    <!-- 예약 불가 날짜 조회 -->
     <select id="petSitterSchedule" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterScheduleResultMap">
         SELECT
             PET_MEMBER_RES_NO
@@ -190,6 +191,7 @@
         WHERE PET_MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!-- 펫시터 멤버정보 조회 -->
     <select id="selectMemberInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
@@ -212,6 +214,7 @@
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
 
+    <!--  지도용 주소 정보  -->
     <select id="petSitterAddress" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petMemberResultMap">
         SELECT
             MEMBER_NO
@@ -219,5 +222,87 @@
         FROM TBL_MEMBER
         WHERE MEMBER_NO = #{ petMemberNo }
     </select>
+
+    <!-- 펫시터 중복 가입 확인 -->
+    <select id="petSitterCheck" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultType="string">
+        SELECT
+            PET_STAT
+        FROM TBL_PET_SITTER
+        WHERE PET_MEMBER_NO = #{ petMemberNo }
+    </select>
+
+    <!-- 펫시터 기본 정보 등록 -->
+    <insert id="insetInfo">
+        INSERT INTO TBL_PET_SITTER(
+            PET_MEMBER_NO
+            ,PET_REGIST_DATE
+            ,PET_STAT
+            ,PET_TITLE
+            ,PET_INTRODUCE
+            ,PET_PLACE
+            ,PET_CARE_COUNT
+            ,PET_BABY_YN
+            ,PET_PENCE
+            ,PET_MYPET_YN
+            ,PET_SMOK_YN
+            ,PET_CARE_SIZE
+            ,PET_CARE_AGE
+            ,PET_CHECKIN
+            ,PET_CHECKOUT
+            ,PET_REQUEST
+            ,PET_IMPOSSIBLE
+            ,PET_M_DAY_PAY
+            ,PET_M_TIME_PAY
+            ,PET_L_DAY_PAY
+            ,PET_L_TIME_PAY
+            ,PET_BANK
+            ,PET_BANK_NO
+            ,PET_BANK_NAME
+        ) VALUES(
+            #{ petMemberNo }
+            , #{ petRegistDate }
+            , #{ petStat }
+            , #{ petTitle }
+            , #{ petIntroduce }
+            , #{ petPlace }
+            , #{ petCareCount }
+            , #{ petBabyYn }
+            , #{ petPence }
+            , #{ petMypetYn }
+            , #{ petSmokYn }
+            , #{ petCareSize }
+            , #{ petCareAge }
+            , #{ petCheckIn }
+            , #{ petCheckOut }
+            , #{ petRequest }
+            , #{ petImpossible }
+            , #{ petM_DayPay }
+            , #{ petM_TimePay }
+            , #{ petL_DayPay }
+            , #{ petL_TimePay }
+            , #{ petBank }
+            , #{ petBankNo }
+            , #{ petBankName }
+        )
+    </insert>
+
+    <!-- 펫시터 태그 등록 -->
+    <insert id="insertTag">
+        INSERT INTO TBL_PET_TAG(TAG_NO,TAG_CONTENT,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_PET_TAG_NO.NEXTVAL, #{ tagContent }, #{ petMemberNo } )
+    </insert>
+
+    <!-- 펫시터 경력 등록 -->
+    <insert id="insertCareer">
+        INSERT INTO TBL_CAREER(CAREER_NO,CAREER_CONTENT,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_CAREER_NO.NEXTVAL, #{ careerContent }, #{ petMemberNo } )
+    </insert>
+
+    <!-- 펫시터 예약불가 날짜 등록 -->
+    <insert id="insertSchedule">
+        INSERT INTO TBL_SITTER_SCHEDULE(PET_MEMBER_RES_NO,PET_MEMBER_REG_DAY,PET_MEMBER_STATUS,PET_MEMBER_NO)
+        VALUES(SEQ_TBL_SITTER_SCHEDULE_NO.NEXTVAL, #{ petMemberResDay }, #{ petMemberStatus }, #{ petMemberNo })
+    </insert>
+
 
 </mapper>

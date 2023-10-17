@@ -19,16 +19,6 @@ public class AdminService {
 
     public AdminService(AdminMapper adminMapper) {this.adminMapper = adminMapper;}
 
-//    public List<MemberDTO> selectMemberList() {
-//
-//        log.info("memberList : {} " , membersMapper.selectMemberList());
-//
-////        System.out.println(membersMapper.selectMemberList());
-//
-//        return membersMapper.selectMemberList();
-//
-//    }
-
     public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue, String rating) {
     // 밑에 기존코드
     // public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue) {
@@ -60,7 +50,12 @@ public class AdminService {
         return adminMapper.selectTotalCount(searchCondition, searchValue, rating);
     }
 
+    public List<MemberDTO> getPoP_managementPageById(int id) {
 
+        // 클라이언트로부터 받은 memberId를 사용하여 회원 정보를 데이터베이스에서 조회
+        List<MemberDTO> member = adminMapper.selectPoP_MemberById(id);
 
+        return member;
 
+    }
 }

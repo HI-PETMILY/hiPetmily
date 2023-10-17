@@ -33,7 +33,13 @@
 
             <div class="pet-profile-info">
                 <div class="pet-profileImg">
-                    <img src="/static_Image/member/petProfileTest1.png">
+                    <th:block th:each="petImg : ${petProfile.petImgList}">
+                        <img th:if="${petImg.fileType == 'MainImg'}"
+                             th:src="${petImg.filePathName + petImg.fileSaveName}">
+                    </th:block>
+                    <!--<th:block th:unless="${!petImgList.isEmpty()}">
+                        <img src="/static_Image/member/petProfile.png">
+                    </th:block>-->
                 </div>
                 <div class="pet-profile-detail">
                     <div class="pet-name"><p th:text="${petProfile.petName} + ' / '"></p></div>
@@ -61,7 +67,7 @@
 
 
 </div>
-</div>
+
 
 <!-- common footer -->
 <div th:replace="common/footer.html"></div>

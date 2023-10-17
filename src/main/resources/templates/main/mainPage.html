@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <title>HI-PETMILY</title>
     <meta charset="UTF-8"/>
@@ -13,17 +15,11 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
 
-    <script>
-        // const message = '[[${message}]]';
-        // message && alert(message);
-    </script>
-
 </head>
 
 <body>
     <!-- common header -->
     <div th:replace="common/header_black.html"></div>
-<!--    <div th:replace="common/header_white.html"></div>-->
 
     <div class="slide slide_wrap">
         <div class="slide_banner banner1">
@@ -46,7 +42,7 @@
                 <img src="/static_Image/common/main/mainImage1.png" alt="서브이미지1">
             </div>
             <div class="container_item_text">
-                <div class="item_text_title">펫시터 찾기</div>
+                <div class="item_text_title" >펫시터 찾기</div>
                 <div class="item_text_detail">
                     좁고 답답한 장소가 아닌 가정집에서<br>
                     편안한 맞춤형 돌봄을 경험하세요.
@@ -61,7 +57,12 @@
                     펫밀리로 등록하시고<br>
                     마음을 나누세요!
                 </div>
-                <div id="detail_button_apply" class="detail_button">자세히 보기 →</div>
+                <th:block sec:authorize="isAnonymous()">
+                    <div id="detail_button_apply1" class="detail_button">자세히 보기 →</div>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                    <div id="detail_button_apply2" class="detail_button">자세히 보기 →</div>
+                </th:block>
             </div>
             <div class="container_item_img">
                 <img src="/static_Image/common/main/mainImage2.png" alt="서브이미지2">

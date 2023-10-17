@@ -1,11 +1,13 @@
 package com.mypet.petmily.member.controller;
 
 import com.mypet.petmily.common.exception.member.*;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.member.service.AuthenticationService;
 import com.mypet.petmily.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +22,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -37,7 +40,7 @@ public class MemberController {
     private final PasswordEncoder passwordEncoder;
 
     @Value("${image.image-dir}")
-    private String IMAGE_DIT;
+    private String IMAGE_DIR;
 
     public MemberController(MemberService memberService,
                             AuthenticationService authenticationService,
@@ -205,6 +208,7 @@ public class MemberController {
         return "redirect:/";
     }
 
+    /* ========================================== 로그인 ============================================ */
 
     /* 로그인 화면 */
     @GetMapping("/login")
@@ -216,6 +220,8 @@ public class MemberController {
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("error.login"));
         return "redirect:/member/login";
     }
+
+    /* ========================================== 아이디 비밀번호 찾기 ============================================ */
 
     /* 아이디 찾기 화면 */
     @GetMapping("/find_id")
@@ -276,7 +282,7 @@ public class MemberController {
         return "member/find_pwd_result";
     }
 
-    /* ============================ 마이페이지 ============================ */
+    /* ========================================== 마이페이지 ============================================ */
 
     @GetMapping("/mypage")
     public String headerMemberMypage(@AuthenticationPrincipal MemberDTO member, Model model) {
@@ -290,6 +296,8 @@ public class MemberController {
         return "member/mypage";
     }
 
+    /* ========================================== 반려동물 프로필 ============================================ */
+
     /* 반려동물 프로필 등록 페이지 */
     @GetMapping("/pet-profile-regist")
     public void petProfileRegist(@AuthenticationPrincipal MemberDTO loginMember, Model model){
@@ -297,38 +305,37 @@ public class MemberController {
         model.addAttribute("loginMember", loginMember.getMemberId());
     }
 
-    /* 반려동물 프로필 등록 */
-    @Value("/src/main/resources/upload")
-    private String IMAGE_DIR;
-
     @PostMapping("/pet-profile-regist")
-    public String registPetProfile(PetDTO pet, List<MultipartFile> petProfileImg,
-                                   @AuthenticationPrincipal MemberDTO loginMember,
-                                   RedirectAttributes rttr) throws PetProfileException {
+    public String registPetProfile(PetDTO pet, List<MultipartFile> petImg,
+                                   @AuthenticationPrincipal MemberDTO loginMember){
 
 
         log.info("pet profile request : {}", pet);
-        log.info("pet profile image request : {}", petProfileImg);
+        log.info("pet profile image request : {}", petImg);
 
-        String petImgDir = IMAGE_DIR + "petProfile";
+        String fileUploadDir = IMAGE_DIR + "original";
+        String thumbnailDir = IMAGE_DIR + "thumbnail";
+        // 저장 디렉토리를 별도로 분리해서 지정
 
-        File dir = new File(petImgDir);
+        File dir1 = new File(fileUploadDir);
+        File dir2 = new File(thumbnailDir);
 
         /* 디렉토리가 없을 경우 생성 */
-        if(!dir.exists()){
-            dir.mkdirs();
+        if (!dir1.exists() || !dir2.exists()) {
+            dir1.mkdirs();
+            dir2.mkdirs();
         }
 
         // 업로드 파일에 대한 정보를 담을 리스트
-        //List</* 첨부파일DTO*/> attachmentList = new ArrayList<>();
+        List<FileUploadDTO> fileList = new ArrayList<>();
 
-        /*try{
-            for (int i = 0; i < petProfileImg.size(); i++) {
+        try{
+            for (int i = 0; i < petImg.size(); i++) {
 
                 // 첨부파일이 실제로 존재하는 경우에만 로직 수행
-                if(petProfileImg.get(i).getSize() > 0){
+                if(petImg.get(i).getSize() > 0){
 
-                    String originalFileName = petProfileImg.get(i).getOriginalFilename();
+                    String originalFileName = petImg.get(i).getOriginalFilename();
                     log.info("originalFileName : {}", originalFileName);
 
                     String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
@@ -336,37 +343,56 @@ public class MemberController {
                     log.info("savedFileName : {}", savedFileName);
 
                     // 서버의 설정 디렉토리 파일 저장하기
-                    petProfileImg.get(i).transferTo(new File(petImgDir + "/" + savedFileName));
+                    petImg.get(i).transferTo(new File(fileUploadDir + "/" + savedFileName));
 
                     // DB에 저장할 파일의 정보 처리
-                    // 첨부파일DTO fileInfo = new 첨부파일DTO();
-                    //fileInfo.setFileSaveName(savedFileName);
-                    //fileInfo.setFilePathName("/upload/member/");
-                }
-                // attachmentList.add(fileInfo);
+                    FileUploadDTO fileInfo = new FileUploadDTO();
 
+                    fileInfo.setFileOriName(originalFileName);
+                    fileInfo.setFileExtName(ext);
+                    fileInfo.setFileSaveName(savedFileName);
+                    fileInfo.setFileMemberNo(loginMember.getMemberNo());
+                    fileInfo.setFilePetNo(pet.getPetCode());
+                    fileInfo.setFilePathName("/upload/original/");
+
+
+                    if(i == 0) {
+                        // 처음들어온 0번이 대표 파일
+                        fileInfo.setFileType("MainImg");
+
+                        /* 대표 사진에 대한 썸네일을 가공해서 저장한다. */
+                        /* 이 부분이 썸네일 라이브러리 추가된 부분으로 사진 사이즈를 가공하기 위해서 추가 */
+                        Thumbnails.of(fileUploadDir + "/" + savedFileName).size(780, 560)
+                                .toFile(thumbnailDir + "/thumbnail_" + savedFileName);
+
+                        fileInfo.setFile_T_PathName("/upload/thumbnail/thumbnail_" + savedFileName);
+                    } else {
+                        // 나머지는 서브 파일
+                        fileInfo.setFileType("SubImg");
+                        fileInfo.setFile_T_PathName("No");
+                    }
+
+                    fileList.add(fileInfo);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
+        }
 
-        // log.info("attachmentList : {}", attachmentList);
+         log.info("attachmentList : {}", fileList);
 
-        // pet.setAttachmentList(attachmentList);
-        pet.setMember(loginMember);
+         pet.setPetImgList(fileList);
+         pet.setMember(loginMember);
 
-        memberService.registPetProfile(pet);
+         memberService.registPetProfile(pet);
 
-        //rttr.addFlashAttribute()
-
-        return "redirect:/member/pet-profile-list";
+         return "redirect:/member/pet-profile-list";
     }
 
     /* 반려동물 프로필 리스트 조회 페이지 */
     @GetMapping("/pet-profile-list")
     public void petProfileListPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 
-       // model.addAttribute("loginMember", loginMember.getMemberId());
 
         List<PetDTO> petProfileList = memberService.selectPetProfileList(loginMember);
 
@@ -380,10 +406,12 @@ public class MemberController {
 
         log.info("loginMember : {}", loginMember);
 
+
         PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
         log.info("pet profile : {}", petProfile);
-
         model.addAttribute("petProfile", petProfile);
+        model.addAttribute("petImgList", petProfile.getPetImgList());
+
 
 
         return "member/pet-profile-view";
@@ -397,6 +425,7 @@ public class MemberController {
         PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
 
         model.addAttribute("petProfile", petProfile);
+        model.addAttribute("petImgList", petProfile.getPetImgList());
     }
 
 
@@ -429,33 +458,12 @@ public class MemberController {
         return "redirect:/member/pet-profile-list";
     }
 
+    /* ========================================== 반려동물 프로필 끝 ============================================ */
 
 
-
-    /* 후기 작성 페이지 */
-    @GetMapping("/review_write")
-    public void reviewWritePage(){}
-
-    /* 후기 전체 조회 페이지 */
-    @GetMapping("/review-list")
-    public String reviewListPage(@RequestParam(defaultValue = "1") int page,
-                                         @RequestParam(required = false) String searchCondition,
-                                         @RequestParam(required = false) String searchValue,
-                                         Model model) {
-        log.info("reviewList page : {}", page);
-        log.info("reviewList searchCondition : {}", searchCondition);
-        log.info("reviewList searchValue : {}", searchValue);
-
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
-
-        Map<String, Object> reviewListAndPaging = memberService.selectReviewList(searchMap, page);
-        model.addAttribute("paging", reviewListAndPaging.get("paging"));
-        model.addAttribute("reviewList", reviewListAndPaging.get("reserveList"));
-
-        return "member/review-list";
-    }
+    /* 진행 중인 예약 페이지 */
+    @GetMapping("/reservation-in-progress")
+    public void progressReservationPage(){}
 
 
 

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mypet.petmily.review.dao.ReviewMapper">
+
+    <resultMap id="reviewResultMap" type="com.mypet.petmily.review.dto.ReviewDTO">
+        <id property="revCode" column="REV_CODE"/>
+        <result property="revScore" column="REV_SCORE"/>
+        <result property="revContent" column="REV_CONTENT"/>
+        <result property="revCreatedDate" column="REV_CREATED_DATE"/>
+        <result property="revModifyDate" column="REV_MODIFY_DATE"/>
+        <result property="revStatus" column="REV_STATUS"/>
+        <result property="revDeleteDate" column="REV_DELETE_DAE"/>
+        <result property="resCode" column="RESERV_CODE"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
+
+        <association property="member" resultMap="memberResultMap"/>
+       <!-- <association property="petSitter" resultMap="petSitterResultMap"/>-->
+<!--        <association property="reservation" resultMap="ReservationResultMap"/>-->
+    </resultMap>
+
+    <!-- 예약 -->
+    <resultMap id="ReservationResultMap" type="com.mypet.petmily.payment.dto.ReservationHistoryDTO" >
+        <id property="resCode" column="RESERV_CODE" />
+        <result property="startDateTime" column="RESERV_START"/>
+        <result property="endDateTime" column="RESERV_END"/>
+        <result property="resStatus" column="RESERV_STATUS"/>
+        <result property="restotalAmount" column="RESERV_TOTAL_AMOUNT"/>
+        <result property="resDayCount" column="RESERV_DAY_COUNT"/>
+        <result property="resTimeCount" column="RESERV_TIME_COUNT"/>
+        <result property="resvat" column="RESERV_VAT"/>
+        <result property="resAppDate" column="RESERV_APP_DATE"/>
+
+        <association property="resMember" resultMap="petMemberResultMap"/>
+        <association property="resPetSitter" resultMap="petSitterResultMap"/>
+        <association property="resPet" resultMap="petResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <association property="reviewList" resultMap="reviewResultMap"/>
+        <association property="reservationList" resultMap="ReservationResultMap"/>
+    </resultMap>
+
+    <!-- 펫 주인 -->
+    <resultMap type="com.mypet.petmily.payment.dto.PetMemberDTO" id="petMemberResultMap">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="postNo" column="POST_NO"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="point" column="POINT"/>
+        <result property="memberStat" column="MEMBER_STAT"/>
+    </resultMap>
+
+    <!-- 펫시터 -->
+    <resultMap id="petSitterResultMap" type="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO">
+        <id property="petMemberNo" column="PET_MEMBER_NO"/>
+        <result property="petRegistDate" column="PET_REGIST_DATE"/>
+        <result property="petStat" column="PET_STAT"/>
+        <result property="petTitle" column="PET_TITLE"/>
+        <result property="petIntroduce" column="PET_INTRODUCE"/>
+        <result property="petPlace" column="PET_PLACE"/>
+        <result property="petCareCount" column="PET_CARE_COUNT"/>
+        <result property="petBabyYn" column="PET_BABY_YN"/>
+        <result property="petPence" column="PET_PENCE"/>
+        <result property="petMypetYn" column="PET_MYPET_YN"/>
+        <result property="petSmokYn" column="PET_SMOK_YN"/>
+        <result property="petCareSize" column="PET_CARE_SIZE"/>
+        <result property="petCareAge" column="PET_CARE_AGE"/>
+        <result property="petCheckIn" column="PET_CHECKIN"/>
+        <result property="petCheckOut" column="PET_CHECKOUT"/>
+        <result property="petRequest" column="PET_REQUEST"/>
+        <result property="petImpossible" column="PET_IMPOSSIBLE"/>
+        <result property="petM_DayPay" column="PET_M_DAY_PAY"/>
+        <result property="petM_TimePay" column="PET_M_TIME_PAY"/>
+        <result property="petL_DayPay" column="PET_L_DAY_PAY"/>
+        <result property="petL_TimePay" column="PET_L_TIME_PAY"/>
+        <result property="petBank" column="PET_BANK"/>
+        <result property="petBankNo" column="PET_BANK_NO"/>
+        <result property="petBankName" column="PET_BANK_NAME"/>
+    </resultMap>
+
+    <!-- 펫 -->
+    <resultMap id="petResultMap" type="com.mypet.petmily.payment.dto.PetResDTO">
+        <id property="petCode" column="PET_CODE"/>
+        <result property="petName" column="PET_NAME"/>
+        <result property="petAge" column="PET_AGE"/>
+        <result property="petGender" column="PET_GENDER"/>
+        <result property="neutralYn" column="NEUTRAL_YN"/>
+        <result property="petBreed" column="PET_BREED"/>
+        <result property="petWeight" column="PET_WEIGHT"/>
+        <result property="petRegist" column="PET_REGIST"/>
+        <result property="pSocial" column="P_SOCIAL"/>
+        <result property="aSocial" column="A_SOCIAL"/>
+        <result property="barkLevel" column="BARK_LEVEL"/>
+        <result property="sepAnxiety" column="SEP_ANXIETY"/>
+        <result property="petDisease" column="PET_DISEASE"/>
+        <result property="petDiseaseExp" column="PET_DISEASE_EXP"/>
+        <result property="petAllergy" column="PET_ALLERGY"/>
+        <result property="petAllergyExp" column="PET_ALLERGY_EXP"/>
+        <result property="pottyTrain" column="POTTY_TRAIN"/>
+        <result property="markingIn" column="MARKING_IN"/>
+        <result property="vaccin" column="VACCIN"/>
+        <result property="hosName" column="HOS_NAME"/>
+        <result property="hosPhone" column="HOS_PHONE"/>
+        <result property="hosAddress" column="HOS_ADDRESS"/>
+        <result property="registStatus" column="REGIST_STATUS"/>
+        <association property="member" resultMap="petMemberResultMap"/>
+    </resultMap>
+
+    <select id="viewReservationInfo" resultMap="ReservationResultMap">
+        SELECT
+               R.RESERV_CODE
+             , R.PET_MEMBER_NO
+          FROM TBL_RESERVATION R
+          JOIN TBL_MEMBER M ON (R.MEMBER_NO = M.MEMBER_NO)
+         WHERE M.MEMBER_NO = #{memberNo}
+           AND R.RESERV_CODE = #{resCode}
+    </select>
+
+    <insert id="registReview">
+        INSERT INTO TBL_REVIEW
+        (
+           REV_CODE
+         , REV_SCORE
+         , REV_CONTENT
+         , REV_CREATED_DATE
+         , REV_MODIFY_DATE
+         , REV_STATUS
+         , MEMBER_NO
+         , RESERV_CODE
+         , PET_MEMBER_NO
+        )
+        VALUES
+            (SEQ_TBL_REVIEW_NO.NEXTVAL
+            , #{revScore}
+            , #{revContent}
+            , #{revCreatedDate}
+            , #{revModifyDate}
+            , #{revStatus}
+            , #{member.memberNo}
+            , #{resCode}
+            , #{petMemberNo}
+            )
+    </insert>
+
+    <select id="selectTotalCount" resultType="_int">
+        SELECT
+               COUNT(*)
+          FROM TBL_REVIEW
+           WHERE REV_STATUS = 'Y'
+            AND MEMBER_NO = #{memberNo}
+    </select>
+
+    <select id="selectReviewList" resultMap="reviewResultMap">
+        SELECT
+               A.REV_CODE
+             , A.REV_SCORE
+             , A.REV_CONTENT
+             , A.REV_CREATED_DATE
+             , A.MEMBER_NO
+             , A.RESERV_CODE
+             , R.RESERV_START
+             FROM (SELECT
+                  ROWNUM RNUM
+                  , B.REV_CODE
+                  , B.REV_SCORE
+                  , B.REV_CONTENT
+                  , B.REV_CREATED_DATE
+                  , B.MEMBER_NO
+                  , B.RESERV_CODE
+                  FROM (SELECT
+                        C.REV_CODE
+                        , C.REV_SCORE
+                        , C.REV_CONTENT
+                        , C.REV_CREATED_DATE
+                        , C.MEMBER_NO
+                        , C.RESERV_CODE
+                        FROM TBL_REVIEW C
+                        JOIN TBL_RESERVATION R ON(C.RESERV_CODE = R.RESERV_CODE)
+                        WHERE C.REV_STATUS = 'Y'
+                        ORDER BY C.REV_CODE DESC
+                        ) B
+                 <![CDATA[
+                   WHERE ROWNUM <= #{ selectCriteria.endRow }
+                   ]]>
+                   ) A
+                JOIN TBL_RESERVATION R ON (A.RESERV_CODE = R.RESERV_CODE)
+                /*JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)*/
+                /*JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)*/
+                WHERE A.RNUM >= #{selectCriteria.startRow}
+                ORDER BY 1 DESC
+    </select>
+
+ <!--   <select id="reserveInfo" resultMap="ReservationResultMap">
+        SELECT
+               R.RESERV_CODE
+             , R.RESERV_START
+          FROM TBL_RESERVATION R
+          JOIN TBL_REVIEW V ON (R.RESERV_CODE = V.RESERV_CODE)
+         WHERE REV_CODE = #{reviewList.revCode}
+    </select>-->
+
+</mapper>

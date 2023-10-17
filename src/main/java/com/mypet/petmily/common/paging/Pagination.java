@@ -1,8 +1,5 @@
 package com.mypet.petmily.common.paging;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Pagination {
     public static SelectCriteria getSelectCriteria(int page, int limit, int buttonAmount) {
 
