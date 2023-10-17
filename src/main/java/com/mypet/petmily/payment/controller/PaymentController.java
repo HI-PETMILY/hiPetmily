@@ -10,6 +10,7 @@ import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Request;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.access.method.P;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,7 +84,7 @@ public class PaymentController {
 
         model.addAttribute("loginMember", loginMember.getMemberNo());
         log.info("loginMember : {}", loginMember);
-        List<ReservationDTO> detailReservation = paymentService.selectDetailReservation(loginMember, resCode);
+        List<ProgressReserveDTO> detailReservation = paymentService.selectDetailReservation(loginMember, resCode);
         model.addAttribute("detailReservation", detailReservation);
         log.info("detailReservation : {}", detailReservation);
 
