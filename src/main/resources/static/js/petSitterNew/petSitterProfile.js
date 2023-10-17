@@ -11,6 +11,11 @@ $(function(){
     fullcalendarApi();
     kakaoMapApi();
 
+    $("#revBtn").click(function (){
+        $("#revBtn").css({ "display" : "none" });
+        $(".psp_review_hide").css({ "display" : "flex" });
+    });
+
 });
 
 function getReservation() {

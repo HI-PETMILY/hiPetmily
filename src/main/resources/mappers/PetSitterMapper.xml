@@ -95,63 +95,59 @@
 
     <select id="selectMypage" resultMap="memberResultMap">
             SELECT
-            M.MEMBER_NO
-          , M.MEMBER_NAME
-          , M .ADDRESS
+                M.MEMBER_NO
+              , M.MEMBER_NAME
+              , M.ADDRESS
             FROM TBL_MEMBER M
             LEFT JOIN TBL_ROLE R ON(M.MEMBER_NO = R.MEMBER_NO)
             WHERE MEMBER_STAT = '활동'
+    </select>
 
 
 
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+        COUNT(*)
+        FROM TBL_PET_SITTER P
+        <!-- 주소 (address) 검색 조건 -->
+        <if test="address != null and address != ''">
+            JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)
+        </if>
+        <!-- 예약일  검색 조건 -->
+        <if test="petCheckIn != null">
+            AND P.PET_CHECKIN = #{petCheckIn}
+        </if>
+        <if test="petCheckOut != null">
+            AND P.PET_CHECKOUT = #{petCheckOut}
+        </if>
 
-        </select>
-
-
-
-        <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
-            SELECT
-            COUNT(*)
-            FROM TBL_PET_SITTER P
-            <!-- 주소 (address) 검색 조건 -->
-            <if test="address != null and address != ''">
-                JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)
+        <where>
+            <if test="searchCondition == 'address'">
+                M.ADDRESS LIKE '%' || #{ searchValue } || '%'
             </if>
-            <!-- 예약일  검색 조건 -->
-            <if test="petCheckIn != null">
-                AND P.PET_CHECKIN = #{petCheckIn}
+            <if test="searchCondition == 'petCheckIn'">
+                P.PET_CHECKIN '%' || #{ searchValue } || '%'
             </if>
-            <if test="petCheckOut != null">
-                AND P.PET_CHECKOUT = #{petCheckOut}
+            <if test="searchCondition == 'petCheckOut'">
+                P.PET_CHECKOUT '%' || #{ searchValue } || '%'
             </if>
-
-            <where>
-                <if test="searchCondition == 'address'">
-                    M.ADDRESS LIKE '%' || #{ searchValue } || '%'
-                </if>
-                <if test="searchCondition == 'petCheckIn'">
-                    P.PET_CHECKIN '%' || #{ searchValue } || '%'
-                </if>
-                <if test="searchCondition == 'petCheckOut'">
-                    P.PET_CHECKOUT '%' || #{ searchValue } || '%'
-                </if>
-                AND P.PET_STAT = '승인'
-            </where>
-        </select>
+            AND P.PET_STAT = '승인'
+        </where>
+    </select>
 
     <select id="selectPetSitterList" resultMap="petSitterResultMap">
         SELECT
-          P.PET_MEMBER_NO
-        , P.PET_TITLE
-        , M.NICKNAME
-        , P.PET_M_DAY_PAY
-        , P.PET_M_TIME_PAY
-        , P.PET_L_DAY_PAY
-        , P.PET_L_TIME_PAY
-        , R.REV_CODE
-        , R.REV_SCORE
-        , R.REV_CONTENT
-        , T.TAG_CONTENT
+              P.PET_MEMBER_NO
+            , P.PET_TITLE
+            , M.NICKNAME
+            , P.PET_M_DAY_PAY
+            , P.PET_M_TIME_PAY
+            , P.PET_L_DAY_PAY
+            , P.PET_L_TIME_PAY
+            , R.REV_CODE
+            , R.REV_SCORE
+            , R.REV_CONTENT
+            , T.TAG_CONTENT
         FROM TBL_MEMBER M
         JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )
         LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
@@ -160,7 +156,7 @@
     </select>
 
 
-    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">
+<!--    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">-->
 <!--        SELECT-->
 <!--          A.PET_MEMBER_NO-->
 <!--        , A.PET_TITLE-->
@@ -217,7 +213,7 @@
 <!--        JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)-->
 <!--        WHERE A.RNUM >= #{ startRow }-->
 <!--        ORDER BY petRegistDt desc;-->
-    </select>
+<!--    </select>-->
 
     <!--    <update id="incrementBoardCount">-->
     <!--        UPDATE-->
