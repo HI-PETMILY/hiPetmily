@@ -420,6 +420,7 @@ public class MemberController {
         PetDTO petProfile = memberService.viewPetProfile(loginMember, petCode);
 
         model.addAttribute("petProfile", petProfile);
+        model.addAttribute("petImgList", petProfile.getPetImgList());
     }
 
 
