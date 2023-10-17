@@ -33,9 +33,12 @@
 
             <div class="pet-profile-info">
                 <div class="pet-profileImg">
-                    <th:block th:each="petImg : ${petProfile.petImgList}">
+                    <th:block th:if="" th:each="petImg : ${petProfile.petImgList}">
                         <img th:if="${petImg.fileType == 'MainImg'}"
-                             th:src="${petImg.filePathName}"   >
+                             th:src="${petImg.filePathName + petImg.fileSaveName}">
+                    </th:block>
+                    <th:block>
+<!--                        <img src=""-->
                     </th:block>
                 </div>
                 <div class="pet-profile-detail">
