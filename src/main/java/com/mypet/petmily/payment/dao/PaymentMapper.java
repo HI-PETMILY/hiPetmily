@@ -20,4 +20,6 @@ public interface PaymentMapper {
     List<ReservationDTO> selectReservationBoardList(@Param("memberNo") int memberNo, @Param("startRow") int startRow, @Param("endRow") int endRow);
 
     List<ReservationDTO> selectDeatilReservation(MemberDTO loginMember, int resCode);
+
+    List<ProgressReserveDTO> selectProgressReserveList(MemberDTO loginMember);
 }

@@ -61,7 +61,6 @@ public class PaymentController {
 //    }
 
     /* 지난 예약 */
-
     @GetMapping("/reservationList")
     public String listReservations(@AuthenticationPrincipal MemberDTO loginMember,
                                    @RequestParam(defaultValue = "1") int page,
@@ -93,7 +92,7 @@ public class PaymentController {
         return "member/reservationDetail";
     }
 
-    /* 진행 중인 예약 리스트 조회 페이지 */
+    /* 진행 중인 예약 리스트 조회 */
     @GetMapping("/reservation-in-progress")
     public void reservationInProgressPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
 

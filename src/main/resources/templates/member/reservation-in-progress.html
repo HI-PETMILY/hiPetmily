@@ -35,20 +35,29 @@
 
                     </div>
                     <div class="sitter-nickname">
-                        <p th:text="${reservation.petSitterNickname}"></p>
+                        <p th:text="${reservation.petSitter.memberInfo.nickName}"></p>
                     </div>
                 </div>
 
                 <div class="reserve-detail">
-                    <div class="reserve-code"><p th:text="예약 코드 + ':' + ${reservation.reserveCode}"></p></div>
+                    <div class="reserve-code">
+                        <p th:text="예약코드 + ' : ' + ${reservation.reserveCode}"></p>
+                    </div>
                     <div class="reserve-text">
-                        <p th:text="${reservation.petSitterNickname} 님에게 돌봄 서비스를 예약하셨어요." ></p></div>
+                        <p th:text="'\''+${reservation.petSitter.memberInfo.nickName} + '\''"></p> 님에게 돌봄 서비스를 예약했어요.
+                    </div>
                     <div class="nav-line grey-line"></div>
                     <div class="reserve-text-box">
                         <h3 class="reserve-service-exp">펫시터 돌봄 서비스</h3>
-                        <!--                    <div><p th:text="${}"></p> </div>-->
-                        <div class="reserve-date"><p th:text="${reservation.startDateTime} 예약"></p></div>
-                        <div class="reserve-pet"><p th:text="${reservation.reserveMember.petList.petCode}">돌봄대상 (이)가 서비스를 받을 예정입니다.</p></div>
+                        <div class="reserve-date">
+                            <p>예약 기간 : </p>
+                            <p th:text="${reservation.startDateTime} + ' ~ ' + ${reservation.endDateTime}"></p>
+
+                        </div>
+                        <div class="reserve-time">
+                            <p>총 예약 시간 : </p>
+                            <p th:text="${reservation.reserveDayCount} + 일 + ', ' + ${reservation.reserveTimeCount} + 시간"></p>
+                        </div>
                     </div>
                 </div>
             </div>
