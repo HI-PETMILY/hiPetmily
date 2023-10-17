@@ -81,6 +81,4 @@ public class MemberDTO implements UserDetails {
         return true;
     }
 
-    public MemberDTO(long aLong, String string, String string1, String string2, String rsString, java.sql.Date date) {
-    }
 }

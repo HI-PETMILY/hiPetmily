@@ -17,11 +17,13 @@ public class AdminService {
 
     private final AdminMapper adminMapper;
 
-    public AdminService(AdminMapper adminMapper) {this.adminMapper = adminMapper;}
+    public AdminService(AdminMapper adminMapper) {
+        this.adminMapper = adminMapper;
+    }
 
     public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue, String rating) {
-    // 밑에 기존코드
-    // public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue) {
+        // 밑에 기존코드
+        // public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue) {
 
 
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
@@ -45,17 +47,41 @@ public class AdminService {
 
         return memberListAndPaging;
     }
+
     // 회원 목록 조회 메서드
+    @Transactional
     public int getTotalMemberCount(String searchCondition, String searchValue, String rating) {
         return adminMapper.selectTotalCount(searchCondition, searchValue, rating);
     }
 
+    // 해당 회원 상세 조회
+    @Transactional
     public List<MemberDTO> getPoP_managementPageById(int id) {
 
         // 클라이언트로부터 받은 memberId를 사용하여 회원 정보를 데이터베이스에서 조회
         List<MemberDTO> member = adminMapper.selectPoP_MemberById(id);
 
         return member;
-
     }
+
+    @Transactional
+    public void setPoP_managementResultPage(int no, int memberType, String stat, int point) {
+
+        adminMapper.setPoP_Member(no, stat, point);
+        adminMapper.setPoP_Authority(no, memberType);
+
+        log.info("memberType 등급 누른대로 제발!!!!! : {}", memberType);
+    }
+
+    @Transactional
+    public void deleteMemebr() {
+
+        adminMapper.deleteMember();
+    }
+
+
+
+
+
+
 }

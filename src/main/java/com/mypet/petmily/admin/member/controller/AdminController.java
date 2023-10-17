@@ -2,15 +2,15 @@ package com.mypet.petmily.admin.member.controller;
 
 import com.mypet.petmily.admin.member.service.AdminService;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.member.dto.MemberRoleDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,20 +37,23 @@ public class AdminController {
 // 서비스 클래스에서 총 회원 수와 페이징 처리된 회원 목록을 가져오기
 
         /////////////////////////////////////////////////////////////////////////////////////
-        // 서비스로 체크박스 값 넘김 (ex : [일반회원, 펫시터회원], [일반회원], [펫시터회원], null)
+        // 서비스로 라디오체크 값 넘김 (ex : [일반회원, 펫시터회원], [일반회원], [펫시터회원], null)
         Map<String, Object> memberListAndPaging = adminService.getMemberList(page, searchCondition, searchValue, rating);
         // 밑에 기존코드
         // Map<String, Object> memberListAndPaging = adminService.getMemberList(page, searchCondition, searchValue);
         /////////////////////////////////////////////////////////////////////////////////////
 
+        //탈퇴한지 180일 지난 회원 자동으로 삭제
+        adminService.deleteMemebr();
+        ////////////////////////////////////////////
+
         List<MemberDTO> memberList = (List<MemberDTO>) memberListAndPaging.get("memberList");
         int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue, rating);
-//        int searchResultCount = memberList.size(); // 검색 결과의 일치하는 전체 회원 수
+//      int searchResultCount = memberList.size(); // 검색 결과의 일치하는 전체 회원 수
 
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("memberList", memberList);
         model.addAttribute("paging", memberListAndPaging.get("paging"));
-
 
         return "admin/member/main-member";
     }
@@ -76,7 +79,7 @@ public class AdminController {
         return "admin/member/popInquiry";
     }
 
-    /* 화원 정보 관리 팝업 @@@@@@@@@@@@*/
+    /* 화원 정보 관리 조회 팝업 @@@@@@@@@@@@*/
     @GetMapping("/popManagement")
     public String getPoP_managementPage(@RequestParam("id") int id, Model model) {
 
@@ -87,6 +90,23 @@ public class AdminController {
         log.info("member 잘 전달되냐? : {}" , member);
 
         return "admin/member/popManagement";
+    }
+
+    /*회원수정================================*/
+    @PostMapping("/popManagementResult")
+    public String setPoP_managementResultPage(@RequestParam("no") int no,
+                                              @RequestParam("memberType") int memberType,
+                                              @RequestParam("stat") String stat,
+                                              @RequestParam("point") int point,
+                                              Model model) {
+
+        log.info("1파라미터 잘 전달되냐? : {}, {}, {}, {}" , no, memberType,stat,point);
+        adminService.setPoP_managementResultPage(no,memberType,stat,point);
+
+        model.addAttribute("id", no);
+        log.info("2파라미터 잘 전달되냐? : {}, {}, {}, {}" , no, memberType,stat,point);
+
+        return "admin/member/popManagementResult";
     }
 
     /*여기까지 ===========================================*/

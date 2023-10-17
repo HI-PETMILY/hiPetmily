@@ -99,13 +99,14 @@ function onMenuClick() {
 // 내용 전환을 위한 코드
 function showContent(contentId) {
     // 모든 내용 섹션을 숨김
+    document.getElementById('content-member').style.display = 'none';
     document.getElementById('content-community').style.display = 'none';
     document.getElementById('content-personalInquiry').style.display = 'none';
-    document.getElementById('content-member').style.display = 'none';
+
 
     // 선택한 내용 섹션을 표시
     document.getElementById('content-' + contentId).style.display = 'block';
-
 }
+
 
 

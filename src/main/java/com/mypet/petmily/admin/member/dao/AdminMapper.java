@@ -5,7 +5,6 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface AdminMapper {
@@ -20,11 +19,10 @@ public interface AdminMapper {
     List<MemberDTO> selectPoP_MemberById(int id);
 
 
+    void setPoP_Member(int no, String stat, int point);
 
+    void setPoP_Authority(int no, int memberType);
 
-
-
-
-
+    void deleteMember();
 
 }

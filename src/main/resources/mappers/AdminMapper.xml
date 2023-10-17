@@ -35,6 +35,33 @@
         <association property="authority" resultMap="authorityResultMap"/>
     </resultMap>
 
+    <resultMap type="com.mypet.petmily.petSitter.dto.PetSitterDTO" id="petSitterResultMap">
+        <id property="petMemberNo" column="PET_MEMBER_NO"/>
+        <result property="petRegistDt" column="PET_REGIST_DATE"/>
+        <result property="petStatus" column="PET_STAT"/>
+        <result property="petTitle" column="PET_TITLE"/>
+        <result property="petIntroduce" column="PET_INTRODUCE"/>
+        <result property="petPlace" column="PET_PLACE"/>
+        <result property="petCareCount" column="PET_CARE_COUNT"/>
+        <result property="petBabyYn" column="PET_BABY_YN"/>
+        <result property="petSmoke" column="PET_SMOK_YN"/>
+        <result property="petCareSize" column="PET_CARE_SIZE"/>
+        <result property="petCareAge" column="PET_CARE_AGE"/>
+        <result property="petCheckIn" column="PET_CHECKIN"/>
+        <result property="petCheckOut" column="PET_CHECKOUT"/>
+        <result property="petRequest" column="PET_REQUEST"/>
+        <result property="petImpossible" column="PET_IMPOSSIBLE"/>
+        <result property="petMDayPay" column="PET_M_DAY_PAY"/>
+        <result property="petMTimePay" column="PET_M_TIME_PAY"/>
+        <result property="petLDayPay" column="PET_L_DAY_PAY"/>
+        <result property="petLTimePay" column="PET_L_TIME_PAY"/>
+        <result property="petBank" column="PET_BANK"/>
+        <result property="petBankNo" column="PET_BANK_NO"/>
+        <result property="petBankName" column="PET_BANK_NAME"/>
+        <result property="nickname" column="NICKNAME"/>
+        <collection property="reviewList" resultMap="reviewResultMap"/>
+    </resultMap>
+
 
     <!-- 멤버의 상세 정보를 ID로 가져오는 쿼리 -->
     <select id="selectPoP_MemberById" resultMap="generalMemberResultMap">
@@ -60,21 +87,28 @@
         WHERE C.MEMBER_NO = #{id}
     </select>
 
-<!--    &lt;!&ndash;     회원 정보 수정(멤버 테이블)&ndash;&gt;-->
-<!--    <update id="upMember" parameterType="com.mypet.petmily.member.dto.MemberDTO">-->
-<!--        UPDATE TBL_MEMBER-->
-<!--        SET MEMBER_STAT = #{memberStat},-->
-<!--            WARNING_COUNT = #{warningCount},-->
-<!--            POINT = #{point}-->
-<!--        WHERE MEMBER_NO = #{no}-->
-<!--    </update>-->
-
-    <!--     회원 등급 수정 (테이블 따로라서)-->
-    <update id="upRoleMember" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">
-        UPDATE TBL_ROLE
-        SET AUTHORITY_CODE = #{authority}
-        WHERE MEMBER_NO = #{memberNo}
+    <!--     회원 정보 수정(멤버 테이블)============-->
+    <update id="setPoP_Member" parameterType="com.mypet.petmily.member.dto.MemberDTO">
+        UPDATE TBL_MEMBER
+        SET MEMBER_STAT = #{stat},
+            POINT = #{point}
+        WHERE MEMBER_NO = #{no}
     </update>
+
+    <!--     회원 등급 수정 (롤 테이블 따로)===============-->
+    <update id="setPoP_Authority" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">
+        UPDATE TBL_ROLE
+        SET AUTHORITY_CODE = #{memberType}
+        WHERE MEMBER_NO = #{no}
+    </update>
+
+    <!--     회원 삭제-->
+    <delete id="deleteMember">
+        DELETE FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '탈퇴'
+        AND (TRUNC(SYSDATE) - MEMBER_STAT_DATE) > 180
+    </delete>
+
 
     <!--     회원 목록 조회 + 검색 연동 쿼리-->
     <select id="selectMemberList" resultMap="generalMemberResultMap">
