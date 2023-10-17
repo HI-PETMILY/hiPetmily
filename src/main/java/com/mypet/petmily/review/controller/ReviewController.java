@@ -44,10 +44,11 @@ public class ReviewController {
     }
 
     @PostMapping("/review-write")
-    public String reviewWrite(ReviewDTO review, @AuthenticationPrincipal MemberDTO loginMember
-                              ){
+    public String reviewWrite(ReviewDTO review, @AuthenticationPrincipal MemberDTO loginMember, Model model){
 
         review.setMember(loginMember);
+        review.setPetMember(review.getPetMember());
+        review.setReserve(review.getReserve());
 
         reviewService.registReview(review);
 
