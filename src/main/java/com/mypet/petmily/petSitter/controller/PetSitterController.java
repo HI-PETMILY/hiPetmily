@@ -1,19 +1,19 @@
 package com.mypet.petmily.petSitter.controller;
 
 
+import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitter.service.MypageService;
 import com.mypet.petmily.petSitter.service.PetSitterService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -34,8 +34,13 @@ public class PetSitterController {
 
 
     @GetMapping("/mypage")
-    public String getMypage(Model model) {
+    public String getMypage(@AuthenticationPrincipal MemberDTO loginMember, Model model) {
 
+        log.info("loginMember : {}", loginMember);
+
+        PetSitterDTO petSitterInfo =  mypageService.selectMypage(loginMember);
+
+      model.addAttribute("petSitter", petSitterInfo);
 
         return "petSitter/mypage";
 
@@ -66,7 +71,7 @@ public class PetSitterController {
                                    @RequestParam(required = false) String searchCondition,
                                    @RequestParam(required = false) String searchValue,
                                    Model model) {
-
+//
 //        log.info("petsitterList page : {}", page);
 //        log.info("petsitterList searchCondition : {}", searchCondition);
 //        log.info("petsitterList searchValue : {}", searchValue);
