@@ -84,7 +84,7 @@
       </div>
 
             <div class="price-box">
-            <div  th:if="${petSitter.petMDayPay != 0 }" class="price" >중소형 1박 : <span th:text="${petSitter.petMDayPay}" ></span> </div>
+            <div  th:if="${petSitter.petMDayPay != 0}" class="price" >중소형 1박 : <span th:text="${petSitter.petMDayPay}" ></span> </div>
             <div th:if="${petSitter.petMTimePay != 0}" class="price">중소형 1시간 : <span th:text="${petSitter.petMTimePay}" ></span> </div>
             <div th:if="${petSitter.petLDayPay != 0}"  class="price">대형견 1박 : <span th:text="${petSitter.petLDayPay}" ></span> </div>
             <div th:if="${petSitter.petLTimePay != 0}" class="price">대형견 1시간 : <span  th:text="${petSitter.petLTimePay}" ></span></div>

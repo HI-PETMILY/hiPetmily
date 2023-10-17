@@ -1,5 +1,6 @@
 package com.mypet.petmily.petSitter.dao;
 
+import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dto.SelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,7 @@ public interface PetSitterMapper {
     int selectTotalCount(Map<String, String> searchMap);
 
     List<PetSitterDTO> selectPetSitterListPaging(SelectCriteria selectCriteria);
+
+
+    PetSitterDTO selectMypage(MemberDTO loginMember);
 }

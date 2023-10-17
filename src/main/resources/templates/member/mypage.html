@@ -21,7 +21,9 @@
 <div id="header_bar">
     <div id="bar">
         <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
-        <div class="bar_info" id="bar_sitter"><p id="sitter">펫시터</p></div>
+        <div class="bar_info" id="bar_sitter"
+             th:if ="${member.}"
+             th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petMemberNo}'|"><p id="sitter">펫시터</p></div>
     </div>
 </div>
 <div id="box">
@@ -36,14 +38,19 @@
 
         <div class="main_container">
             <div id="dog_pic_box">
-                <div id="dog_pic"></div>
-                <div id="dog_profile">
-                    <!-- 반려동물 프로필이 없는 경우 -->
-                    <th:block th:unless="${petProfile != null}">
-                        <p class="pet_info">반려동물을 등록하세요</p>
+                <!-- 반려동물 프로필이 없는 경우 -->
+                <th:block th:unless="${petProfile != null}">
+                    <p class="pet_info">반려동물을 등록하세요</p>
+                </th:block>
+                <!-- 반려동물 프로필이 있는 경우 -->
+                <th:block th:if="${petProfile != null}">
+                <div id="dog_pic">
+                    <th:block th:each="petImg : ${petProfile.petImgList}">
+                        <img th:if="${petImg.fileType == 'MainImg'}"
+                             th:src="${petImg.filePathName + petImg.fileSaveName}">
                     </th:block>
-                    <!-- 반려동물 프로필이 있는 경우 -->
-                    <th:block th:if="${petProfile != null}">
+                </div>
+                <div id="dog_profile">
                     <p id="" th:text="이름 + ' : '  + ${petProfile.petName}"></p>
                     <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
                     <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>

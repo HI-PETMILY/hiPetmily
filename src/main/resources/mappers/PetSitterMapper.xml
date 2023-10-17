@@ -91,6 +91,24 @@
 
 
 
+
+
+    <select id="selectMypage" resultMap="memberResultMap">
+            SELECT
+            M.MEMBER_NO
+          , M.MEMBER_NAME
+          , M .ADDRESS
+            FROM TBL_MEMBER M
+            LEFT JOIN TBL_ROLE R ON(M.MEMBER_NO = R.MEMBER_NO)
+            WHERE MEMBER_STAT = '활동'
+
+
+
+
+        </select>
+
+
+
         <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
             SELECT
             COUNT(*)
@@ -123,7 +141,7 @@
 
     <select id="selectPetSitterList" resultMap="petSitterResultMap">
         SELECT
-        P.PET_MEMBER_NO
+          P.PET_MEMBER_NO
         , P.PET_TITLE
         , M.NICKNAME
         , P.PET_M_DAY_PAY
@@ -142,11 +160,11 @@
     </select>
 
 
-<!--    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">-->
+    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">
 <!--        SELECT-->
 <!--          A.PET_MEMBER_NO-->
 <!--        , A.PET_TITLE-->
-<!--        , A.NICKNAME-->
+<!--        , M.NICKNAME-->
 <!--        , A.PET_M_DAY_PAY-->
 <!--        , A.PET_M_TIME_PAY-->
 <!--        , A.PET_L_DAY_PAY-->
@@ -188,7 +206,7 @@
 <!--            <if test="searchCondition == 'address'">-->
 <!--                M.ADDRESS LIKE '%' || #{ searchValue } || '%'-->
 <!--            </if>-->
-<!--            AND P.PET_STAT = '활동'-->
+<!--            AND P.PET_STAT = '승인'-->
 <!--        </where>-->
 <!--        ORDER BY P.PET_MEMBER_NO DESC-->
 <!--        ) B-->
@@ -199,7 +217,7 @@
 <!--        JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)-->
 <!--        WHERE A.RNUM >= #{ startRow }-->
 <!--        ORDER BY petRegistDt desc;-->
-<!--    </select>-->
+    </select>
 
     <!--    <update id="incrementBoardCount">-->
     <!--        UPDATE-->

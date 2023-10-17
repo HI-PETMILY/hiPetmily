@@ -50,7 +50,7 @@ body,html{
     width: 1028px;
     /*border: 1px solid rgb(235,235,235);*/
     border-radius: 8px;
-    margin-bottom: 80px;
+    margin-bottom: 15px;
     cursor: pointer;
 
 
@@ -111,9 +111,11 @@ body,html{
 
 .first-comment1{
 
-    width: 800px;
+
     height: 100px;
-    font-size: 35px;
+    font-size: 27px;
+    /*word-break: break-all;*/
+    word-break: keep-all;
 }
 
 .petsitter-nickname{
@@ -129,7 +131,8 @@ body,html{
 
 
 .tag-collection{
-display: flex;
+    display: flex;
+    flex-wrap: wrap;/* 자식 요소가 부모 요소의 너비를 초과할 때 줄바꿈*/
 
 }
 
@@ -146,6 +149,8 @@ display: flex;
     /*vertical-align: center;*/
     line-height: 40px;
     display: flex;
+    flex: 0 0 calc(20% - 10px); /* 3개의 자식 요소가 한 줄에 나타나도록 설정 */
+    margin: 5px; /* 각 자식 요소 사이의 간격 설정 */
 
 }
 
@@ -154,7 +159,7 @@ display: flex;
 
     text-align: center;
     vertical-align: center;
-
+    font-size: 15px;
 
     /*justify-content: center;*/
     /*align-items: center;*/
@@ -172,18 +177,23 @@ display: flex;
 .price{
     flex-direction: column;
     line-height: 60px;
-    font-size: 20px;
     margin-left: 15px;
+    font-size: 15px;
+    font-weight: bold;
 
 }
 
 
 
 .review-content{
-
+    overflow: hidden;
     display: flex;
     line-height: 60px;
     margin-left: 20px;
+    word-break: keep-all;
+    font-size: 17px;
+    height: 50px;
+    overflow: hidden;
 
 }
 
@@ -206,6 +216,9 @@ display: flex;
 
 }
 
+.score{
+    width: 160px;
+}
 
 
 .search1{
