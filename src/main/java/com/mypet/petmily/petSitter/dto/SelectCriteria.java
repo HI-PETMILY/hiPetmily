@@ -1,4 +1,4 @@
-package com.mypet.petmily.petSitter.dto.SelectCriteria;
+package com.mypet.petmily.petSitter.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,9 +13,9 @@ import lombok.ToString;
 public class SelectCriteria {
 
 
-    //현재페이지
+    //현재페이지 요청페이지
 private int page;
-//검색포함한 컨텐츠의 갯수
+//검색포함한 컨텐츠의 total갯수
 private int totalCount;
 //한페이지에 보여주는 제한갯수
 private  int limit;

@@ -16,17 +16,21 @@ a {
     color: inherit;
 }
 
+
+
 /*이용약관*/
 
 .useful_wrap {
-    width: 1000px;
-    margin: 140px auto;
+    /*width: 1200px;*/
+    margin: 60px auto;
+    text-align:center;
+    display:table;
+    /*border:1px solid #cecece;*/
 
 }
 
 .useful_title {
-    margin-bottom: 30px;
-    text-align: center;
+    margin-top: 40px;
 }
 
 .useful_title strong {
@@ -40,15 +44,18 @@ a {
 
 .useful_view_wrap {
     text-align: left;
-    border: 1px solid #ddd;
     padding: 30px;
     border-radius: 5px;
     font-size: 14px;
     color: #666;
-    line-height: 22px;
+    line-height: 30px;
     font-family: 'Nanum Gothic','Nanum Square',sans-serif;
     font-weight: 400;
     letter-spacing: -0.5px;
+    /*border: solid;*/
+    height: 100vh;
+    width: 95vh;
+
 }
 
 h2{
@@ -238,26 +245,25 @@ h2{
 
 /*사이트의 높이를 5000px로 만들어 스크롤 생성*/
 body {
-    height: 100vh;
-    background-color: white;
+    margin-top: 100px;
 }
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
 :root {
+
     --side-bar-width: 250px;
     --side-bar-height: 100vh;
 
 }
 
 .side-bar {
-    position: fixed;    /* 스크롤을 따라오도록 지정 */
+    position: absolute;    /* 스크롤을 따라오도록 지정 */
     /*background-color: rgb(250, 246, 246);*/
     background-color: #81BDF1;
     width: var(--side-bar-width);
     min-height: var(--side-bar-height);
     /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
     /*margin-top: calc((100vh - var(--side-bar-height)) / 2);    !* 사이드바 위와 아래의 마진을 동일하게 지정 *!*/
-    margin-top: 140px;
 }
 
 /* 모든 메뉴의 a에 속성값 부여 */
@@ -331,12 +337,33 @@ body {
     display: flex;
 }
 
+.img_boxing_petmily{
+
+    vertical-align:middle;
+}
+
+.img_petimily{
+    max-width:100vh;
+    max-height:500px;
+}
+
+/*카카오톡 api*/
+.img_boxing_petmily_kakao{
+
+    vertical-align:middle;
+    background-image: url("static/static_Image/board/petmily-service3.png");
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
 /*트랜스폼*/
 /* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
 .side-bar {
     border-radius: 20px;
     transform: translate(calc(var(--side-bar-width) * -0.8), 0);  /* X축 이동, Y축 고정 */
     transition: .6s;
+    margin-top: 40px;
 }
 
 /* 마우스 인식 시 원래의 위치로 이동 */
@@ -346,3 +373,27 @@ body {
 
 
 
+/* using process 부분 */
+.using_box{
+    border-bottom: 1px dashed #e3e3e3;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+
+.img_boxingtest{
+
+}
+
+.img_test{
+    width: 400px;
+    height: 300px;
+}
+
+.useful-title{
+    margin-bottom: 20px;
+    text-align: left;
+}

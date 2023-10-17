@@ -28,6 +28,10 @@ public class BoardDTO {
 	/** 회원이름 */
 	private String memberName;
 
+	/** 회원아이디 */
+	private String memberId;
+
+
 //	카테고리
 	/** 게시판 카테고리 코드 */
 	private Integer categoryCode;

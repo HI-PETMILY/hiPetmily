@@ -10,10 +10,21 @@ import java.util.Map;
 @Mapper
 public interface AdminMapper {
 //    List<MemberDTO> selectMemberList(); ///////////
-    int selectTotalCount(Map<String, String> searchMap);
+//    int selectTotalCount(Map<String, String> searchMap);????
 
     List<MemberDTO> selectMemberList(SelectCriteria selectCriteria);
 
 
     int selectTotalCount(String searchCondition, String searchValue, String rating);
+
+    List<MemberDTO> selectPoP_MemberById(int id);
+
+
+
+
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,24 +86,25 @@
             <ul class="chkchoose">
 
 
-                <form>
+                <form onsubmit="return validateMemberNumber()">
 
                     <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
-                    <button class="search-button" type="submit" onclick="location.href='main-member'">검색</button>
+                    <button class="search-button" onclick="location.href='main-member'">검색</button>
 
-                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating" value="전체" onclick='selectAll(this)'>
+                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating"
+                                                                           value="전체">
 
                         <label for="entire">전체</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <input type="radio" id="common" name="rating" value="일반회원" >
+                        <input type="radio" id="common" name="rating" value="일반회원">
                         <label for="common">일반회원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         <input type="radio" id="petSitter" name="rating" value="펫시터회원">
                         <label for="petSitter">펫시터회원</label></li>
 
 
-<!--                    <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email" name="marketing" value="이메일" checked>-->
-<!--                        <label for="email">이메일</label></li>-->
+                    <!--                    <li><b>• 수신동의</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="email" name="marketing" value="이메일" checked>-->
+                    <!--                        <label for="email">이메일</label></li>-->
 
                     <b>• 검색어</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <select id="searchCondition" name="searchCondition">
@@ -119,8 +120,6 @@
             </ul>
         </div>
     </div>
-
-
 </div>
 
 
@@ -149,7 +148,8 @@
                     <tr>
                         <th>
                             <label class="checkbox-inline" id="listChkAll">
-                                <input type="checkbox" id="listChkAll" name="chkList" value="selectAll" onclick='selectAll(this)'> <!--회원 리스트 전체 체크박스-->
+                                <input type="checkbox" id="listChkAll" name="chkList" value="selectAll"
+                                       onclick='selectAll(this)'> <!--회원 리스트 전체 체크박스-->
                                 <!--=======================================-->
                             </label>
                         </th>
@@ -178,13 +178,12 @@
 
                         <div id="btnWrap">
                             <td class="management-button">
-                                <!-- 팝업창 3개 -->
-                                <button type="button" class="mbtn mbtn-primary" onclick="openPasswordChangePopup()">비번변경</button>
-                                <button type="button" class="mbtn mbtn-primary" onclick="openInquiryPopup()">1대1문의</button>
-                                <button type="button" class="mbtn mbtn-primary" onclick="openManagementPopup()">관리</button>
-                            </td>
+                                <!-- 팝업창 2개 -->
+                                <!--"1대1문의" 버튼을 클릭했을 때 popInquiry.html 호출-->
+                                <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/poplnquiry?id=' + ${member.memberNo} + '\', \'poplnquiry\', \'width=750, height=850, left=650, top=180\');'">1대1문의</button>
+                                <!--"관리" 버튼을 클릭했을 때 popManagement.html 호출-->
+                                <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/popManagement?id=' + ${member.memberNo} + '\', \'popManagement\', \'width=750, height=850, left=650, top=180\');'">관리</button>
                         </div>
-
                     </tr>
                     </tbody>
                 </table>
