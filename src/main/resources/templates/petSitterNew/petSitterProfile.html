@@ -75,10 +75,17 @@
                 <div class="psp_profile_img">
                     <img src="/static_Image/petSitter/profile_img.png" alt="프로필이미지">
                 </div>
-
-                <div class="psp_profile_star">
+<!--                <th:block th:if="${}"></th:block>-->
+                <div class="psp_profile_star" th:if="${ !reviewList.isEmpty() }">
                     <img th:each="i : ${#numbers.sequence(0, #numbers.formatDecimal( #aggregates.avg(reviewList.![revScore]),1, 0) - 1 )}"
                          src="/static_Image/petSitter/star_1.png" alt="후기별">
+                </div>
+                <div class="psp_profile_star" th:if="${ reviewList.isEmpty() }">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
                 </div>
             </div>
             <div class="psp_item_content">
@@ -241,7 +248,7 @@
         </div>
 
         <div class="psp_item_last">
-            <div class="psp_item_title flex_row">후기</div>
+            <div class="psp_item_title flex_row" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
             <div class="psp_review" th:if="${ !reviewList.isEmpty() }" th:each="item : ${ reviewList }">
                 <div class="psp_review_box1">
 
