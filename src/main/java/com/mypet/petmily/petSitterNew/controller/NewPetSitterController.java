@@ -38,6 +38,7 @@ public class NewPetSitterController {
         model.addAttribute("petTagList", petSitter.getPetTagList());
         model.addAttribute("memberInfo", petSitter.getPetJsonMemberInfo());
         model.addAttribute("myPetList", petSitter.getMyPetList());
+        model.addAttribute("reviewList", petSitter.getReviewList());
 
         return "petSitterNew/petSitterProfile";
     }
@@ -113,30 +114,36 @@ public class NewPetSitterController {
 
         NewPetSitterDTO petSitter = new NewPetSitterDTO();
 
-        // 여기부분 if문 걸어서 로그인 번호 없으면 로그인 먼저 하라고 예외처리
-        // memberNo 0일 경우 어쩌고 리다이렉트 주소를 로그인창으로
+        if ( member != null ) {
 
-        // 예약을 받는 펫시터 번호
-        petSitter.setPetMemberNo(reservation.getResSitterNo());
+            // 예약을 받는 펫시터 번호
+            petSitter.setPetMemberNo(reservation.getResSitterNo());
 
-        reservation.setResMember(member);
-        reservation.setResPetSitter(petSitter);
+            reservation.setResMember(member);
+            reservation.setResPetSitter(petSitter);
 
-        reservation.setResStatus("대기");
+            reservation.setResStatus("대기");
 
-        newPetSitterService.registReservation(reservation);
+            newPetSitterService.registReservation(reservation);
 
-        log.info("-- reservation : {} ", reservation );
+            log.info("-- reservation : {} ", reservation );
 
-        rttr.addFlashAttribute("resCode", reservation.getResCode());
-        rttr.addFlashAttribute("petMemberNo", reservation.getResPetSitter().getPetMemberNo());
-        rttr.addFlashAttribute("startDateTime", reservation.getStartDateTime());
-        rttr.addFlashAttribute("endDateTime", reservation.getEndDateTime());
-        rttr.addFlashAttribute("resDayCount", reservation.getResDayCount());
-        rttr.addFlashAttribute("timeCount", reservation.getResTimeCount());
-        rttr.addFlashAttribute("totalAmount", reservation.getResTotalAmount());
+            rttr.addFlashAttribute("resCode", reservation.getResCode());
+            rttr.addFlashAttribute("petMemberNo", reservation.getResPetSitter().getPetMemberNo());
+            rttr.addFlashAttribute("startDateTime", reservation.getStartDateTime());
+            rttr.addFlashAttribute("endDateTime", reservation.getEndDateTime());
+            rttr.addFlashAttribute("resDayCount", reservation.getResDayCount());
+            rttr.addFlashAttribute("timeCount", reservation.getResTimeCount());
+            rttr.addFlashAttribute("totalAmount", reservation.getResTotalAmount());
 
-        return "redirect:/petSitterNew/resRegistSuccess";
+            return "redirect:/petSitterNew/resRegistSuccess";
+
+        } else {
+
+            log.info("-- 비 로그인 상태 : {}", member);
+            return "redirect:/";
+        }
+
     }
 
     // 펫시터 스케줄 비동기

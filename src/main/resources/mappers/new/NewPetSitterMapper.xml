@@ -105,6 +105,29 @@
     </resultMap>
     <!-- pet resultMap 관련 -->
 
+    <!-- review resultMap 관련 -->
+    <resultMap id="reviewResultMap" type="com.mypet.petmily.review.dto.ReviewDTO">
+        <id property="revCode" column="REV_CODE"/>
+        <result property="revScore" column="REV_SCORE"/>
+        <result property="revContent" column="REV_CONTENT"/>
+        <result property="revCreatedDate" column="REV_CREATED_DATE"/>
+        <result property="revModifyDate" column="REV_MODIFY_DATE"/>
+        <result property="revStatus" column="REV_STATUS"/>
+        <result property="resCode" column="RESERV_CODE"/>
+        <result property="petMemberNo" column="PET_MEMBER_NO"/>
+
+        <association property="member" resultMap="memberResultMap"/>
+    </resultMap>
+
+    <resultMap id="memberResultMap" type="com.mypet.petmily.member.dto.MemberDTO">
+        <id property="memberNo" column="MEMBER_NO"/>
+        <result property="memberId" column="MEMBER_ID"/>
+        <result property="memberName" column="MEMBER_NAME"/>
+        <result property="nickName" column="NICKNAME"/>
+    </resultMap>
+    <!-- review resultMap 관련 -->
+
+
 
     <!-- 펫시터 전체 정보 -->
     <select id="selectAllInfo" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="petSitterResultMap">
@@ -350,5 +373,22 @@
         AND REGIST_STATUS = 'Y'
     </select>
 
+    <!-- 펫시터 리뷰 조회 -->
+    <select id="selectReview" parameterType="com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO" resultMap="reviewResultMap">
+        SELECT
+            A.REV_CODE
+            , A.REV_SCORE
+            , A.REV_CONTENT
+            , A.REV_CREATED_DATE
+            , A.REV_MODIFY_DATE
+            , A.REV_STATUS
+            , A.PET_MEMBER_NO
+            , A.RESERV_CODE
+            , B.NICKNAME
+        FROM TBL_REVIEW A
+        LEFT JOIN TBL_MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
+        WHERE A.REV_STATUS = 'Y'
+        AND A.PET_MEMBER_NO = ${ petMemberNo }
+    </select>
 
 </mapper>

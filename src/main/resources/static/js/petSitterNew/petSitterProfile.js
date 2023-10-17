@@ -36,6 +36,10 @@ function getReservation() {
         $("#dogSelect").val("00").prop("selected", true);
     });
 
+    $("#req_btn1").click(function (){
+       alert("로그인 후 진행해주세요.");
+    });
+
 
     $("#startTime").change(function(){
         // endTime을 startTime보다 큰값만 다시 그려줌

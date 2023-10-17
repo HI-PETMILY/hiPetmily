@@ -425,6 +425,7 @@ table {
     width: 720px;
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 .psp_review_box1 {

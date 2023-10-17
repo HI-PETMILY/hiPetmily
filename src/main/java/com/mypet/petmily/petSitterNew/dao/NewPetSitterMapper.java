@@ -2,6 +2,7 @@ package com.mypet.petmily.petSitterNew.dao;
 
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.petSitterNew.dto.*;
+import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,5 +23,6 @@ public interface NewPetSitterMapper {
     int insetInfo(NewPetSitterDTO petSitter);
     String petSitterCheck(NewPetSitterDTO petSitter);
     List<PetDTO> selectMyPet(NewPetSitterDTO petSitter);
+    List<ReviewDTO> selectReview(NewPetSitterDTO petSitter);
 
 }
