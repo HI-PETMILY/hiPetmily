@@ -139,6 +139,7 @@
         SELECT
               P.PET_MEMBER_NO
             , P.PET_TITLE
+            , P.PET_REGIST_DATE
             , M.NICKNAME
             , P.PET_M_DAY_PAY
             , P.PET_M_TIME_PAY
@@ -153,9 +154,8 @@
         LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
         LEFT JOIN TBL_PET_TAG T ON(P.PET_MEMBER_NO = T.PET_MEMBER_NO)
         WHERE  P.PET_STAT= '승인'
-        ORDER BY
+        ORDER BY P.PET_REGIST_DATE desc
     </select>
-
 
 <!--    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">-->
 <!--        SELECT-->
