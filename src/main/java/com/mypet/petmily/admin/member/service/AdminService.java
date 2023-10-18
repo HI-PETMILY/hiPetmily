@@ -3,7 +3,9 @@ package com.mypet.petmily.admin.member.service;
 import com.mypet.petmily.admin.member.dao.AdminMapper;
 import com.mypet.petmily.admin.paging.PagenationAdmin;
 import com.mypet.petmily.admin.paging.SelectCriteria;
+import com.mypet.petmily.admin.paging.SelectPetSitterCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,8 +82,31 @@ public class AdminService {
     }
 
 
+    //펫시터 신청 회원 조회 ===============================================
+    public Map<String, Object> getPetSitterList(int page, String searchCondition, String searchValue, String apply) {
 
+        /* 1. 전체 신청글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
+        int totalCount = adminMapper.selectPetSitterTotalCount(searchCondition, searchValue , apply);
+        log.info("petSitterList totalCount : {}", totalCount);
 
+        /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
+        int limit = 20;         // 한 페이지에 보여줄 게시물의 수
+        int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
+        SelectPetSitterCriteria selectCriteria = PagenationAdmin.getPetSitterSelectCriteria(page, totalCount, limit, buttonAmount, searchCondition, searchValue, apply);
+        log.info("petSitterList selectCriteria : {}", selectCriteria);
 
+        /* 3. 요청 페이지와 검색 기준에 맞는 신청글을 조회해온다. */
+        List<PetSitterDTO> petSitterList = adminMapper.selectPetSitterList(selectCriteria);
+        log.info("petSitterList : {}", petSitterList);
 
+        Map<String, Object> petSitterListAndPaging = new HashMap<>();
+        petSitterListAndPaging.put("paging", selectCriteria);
+        petSitterListAndPaging.put("petSitterList", petSitterList);
+
+        return petSitterListAndPaging;
+    }
+    @Transactional
+    public int getTotalPetSitterCount(String searchCondition, String searchValue, String apply) {
+        return adminMapper.selectPetSitterTotalCount(searchCondition, searchValue , apply);
+    }
 }

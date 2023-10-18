@@ -18,7 +18,7 @@ public class PetSitterDTO {
 
     private int petMemberNo;    //펫시터 코드
     private String petRegistDt; //펫시터 등록일자
-    private String petStatus;   //펫상태
+    private String petStatus;   //펫시터상태
     private String petTitle;    //대표문구
     private String petIntroduce;
     private String petPlace;
