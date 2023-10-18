@@ -248,7 +248,7 @@
         </div>
 
         <div class="psp_item_last">
-            <div class="psp_item_title flex_row" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
+            <div class="psp_item_title flex_row" id="reviewPoint" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
 
             <th:block th:if="${ !reviewList.isEmpty() && reviewList.size() <= 3 }">
                 <div class="psp_review" th:each="index : ${ #numbers.sequence(0, reviewList.size() - 1 ) }">
