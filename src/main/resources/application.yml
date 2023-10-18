@@ -1,4 +1,3 @@
-
 #server:
 #  port: 8081
 
@@ -9,6 +8,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:xe
     username: C##PETMILY
     password: PETMILY
+  
 
   ## file upload config
   servlet:
@@ -22,8 +22,10 @@ spring:
 #      location:
       # 미림
 #      location:
-      # 서현
-#      location:
+      # 서현 학원
+#      location: C:/Lecture/sub-project/petmily
+      # 서현 노트북
+#      location: C:/Lecture/subProject/hiPetmily
       # 유리
 #      location:
       # 소정

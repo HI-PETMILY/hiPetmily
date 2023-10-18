@@ -1,51 +1,88 @@
 package com.mypet.petmily.board.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Data
 public class BoardDTO {
 
 
 	/** ############## 테이블 컬럼 ##############*/
-	/** 게시판 번호 */
+	/**
+	 * 게시판 번호
+	 */
 	private Integer boardNo;
-	/** 게시판 제목 */
+	/**
+	 * 게시판 제목
+	 */
 	private String boardName;
-	/** 게시판 내용 */
+	/**
+	 * 게시판 내용
+	 */
 	private String boardDetail;
-	/** 게시판 등록일 */
+	/**
+	 * 게시판 등록일
+	 */
 	private String boardRegistDate;
 	private String boardViews;
 	private String boardReviseDate;
-	/** 게시판 상태 Y사용중 N삭제 */
+	/**
+	 * 게시판 상태 Y사용중 N삭제
+	 */
 	private String boardStat;
 	private String boardDeleteDate;
-	/** 게시판 구분 1=공지 */
+	/**
+	 * 게시판 구분 1=공지
+	 */
 	private String boardSort;
 	private String boardSecret;
-	/** 회원번호 */
+	/**
+	 * 회원번호
+	 */
 	private Integer memberNo;
-	/** 회원이름 */
+	/**
+	 * 회원이름
+	 */
 	private String memberName;
 
+	/**
+	 * 회원아이디
+	 */
+	private String memberId;
+
+
 //	카테고리
-	/** 게시판 카테고리 코드 */
+	/**
+	 * 게시판 카테고리 코드
+	 */
 	private Integer categoryCode;
-	/** 게시판 카테고리 명 */
+	/**
+	 * 게시판 카테고리 명
+	 */
 	private String categoryName;
 
 //	1:1문의 관련
-	/** 질문번호*/
+	/**
+	 * 질문번호
+	 */
 	private Integer refBoardNo;
-	/** 답변등록유무*/
+	/**
+	 * 답변등록유무
+	 */
 	private String boardHasReply;
-	
+
 
 //	페이징 관련
 	/** ############# 페이징 관련 변수 ################ */
-	/** 현재페이지 */
+	/**
+	 * 현재페이지
+	 */
 	private int page = 1;
-	/** 페이지당 출력 개수 */
+	/**
+	 * 페이지당 출력 개수
+	 */
 	private int row = 10;
 	//oracle용 변수
 	private int startIndex = 1;
@@ -53,12 +90,17 @@ public class BoardDTO {
 
 //	검색기능 관련
 	/** ############# 검색기능 관련 변수 ################ */
-	/** 검색구분 제목or내용 */
+	/**
+	 * 검색구분 제목or내용
+	 */
 	private String searchType;
 	/*검색 키워드 */
 	private String searchTxt;
-
 }
+
+
+
+
 
 
 

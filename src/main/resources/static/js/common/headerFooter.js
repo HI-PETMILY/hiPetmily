@@ -12,9 +12,7 @@ window.onload = function () {
 
         $headerLogImg.addEventListener("click", (event) => {
 
-            // location.href = "/";
-            // 임시로 일단 펫시터 프로필 메뉴로 이동시킨다.
-            location.href = "/petSitterNew/petSitterProfile";
+            location.href = "/";
         });
 
     }
@@ -77,7 +75,7 @@ window.onload = function () {
 
         $headerBtn2.addEventListener("click", (event) => {
 
-            location.href = "/";    // 추후 연결
+            location.href = "/petSitter/searchPage";
         });
 
         $headerBtn2.addEventListener("mouseover", (event) => {

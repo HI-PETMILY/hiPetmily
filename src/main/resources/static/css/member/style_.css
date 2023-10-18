@@ -376,14 +376,14 @@ li {
 /* ---- 별점 설정 끝 ---- */
 
 /*==================================================*/
-/* 지난 예약 조회 화면 */
+/* 지난 예약 조회 */
 
-.reserve-table, .reviewList-table{
+.reserve-table{
     width: 100%;
     border-collapse: collapse;
 }
 
-table.reserve-table tr, table.reviewList-table tr{
+table.reserve-table tr{
     border-bottom: solid 1px #cecece;
     display: flex;
 
@@ -431,8 +431,25 @@ table.reserve-table tr, table.reviewList-table tr{
     padding-left: 0.9%
 }
 
+/*==================================================*/
+/* 내가 쓴 후기 */
+.reviewList-table{
+    width: 100%;
+    border-collapse: collapse;
+}
 
+table.reviewList-table tr{
+    border-bottom: solid 1px #cecece;
+    display: flex;
+    justify-content: space-around;
+}
 
+table.reviewList-table td{
+    margin: auto;
+    display: flex;
+    width: 25%;
+    justify-content: center;
+}
 
 
 
@@ -481,6 +498,7 @@ table.reserve-table tr, table.reviewList-table tr{
     background-color: #f0f0f0;
     margin: 5px 0;
     box-shadow: 3px 3px 4px 0 #E0E0E0;
+    display: flex;
 }
 
 .grey-line{
@@ -490,9 +508,13 @@ table.reserve-table tr, table.reviewList-table tr{
     margin-left: -1px;
 }
 
-.reserve-date, .reserve-pet{
+.reserve-date, .reserve-pet, .reserve-time{
     margin-left: 20px;
     font-size: 14px;
+}
+
+.reserve-date, .reserve-time{
+    display: flex;
 }
 
 .result-button{

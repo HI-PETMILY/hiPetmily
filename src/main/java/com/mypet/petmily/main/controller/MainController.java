@@ -1,20 +1,40 @@
 package com.mypet.petmily.main.controller;
 
-import com.mypet.petmily.member.dto.MemberDTO;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import com.mypet.petmily.main.service.MainService;
+import com.mypet.petmily.petSitterNew.dto.SitterReviewDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
+@Slf4j
 @Controller
-public class
-MainController {
+public class MainController {
+
+    private final MainService mainService;
+
+    public MainController(MainService mainService) {
+        this.mainService = mainService;
+    }
 
     /* Main Default */
     @GetMapping(value = {"/", "/main"})
-    public String defaultLocation() {
+    public String defaultLocation(Model model) {
+
+        // mainpage review
+        List<SitterReviewDTO> reviewList = mainService.selectAllReviews();
+
+        log.info("-- reviewList : {}", reviewList);
+
+        model.addAttribute("reviewList", reviewList );
+
         return "/main/mainPage";
     }
+
+
 
     @PostMapping("/")
     public String redirectMain(){
@@ -31,8 +51,9 @@ MainController {
 
     // 펫시터 찾기
     @GetMapping("/petSitter/search")
-    public String headerPetsitterSearch() {
-        return "petSitter/search";
+    public String headerPetsitterSearch( Model model) {
+
+       return "petSitter/searchPage";
     }
 
     // 펫시터 지원
@@ -86,10 +107,6 @@ MainController {
         return "board/safe";
     }
 
-    // 자주하는질문
-    @GetMapping("/board/faq/list")
-    public String footerFaq() {
-        return "board/faq/list";
-    }
+
 
 }

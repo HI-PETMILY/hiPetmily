@@ -1,14 +1,10 @@
 package com.mypet.petmily.member.dao;
 
-import com.mypet.petmily.common.paging.SelectCriteria;
-import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
+
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.PetDTO;
-import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
@@ -49,6 +45,7 @@ public interface MemberMapper {
     void petProfileUpdate(PetDTO pet);
 
     int deletePetProfile(int petCode);
+
 
 
 }

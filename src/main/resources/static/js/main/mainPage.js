@@ -206,7 +206,7 @@ if(document.getElementById("detail_button_search")) {
 
     $detail_button_search.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        location.href = "/petSitter/searchPage";
     });
 }
 
@@ -241,42 +241,10 @@ if(document.getElementById("detail_button_terms")) {
 
     $detail_button_terms.addEventListener("click", (event) => {
 
-        location.href = "/";        // 추후 연결
+        location.href = "/board/usingprocess";        // 추후 연결
     });
 }
 
-// 후기 전체보기 버튼1
-if(document.getElementById("review_all_btn1")) {
-
-    const $review_all_btn1 = document.getElementById("review_all_btn1");
-
-    $review_all_btn1.addEventListener("click", (event) => {
-
-        location.href = "/";        // 추후 연결
-    });
-}
-
-// 후기 전체보기 버튼2
-if(document.getElementById("review_all_btn2")) {
-
-    const $review_all_btn2 = document.getElementById("review_all_btn2");
-
-    $review_all_btn2.addEventListener("click", (event) => {
-
-        location.href = "/";        // 추후 연결
-    });
-}
-
-// 후기 전체보기 버튼3
-if(document.getElementById("review_all_btn3")) {
-
-    const $review_all_btn3 = document.getElementById("review_all_btn3");
-
-    $review_all_btn3.addEventListener("click", (event) => {
-
-        location.href = "/";        // 추후 연결
-    });
-}
 
 // 후기 더보기 버튼
 if(document.getElementById("review_detail_button")) {

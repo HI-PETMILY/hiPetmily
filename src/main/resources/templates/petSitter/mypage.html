@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html"><head>
     <meta charset="UTF-8">
     <title>mypage</title>
 
@@ -33,7 +32,7 @@
         </div>
     </div>
 
-    <div class="petsitter">
+    <div class="petsitter"  th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petSitter.petMemberNo}'|">
         <div class="petsitter-mode">
             펫시터
         </div>
@@ -79,11 +78,11 @@
             </div>
 
             <div class="introduce">
-                <div class="profile-name">
+                <div class="profile-name" th:text ="${petSitter.memberNo}" >
                     허가연
                 </div>
 
-                <div class="profile-address">
+                <div class="profile-address"  th:text ="${petSitter.address}">
                     부산 연제구 연산동
                 </div>
             </div>
@@ -159,6 +158,8 @@
 
 </div>
 </div>
-    <div th:replace="common/footer.html"></div>
+
+</div>
+<div th:replace="common/footer.html"></div>
 </body>
 </html>

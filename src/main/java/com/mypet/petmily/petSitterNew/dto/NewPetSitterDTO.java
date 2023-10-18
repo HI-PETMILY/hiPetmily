@@ -1,6 +1,7 @@
 package com.mypet.petmily.petSitterNew.dto;
 
 import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
+import com.mypet.petmily.member.dto.PetDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -51,6 +52,12 @@ public class NewPetSitterDTO {
     private List<MultipartFile> attachImage;
     private FileUploadDTO regFileUpload;
     private List<FileUploadDTO> sitterImgList;
+
+    /* 펫시터 반려견 */
+    private List<PetDTO> myPetList;
+
+    /* 펫시터 리뷰 */
+    private List<SitterReviewDTO> reviewList;
 
 }
 

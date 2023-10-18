@@ -29,8 +29,8 @@
 
         <form id="reviewForm" action="/member/review-write" method="post">
 
-            <input type="hidden" name="resCode" th:value="${reservInfo.resCode}"/>
-            <!--            <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />-->
+            <input type="hidden" name="reserve.reserveCode" th:value="${reserve.reserveCode}"/>
+            <input type="hidden" name="reserve.petSitter.memberInfo.memberNo" th:value="${reserve.petSitter.memberInfo.memberNo}" />
             <div class="pet-profile-img review-img">
                 <img class="petProfileImg" src="/static_Image/member/petProfile.png">
             </div>

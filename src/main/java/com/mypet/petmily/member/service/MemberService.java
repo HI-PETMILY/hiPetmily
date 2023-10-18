@@ -25,10 +25,12 @@ public class MemberService {
 
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
+    private final FileUploadMapper fileUploadMapper;
 
-    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
+    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder, FileUploadMapper fileUploadMapper) {
         this.memberMapper = memberMapper;
         this.passwordEncoder = passwordEncoder;
+        this.fileUploadMapper = fileUploadMapper;
     }
 
     /* 회원 가입 */
@@ -116,13 +118,14 @@ public class MemberService {
     }
 
     /* 반려동물 프로필 등록 */
-    public void registPetProfile(PetDTO pet) throws PetProfileException {
+    public void registPetProfile(PetDTO pet){
 
         pet.setRegistStatus("Y");
         memberMapper.insertPetProfile(pet);      // 반려동물 테이블에 데이터 저장
 
-
-        //memberMapper.insertAttachment(review.getAttachment());
+        for(FileUploadDTO fileUpload : pet.getPetImgList()){
+            fileUploadMapper.insertAttachment(fileUpload);
+        }
     }
 
     /* 반려동물 프로필 리스트 조회 */
@@ -134,6 +137,10 @@ public class MemberService {
     public PetDTO viewPetProfile(MemberDTO loginMember, int petCode) {
 
         return memberMapper.viewPetProfile(loginMember, petCode);
+    }
+
+    public FileUploadDTO petProfileImg(int petCode) {
+        return fileUploadMapper.petProfileImg(petCode);
     }
 
     /* 반려동물 프로필 업데이트 */
@@ -156,5 +163,4 @@ public class MemberService {
         modifyMember.setMemberStat("활동");
         FileUploadMapper.insertMemberImg(fileUploadList);
     }
-
 }
