@@ -4,11 +4,11 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.Pagenation.Pagenation;
 import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 import com.mypet.petmily.payment.dao.PaymentMapper;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class PaymentService {
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount);
         log.info("reservation selectCriteria : {}", selectCriteria);
 
-        List<ReservationDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
+        List<ProgressReserveDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
         log.info("reservation reservationList : {}", reservationList);
 
         Map<String, Object> reservationListAndPaging = new HashMap<>();
@@ -44,8 +44,8 @@ public class PaymentService {
         return reservationListAndPaging;
     }
 
-    public List<ReservationDTO> selectDetailReservation(MemberDTO loginMember, int resCode) {
-        return paymentMapper.selectDeatilReservation(loginMember, resCode);
+    public List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int resCode) {
+        return paymentMapper.selectDetailReservation(loginMember, resCode);
     }
 
 
@@ -79,7 +79,10 @@ public class PaymentService {
 //        return reservationListAndPaging;
 //    }
 
-
+    /* 진행 중인 예약 조회 페이지 */
+    public List<ProgressReserveDTO> selectProgressReserveList(MemberDTO loginMember) {
+        return paymentMapper.selectProgressReserveList(loginMember);
+    }
 
 
 

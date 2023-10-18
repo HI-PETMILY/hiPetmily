@@ -38,20 +38,25 @@
                     <td colspan="5">예약 결과가 존재하지 않습니다. 펫밀리의 서비스를 이용해보세요!</td>
                 </tr>
                 <tr class="res_history_box" th:each="resHistory : ${ reservationList }" th:unless="${#lists.isEmpty(reservationList)}">
-                <td class="col" id="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <!--<td class="col" id="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col" id="col2" th:text="${ #strings.substring(resHistory.resAppDate, 0, 11) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col" id="col3" th:text="${ #strings.substring(resHistory.startDateTime, 0, 10) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
-                <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>-->
+
+                    <td class="col" id="col1" th:text="${ resHistory.reserveCode }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
+                    <td class="col" id="col2" th:text="${ resHistory.petSitter.memberInfo.nickName }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
+                    <!--<td class="col" id="col3" th:text="${ resHisgory.startDateTime }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>-->
+                    <td class="col" id="col4" th:text="${ resHistory.reserveStatus }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
                 <td class="col" id="col5">
-                    <span th:if="${ resHistory.resStatus == '결제완료' }">
+                    <span th:if="${ resHistory.reserveStatus == '결제완료' }">
                         <form action="/member/review-write" method="post">
-                        <input type="hidden" name="resCode" th:value="${resHistory.resCode}" />
-                        <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />
-                            <a th:href="'/member/review-write?resCode=' + ${ resHistory.resCode }">후기작성</a>
+                        <input type="hidden" name="reserveCode" th:value="${resHistory.reserveCode}" />
+                        <input type="hidden" name="memberNo" th:value="${resHistory.petSitter.memberInfo.memberNo}" />
+                            <a th:href="'/member/review-write?reserveCode=' + ${ resHistory.reserveCode }">후기작성</a>
                         </form>
                     </span>
-                    <span th:if="${ resHistory.resStatus == '예약취소' }">취소내역</span>
-                    <span th:if="${ resHistory.resStatus == '결제취소' }">취소내역</span>
+                    <span th:if="${ resHistory.reserveStatus == '예약취소' }">취소내역</span>
+                    <span th:if="${ resHistory.reserveStatus == '결제취소' }">취소내역</span>
                 </td>
 <!--                <td class="col" id="col6" th:if="${ resHistory.resStatus == '대기' }">예약대기</td>-->
                 </tr>
