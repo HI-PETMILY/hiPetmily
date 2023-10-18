@@ -389,6 +389,7 @@
         LEFT JOIN TBL_MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
         WHERE A.REV_STATUS = 'Y'
         AND A.PET_MEMBER_NO = ${ petMemberNo }
+        ORDER BY 4 desc
     </select>
 
 </mapper>

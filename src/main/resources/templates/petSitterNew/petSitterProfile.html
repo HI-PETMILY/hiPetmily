@@ -75,10 +75,17 @@
                 <div class="psp_profile_img">
                     <img src="/static_Image/petSitter/profile_img.png" alt="프로필이미지">
                 </div>
-
-                <div class="psp_profile_star">
+<!--                <th:block th:if="${}"></th:block>-->
+                <div class="psp_profile_star" th:if="${ !reviewList.isEmpty() }">
                     <img th:each="i : ${#numbers.sequence(0, #numbers.formatDecimal( #aggregates.avg(reviewList.![revScore]),1, 0) - 1 )}"
                          src="/static_Image/petSitter/star_1.png" alt="후기별">
+                </div>
+                <div class="psp_profile_star" th:if="${ reviewList.isEmpty() }">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
+                    <img src="/static_Image/petSitter/star_1.png" alt="후기별">
                 </div>
             </div>
             <div class="psp_item_content">
@@ -241,28 +248,74 @@
         </div>
 
         <div class="psp_item_last">
-            <div class="psp_item_title flex_row">후기</div>
-            <div class="psp_review" th:if="${ !reviewList.isEmpty() }" th:each="item : ${ reviewList }">
-                <div class="psp_review_box1">
+            <div class="psp_item_title flex_row" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
 
-                    <div class="psp_review_img">
-                        <img src="/static_Image/petSitter/reviewProfile.png" alt="후기프로필">
+            <th:block th:if="${ !reviewList.isEmpty() && reviewList.size() <= 3 }">
+                <div class="psp_review" th:each="index : ${ #numbers.sequence(0, reviewList.size() - 1 ) }">
+                    <div class="psp_review_box1">
+
+                        <div class="psp_review_img">
+                            <img src="/static_Image/petSitter/reviewProfile.png" alt="후기프로필">
+                        </div>
+
+                        <div class="psp_review_nickname" th:text="${ reviewList.get(index).getMember().getNickName() }"></div>
+
+                        <span class="psp_review_star">
+                            <img th:each="index : ${ #numbers.sequence(1, reviewList.get(index).revScore) }" src="/static_Image/petSitter/star_1.png" alt="후기별">
+                         </span>
+
                     </div>
-
-                    <div class="psp_review_nickname" th:text="${ item.getMember().getNickName() }"></div>
-
-                    <span class="psp_review_star">
-                        <img th:each="index : ${ #numbers.sequence(1, item.revScore) }" src="/static_Image/petSitter/star_1.png" alt="후기별">
-                     </span>
-
+                    <div class="psp_review_box2">
+                        <div class="psp_review_text" th:text="${ reviewList.get(index).revContent }"></div>
+                    </div>
                 </div>
-                <div class="psp_review_box2">
-                    <div class="psp_review_text" th:text="${ item.revContent }"></div>
+            </th:block>
+
+            <th:block th:if="${ !reviewList.isEmpty() && reviewList.size() > 3 }">
+                <div class="psp_review" th:each="index : ${ #numbers.sequence(0, 2) }">
+                    <div class="psp_review_box1">
+
+                        <div class="psp_review_img">
+                            <img src="/static_Image/petSitter/reviewProfile.png" alt="후기프로필">
+                        </div>
+
+                        <div class="psp_review_nickname" th:text="${ reviewList.get(index).getMember().getNickName() }"></div>
+
+                        <span class="psp_review_star">
+                            <img th:each="index : ${ #numbers.sequence(1, reviewList.get(index).revScore) }" src="/static_Image/petSitter/star_1.png" alt="후기별">
+                         </span>
+
+                    </div>
+                    <div class="psp_review_box2">
+                        <div class="psp_review_text" th:text="${ reviewList.get(index).revContent }"></div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="psp_review_hide" th:if="${ !reviewList.isEmpty() }" th:each="index : ${ #numbers.sequence(3, reviewList.size() - 1) }" style="display: none">
+                    <div class="psp_review_box1">
+
+                        <div class="psp_review_img">
+                            <img src="/static_Image/petSitter/reviewProfile.png" alt="후기프로필">
+                        </div>
+
+                        <div class="psp_review_nickname" th:text="${ reviewList.get(index).getMember().getNickName() }"></div>
+
+                        <span class="psp_review_star">
+                            <img th:each="index : ${ #numbers.sequence(1, reviewList.get(index).revScore) }" src="/static_Image/petSitter/star_1.png" alt="후기별">
+                         </span>
+
+                    </div>
+                    <div class="psp_review_box2">
+                        <div class="psp_review_text" th:text="${ reviewList.get(index).revContent }"></div>
+                    </div>
+                </div>
+
+                <div class="revBtnBox" th:if="${ !reviewList.isEmpty() }"><button type="button" id="revBtn" class="revBtn"> 더보기 </button></div>
+            </th:block>
         </div>
 
     </div>
+
 
     <!-- Right -->
     <div class="psp_right">
