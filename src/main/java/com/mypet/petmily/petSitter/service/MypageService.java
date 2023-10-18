@@ -19,7 +19,7 @@ public class MypageService {
 
     public PetSitterDTO selectMypage(@AuthenticationPrincipal MemberDTO loginMember) {
 
-     PetSitterDTO petSitterInfo = petSitterMapper.selectMypage(loginMember);
+//     PetSitterDTO petSitterInfo = petSitterMapper.selectMypage(loginMember);
 
        return petSitterMapper.selectMypage(loginMember);
     }

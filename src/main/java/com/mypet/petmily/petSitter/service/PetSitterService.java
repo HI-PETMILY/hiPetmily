@@ -22,12 +22,12 @@ public class PetSitterService {
         this.petSitterMapper = petSitterMapper;
     }
 
+
+
     public List<PetSitterDTO> selectPetSitterList() {
 
         return petSitterMapper.selectPetSitterList();
     }
-
-
 
     public Map<String, Object> selectPetSitterPaging(Map<String, String> searchMap, int page) {
 

@@ -53,9 +53,13 @@ a {
     font-weight: 400;
     letter-spacing: -0.5px;
     /*border: solid;*/
-    height: 100vh;
     width: 95vh;
 
+
+}
+h3{
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 h2{
@@ -230,6 +234,7 @@ h2{
     margin: 0;
     padding: 0;
     list-style: none;   	    /* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+    font-size: 1.5rem;
 }
 
 .side-bar a {
@@ -246,6 +251,7 @@ h2{
 /*사이트의 높이를 5000px로 만들어 스크롤 생성*/
 body {
     margin-top: 100px;
+
 }
 
 /* 사이드바의 너비와 높이를 변수를 통해 통제 */
