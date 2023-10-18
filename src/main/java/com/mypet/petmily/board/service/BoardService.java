@@ -2,6 +2,8 @@ package com.mypet.petmily.board.service;
 
 import java.util.*;
 
+import com.mypet.petmily.fileUpload.dao.FileUploadMapper;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +14,13 @@ import com.mypet.petmily.board.dto.BoardDTO;
 public class BoardService {
 	
 	private final BoardMapper boardMapper;
+
+	private final FileUploadMapper fileUploadMapper;
 	
-    public BoardService(BoardMapper boardMapper) {
-        this.boardMapper = boardMapper;
+    public BoardService(BoardMapper boardMapper, FileUploadMapper fileUploadMapper) {
+
+		this.boardMapper = boardMapper;
+		this.fileUploadMapper = fileUploadMapper;
     }
 
 	//게시판 목록

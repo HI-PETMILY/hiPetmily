@@ -1,9 +1,6 @@
-package com.mypet.petmily.review.dto;
+package com.mypet.petmily.petSitterNew.dto;
 
-import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.payment.dto.ProgressReserveDTO;
-import com.mypet.petmily.payment.dto.SitterInfoDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class ReviewDTO {
+public class SitterReviewDTO {
 
     private Long revCode;                          // 후기 코드
     private int revScore;                          // 별점(1~5)
@@ -23,7 +20,10 @@ public class ReviewDTO {
     private String revStatus;                      // 상태(Y=등록, N=삭제)
     private Date revDeleteDate;                    // 삭제일
     private MemberDTO member;                      // 회원
-    private SitterInfoDTO petSitter;             // 펫시터
-    private ProgressReserveDTO reserve;     // 예약
-    private FileUploadDTO reviewImg; // 첨부파일(사진)
+    private String petMemberNo;             // 펫시터
+    private String resCode;     // 예약
+//    private ReservationInfoDTO resCode;
+    //private List<FileDTO> attachmentList; // 첨부파일(사진)
+
+
 }
