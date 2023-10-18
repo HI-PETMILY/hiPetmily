@@ -235,7 +235,7 @@
             <div class="psp_item_title">펫시터 반려동물소개</div>
             <div class="psp_mypet" th:each="item : ${ myPetList }">
                 <div class="psp_mypet_img">
-                    <img src="/static_Image/petSitter/petsitterPet.png" alt="반려견">
+                    <img src="/static_Image/petSitter/petTestImg.jpg" alt="반려견">
                 </div>
                 <div>
                     <div class="psp_mypet_name" th:text="${ item.getPetName() }"></div>
@@ -248,7 +248,7 @@
         </div>
 
         <div class="psp_item_last">
-            <div class="psp_item_title flex_row" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
+            <div class="psp_item_title flex_row" id="reviewPoint" th:text="${ '후기 ( ' + reviewList.size() + ' )' }"></div>
 
             <th:block th:if="${ !reviewList.isEmpty() && reviewList.size() <= 3 }">
                 <div class="psp_review" th:each="index : ${ #numbers.sequence(0, reviewList.size() - 1 ) }">
@@ -320,7 +320,7 @@
     <!-- Right -->
     <div class="psp_right">
 
-        <form action="/petSitterNew/reservation" method="post">
+        <form id="resForm" action="/petSitterNew/reservation" method="post">
             <div class="psp_res">
 
                 <div class="psp_res_item1">
@@ -404,7 +404,8 @@
                         <button type="button" id="req_btn1" class="req_btn">예약 요청하기</button>
                     </th:block>
                     <th:block sec:authorize="isAuthenticated()">
-                        <button type="submit" id="req_btn2" class="req_btn">예약 요청하기</button>
+<!--                        <button type="submit" id="req_btn2" class="req_btn">예약 요청하기</button>-->
+                        <button type="button" id="req_btn2" class="req_btn">예약 요청하기</button>
                     </th:block>
                     <button type="button" id="qna_btn" class="qna_btn">문의하기</button>
                 </div>
