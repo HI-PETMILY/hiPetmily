@@ -31,7 +31,7 @@
             <div class="reserve-info">
                 <div class="sitter-profile">
                     <div class="sitter-profileImg">
-                        <img src="/static_Image/member/petProfileTest1.png">
+                        <img class="sitterImg" src="/static_Image/member/petProfileTest1.png">
 
                     </div>
                     <div class="sitter-nickname">
@@ -62,8 +62,18 @@
                 </div>
             </div>
             <div class="result-button">
-                <button class="text-button reserve-button blue">결제 진행</button>
-                <button class="text-button reserve-button grey">예약 취소</button>
+                <th:block th:if="${reservation.reserveStatus == '대기'}">
+                    <button class="text-button reserve-button grey">예약 취소</button>
+                </th:block>
+
+                <th:block th:if="${#strings.equals(reservation.reserveStatus, '결제대기')}">
+                    <button class="text-button reserve-button blue">결제 진행</button>
+                    <button class="text-button reserve-button grey">예약 취소</button>
+                </th:block>
+
+                <th:block th:if="${#strings.equals(reservation.reserveStatus, '서비스대기')}">
+                    <button class="text-button reserve-button grey">예약 취소</button>
+                </th:block>
             </div>
         </div>
     </div>

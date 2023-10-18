@@ -23,4 +23,5 @@ public interface ReviewMapper {
 
     int selectTotalCount(MemberDTO loginMember);
 
+    ReviewDTO viewReview(MemberDTO loginMember, int revCode);
 }

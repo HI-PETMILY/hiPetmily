@@ -2,6 +2,8 @@ package com.mypet.petmily.review.service;
 
 import com.mypet.petmily.common.paging.Pagination;
 import com.mypet.petmily.common.paging.SelectCriteria;
+import com.mypet.petmily.fileUpload.dao.FileUploadMapper;
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.payment.dto.SitterInfoDTO;
@@ -20,9 +22,11 @@ import java.util.Map;
 public class ReviewService {
 
     private final ReviewMapper reviewMapper;
+    private final FileUploadMapper fileUploadMapper;
 
-    public ReviewService(ReviewMapper reviewMapper){
+    public ReviewService(ReviewMapper reviewMapper, FileUploadMapper fileUploadMapper){
         this.reviewMapper = reviewMapper;
+        this.fileUploadMapper = fileUploadMapper;
     }
 
     /* 후기 작성 페이지 */
@@ -38,6 +42,9 @@ public class ReviewService {
         review.setRevStatus("Y");
 
         reviewMapper.registReview(review);
+
+      /*  FileUploadDTO fileUpload = review.getReviewImg();
+        fileUploadMapper.insertAttachment(fileUpload);*/
     }
 
     /* 작성한 후기 전체 조회 */
@@ -63,4 +70,8 @@ public class ReviewService {
         return reviewListAndPaging;
     }
 
+    /* 후기 조회 */
+    public ReviewDTO viewReview(MemberDTO loginMember, int revCode) {
+        return reviewMapper.viewReview(loginMember, revCode);
+    }
 }

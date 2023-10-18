@@ -23,7 +23,7 @@
     <div class="left-navi"></div>
 
     <div class="myPageMainWrapper">
-        <h2 class="mainTitle">후기 작성하기</h2>
+        <h2 class="mainTitle">후기 조회</h2>
         <div class="nav-line"></div>
 
         <form id="reviewForm" action="/member/review_write" method="post">
@@ -45,26 +45,12 @@
                 </div>
 
                 <div class="review-star">
-                    <input type="radio" name="revScore" value="5" id="rate1"><label
-                        for="rate1">★</label>
-                    <input type="radio" name="revScore" value="4" id="rate2"><label
-                        for="rate2">★</label>
-                    <input type="radio" name="revScore" value="3" id="rate3"><label
-                        for="rate3">★</label>
-                    <input type="radio" name="revScore" value="2" id="rate4"><label
-                        for="rate4">★</label>
-                    <input type="radio" name="revScore" value="1" id="rate5"><label
-                        for="rate5">★</label>
+                    <img class="starImg" th:each="index : ${#numbers.sequence(1, review.revScore)}" src="/static_Image/petSitter/star_1.png">
                 </div>
             </div>
 
             <div class="review-text">
                 <textarea class="review-textarea" name="revContent" th:text="${review.revContent}" readonly></textarea>
-            </div>
-
-            <div>
-                <button class="text-button" type="submit">등록하기</button>
-                <button class="text-button" type="button" onclick="location.href='/member/예약조회화면'">취소하기</button>
             </div>
         </form>
     </div>

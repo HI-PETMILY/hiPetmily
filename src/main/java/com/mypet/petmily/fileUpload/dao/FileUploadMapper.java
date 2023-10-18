@@ -14,9 +14,10 @@ public interface FileUploadMapper {
     // 펫시터 등록시 이미지 파일 조회
     List<FileUploadDTO> selectSitterImg(NewPetSitterDTO petSitter);
 
-    /* 반려동물 프로필 이미지 등록*/
+    /* 반려동물 프로필, 후기 이미지 등록*/
     void insertAttachment(FileUploadDTO fileupload);
 
     /* 반려동물 프로필 이미지 조회 */
     FileUploadDTO petProfileImg(int petCode);
+
 }
