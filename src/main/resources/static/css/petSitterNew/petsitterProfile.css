@@ -609,7 +609,8 @@ table {
 
 .pay_left_text span {
     font-weight: 600;
-    color: #81BDF1;
+    /*color: #81BDF1;*/
+    color: #E3A802;
 }
 
 .res_pay_right {
