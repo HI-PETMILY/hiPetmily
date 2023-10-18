@@ -22,7 +22,7 @@
     <div id="bar">
         <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
         <div class="bar_info" id="bar_sitter"
-             th:if ="${member.}"
+             th:if="${#authorization.expression('hasRole(''ROLE_PETSITTER'')')}"
              th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petMemberNo}'|"><p id="sitter">펫시터</p></div>
     </div>
 </div>
