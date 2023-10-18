@@ -17,7 +17,7 @@
         body{background-color: #FFFFFF}
         li {width: 100%}
         .list-group-item {padding: 0.4rem 1.25rem}
-        .btnSubmit{width:100px; margin:auto; display:block;}
+        /*.btnSubmit{width:100px; margin:auto; display:block;}*/
         li.list-group-item {display: flex; align-items: center;}
         label{margin-bottom: 0}
     </style>
@@ -26,48 +26,42 @@
 <body>
 
 <tr class="BasicInfo" th:each="member : ${member}">
-    <h4 style="background-color: #0b0809; color: #FFFFFF; padding-bottom: 1%; padding-top: 1%; padding-left: 10%;"><td th:text="${member.memberId}">
+    <h4 style="background-color: #0b0809; color: #FFFFFF; padding-bottom: 1%; padding-top: 1%; padding-left: 10%;">
+        <td th:text="${member.memberNo}"></td>번 ❙ <td th:text="${member.memberId}">
     </td>(<td th:text="${member.memberName}"></td>)님의 상세정보입니다.
     </h4>
 
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-right: 10%; margin-left: 10%; font-size: 15px">
-            <button class="nav-link active" id="nav-community-tab" data-bs-toggle="tab" data-bs-target="#nav-community" type="button" role="tab" aria-controls="nav-community" aria-selected="true"
+            <button class="nav-link active" id="nav-member-tab" data-bs-toggle="tab" data-bs-target="#nav-member" type="button" role="tab" aria-controls="nav-member" aria-selected="true"
+                    style="color: #2f2f2f; border: 1px solid #505050"><b>회원정보</b></button>
+            <button class="nav-link " id="nav-community-tab" data-bs-toggle="tab" data-bs-target="#nav-community" type="button" role="tab" aria-controls="nav-community" aria-selected="false"
                     style="color: #2f2f2f; border: 1px solid #505050"><b>커뮤니티</b></button>
             <button class="nav-link" id="nav-personalInquiry-tab" data-bs-toggle="tab" data-bs-target="#nav-personalInquiry" type="button" role="tab" aria-controls="nav-personalInquiry" aria-selected="false"
                     style="color: #2f2f2f; border: 1px solid #505050"><b>1대1문의</b></button>
-            <button class="nav-link" id="nav-member-tab" data-bs-toggle="tab" data-bs-target="#nav-member" type="button" role="tab" aria-controls="nav-member" aria-selected="false"
-                    style="color: #2f2f2f; border: 1px solid #505050"><b>회원정보</b></button>
         </div>
     </nav><br>
 
     <div class="tab-content" id="nav-tabContent" style="margin-right: 10%; margin-left: 10%; font-size: 13px">
-        <!-- 커뮤니티 내용 추가 ==============================-->
-        <div class="tab-pane fade show active" id="nav-community" role="tabpanel" aria-labelledby="nav-community-tab" style="border: 1px solid #FFFFFF">
-            ㅎ
-        </div>
-
-        <!-- 1대1문의 내용 추가 ================================-->
-        <div class="tab-pane fade" id="nav-personalInquiry" role="tabpanel" aria-labelledby="nav-personalInquiry-tab" style="border: 1px solid #FFFFFF">
-            ㅅㅅ
-        </div>
-
         <!-- 회원정보 내용 추가 ==================================-->
-        <div class="tab-pane fade" id="nav-member" role="tabpanel" aria-labelledby="nav-member-tab" style="border: 1px solid #FFFFFF; ">
+        <div class="tab-pane fade show active"  id="nav-member" role="tabpanel" aria-labelledby="nav-member-tab" style="border: 1px solid #FFFFFF; ">
 
             <h6><b>☑ 회원 기본 정보</b></h6>
-            <div>
+            <form  method="post" action="popManagementResult">
+
+                <label><input name="no" type="hidden" th:value="${member.memberNo}"></label>
+
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>아이디/이메일</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.memberId}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.memberId}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>이름</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.memberName}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.memberName}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>닉네임</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.nickName}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.nickName}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>등급</b></li>
@@ -79,58 +73,71 @@
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>회원가입일</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${#dates.format(member.registDate, 'yyyy-MM-dd')}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${#dates.format(member.registDate, 'yyyy-MM-dd')}"></td></li>
             </ul>
-            </div><br>
+            <br>
 
             <h6><b>☑ 사이트 가입 정보</b></h6>
-            <div>
+
+
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>우편번호</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.postNo}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.postNo}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>주소</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.address}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.address}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>상세주소</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.address2}" value="기본값"></label></li>
+                <li class="list-group-item"><<td th:text="${member.address2}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>연락처</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.phone}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.phone}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>성별</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.gender}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.gender}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>상태</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.memberStat}" value="기본값"></label></li>
+                <li class="list-group-item"><label><input name="stat" type="text" th:value="${member.memberStat}" value="기본값"></label></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>상태변경일</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${#dates.format(member.memberStatDate, 'yyyy-MM-dd')}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${#dates.format(member.memberStatDate, 'yyyy-MM-dd')}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>경고횟수</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.warningCount}" value="기본값"></label></li>
+                <li class="list-group-item"><td th:text="${member.warningCount}"></td></li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item" style="max-width: 23%; background-color: #e7e9ea"><b>적립금</b></li>
-                <li class="list-group-item"><label><input type="text" th:value="${member.point}" value="기본값"></label></li>
+                <li class="list-group-item"><label><input name="point" type="text" th:value="${member.point}" value="기본값"></label></li>
             </ul>
-            </div><br>
-            <h6><b>☑ 관리자 운영메모</b></h6>
-            <textarea name="memo" rows="2" cols="94" style="width: 100%">
-            내용
-            </textarea>
-            <input type="reset" value="수정" style="float: right">
-            <input type="submit" value="삭제" style="float: right">
+            <br>
+<!--            <h6><b>☑ 관리자 운영메모</b></h6>-->
+<!--            <textarea name="memo" rows="2" cols="94" style="width: 100%">-->
+<!--            내용-->
+<!--            </textarea>-->
+                <button type="submit" id="updateButton" class="btn btn-primary" style="float: right; margin-top: 3%">수정</button>
+            </form>
         </div>
+
+        <!-- 커뮤니티 내용 추가 ==============================-->
+        <div class="tab-pane fade " id="nav-community" role="tabpanel" aria-labelledby="nav-community-tab" style="border: 1px solid #FFFFFF">
+
+            fr
+        </div>
+
+        <!-- 1대1문의 내용 추가 ================================-->
+        <div class="tab-pane fade" id="nav-personalInquiry" role="tabpanel" aria-labelledby="nav-personalInquiry-tab" style="border: 1px solid #FFFFFF">
+            ㅅㅅ
+        </div>
+
     </div>
-    </tr>
+</tr>
 
 <footer>
 

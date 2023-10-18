@@ -21,6 +21,7 @@
         <result property="warningCount" column="WARNING_COUNT"/>
         <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
         <collection property="memberCode" resultMap="authorityResultMap"/>
+
     </resultMap>
 
     <resultMap type="com.mypet.petmily.member.dto.AuthorityDTO" id="authorityResultMap">
@@ -33,6 +34,33 @@
         <id property="memberNo" column="REF_MEMBER_NO"/>
         <id property="authorityCode" column="REF_AUTHORITY_CODE"/>
         <association property="authority" resultMap="authorityResultMap"/>
+    </resultMap>
+
+    <resultMap type="com.mypet.petmily.petSitter.dto.PetSitterDTO" id="petSitterResultMap">
+        <id property="petMemberNo" column="PET_MEMBER_NO"/>
+        <result property="petRegistDt" column="PET_REGIST_DATE"/>
+        <result property="petStatus" column="PET_STAT"/>
+        <result property="petTitle" column="PET_TITLE"/>
+        <result property="petIntroduce" column="PET_INTRODUCE"/>
+        <result property="petPlace" column="PET_PLACE"/>
+        <result property="petCareCount" column="PET_CARE_COUNT"/>
+        <result property="petBabyYn" column="PET_BABY_YN"/>
+        <result property="petSmoke" column="PET_SMOK_YN"/>
+        <result property="petCareSize" column="PET_CARE_SIZE"/>
+        <result property="petCareAge" column="PET_CARE_AGE"/>
+        <result property="petCheckIn" column="PET_CHECKIN"/>
+        <result property="petCheckOut" column="PET_CHECKOUT"/>
+        <result property="petRequest" column="PET_REQUEST"/>
+        <result property="petImpossible" column="PET_IMPOSSIBLE"/>
+        <result property="petMDayPay" column="PET_M_DAY_PAY"/>
+        <result property="petMTimePay" column="PET_M_TIME_PAY"/>
+        <result property="petLDayPay" column="PET_L_DAY_PAY"/>
+        <result property="petLTimePay" column="PET_L_TIME_PAY"/>
+        <result property="petBank" column="PET_BANK"/>
+        <result property="petBankNo" column="PET_BANK_NO"/>
+        <result property="petBankName" column="PET_BANK_NAME"/>
+        <result property="nickname" column="NICKNAME"/>
+        <collection property="member" resultMap="generalMemberResultMap"/><!--멤버 dto-->
     </resultMap>
 
 
@@ -60,22 +88,28 @@
         WHERE C.MEMBER_NO = #{id}
     </select>
 
-<!--    &lt;!&ndash;     회원 정보 수정(멤버 테이블)&ndash;&gt;-->
-<!--    <update id="upMember" parameterType="com.mypet.petmily.member.dto.MemberDTO">-->
-<!--        UPDATE TBL_MEMBER-->
-<!--        SET AUTHORITY_DESC = #{desc},-->
-<!--            MEMBER_STAT = #{memberStat},-->
-<!--            WARNING_COUNT = #{warningCount},-->
-<!--            POINT = #{point}-->
-<!--        WHERE MEMBER_NO = #{no}-->
-<!--    </update>-->
+    <!--     회원 정보 수정(멤버 테이블)============-->
+    <update id="setPoP_Member" parameterType="com.mypet.petmily.member.dto.MemberDTO">
+        UPDATE TBL_MEMBER
+        SET MEMBER_STAT = #{stat},
+            POINT = #{point}
+        WHERE MEMBER_NO = #{no}
+    </update>
 
-<!--    &lt;!&ndash;     회원 등급 수정 (테이블 따로라서)&ndash;&gt;-->
-<!--    <update id="upRoleMember" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">-->
-<!--        UPDATE TBL_ROLE-->
-<!--        SET AUTHORITY_CODE = #{authority}-->
-<!--        WHERE MEMBER_NO = #{memberNo}-->
-<!--    </update>-->
+    <!--     회원 등급 수정 (롤 테이블 따로)===============-->
+    <update id="setPoP_Authority" parameterType="com.mypet.petmily.member.dto.MemberRoleDTO">
+        UPDATE TBL_ROLE
+        SET AUTHORITY_CODE = #{memberType}
+        WHERE MEMBER_NO = #{no}
+    </update>
+
+    <!--     회원 삭제-->
+    <delete id="deleteMember">
+        DELETE FROM TBL_MEMBER
+        WHERE MEMBER_STAT = '탈퇴'
+        AND (TRUNC(SYSDATE) - MEMBER_STAT_DATE) > 180
+    </delete>
+
 
     <!--     회원 목록 조회 + 검색 연동 쿼리-->
     <select id="selectMemberList" resultMap="generalMemberResultMap">
@@ -99,7 +133,7 @@
         FROM (
         <!-- 회원 데이터를 가져오는 쿼리 -->
         SELECT
-        C.MEMBER_NO
+          C.MEMBER_NO
         , C.MEMBER_ID
         , C.MEMBER_NAME
         , C.MEMBER_STAT
@@ -165,6 +199,82 @@
         </where>
     </select>
 
+    <!--     펫시터 신청 목록 조회 + 검색 연동 쿼리  -->
+    <select id="selectPetSitterList" resultMap="petSitterResultMap">
+        <!-- 펫시터 신청한 회원 데이터를 검색하는 쿼리 -->
+        SELECT
+        A.MEMBER_NO
+        ,A.MEMBER_NAME
+        ,A.MEMBER_ID
+        ,B.PET_MEMBER_NO
+        ,B.PET_REGIST_DATE
+        ,B.PET_STAT
+        FROM (
+        <!-- 서브 쿼리: 페이징을 위한 ROWNUM 적용 -->
+        SELECT
+        ROWNUM RNUM
+        , B.MEMBER_NO
+        , B.MEMBER_NAME
+        , B.MEMBER_ID
+        FROM (
+        <!-- 펫시터 신청한 회원의 데이터를 가져오는 쿼리 -->
+        SELECT
+          C.MEMBER_NO
+        , C.MEMBER_NAME
+        , C.MEMBER_ID
+        FROM TBL_MEMBER C
+        <!-- 동적으로 생성되는 WHERE 절 -->
+        <where>
+            <!-- 검색값이 숫자만 가능하고 검색 조건이 'memberNo'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberNo' and searchValue != null and searchValue != '' and searchValue.matches('[0-9]+')">
+                AND C.MEMBER_NO = #{searchValue}
+            </if>
+            <!-- 검색값이 영어와 한글 형태만 가능하고 검색 조건이 'memberName'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberName' and searchValue != null and searchValue != '' and searchValue.matches('[a-zA-Z가-힣]+')">
+                AND C.MEMBER_NAME LIKE '%' || #{searchValue} || '%'
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberId'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
+            </if>
+            <if test="apply == '대기'">
+                AND B.PET_STAT = #{apply}
+            </if>
+        </where>
+        ORDER BY C.MEMBER_NO DESC
+        )B
+        <![CDATA[
+            WHERE ROWNUM <= #{ endRow }
+        ]]>
+        )A
+        <!-- 최종 결과에 대한 조인 -->
+        JOIN TBL_PET_SITTER B ON (A.MEMBER_NO = B.PET_MEMBER_NO)
+        WHERE A.RNUM >= #{ startRow }
 
+        ORDER BY 1 DESC
+    </select>
 
+    <!-- 검색에 따른 해당 신청 목록 조회 + 전체 펫시터 신청 수 가져오는 조건쿼리 -->
+    <select id="selectPetSitterTotalCount" resultType="_int" parameterType="map">
+        SELECT COUNT(*) AS totalCount
+        FROM TBL_MEMBER C
+        JOIN TBL_PET_SITTER B ON (C.MEMBER_NO = B.PET_MEMBER_NO)
+        <where>
+            <!-- 검색값이 숫자만 가능하고 검색 조건이 'memberNo'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberNo' and searchValue != null and searchValue != '' and searchValue.matches('[0-9]+')">
+                AND C.MEMBER_NO = #{searchValue}
+            </if>
+            <!-- 검색값이 영어와 한글 형태만 가능하고 검색 조건이 'memberName'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberName' and searchValue != null and searchValue != '' and searchValue.matches('[a-zA-Z가-힣]+')">
+                AND C.MEMBER_NAME LIKE '%' || #{searchValue} || '%'
+            </if>
+            <!-- 검색값이 비어 있지 않고 검색 조건이 'memberId'인 경우에만 검색 조건을 적용 -->
+            <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
+                AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
+            </if>
+            <if test="apply == '대기'">
+                AND B.PET_STAT = #{apply}
+            </if>
+        </where>
+    </select>
 </mapper>
