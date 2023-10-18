@@ -25,5 +25,5 @@ public class ReviewDTO {
     private MemberDTO member;                      // 회원
     private SitterInfoDTO petSitter;             // 펫시터
     private ProgressReserveDTO reserve;     // 예약
-    private FileUploadDTO reviewImgFile; // 첨부파일(사진)
+    private FileUploadDTO reviewImg; // 첨부파일(사진)
 }
