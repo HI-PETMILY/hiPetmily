@@ -2,8 +2,7 @@ package com.mypet.petmily.review.dao;
 
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
-import com.mypet.petmily.review.dto.ReservationInfoDTO;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,7 +13,7 @@ import java.util.Map;
 public interface ReviewMapper {
 
     /* 후기 작성 페이지 */
-    ReservationHistoryDTO viewReservationInfo(Map<String, Object> loginMember);
+    ProgressReserveDTO viewReservationInfo(Map<String, Object> loginMember);
 
     /* 후기 등록 */
     void registReview(ReviewDTO review);
@@ -24,5 +23,4 @@ public interface ReviewMapper {
 
     int selectTotalCount(MemberDTO loginMember);
 
-    /*ReservationHistoryDTO reserveInfo(MemberDTO loginMember);*/
 }

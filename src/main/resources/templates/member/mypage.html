@@ -21,9 +21,9 @@
 <div id="header_bar">
     <div id="bar">
         <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
-<!--        <div class="bar_info" id="bar_sitter"-->
-<!--             th:if ="${member.}"-->
-<!--             th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petMemberNo}'|"><p id="sitter">펫시터</p></div>-->
+        <div class="bar_info" id="bar_sitter"
+             th:if="${#authorization.expression('hasRole(''ROLE_PETSITTER'')')}"
+             th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petMemberNo}'|"><p id="sitter">펫시터</p></div>
     </div>
 </div>
 <div id="box">
@@ -55,8 +55,8 @@
                     <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
                     <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
                     <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
-                    </th:block>
                 </div>
+            </th:block>
                 <div>
                     <button name="pet_regist" id="pet_regist"><a style="text-decoration: none; color: #ffffff" href="/member/pet-profile-regist">등록</a></button>
                 </div>
