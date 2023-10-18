@@ -1,12 +1,8 @@
 package com.mypet.petmily.main.controller;
 
 import com.mypet.petmily.main.service.MainService;
-import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.petSitter.dto.PetSitterDTO;
-import com.mypet.petmily.petSitterNew.dto.NewPetSitterDTO;
-import com.mypet.petmily.review.dto.ReviewDTO;
+import com.mypet.petmily.petSitterNew.dto.SitterReviewDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +25,7 @@ public class MainController {
     public String defaultLocation(Model model) {
 
         // mainpage review
-        List<ReviewDTO> reviewList = mainService.selectAllReviews();
+        List<SitterReviewDTO> reviewList = mainService.selectAllReviews();
 
         log.info("-- reviewList : {}", reviewList);
 
