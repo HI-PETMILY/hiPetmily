@@ -434,4 +434,15 @@ function kakaoMapApi() {
         }
     });
 
+    //문의하기 버튼연결
+    if(document.getElementById("qna_btn")) {
+
+        const $detail_button_terms = document.getElementById("qna_btn");
+
+        $detail_button_terms.addEventListener("click", (event) => {
+
+            location.href = "/board/qna/list";        // 추후 연결
+        });
+    }
+
 }
