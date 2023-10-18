@@ -106,7 +106,7 @@
     <!-- pet resultMap 관련 -->
 
     <!-- review resultMap 관련 -->
-    <resultMap id="reviewResultMap" type="com.mypet.petmily.review.dto.ReviewDTO">
+    <resultMap id="reviewResultMap" type="com.mypet.petmily.petSitterNew.dto.SitterReviewDTO">
         <id property="revCode" column="REV_CODE"/>
         <result property="revScore" column="REV_SCORE"/>
         <result property="revContent" column="REV_CONTENT"/>

@@ -1,6 +1,6 @@
 package com.mypet.petmily.main.dao;
 
-import com.mypet.petmily.review.dto.ReviewDTO;
+import com.mypet.petmily.petSitterNew.dto.SitterReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,5 +9,5 @@ import java.util.List;
 public interface MainMapper {
 
     // mainpage review
-    List<ReviewDTO> selectAllReviews();
+    List<SitterReviewDTO> selectAllReviews();
 }
