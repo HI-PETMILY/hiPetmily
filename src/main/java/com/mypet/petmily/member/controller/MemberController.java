@@ -462,11 +462,5 @@ public class MemberController {
     /* ========================================== 반려동물 프로필 끝 ============================================ */
 
 
-    /* 진행 중인 예약 페이지 */
-    @GetMapping("/reservation-in-progress")
-    public void progressReservationPage(){}
-
-
-
 }
 

@@ -498,6 +498,7 @@ table.reviewList-table td{
     background-color: #f0f0f0;
     margin: 5px 0;
     box-shadow: 3px 3px 4px 0 #E0E0E0;
+    display: flex;
 }
 
 .grey-line{
@@ -507,9 +508,13 @@ table.reviewList-table td{
     margin-left: -1px;
 }
 
-.reserve-date, .reserve-pet{
+.reserve-date, .reserve-pet, .reserve-time{
     margin-left: 20px;
     font-size: 14px;
+}
+
+.reserve-date, .reserve-time{
+    display: flex;
 }
 
 .result-button{

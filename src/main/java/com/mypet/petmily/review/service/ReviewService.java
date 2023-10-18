@@ -3,9 +3,9 @@ package com.mypet.petmily.review.service;
 import com.mypet.petmily.common.paging.Pagination;
 import com.mypet.petmily.common.paging.SelectCriteria;
 import com.mypet.petmily.member.dto.MemberDTO;
-import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
+import com.mypet.petmily.payment.dto.SitterInfoDTO;
 import com.mypet.petmily.review.dao.ReviewMapper;
-import com.mypet.petmily.review.dto.ReservationInfoDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class ReviewService {
     }
 
     /* 후기 작성 페이지 */
-    public ReservationHistoryDTO viewReservationInfo(Map<String, Object> param) {
+    public ProgressReserveDTO viewReservationInfo(Map<String, Object> param) {
         return reviewMapper.viewReservationInfo(param);
     }
 
@@ -63,7 +63,4 @@ public class ReviewService {
         return reviewListAndPaging;
     }
 
-    /*public ReservationHistoryDTO selectReserveInfo(MemberDTO loginMember) {
-        return reviewMapper.reserveInfo(loginMember);
-    }*/
 }
