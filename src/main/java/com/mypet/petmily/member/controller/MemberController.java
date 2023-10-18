@@ -155,67 +155,67 @@ public class MemberController {
 
 
         /* 이미지 첨부파일 */
-        log.info("member attachImage request : {}", attachImage);
-
-        String fileUploadDir = IMAGE_DIR + "original";
-        String thumbnailDir = IMAGE_DIR + "thumbnail";
-
-        File dir1 = new File(fileUploadDir);
-        File dir2 = new File(thumbnailDir);
-
-        /* 디렉토리가 없을 경우 생성한다. 근데 있음 */
-        if (!dir1.exists() || !dir2.exists()) {
-            dir1.mkdirs();
-            dir2.mkdirs();
-        }
-
-        /* 업로드 파일에 대한 정보를 담을 리스트 */
-        FileUploadDTO fileUploadList = new FileUploadDTO();
-
-        try {
-            /* 첨부파일이 실제로 존재하는 경우에만 로직 수행 */
-            if (attachImage.getSize() > 0) {
-
-                String originalFileName = attachImage.getOriginalFilename();
-                log.info("originalFileName : {}", originalFileName);
-
-                String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-                String savedFileName = UUID.randomUUID() + ext;
-                log.info("saveName : {}", savedFileName);
-
-                Long size = attachImage.getSize();
-
-                /* 서버의 설정 디렉토리에 파일 저장하기 */
-                attachImage.transferTo(new File(fileUploadDir + "/" + savedFileName));
-
-
-                /* DB에 저장할 파일의 정보 처리 */
-                FileUploadDTO fileInfo = new FileUploadDTO();
-
-                fileUploadList.setFileOriName(originalFileName);      // 오지리날 파일명 저장
-                fileUploadList.setFileExtName(ext);                   // 확장명 저장
-                fileUploadList.setFileSaveName(savedFileName);        // 저장용 파일명 저장
-                fileUploadList.setFileMemberNo(loginMember.getMemberNo());        // 이미지 소유자 번호 저장
-                fileUploadList.setFileMemberNo(modifyMember.getMemberNo());
-                fileUploadList.setFilePathName("/upload/original/");
-
-                Thumbnails.of(fileUploadDir + "/" + savedFileName).size(150, 150)
-                        .toFile(thumbnailDir + "/thumbnail_" + savedFileName);
-
-                fileUploadList.setFile_T_PathName("/upload/thumbnail/thumbnail_" + savedFileName);
-
-            }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        log.info("fileInfo : {}", fileUploadList);
-
-        modifyMember.setMemberImg(fileUploadList);
-        modifyMember.setMemberNo(modifyMember.getMemberNo());
-
-        memberService.registMemberImg(modifyMember, fileUploadList);
+//        log.info("member attachImage request : {}", attachImage);
+//
+//        String fileUploadDir = IMAGE_DIR + "original";
+//        String thumbnailDir = IMAGE_DIR + "thumbnail";
+//
+//        File dir1 = new File(fileUploadDir);
+//        File dir2 = new File(thumbnailDir);
+//
+//        /* 디렉토리가 없을 경우 생성한다. 근데 있음 */
+//        if (!dir1.exists() || !dir2.exists()) {
+//            dir1.mkdirs();
+//            dir2.mkdirs();
+//        }
+//
+//        /* 업로드 파일에 대한 정보를 담을 리스트 */
+//        FileUploadDTO fileUploadList = new FileUploadDTO();
+//
+//        try {
+//            /* 첨부파일이 실제로 존재하는 경우에만 로직 수행 */
+//            if (attachImage.getSize() > 0) {
+//
+//                String originalFileName = attachImage.getOriginalFilename();
+//                log.info("originalFileName : {}", originalFileName);
+//
+//                String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+//                String savedFileName = UUID.randomUUID() + ext;
+//                log.info("saveName : {}", savedFileName);
+//
+//                Long size = attachImage.getSize();
+//
+//                /* 서버의 설정 디렉토리에 파일 저장하기 */
+//                attachImage.transferTo(new File(fileUploadDir + "/" + savedFileName));
+//
+//
+//                /* DB에 저장할 파일의 정보 처리 */
+//                FileUploadDTO fileInfo = new FileUploadDTO();
+//
+//                fileUploadList.setFileOriName(originalFileName);      // 오지리날 파일명 저장
+//                fileUploadList.setFileExtName(ext);                   // 확장명 저장
+//                fileUploadList.setFileSaveName(savedFileName);        // 저장용 파일명 저장
+//                fileUploadList.setFileMemberNo(loginMember.getMemberNo());        // 이미지 소유자 번호 저장
+//                fileUploadList.setFileMemberNo(modifyMember.getMemberNo());
+//                fileUploadList.setFilePathName("/upload/original/");
+//
+//                Thumbnails.of(fileUploadDir + "/" + savedFileName).size(150, 150)
+//                        .toFile(thumbnailDir + "/thumbnail_" + savedFileName);
+//
+//                fileUploadList.setFile_T_PathName("/upload/thumbnail/thumbnail_" + savedFileName);
+//
+//            }
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        log.info("fileInfo : {}", fileUploadList);
+//
+//        modifyMember.setMemberImg(fileUploadList);
+//        modifyMember.setMemberNo(modifyMember.getMemberNo());
+//
+//        memberService.registMemberImg(modifyMember, fileUploadList);
 
         return "redirect:/member/mypage";
     }

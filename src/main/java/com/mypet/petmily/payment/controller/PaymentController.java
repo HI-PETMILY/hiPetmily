@@ -3,6 +3,7 @@ package com.mypet.petmily.payment.controller;
 
 import com.mypet.petmily.common.exception.member.reservationDetailException;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.payment.dto.PaymentDTO;
 import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
 import com.mypet.petmily.payment.service.PaymentService;
@@ -73,20 +74,22 @@ public class PaymentController {
 //        model.addAttribute("endRow", ReservationListAndPaging.get("endRow"));
         log.info("reservationList : {}", ReservationListAndPaging.get("reservationList"));
 
-        return "/member/reservationlist";
+        return "/member/reservationList";
     }
 
 
     @GetMapping("reservationDetail")
     public String detailReservation(@AuthenticationPrincipal MemberDTO loginMember, Model model,
-                                    @RequestParam int resCode, RedirectAttributes rttr)
+                                    @RequestParam int reserveCode, RedirectAttributes rttr)
     throws reservationDetailException {
 
         model.addAttribute("loginMember", loginMember.getMemberNo());
         log.info("loginMember : {}", loginMember);
-        List<ProgressReserveDTO> detailReservation = paymentService.selectDetailReservation(loginMember, resCode);
+        List<ProgressReserveDTO> detailReservation = paymentService.selectDetailReservation(loginMember, reserveCode);
         model.addAttribute("detailReservation", detailReservation);
         log.info("detailReservation : {}", detailReservation);
+        List<PaymentDTO> selectPaymentInfo = paymentService.selectPaymentReservation(loginMember, reserveCode);
+        model.addAttribute("selectPaymentInfo", selectPaymentInfo);
 
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("res.detail.select"));
 

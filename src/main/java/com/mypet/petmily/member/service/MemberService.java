@@ -158,9 +158,9 @@ public class MemberService {
 
 
     /* 회원 이미지 첨부파일 */
-    public void registMemberImg(MemberDTO modifyMember, FileUploadDTO fileUploadList) {
-
-        modifyMember.setMemberStat("활동");
-        FileUploadMapper.insertMemberImg(fileUploadList);
-    }
+//    public void registMemberImg(MemberDTO modifyMember, FileUploadDTO fileUploadList) {
+//
+//        modifyMember.setMemberStat("활동");
+//        FileUploadMapper.insertMemberImg(fileUploadList);
+//    }
 }
