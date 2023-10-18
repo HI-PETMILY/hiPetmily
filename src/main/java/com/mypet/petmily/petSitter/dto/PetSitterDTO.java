@@ -6,6 +6,7 @@ import com.mypet.petmily.member.dto.MemberRoleDTO;
 import com.mypet.petmily.petSitterNew.dto.PetTagDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+
 public class PetSitterDTO {
 
     private int petMemberNo;    //펫시터 코드
@@ -45,12 +47,8 @@ public class PetSitterDTO {
 
     private MemberDTO member;
     private List<MemberRoleDTO> memberRoleList;      // 한 멤버는 여러 권한을 가질 수 있다
-    private AuthorityDTO memberCode;
 
 //    private List<ReviewDTO> revContent;
-
-
-
 
 
 }

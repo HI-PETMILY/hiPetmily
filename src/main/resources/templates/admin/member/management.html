@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +79,7 @@
       <ul class="chkchoose">
 
 
-        <form onsubmit="return validatePetSitterNumber()">
+        <form onsubmit="return validateMemberNumber()">
 
           <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
           <button class="search-button" onclick="location.href='management'">검색</button>
@@ -102,13 +102,14 @@
           </form>
 
           <b>• 검색조건 </b> &nbsp;&nbsp;&nbsp;
-          <select id="searchCondition" name="searchCondition">
+          <select id="searchCondition" name="searchCondition">ㄴ
             <option value="memberNo" th:selected="${ paging.searchCondition eq 'memberNo'}">번호</option>
             <option value="memberName" th:selected="${ paging.searchCondition eq 'memberName'}">신청자</option>
             <option value="memberId" th:selected="${ paging.searchCondition eq 'memberId'}">신청아이디</option>
           </select>
 
-          <input type="search" name="searchValue" id="searchInput" placeholder=" 검색">
+          <input type="search" name="searchValue" id="searchInput"
+                 placeholder=" 검색">
 
         </form>
       </ul>
@@ -131,28 +132,21 @@
       <form>
         <table class="table table-hover">
           <colgroup>
-            <col width="2%"/>
-            <col width="10%"/>
+            <col width="6%"/>
             <col width="12%"/>
             <col width="12%"/>
-            <col width="12%"/>
-            <col class="management-button" width="10%"/>
+            <col width="15%"/>
+            <col width="8%"/>
+            <col class="management-button" width="25%"/>
           </colgroup>
+
           <thead>
           <tr>
-
-            <th>
-              <label class="checkbox-inline" id="ppetListChkAll"><!--/////////////////////////////////////////////-->
-                <input type="checkbox" id="petListChkAll" name="petChkList" value="selectAll"
-                       onclick='selectPetSitterAll(this)'> <!--회원 리스트 전체 체크박스-->
-              </label>
-            </th>
-
             <th>번호</th>
-            <th>신청자</th>
+            <th>지원자</th>
             <th>아이디</th>
-            <th>신청날짜</th>
-            <th>상태</th>
+            <th>지원날짜</th>
+            <th>지원(처리)</th>
             <th class="management-button">관리</th>
           </tr>
           </thead>
@@ -160,16 +154,21 @@
           <tbody>
           <!-- 회원 목록 데이터를 Thymeleaf 반복문을 사용하여 출력 -->
           <tr class="memberfont" th:each="petSitter : ${petSitterList}">
-            <td><input type="checkbox" id="CheckBoxs" class="chk" name="petChkList" value="selectAll"></td>
             <td th:text="${petSitter.member.memberNo}"></td>
             <td th:text="${petSitter.member.memberName}"></td>
             <td th:text="${petSitter.member.memberId}"></td>
             <td th:text="${petSitter.petRegistDt}"></td>
             <td th:if="${petSitter.petStatus == '대기'}" th:text="대기"></td>
             <td th:if="${petSitter.petStatus == '승인'}" th:text="승인"></td>
+
+            <div id="btnWrap">
+              <td class="management-button">
+                <!-- 팝업창 -->
+                <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/popViewPetSitterApplicForm?id=' + ${petSitter.member.memberNo} + '\', \'popViewPetSitterApplicForm\', \'width=750, height=850, left=650, top=180\');'">지원서</button>
+            </div>
+
           </tr>
           </tbody>
-
         </table>
         <br>
       </form>

@@ -92,15 +92,15 @@ public class AdminService {
         /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
         int limit = 20;         // 한 페이지에 보여줄 게시물의 수
         int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
-        SelectPetSitterCriteria selectCriteria = PagenationAdmin.getPetSitterSelectCriteria(page, totalCount, limit, buttonAmount, searchCondition, searchValue, apply);
-        log.info("petSitterList selectCriteria : {}", selectCriteria);
+        SelectPetSitterCriteria petSelectCriteria = PagenationAdmin.getPetSitterSelectCriteria(page, totalCount, limit, buttonAmount, searchCondition, searchValue, apply);
+        log.info("petSitterList selectCriteria : {}", petSelectCriteria); //ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
 
         /* 3. 요청 페이지와 검색 기준에 맞는 신청글을 조회해온다. */
-        List<PetSitterDTO> petSitterList = adminMapper.selectPetSitterList(selectCriteria);
-        log.info("petSitterList : {}", petSitterList);
+        List<PetSitterDTO> petSitterList = adminMapper.selectPetSitterList(petSelectCriteria);
+        log.info("petSitterList : {}", petSitterList); //ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
 
         Map<String, Object> petSitterListAndPaging = new HashMap<>();
-        petSitterListAndPaging.put("paging", selectCriteria);
+        petSitterListAndPaging.put("paging", petSelectCriteria);
         petSitterListAndPaging.put("petSitterList", petSitterList);
 
         return petSitterListAndPaging;

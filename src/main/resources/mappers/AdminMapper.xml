@@ -21,6 +21,7 @@
         <result property="warningCount" column="WARNING_COUNT"/>
         <result property="signupPathCode" column="SIGNUP_PATH_CODE"/>
         <collection property="memberCode" resultMap="authorityResultMap"/>
+
     </resultMap>
 
     <resultMap type="com.mypet.petmily.member.dto.AuthorityDTO" id="authorityResultMap">
@@ -59,7 +60,7 @@
         <result property="petBankNo" column="PET_BANK_NO"/>
         <result property="petBankName" column="PET_BANK_NAME"/>
         <result property="nickname" column="NICKNAME"/>
-        <association property="member" resultMap="generalMemberResultMap"/><!--멤버 dto-->
+        <collection property="member" resultMap="generalMemberResultMap"/><!--멤버 dto-->
     </resultMap>
 
 
@@ -202,9 +203,10 @@
     <select id="selectPetSitterList" resultMap="petSitterResultMap">
         <!-- 펫시터 신청한 회원 데이터를 검색하는 쿼리 -->
         SELECT
-         A.MEMBER_NO
+        A.MEMBER_NO
         ,A.MEMBER_NAME
         ,A.MEMBER_ID
+        ,B.PET_MEMBER_NO
         ,B.PET_REGIST_DATE
         ,B.PET_STAT
         FROM (
@@ -235,6 +237,9 @@
             <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
                 AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
             </if>
+            <if test="apply == '대기'">
+                AND B.PET_STAT = #{apply}
+            </if>
         </where>
         ORDER BY C.MEMBER_NO DESC
         )B
@@ -245,9 +250,7 @@
         <!-- 최종 결과에 대한 조인 -->
         JOIN TBL_PET_SITTER B ON (A.MEMBER_NO = B.PET_MEMBER_NO)
         WHERE A.RNUM >= #{ startRow }
-        <if test="apply == '대기'">
-            AND B.PET_STAT = #{apply}
-        </if>
+
         ORDER BY 1 DESC
     </select>
 
@@ -268,9 +271,9 @@
             <!-- 검색값이 비어 있지 않고 검색 조건이 'memberId'인 경우에만 검색 조건을 적용 -->
             <if test="searchCondition == 'memberId' and searchValue != null and searchValue != ''">
                 AND C.MEMBER_ID LIKE '%' || #{searchValue} || '%'
-                <if test="apply == '대기'">
-                    AND B.PET_STAT = #{apply}
-                </if>
+            </if>
+            <if test="apply == '대기'">
+                AND B.PET_STAT = #{apply}
             </if>
         </where>
     </select>

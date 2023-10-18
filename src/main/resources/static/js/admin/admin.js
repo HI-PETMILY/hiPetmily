@@ -31,15 +31,6 @@ $(document).ready(function () {
     });
 });
 
-
-/*==============팝업창=======================*/
-document.getElementById("passwordChangeButton").addEventListener("click", openPasswordChangePopup);
-
-function openInquiryPopup() {//////////////////
-    // "1대1문의" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
-    var popup =window.open("popInquiry", "InquiryPopup", "width=750, height=800, left=650, top=180");
-}
-
 // 회원 리스트 체크 박스 전체 선택/해제=========================
 // 'selectAll' 함수를 정의함. 체크박스 전체 선택/해제.
 function selectAll(selectAll) {
@@ -70,36 +61,6 @@ function selectAll(selectAll) {
     });
 }
 
-
-// 펫시터 신청 리스트 체크 박스 전체 선택/해제=========================
-// 'selectPetSitterAll' 함수를 정의함. 체크박스 전체 선택/해제.
-function selectPetSitterAll(selectAll) {
-
-    // 'chkList' 이름 속성을 가진 모든 입력(체크박스) 요소를 선택합니다.
-    const checkboxes = document.querySelectorAll('input[name="petChkList"]');
-
-    // 'listChkAll' id를 가진 체크박스 요소를 선택합니다.
-    const listChkAllCheckbox = document.getElementById('petListChkAll');
-
-    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 수행합니다.
-    checkboxes.forEach((checkbox) => {
-        // 'selectAll' 체크박스의 상태에 따라 개별 체크박스의 'checked' 속성을 설정합니다.
-        checkbox.checked = selectAll.checked;
-    });
-
-    // 'checkboxes' 배열의 각 요소에 대한 반복 작업을 다시 수행합니다.
-    checkboxes.forEach((checkbox) => {
-        // 개별 체크박스의 'change' 이벤트에 대한 리스너를 추가합니다.
-        checkbox.addEventListener('change', function () {
-
-            // 개별 체크박스의 상태가 해제되면,
-            if (checkboxes.checked == false) {
-                // 'listChkAll' 체크박스를 해제 상태로 설정합니다.
-                listChkAllCheckbox.checked = false;
-            }
-        });
-    });
-}
 
 //회원 상세정보 관리 팝업창 반응형 메뉴바 ========================
 function onMenuClick() {
