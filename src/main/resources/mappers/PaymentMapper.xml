@@ -28,12 +28,25 @@
         <association property="petSitter" resultMap="sitterInfoResultMap"/>
     </resultMap>
 
+    <resultMap id="paymentResultMap" type="com.mypet.petmily.payment.dto.PaymentDTO">
+        <id property="payRecordCode" column="PAY_RECORD_CODE"/>
+        <result property="payPrice" column="PAY_PRICE"/>
+        <result property="payStat" column="PAY_STAT"/>
+        <result property="payDate" column="PAY_DATE"/>
+        <result property="paymentCode" column="PAYMENT_CODE"/>
+        <result property="reservCode" column="RESERV_CODE"/>
+    </resultMap>
+
     <resultMap id="sitterInfoResultMap" type="com.mypet.petmily.payment.dto.SitterInfoDTO">
         <id property="sitterCode" column="PET_MEMBER_NO"/>
         <association property="memberInfo" resultMap="memberResultMap"/>
     </resultMap>
     <!--진행중인 예약 관련 끝-->
 
+
+
+
+    <!-- 지난 예약 조회 -->
     <select id="selectReservationBoardList" resultMap="progressReservationResultMap">
         SELECT * FROM (
         SELECT
@@ -64,6 +77,7 @@
         FROM TBL_RESERVATION A
     </select>
 
+    <!-- 지난 예약 상세 조회 -->
     <select id="selectDetailReservation" resultMap="progressReservationResultMap">
         SELECT
                R.RESERV_CODE
@@ -74,10 +88,28 @@
              , P.PAY_DATE
              , P.PAY_PRICE
              , P.PAY_STAT
+             , S.PET_MEMBER_NO
+             , M.NICKNAME,
+            ROWNUM AS rn
           FROM TBL_RESERVATION R
-          JOIN TBL_PAYMENT P ON(R.RESERV_CODE = P.RESERV_CODE)
+          JOIN TBL_PAYMENT P ON R.RESERV_CODE = P.RESERV_CODE
+          JOIN TBL_PET_SITTER S ON R.PET_MEMBER_NO = S.PET_MEMBER_NO
+          JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
          WHERE R.RESERV_CODE = #{ reserveCode }
     </select>
+
+    <select id="selectPaymentReservation" resultMap="paymentResultMap">
+        SELECT
+              PAY_RECORD_CODE
+            , PAY_PRICE
+            , PAY_STAT
+            , PAY_DATE
+            , PAYMENT_CODE
+            , RESERV_CODE
+        FROM TBL_PAYMENT
+        WHERE RESERV_CODE = #{ reserveCode }
+    </select>
+
 
     <!-- 진행 중인 예약 조회 리스트 -->
     <select id="selectProgressReserveList" resultMap="progressReservationResultMap">

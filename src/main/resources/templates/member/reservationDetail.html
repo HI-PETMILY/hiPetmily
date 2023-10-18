@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://unpkg.com/ress/dist/ress.min.css" rel="stylesheet" type="text/css">
-<!--    <script type="text/javascript" src="/js/member/event.js"></script>-->
+    <!--    <script type="text/javascript" src="/js/member/event.js"></script>-->
     <script defer type="text/javascript" src="/js/main/mainPage.js"></script>
     <link href="/css/member/reservationDetail.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap"
@@ -13,19 +13,53 @@
     <link rel="stylesheet" href="/css/common/headerFooter.css"/>
 </head>
 <body>
-<!--<div th:replace="common/header_white.html"></div>-->
-<div class="res_history_box" th:each="resDetail : ${ detailReservation }">
-    <table align="center" class="reserve-table">
+<div th:replace="common/header_white.html"></div>
+<div class="container">
 
-        <td class="col1" th:text="${ resDetail.resCode }"></td>
-        <td class="col2" th:text="${ resDetail.startDateTime }"></td>
-        <td class="col3" th:text="${ resDetail.endDateTime }"></td>
-        <td class="col5" th:text="${ resDetail.resTotalAmount }"></td>
+    <h2>예약 정보</h2>
 
+    <div class="res_history_box" th:each="resDetail : ${ detailReservation }">
 
-    </table>
+        <div class="reserve_info">
+
+            <div class="sitter-profileImg">
+                <img class="sitterImg" src="/static_Image/member/petProfileTest1.png">
+            </div>
+
+            <span>
+                <div class="res_box">
+
+            <div class="info">예약코드
+                <span id="reserveCode" th:text="${ resDetail.reserveCode }"></span>
+            </div>
+            <div class="info">펫시터
+                <span id="petSitter" th:text="${ resDetail.petSitter.memberInfo.nickName }"></span>
+            </div>
+            <div class="info">서비스 이용일
+                <span id="dateTime" th:text="${ resDetail.startDateTime } + ' ~ ' + ${ resDetail.endDateTime }"></span>
+            </div>
+
+                </div>
+                <!--            <div class="info" id="totalTime">총 예약 시간-->
+                <!--                <span th:text="${ resDetail.reserveDayCount } + 일 + ', ' + ${ resDetail.reserveTimeCount } + 시간"></span>-->
+                <!--            </div>-->
+            </span>
+        </div>
+
+        <div class="pay_history_box" th:each="payHistory : ${ selectPaymentInfo }">
+            <hr>
+            <h2>결제 정보</h2>
+            <div class="info">결제일
+                <span id="pay_info" th:text=" ${#dates.format(payHistory.payDate, 'yyyy-MM-dd')}"></span>
+            </div>
+            <div class="info">결제금액
+                <span id="pay_price" th:text="${ payHistory.payPrice } + '원'"></span>
+            </div>
+        </div>
+
+    </div>
 </div>
 
-<!--<div th:replace="common/footer.html"></div>-->
+<div th:replace="common/footer.html"></div>
 </body>
 </html>
