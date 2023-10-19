@@ -43,6 +43,7 @@
 - DB값 검증
 - ID찾기, PW찾기
 - ..등등 처럼 작성하시면 됩니다.
+- dkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 
 회원가입 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C(Member))
 - ID 중복 체크
