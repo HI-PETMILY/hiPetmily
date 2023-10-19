@@ -19,6 +19,5 @@ public interface PetSitterMapper {
 
     List<PetSitterDTO> selectPetSitterListPaging(SelectCriteria selectCriteria);
 
-
     PetSitterDTO selectMypage(MemberDTO loginMember);
 }

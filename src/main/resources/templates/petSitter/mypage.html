@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/html"><head>
+<html xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>mypage</title>
 
@@ -22,25 +22,17 @@
 <body id="body">
 
 <div th:replace="common/header_white.html"></div>
+
 <div>
-<!--사용자모드,펫시터모드 바 -->
+사용자모드,펫시터모드 바
 <div class="mode-bar">
+
     <div class="mode">
-    <div class="member">
-        <div class="member-mode">
-            사용자
+        <div class="mode-wrap">
+        <div class="member-mode">사용자</div>
+        <div class="petsitter-mode">펫시터</div>
         </div>
     </div>
-
-    <div class="petsitter"  th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petSitter.petMemberNo}'|">
-        <div class="petsitter-mode">
-            펫시터
-        </div>
-
-
-    </div>
-    </div>
-
 </div>
 
 
@@ -50,7 +42,7 @@
     <h3 class="sub-title">마이 페이지</h3>
     <ul class="sub-menu">
         <li><a href="#" class="sub-menu-link">펫시터 프로필</a></li>
-        <li><a href="#" class="sub-menu-link">내계좌 정보</a></li>
+        <li><a href="#" onclick="location.href='/petSitter/account'" class="sub-menu-link" >내계좌 정보</a></li>
 
     </ul>
         <h3 class="sub-title">예약관리</h3>
@@ -78,11 +70,11 @@
             </div>
 
             <div class="introduce">
-                <div class="profile-name" th:text ="${petSitter.memberNo}" >
+                <div class="profile-name" th:text ="${#authentication.principal.nickName}" >
                     허가연
                 </div>
 
-                <div class="profile-address"  th:text ="${petSitter.address}">
+                <div class="profile-address"  th:text ="${#authentication.principal.address}">
                     부산 연제구 연산동
                 </div>
             </div>
@@ -150,11 +142,6 @@
                    <div><img src="/static_Image/petSitter/arrow.png" class="arrow-btn"></div>
 
                </div>
-
-
-
-
-
 
 </div>
 </div>

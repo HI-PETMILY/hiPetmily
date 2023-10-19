@@ -51,7 +51,7 @@
                     <!-- 펫시터 프로필 연결 가능하면 하기 -->
                     <td class="col" id="col5" th:text="${ resHistory.reserveStatus }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
                 <td class="col" id="col6">
-                    <span th:if="${ resHistory.reserveStatus == '결제완료' }">
+                    <span th:if="${ resHistory.reserveStatus == '서비스완료' }">
                         <form action="/member/review-write" method="post">
                         <input type="hidden" name="reserveCode" th:value="${resHistory.reserveCode}" />
                         <input type="hidden" name="memberNo" th:value="${resHistory.petSitter.memberInfo.memberNo}" />
