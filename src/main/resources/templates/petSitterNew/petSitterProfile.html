@@ -240,9 +240,9 @@
                 <div>
                     <div class="psp_mypet_name" th:text="${ item.getPetName() }"></div>
                     <div th:text="${ '견종 : ' + item.petBreed + ' / 성별 : ' + item.petGender + ' / 나이 : ' + item.petAge + '세 / 몸무게 : ' + item.petWeight + 'kg' }"></div>
-                    <div th:id="'myPetBtn_' + ${item.petCode}" class="psp_mypet_btn" th:onclick="|location.href='/member/pet-profile-view?petCode=${item.petCode}'|"
-                                                th:onmouseover="mypetMouseoverEvent([[${ item.petCode }]])"
-                                                th:onmouseout="mypetMouseoutEvent([[${ item.petCode }]])">상세보기</div>
+<!--                    <div th:id="'myPetBtn_' + ${item.petCode}" class="psp_mypet_btn" th:onclick="|location.href='/member/pet-profile-view?petCode=${item.petCode}'|"-->
+<!--                                                th:onmouseover="mypetMouseoverEvent([[${ item.petCode }]])"-->
+<!--                                                th:onmouseout="mypetMouseoutEvent([[${ item.petCode }]])">상세보기</div>-->
                 </div>
             </div>
         </div>
