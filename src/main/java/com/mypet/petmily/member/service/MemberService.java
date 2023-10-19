@@ -156,10 +156,11 @@ public class MemberService {
         if(!(result > 0)) throw new PetRemoveException("반려동물 프로필 삭제에 실패했습니다.");
     }
 
-    public Map<String, Object> selectReservationList(int page) {
 
-        /*  */
-
-        return null;
-    }
+    /* 회원 이미지 첨부파일 */
+//    public void registMemberImg(MemberDTO modifyMember, FileUploadDTO fileUploadList) {
+//
+//        modifyMember.setMemberStat("활동");
+//        FileUploadMapper.insertMemberImg(fileUploadList);
+//    }
 }

@@ -1,11 +1,17 @@
 
+.container {
+    display: flex;
+}
 
 .my_info {
     display: block;
     max-width: 600px;
     margin: 0% auto;
     margin-top: 170px;
+    flex: 1;
 }
+
+
 
 .image-area {
     width: 235px;
@@ -102,4 +108,12 @@
 #memberId, #phone, #memberName {
     margin-left: 32px;
     padding-top: 15px;
+}
+
+.side_content {
+    display: flex;
+}
+
+#sidebar {
+
 }
