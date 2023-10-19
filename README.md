@@ -82,7 +82,7 @@
 
 - 
 
-펫시터 등록 페이지
+펫시터 등록 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(23))
 - 배너 이미지 첨부파일 등록
 - 입력하고싶은 태그, 경력교육 추가
 - 예약일정 등록(flatpickrAPI 캘린더)
