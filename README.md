@@ -39,6 +39,12 @@
 - 모델링 툴 : DA#Modeler5
 
 # 📌 주요 기능
+메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(main-page))
+- 각종 화면 이동
+- 배너 슬라이드
+- 세션에 따라 Header 정보 변경
+- 최신 리뷰 3개 조회
+
 로그인 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(Login))
 - DB값 검증
 - ID찾기, PW찾기
@@ -58,11 +64,6 @@
 - 지난 예약 조회(상세+결제 조회)
 
 
-메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(main-page))
-- 각종 화면 이동
-- 배너 슬라이드
-- 세션에 따라 Header 정보 변경
-- 최신 리뷰 3개 조회
 
 게시물 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C())
 - ..
@@ -74,7 +75,7 @@
 - 카카오톡 1:1상담 API
 
 
-- 펫시터 마이페이지 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
+  펫시터 마이페이지 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
   펫시터 프로필 조회 
 - 
 
