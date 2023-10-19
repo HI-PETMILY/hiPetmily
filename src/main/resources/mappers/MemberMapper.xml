@@ -237,41 +237,30 @@
     </update>
 
     <!-- 마이페이지 대표 반려동물 프로필 간략 조회 -->
-<!--    <select id="viewFirstPetProfile" resultMap="petResultMap">-->
-<!--        SELECT-->
-<!--               P.PET_NAME-->
-<!--             , P.PET_AGE-->
-<!--             , P.PET_GENDER-->
-<!--             , P.NEUTRAL_YN-->
-<!--             , P.PET_WEIGHT-->
-<!--             , F.FILE_NO-->
-<!--             , F.FILE_ORI_NAME-->
-<!--             , F.FILE_SAVE_NAME-->
-<!--             , F.FILE_EXT_NAME-->
-<!--             , F.FILE_PATH_NAME-->
-<!--             , F.FILE_T_PATH_NAME-->
-<!--             , F.FILE_TYPE-->
-<!--             , F.PET_NO-->
-<!--             , F.BOARD_NO-->
-<!--             , F.REV_NO-->
-<!--             , F.MEMBER_NO-->
-<!--             , F.PET_MEMBER_NO-->
-<!--          FROM TBL_MYPET P-->
-<!--          JOIN TBL_FILE F ON (F.PET_NO = P.PET_CODE)-->
-<!--         WHERE P.MEMBER_NO = #{memberNo}-->
-<!--           AND ROWNUM = 1-->
-<!--    </select>-->
-
     <select id="viewFirstPetProfile" resultMap="petResultMap">
         SELECT
-            PET_NAME
-             , PET_AGE
-             , PET_GENDER
-             , NEUTRAL_YN
-             , PET_WEIGHT
-        FROM TBL_MYPET
-        WHERE MEMBER_NO = #{memberNo}
-          AND ROWNUM = 1
+               P.PET_NAME
+             , P.PET_AGE
+             , P.PET_GENDER
+             , P.NEUTRAL_YN
+             , P.PET_WEIGHT
+             , F.FILE_NO
+             , F.FILE_ORI_NAME
+             , F.FILE_SAVE_NAME
+             , F.FILE_EXT_NAME
+             , F.FILE_PATH_NAME
+             , F.FILE_T_PATH_NAME
+             , F.FILE_TYPE
+             , F.PET_NO
+             , F.BOARD_NO
+             , F.REV_NO
+             , F.MEMBER_NO
+             , F.PET_MEMBER_NO
+          FROM TBL_MYPET P
+          JOIN TBL_FILE F ON (F.PET_NO = P.PET_CODE)
+         WHERE P.MEMBER_NO = #{memberNo}
+           AND P.REGIST_STATUS = 'Y'
+           AND ROWNUM = 1
     </select>
 
     <!-- 반려동물 프로필 등록 -->
@@ -472,29 +461,29 @@
             )
     </insert>
 
-<!--    <insert id="insertMemberImg">-->
-<!--        INSERT-->
-<!--        INTO ATTACHED_FILE A-->
-<!--            (-->
-<!--          A.ATTACHED_FILE_NO-->
-<!--        , A.ATTACHED_FILE_NAME-->
-<!--        , A.ATTACHED_FILE_ROUTE-->
-<!--        , A.ATTACHED_FILE_SAVE_NAME-->
-<!--        , A.ATTACHED_FILE_EXTENSION-->
-<!--        , A.ATTACHED_FILE_SIZE-->
-<!--        , A.REVIEW_NO-->
-<!--        , A.ATTACHED_FILE_THUMBNAIL-->
-<!--        )-->
-<!--        VALUES-->
-<!--            (-->
-<!--            SEQ_ATTACHED_FILE_NO.NEXTVAL-->
-<!--                , #{ name }-->
-<!--                , #{ route }-->
-<!--                , #{ savedName }-->
-<!--                , #{ extension }-->
-<!--                , #{ size }-->
-<!--                , SEQ_REVIEW_NO.CURRVAL-->
-<!--                , #{ thumbnail }-->
-<!--            )-->
-<!--    </insert>-->
+    <insert id="insertMemberImg">
+        INSERT
+        INTO ATTACHED_FILE A
+            (
+          A.ATTACHED_FILE_NO
+        , A.ATTACHED_FILE_NAME
+        , A.ATTACHED_FILE_ROUTE
+        , A.ATTACHED_FILE_SAVE_NAME
+        , A.ATTACHED_FILE_EXTENSION
+        , A.ATTACHED_FILE_SIZE
+        , A.REVIEW_NO
+        , A.ATTACHED_FILE_THUMBNAIL
+        )
+        VALUES
+            (
+            SEQ_ATTACHED_FILE_NO.NEXTVAL
+                , #{ name }
+                , #{ route }
+                , #{ savedName }
+                , #{ extension }
+                , #{ size }
+                , SEQ_REVIEW_NO.CURRVAL
+                , #{ thumbnail }
+            )
+    </insert>
 </mapper>
