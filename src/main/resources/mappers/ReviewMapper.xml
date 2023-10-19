@@ -140,6 +140,7 @@
                         FROM TBL_REVIEW C
                         JOIN TBL_RESERVATION R ON(C.RESERV_CODE = R.RESERV_CODE)
                         WHERE C.REV_STATUS = 'Y'
+                          AND C.MEMBER_NO = #{loginMember.memberNo}
                         ORDER BY C.REV_CODE DESC
                         ) B
                  <![CDATA[
