@@ -58,7 +58,7 @@
 - 지난 예약 조회(상세+결제 조회)
 
 
-메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5())
+메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(main-page))
 - 각종 화면 이동
 - 배너 슬라이드
 - 세션에 따라 Header 정보 변경
@@ -83,12 +83,12 @@
 - 해당 펫시터의 제일 최신 후기 1개만 화면에 조회   
   
 
-펫시터 등록 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(23))
+펫시터 등록 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(%ED%8E%AB%EC%8B%9C%ED%84%B0-%EB%93%B1%EB%A1%9D))
 - 배너 이미지 첨부파일 등록
 - 입력하고싶은 태그, 경력교육 추가
 - 예약일정 등록(flatpickrAPI 캘린더)
 
-펫시터 상세 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(4444))
+펫시터 상세 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(%ED%8E%AB%EC%8B%9C%ED%84%B0-%EC%83%81%EC%84%B8))
 - 펫시터 등록시 첨부한 이미지 출력
 - 펫시터별 각종 데이터 조회
 - 후기 조회(3개 이상 더보기 버튼 작동)
