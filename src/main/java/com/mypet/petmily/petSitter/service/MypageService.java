@@ -16,6 +16,4 @@ public class MypageService {
 
     private MypageService(PetSitterMapper petSitterMapper){ this.petSitterMapper = petSitterMapper;}
 
-
-
 }

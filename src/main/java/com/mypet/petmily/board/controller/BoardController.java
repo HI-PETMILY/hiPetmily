@@ -1,12 +1,14 @@
 package com.mypet.petmily.board.controller;
 
 import com.mypet.petmily.member.dto.MemberDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mypet.petmily.board.CreatePagingTag;
@@ -14,6 +16,9 @@ import com.mypet.petmily.board.dto.BoardDTO;
 import com.mypet.petmily.board.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.File;
+import java.util.List;
 
 
 @Slf4j
@@ -105,7 +110,9 @@ public class BoardController {
 		
 		//html 화면 맵핑
 		mv.setViewName("board/"+boardType+"/write"); 
-		
+
+
+
 		//기등록된 게시물을 상세조회했을때 게시판번호 기준으로 상세내용을 DB에서 조회한다.
 		if(boardDTO.getBoardNo() != null) {
 			mv.addObject("boardDTO", boardService.selectBoard(boardDTO));			
@@ -113,10 +120,11 @@ public class BoardController {
 		
 		return mv;
     }
-    
+
+
     //게시판 신규 insert
     @PostMapping("/{boardType}/insert")
-    public String boardInsert(@PathVariable("boardType") String boardType, BoardDTO boardDTO,  @AuthenticationPrincipal MemberDTO member) throws Exception {
+    public String boardInsert(@PathVariable("boardType") String boardType, BoardDTO boardDTO,  List<MultipartFile> boardImg , @AuthenticationPrincipal MemberDTO member) throws Exception {
     	log.info("Controller @GetMapping(/board/"+boardType+"/insert) 게시판 신규등록 insert >>>>>>>>>>>>>>> ");
 		log.info("member >>>>>>>>>>>>>>>>>> {}",member.toString());
     	//로그인사용자번호 임시 셋팅
@@ -128,13 +136,13 @@ public class BoardController {
 			2 = 질문답
 			3 = 자주하는질문
 		 */
-		//게시판 - 공지사항 저장이기 때문에 BOARD_SORT는 1로 셋팅
+		//게시판 - 공지사항 저장이기 때문에 BOARD_SORT는 1 , 아니면 일대일문의 2로 세팅함
 		if( "notice".equals(boardType) ){
 			boardDTO.setBoardSort("1");
 		}else {
 			boardDTO.setBoardSort("2");
 		}
-		
+
     	log.info("boardDTO >>>>>>>>>>>>>>>>>>>>>>>>>>> {} ",boardDTO.toString());
     	
 		int result = boardService.insertBoard(boardDTO);
@@ -239,4 +247,11 @@ public class BoardController {
 	public String UsingProcess(){
 		return "board/usingprocess";
 	}
+
+
+
+
 }
+
+
+

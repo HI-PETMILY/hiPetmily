@@ -38,10 +38,11 @@
                 <td colspan="5">후기 작성 내역이 존재하지 않습니다. 펫밀리의 서비스를 이용하고 후기를 남겨보세요
                     !</td>
             </tr>
-            <tr th:each="review : ${reviewList}" th:unless="${#lists.isEmpty(reviewList)}">
+            <tr th:each="review : ${reviewList}" th:unless="${#lists.isEmpty(reviewList)}"
+                th:onclick="|location.href='/member/review-view?revCode=${review.revCode}'|">
                 <td class="col1" th:text="${review.revCode}"></td>
-                <td class="col2" th:text="${#dates.format(review.revCreatedDate, 'yyyy.MM.dd')}"></td>
-                <td class="col3" th:text="${review.resCode}"></td>
+                <td class="col2" th:text="${#dates.format(review.revCreatedDate, 'yyyy-MM-dd')}"></td>
+                <td class="col3" th:text="${review.reserve.reserveCode}"></td>
                 <td class="col4" th:text="${review.revScore}"></td>
                 <td class="col5" th:text="${#strings.substring(review.revContent, 0, 10)}"></td>
             </tr>

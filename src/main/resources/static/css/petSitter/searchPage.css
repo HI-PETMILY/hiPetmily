@@ -182,8 +182,12 @@ body,html{
 .price{
     flex-direction: column;
     line-height: 60px;
-    margin-left: 13px;
-    font-size: 15px;
+  
+    margin-left: 15px;
+  
+  
+
+   font-size: 15px;
     font-weight: bold;
 
 }
@@ -191,8 +195,9 @@ body,html{
 
 
 .review-content{
+
     width: 615px;
-    overflow: hidden;
+  overflow: hidden;
     display: flex;
     line-height: 60px;
     margin-left: 20px;
@@ -226,7 +231,6 @@ body,html{
 .score{
     width: 225px;
 }
-
 
 .search1{
     margin-right: 15px;

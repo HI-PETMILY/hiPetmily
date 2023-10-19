@@ -1,5 +1,7 @@
 package com.mypet.petmily.member.dto;
 
+import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
+import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.Getter;
@@ -39,6 +41,9 @@ public class MemberDTO implements UserDetails {
     private List<PetDTO> petList;                    // 회원의 반려견
     private List<ReviewDTO> reviewList;
     private List<ReservationDTO> reservationList;
+    private FileUploadDTO memberImg;
+
+    private List<PetSitterDTO> petSitter;
 
 
     /* 나중에 GrantedAuthority 객체 */
@@ -81,6 +86,4 @@ public class MemberDTO implements UserDetails {
         return true;
     }
 
-    public MemberDTO(long aLong, String string, String string1, String string2, String rsString, java.sql.Date date) {
-    }
 }
