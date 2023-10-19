@@ -4,6 +4,7 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.Pagenation.Pagenation;
 import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 import com.mypet.petmily.payment.dao.PaymentMapper;
+import com.mypet.petmily.payment.dto.PaymentDTO;
 import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class PaymentService {
     }
 
 
+    /* 지난 예약 조회 */
     public Map<String, Object> selectReservationList(int memberNo, int page) {
 
         int totalCount = paymentMapper.selectReservationTotalCount();
@@ -44,11 +46,15 @@ public class PaymentService {
         return reservationListAndPaging;
     }
 
-    public List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int resCode) {
-        return paymentMapper.selectDetailReservation(loginMember, resCode);
+    /* 상세 내역 조회 - 예약, 펫시터 */
+    public List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int reserveCode) {
+        return paymentMapper.selectDetailReservation(loginMember, reserveCode);
     }
 
-
+    /* 상세 내역 조회 - 결제내역 */
+    public List<PaymentDTO> selectPaymentReservation(MemberDTO loginMember, int reserveCode) {
+        return paymentMapper.selectPaymentReservation(loginMember, reserveCode);
+    }
 
 
     /* 예약 조회 */

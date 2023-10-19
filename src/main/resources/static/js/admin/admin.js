@@ -31,35 +31,10 @@ $(document).ready(function () {
     });
 });
 
-
-/*==============팝업창=======================*/
-document.getElementById("passwordChangeButton").addEventListener("click", openPasswordChangePopup);
-
-function openInquiryPopup() {//////////////////
-    // "1대1문의" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
-    var popup =window.open("popInquiry", "InquiryPopup", "width=750, height=800, left=650, top=180");
-}
-
-// function openManagementPopup() {///////////////////
-//     var id="<%=id%>";
-//
-//     // "관리" 버튼을 눌렀을 때 팝업 창을 띄우는 코드를 작성합니다.
-//     var popup = window.open(popupURL, "popManagement", "ManagementPopup", "width=750, height=800, left=650, top=180");
-//
-//     var id = 101; // 클릭한 회원의 ID를 동적으로 설정
-//     var popupURL = "popManagement.html?id=" + id;
-//
-//     if (!popup || popup.closed || typeof popup.closed == 'undefined') {
-//         // 팝업 창이 차단되었거나 팝업 창이 닫힌 경우 처리
-//         alert("팝업 창이 차단되었거나 팝업 창이 닫혔습니다. 팝업 차단을 확인하세요.");
-//     }
-//
-// }
-
-// 체크 박스 전체 선택/해제=========================
-
-// 'selectAll' 함수를 정의합니다. 이 함수는 체크박스 전체 선택/해제 동작을 수행합니다.
+// 회원 리스트 체크 박스 전체 선택/해제=========================
+// 'selectAll' 함수를 정의함. 체크박스 전체 선택/해제.
 function selectAll(selectAll) {
+
     // 'chkList' 이름 속성을 가진 모든 입력(체크박스) 요소를 선택합니다.
     const checkboxes = document.querySelectorAll('input[name="chkList"]');
 
@@ -86,6 +61,7 @@ function selectAll(selectAll) {
     });
 }
 
+
 //회원 상세정보 관리 팝업창 반응형 메뉴바 ========================
 function onMenuClick() {
     var navbar = document.getElementById('navigation-bar');
@@ -99,13 +75,14 @@ function onMenuClick() {
 // 내용 전환을 위한 코드
 function showContent(contentId) {
     // 모든 내용 섹션을 숨김
+    document.getElementById('content-member').style.display = 'none';
     document.getElementById('content-community').style.display = 'none';
     document.getElementById('content-personalInquiry').style.display = 'none';
-    document.getElementById('content-member').style.display = 'none';
+
 
     // 선택한 내용 섹션을 표시
     document.getElementById('content-' + contentId).style.display = 'block';
-
 }
+
 
 

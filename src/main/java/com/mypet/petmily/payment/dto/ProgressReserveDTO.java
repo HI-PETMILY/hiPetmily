@@ -19,5 +19,6 @@ public class ProgressReserveDTO {
     private String reserveAppDate;          // 예약 신청일자
     private MemberDTO member;        // 예약 신청 회원
     private SitterInfoDTO petSitter;     // 펫시터 (코드, 닉네임)
+    private PaymentDTO pay;             // 결제dto
 
 }

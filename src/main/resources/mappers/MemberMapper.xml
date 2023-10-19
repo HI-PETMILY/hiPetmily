@@ -237,29 +237,41 @@
     </update>
 
     <!-- 마이페이지 대표 반려동물 프로필 간략 조회 -->
+<!--    <select id="viewFirstPetProfile" resultMap="petResultMap">-->
+<!--        SELECT-->
+<!--               P.PET_NAME-->
+<!--             , P.PET_AGE-->
+<!--             , P.PET_GENDER-->
+<!--             , P.NEUTRAL_YN-->
+<!--             , P.PET_WEIGHT-->
+<!--             , F.FILE_NO-->
+<!--             , F.FILE_ORI_NAME-->
+<!--             , F.FILE_SAVE_NAME-->
+<!--             , F.FILE_EXT_NAME-->
+<!--             , F.FILE_PATH_NAME-->
+<!--             , F.FILE_T_PATH_NAME-->
+<!--             , F.FILE_TYPE-->
+<!--             , F.PET_NO-->
+<!--             , F.BOARD_NO-->
+<!--             , F.REV_NO-->
+<!--             , F.MEMBER_NO-->
+<!--             , F.PET_MEMBER_NO-->
+<!--          FROM TBL_MYPET P-->
+<!--          JOIN TBL_FILE F ON (F.PET_NO = P.PET_CODE)-->
+<!--         WHERE P.MEMBER_NO = #{memberNo}-->
+<!--           AND ROWNUM = 1-->
+<!--    </select>-->
+
     <select id="viewFirstPetProfile" resultMap="petResultMap">
         SELECT
-               P.PET_NAME
-             , P.PET_AGE
-             , P.PET_GENDER
-             , P.NEUTRAL_YN
-             , P.PET_WEIGHT
-             , F.FILE_NO
-             , F.FILE_ORI_NAME
-             , F.FILE_SAVE_NAME
-             , F.FILE_EXT_NAME
-             , F.FILE_PATH_NAME
-             , F.FILE_T_PATH_NAME
-             , F.FILE_TYPE
-             , F.PET_NO
-             , F.BOARD_NO
-             , F.REV_NO
-             , F.MEMBER_NO
-             , F.PET_MEMBER_NO
-          FROM TBL_MYPET P
-          JOIN TBL_FILE F ON (F.PET_NO = P.PET_CODE)
-         WHERE P.MEMBER_NO = #{memberNo}
-           AND ROWNUM = 1
+            PET_NAME
+             , PET_AGE
+             , PET_GENDER
+             , NEUTRAL_YN
+             , PET_WEIGHT
+        FROM TBL_MYPET
+        WHERE MEMBER_NO = #{memberNo}
+          AND ROWNUM = 1
     </select>
 
     <!-- 반려동물 프로필 등록 -->
@@ -366,23 +378,6 @@
            AND P.REGIST_STATUS = 'Y'
     </select>
 
-    <select id="">
-        SELECT
-            FILE_NO
-             , FILE_ORI_NAME
-             , FILE_SAVE_NAME
-             , FILE_EXT_NAME
-             , FILE_PATH_NAME
-             , FILE_T_PATH_NAME
-             , FILE_TYPE
-             , PET_NO
-             , BOARD_NO
-             , REV_NO
-             , MEMBER_NO
-             , PET_MEMBER_NO
-        FROM TBL_FILE
-        WHERE PET_MEMBER_NO = #{ petMemberNo }
-    </select>
 
     <select id="selectPetProfileList" resultMap="petResultMap">
         SELECT
@@ -448,4 +443,58 @@
     <!--        SELECT-->
     <!--             A.-->
     <!--    </select>-->
+
+    <insert id="insertReview">
+        INSERT
+        INTO TBL_REVIEW A
+            (
+        A.REVIEW_NO
+        , A.REVIEW_TITLE
+        , A.REVIEW_BODY
+        , A.REVIEW_COUNT
+        , A.REVIEW_CREATED_DATE
+        , A.MEMBER_NO
+        , A.REVIEW_STATUS
+        , A.ORDER_CODE
+        , A.RATING
+        )
+        VALUES
+            (
+            SEQ_REVIEW_NO.NEXTVAL
+                , #{ title }
+                , #{ body }
+                , 0
+                , SYSDATE
+                , #{ writer.memberNo }
+                , 'Y'
+                , #{ orderCode }
+                , #{ rating }
+            )
+    </insert>
+
+<!--    <insert id="insertMemberImg">-->
+<!--        INSERT-->
+<!--        INTO ATTACHED_FILE A-->
+<!--            (-->
+<!--          A.ATTACHED_FILE_NO-->
+<!--        , A.ATTACHED_FILE_NAME-->
+<!--        , A.ATTACHED_FILE_ROUTE-->
+<!--        , A.ATTACHED_FILE_SAVE_NAME-->
+<!--        , A.ATTACHED_FILE_EXTENSION-->
+<!--        , A.ATTACHED_FILE_SIZE-->
+<!--        , A.REVIEW_NO-->
+<!--        , A.ATTACHED_FILE_THUMBNAIL-->
+<!--        )-->
+<!--        VALUES-->
+<!--            (-->
+<!--            SEQ_ATTACHED_FILE_NO.NEXTVAL-->
+<!--                , #{ name }-->
+<!--                , #{ route }-->
+<!--                , #{ savedName }-->
+<!--                , #{ extension }-->
+<!--                , #{ size }-->
+<!--                , SEQ_REVIEW_NO.CURRVAL-->
+<!--                , #{ thumbnail }-->
+<!--            )-->
+<!--    </insert>-->
 </mapper>

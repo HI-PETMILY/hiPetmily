@@ -340,7 +340,7 @@ li {
 
 .review-star-exp{
     display: flex;
-    align-content: center;
+    align-items: center;
 }
 
 .review-textarea{
@@ -363,15 +363,15 @@ li {
 }
 
 .review-star label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    text-shadow: 0 0 0 rgba(139, 197, 248, 0.99);
 }
 
 .review-star label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    text-shadow: 0 0 0 rgba(139, 197, 248, 0.99);
 }
 
 .review-star input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+    text-shadow: 0 0 0 rgba(139, 197, 248, 0.99);
 }
 /* ---- 별점 설정 끝 ---- */
 
@@ -403,21 +403,21 @@ table.reserve-table tr{
 }
 
 .col {
-    margin: 2% 0 2% 0;
+    margin: 2% 5% 2% 6%;
 }
 
 .col_m {
     margin-top: -15px;
     margin-bottom: 10px;
-    margin-left: 4.5%;
-    margin-right: 7%
+    margin-left: 5.2%;
+    margin-right: 4%
 }
 
-.col{
-    margin-left: 5.5%;
-    margin-right: 8%
+/*.col{*/
+/*    margin-left: 5.5%;*/
+/*    margin-right: 8%*/
 
-}
+/*}*/
 
 #col_m4 {
     padding-left: 3.1%;
@@ -451,6 +451,10 @@ table.reviewList-table td{
     justify-content: center;
 }
 
+.starImg{
+    height: 50px;
+}
+
 
 
 /*==================================================*/
@@ -477,7 +481,7 @@ table.reviewList-table td{
     padding-top: 10px;
 }
 
-.sitter-profileImg, .pet-profileImg img{
+img.sitterImg, .pet-profileImg img{
     border-radius: 50%;
     width: 150px;
     height: 150px;
