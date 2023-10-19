@@ -59,12 +59,12 @@ function getReservation() {
         startTime = $("#startTime :selected").val();
 
         if ( startTime.substring(0, 1) == 0 ) {
-            hour = startTime.substring(1, 2);
+            hour = startTime.substring(1, 2);       // 앞자리가 0인 경우 2번째자리 저장
         } else {
-            hour = startTime.substring(0, 2);
+            hour = startTime.substring(0, 2);       // 앞자리가 0이 아닌경우 1번째, 2번째 저장
         }
 
-        strHours += '<option value="default" selected>시작 선택</option>';
+        strHours += '<option value="default" selected>시간 선택</option>';
 
         for(let i = 0 ; i < 24; i++){
 
@@ -213,7 +213,7 @@ function timeSelectBoxAdd() {
     let strHours = '';
     let time = '';
 
-    strHours += '<option value="default" selected>시작 선택</option>';
+    strHours += '<option value="default" selected>시간 선택</option>';
 
     for(let i = 0 ; i < 24; i++){
 

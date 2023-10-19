@@ -52,9 +52,9 @@ function addTagInput() {
             '<input type="text" name="tagContent"><input type="button" class="tagBtnRemove" value="삭제"><br>'
         );
         $('.tagBtnRemove').on('click', function () {
-            $(this).prev().remove ();
-            $(this).next ().remove ();
-            $(this).remove ();
+            $(this).prev().remove ();       // 전 요소 input text 제거
+            $(this).next ().remove ();      // 다음 요소 <br> 제거
+            $(this).remove ();              // 자기 자신도 제거
         });
     });
 }
