@@ -21,7 +21,6 @@
 
 <div id="header_bar">
     <div id="bar">
-
         <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
         <div class="bar_info" id="bar_sitter"
              sec:authorize="hasRole('ROLE_PET_SITTER')"
@@ -58,10 +57,8 @@
                     <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
                     <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
                 </div>
-
                 </th:block>
             </div>
-
                 <div>
                     <button name="pet_regist" id="pet_regist"><a style="text-decoration: none; color: #ffffff" href="/member/pet-profile-regist">등록</a></button>
                 </div>

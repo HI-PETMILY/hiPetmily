@@ -18,4 +18,6 @@ public interface PetSitterMapper {
     int selectTotalCount(Map<String, String> searchMap);
 
     List<PetSitterDTO> selectPetSitterListPaging(SelectCriteria selectCriteria);
+
+    PetSitterDTO selectMypage(MemberDTO loginMember);
 }

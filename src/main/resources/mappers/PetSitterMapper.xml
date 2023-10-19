@@ -89,9 +89,23 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
-        <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+
+
         SELECT
         COUNT(*)
         FROM TBL_PET_SITTER P
@@ -123,17 +137,18 @@
 
     <select id="selectPetSitterList" resultMap="petSitterResultMap">
         SELECT
-          P.PET_MEMBER_NO
-        , P.PET_TITLE
-        , M.NICKNAME
-        , P.PET_M_DAY_PAY
-        , P.PET_M_TIME_PAY
-        , P.PET_L_DAY_PAY
-        , P.PET_L_TIME_PAY
-        , R.REV_CODE
-        , R.REV_SCORE
-        , R.REV_CONTENT
-        , T.TAG_CONTENT
+              P.PET_MEMBER_NO
+            , P.PET_TITLE
+            , P.PET_REGIST_DATE
+            , M.NICKNAME
+            , P.PET_M_DAY_PAY
+            , P.PET_M_TIME_PAY
+            , P.PET_L_DAY_PAY
+            , P.PET_L_TIME_PAY
+            , R.REV_CODE
+            , R.REV_SCORE
+            , R.REV_CONTENT
+            , T.TAG_CONTENT
         FROM TBL_MEMBER M
         JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )
         LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
@@ -152,284 +167,6 @@
 <!--        LEFT JOIN TBL_PET_SITTER P JOIN  ON(M.MEMBER_NO = P.PET_MEMBER_NO)-->
 <!--        WHERE P.PET_MEMBER_NO = #{M.MEMBER_NO}-->
 <!--    </select>-->
-
-
-    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">
-<!--        SELECT-->
-<!--          A.PET_MEMBER_NO-->
-<!--        , A.PET_TITLE-->
-<!--        , M.NICKNAME-->
-<!--        , A.PET_M_DAY_PAY-->
-<!--        , A.PET_M_TIME_PAY-->
-<!--        , A.PET_L_DAY_PAY-->
-<!--        , A.PET_L_TIME_PAY-->
-<!--        , A.REV_CODE-->
-<!--        , A.REV_SCORE-->
-<!--        , A.REV_CONTENT-->
-<!--        , A.TAG_CONTENT-->
-<!--        FROM (SELECT-->
-<!--        ROWNUM RNUM-->
-<!--          B.PET_MEMBER_NO-->
-<!--        , B.PET_TITLE-->
-<!--        , B.NICKNAME-->
-<!--        , B.PET_M_DAY_PAY-->
-<!--        , B.PET_M_TIME_PAY-->
-<!--        , B.PET_L_DAY_PAY-->
-<!--        , B.PET_L_TIME_PAY-->
-<!--        , B.REV_CODE-->
-<!--        , B.REV_SCORE-->
-<!--        , B.REV_CONTENT-->
-<!--        , B.TAG_CONTENT-->
-<!--        FROM (SELECT-->
-<!--          P.PET_MEMBER_NO-->
-<!--        , P.PET_TITLE-->
-<!--        , M.NICKNAME-->
-<!--        , P.PET_M_DAY_PAY-->
-<!--        , P.PET_M_TIME_PAY-->
-<!--        , P.PET_L_DAY_PAY-->
-<!--        , P.PET_L_TIME_PAY-->
-<!--        , R.REV_CODE-->
-<!--        , R.REV_SCORE-->
-<!--        , R.REV_CONTENT-->
-<!--        , T.TAG_CONTENT-->
-<!--        FROM TBL_MEMBER M-->
-<!--        JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )-->
-<!--        LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)-->
-<!--        LEFT JOIN TBL_PET_TAG T ON(P.PET_MEMBER_NO = T.PET_MEMBER_NO)-->
-<!--        <where>-->
-<!--            <if test="searchCondition == 'address'">-->
-<!--                M.ADDRESS LIKE '%' || #{ searchValue } || '%'-->
-<!--            </if>-->
-<!--            AND P.PET_STAT = '승인'-->
-<!--        </where>-->
-<!--        ORDER BY P.PET_MEMBER_NO DESC-->
-<!--        ) B-->
-<!--        <![CDATA[-->
-<!--                   WHERE ROWNUM <= #{ endRow }-->
-<!--                   ]]>-->
-<!--        ) A-->
-<!--        JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)-->
-<!--        WHERE A.RNUM >= #{ startRow }-->
-<!--        ORDER BY petRegistDt desc;-->
-    </select>
-
-    <!--    <update id="incrementBoardCount">-->
-    <!--        UPDATE-->
-    <!--        TBL_BOARD A-->
-    <!--        SET A.BOARD_COUNT = A.BOARD_COUNT + 1-->
-    <!--        WHERE A.BOARD_NO = #{ no }-->
-    <!--    </update>-->
-
-    <!--    <select id="selectBoardDetail" resultMap="generalBoardResultMap">-->
-    <!--        SELECT-->
-    <!--        A.BOARD_NO-->
-    <!--        , A.BOARD_TITLE-->
-    <!--        , A.BOARD_BODY-->
-    <!--        , A.BOARD_WRITER_MEMBER_NO-->
-    <!--        , B.MEMBER_NO-->
-    <!--        , B.NICKNAME-->
-    <!--        , A.BOARD_COUNT-->
-    <!--        , A.CREATED_DATE-->
-    <!--        , C.CATEGORY_NAME-->
-    <!--        , D.REPLY_NO-->
-    <!--        , D.REPLY_BODY-->
-    <!--        , D.CREATED_DATE R_CREATED_DATE-->
-    <!--        , E.MEMBER_NO R_MEMBER_NO-->
-    <!--        , E.NICKNAME R_NICKNAME-->
-    <!--        FROM TBL_BOARD A-->
-    <!--        JOIN TBL_MEMBER B ON (A.BOARD_WRITER_MEMBER_NO = B.MEMBER_NO)-->
-    <!--        JOIN TBL_CATEGORY C ON (A.CATEGORY_CODE = C.CATEGORY_CODE)-->
-    <!--        LEFT JOIN TBL_REPLY D ON (A.BOARD_NO = D.REF_BOARD_NO AND D.REPLY_STATUS = 'Y')-->
-    <!--        LEFT JOIN TBL_MEMBER E ON (D.REPLY_WRITER_MEMBER_NO = E.MEMBER_NO)-->
-    <!--        WHERE A.BOARD_STATUS = 'Y'-->
-    <!--        AND A.BOARD_NO = #{ no }-->
-    <!--        ORDER BY D.REPLY_NO-->
-    <!--    </select>-->
-
-    <!--    <insert id="insertReply">-->
-    <!--        INSERT-->
-    <!--        INTO TBL_REPLY A-->
-    <!--        (-->
-    <!--        A.REPLY_NO-->
-    <!--        , A.REF_BOARD_NO-->
-    <!--        , A.REPLY_BODY-->
-    <!--        , A.REPLY_WRITER_MEMBER_NO-->
-    <!--        )-->
-    <!--        VALUES-->
-    <!--        (-->
-    <!--        SEQ_REPLY_NO.NEXTVAL-->
-    <!--        , #{ refBoardNo }-->
-    <!--        , #{ body }-->
-    <!--        , #{ writer.memberNo }-->
-    <!--        )-->
-    <!--    </insert>-->
-
-    <!--    <select id="selectReplyList" resultMap="replyResultMap">-->
-    <!--        SELECT-->
-    <!--        A.REPLY_NO-->
-    <!--        , A.REF_BOARD_NO-->
-    <!--        , A.REPLY_BODY-->
-    <!--        , A.REPLY_WRITER_MEMBER_NO-->
-    <!--        , A.CREATED_DATE R_CREATED_DATE-->
-    <!--        , B.MEMBER_NO R_MEMBER_NO-->
-    <!--        , B.NICKNAME R_NICKNAME-->
-    <!--        FROM TBL_REPLY A-->
-    <!--        JOIN TBL_MEMBER B ON (A.REPLY_WRITER_MEMBER_NO = B.MEMBER_NO)-->
-    <!--        WHERE A.REPLY_STATUS = 'Y'-->
-    <!--        AND A.REF_BOARD_NO = #{ refBoardNo }-->
-    <!--        ORDER BY A.REPLY_NO-->
-    <!--    </select>-->
-
-    <!--    <update id="deleteReply">-->
-    <!--        UPDATE TBL_REPLY A-->
-    <!--        SET A.REPLY_STATUS = 'N'-->
-    <!--        WHERE A.REPLY_NO = #{ no }-->
-    <!--    </update>-->
-
-    <!--    <insert id="insertBoard">-->
-    <!--        INSERT-->
-    <!--        INTO TBL_BOARD A-->
-    <!--        (-->
-    <!--        A.BOARD_NO-->
-    <!--        , A.BOARD_TYPE-->
-    <!--        , A.CATEGORY_CODE-->
-    <!--        , A.BOARD_TITLE-->
-    <!--        , A.BOARD_BODY-->
-    <!--        , A.BOARD_WRITER_MEMBER_NO-->
-    <!--        )-->
-    <!--        VALUES-->
-    <!--        (-->
-    <!--        SEQ_BOARD_NO.NEXTVAL-->
-    <!--        , 1-->
-    <!--        , #{ category.code }-->
-    <!--        , #{ title }-->
-    <!--        , #{ body }-->
-    <!--        , #{ writer.memberNo }-->
-    <!--        )-->
-    <!--    </insert>-->
-
-    <!--    <insert id="insertThumbnailContent" >-->
-    <!--        INSERT-->
-    <!--        INTO TBL_BOARD A-->
-    <!--        (-->
-    <!--        A.BOARD_NO-->
-    <!--        , A.BOARD_TYPE-->
-    <!--        , A.BOARD_TITLE-->
-    <!--        , A.BOARD_BODY-->
-    <!--        , A.BOARD_WRITER_MEMBER_NO-->
-    <!--        )-->
-    <!--        VALUES-->
-    <!--        (-->
-    <!--        SEQ_BOARD_NO.NEXTVAL-->
-    <!--        , 2-->
-    <!--        , #{ title }-->
-    <!--        , #{ body }-->
-    <!--        , #{ writer.memberNo }-->
-    <!--        )-->
-    <!--    </insert>-->
-
-    <!--    <insert id="insertAttachment">-->
-    <!--        INSERT-->
-    <!--        INTO TBL_ATTACHMENT A-->
-    <!--        (-->
-    <!--        A.ATTACHMENT_NO-->
-    <!--        , A.REF_BOARD_NO-->
-    <!--        , A.ORIGINAL_NAME-->
-    <!--        , A.SAVED_NAME-->
-    <!--        , A.SAVE_PATH-->
-    <!--        , A.FILE_TYPE-->
-    <!--        , A.THUMBNAIL_PATH-->
-    <!--        )-->
-    <!--        VALUES-->
-    <!--        (-->
-    <!--        SEQ_ATTACHMENT_NO.NEXTVAL-->
-    <!--        , SEQ_BOARD_NO.CURRVAL-->
-    <!--        , #{ originalName }-->
-    <!--        , #{ savedName }-->
-    <!--        , #{ savePath }-->
-    <!--        , #{ fileType }-->
-    <!--        , #{ thumbnailPath, jdbcType=VARCHAR }-->
-    <!--        )-->
-    <!--    </insert>-->
-
-    <!--    <select id="selectThumbnailTotalCount" resultType="_int">-->
-    <!--        SELECT-->
-    <!--        COUNT(*)-->
-    <!--        FROM TBL_BOARD A-->
-    <!--        WHERE A.BOARD_TYPE = 2-->
-    <!--        AND A.BOARD_STATUS = 'Y'-->
-    <!--    </select>-->
-
-    <!--    <select id="selectThumbnailBoardList" resultMap="thumbnailBoardResultMap">-->
-    <!--        SELECT-->
-    <!--        A.BOARD_NO-->
-    <!--        , A.BOARD_TYPE-->
-    <!--        , D.FILE_TYPE-->
-    <!--        , D.THUMBNAIL_PATH-->
-    <!--        , A.BOARD_TITLE-->
-    <!--        , A.BOARD_BODY-->
-    <!--        , A.BOARD_WRITER_MEMBER_NO-->
-    <!--        , E.NICKNAME-->
-    <!--        , A.BOARD_COUNT-->
-    <!--        , A.CREATED_DATE-->
-    <!--        , A.BOARD_STATUS-->
-    <!--        FROM (SELECT-->
-    <!--        ROWNUM RNUM-->
-    <!--        , B.BOARD_NO-->
-    <!--        , B.BOARD_TYPE-->
-    <!--        , B.BOARD_TITLE-->
-    <!--        , B.BOARD_BODY-->
-    <!--        , B.BOARD_WRITER_MEMBER_NO-->
-    <!--        , B.BOARD_COUNT-->
-    <!--        , B.CREATED_DATE-->
-    <!--        , B.BOARD_STATUS-->
-    <!--        FROM (SELECT-->
-    <!--        C.BOARD_NO-->
-    <!--        , C.BOARD_TYPE-->
-    <!--        , C.BOARD_TITLE-->
-    <!--        , C.BOARD_BODY-->
-    <!--        , C.BOARD_WRITER_MEMBER_NO-->
-    <!--        , C.BOARD_COUNT-->
-    <!--        , C.CREATED_DATE-->
-    <!--        , C.BOARD_STATUS-->
-    <!--        FROM TBL_BOARD C-->
-    <!--        WHERE C.BOARD_STATUS = 'Y'-->
-    <!--        AND C.BOARD_TYPE = 2-->
-    <!--        ORDER BY C.BOARD_NO DESC-->
-    <!--        ) B-->
-    <!--        <![CDATA[-->
-    <!--              WHERE ROWNUM <= #{ endRow }-->
-    <!--              ]]>-->
-    <!--        ) A-->
-    <!--        JOIN TBL_ATTACHMENT D ON (A.BOARD_NO = D.REF_BOARD_NO)-->
-    <!--        JOIN TBL_MEMBER E ON(A.BOARD_WRITER_MEMBER_NO = E.MEMBER_NO)-->
-    <!--        WHERE A.RNUM >= #{ startRow }-->
-    <!--        ORDER BY 1 DESC-->
-    <!--    </select>-->
-
-    <!--    <select id="selectThumbnailBoardDetail" resultMap="thumbnailBoardResultMap">-->
-    <!--        SELECT-->
-    <!--        A.BOARD_NO-->
-    <!--        , A.BOARD_TITLE-->
-    <!--        , A.BOARD_BODY-->
-    <!--        , A.BOARD_WRITER_MEMBER_NO-->
-    <!--        , B.NICKNAME-->
-    <!--        , A.BOARD_COUNT-->
-    <!--        , A.CREATED_DATE-->
-    <!--        , C.ATTACHMENT_NO-->
-    <!--        , C.ORIGINAL_NAME-->
-    <!--        , C.SAVED_NAME-->
-    <!--        , C.SAVE_PATH-->
-    <!--        , C.FILE_TYPE-->
-    <!--        , C.THUMBNAIL_PATH-->
-    <!--        FROM TBL_BOARD A-->
-    <!--        JOIN TBL_MEMBER B ON (A.BOARD_WRITER_MEMBER_NO = B.MEMBER_NO)-->
-    <!--        JOIN TBL_ATTACHMENT C ON (A.BOARD_NO = C.REF_BOARD_NO)-->
-    <!--        WHERE A.BOARD_STATUS = 'Y'-->
-    <!--        AND C.ATTACHMENT_STATUS = 'Y'-->
-    <!--        AND A.BOARD_NO = #{ no }-->
-    <!--    </select>-->
-
 
 
 
