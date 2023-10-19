@@ -75,7 +75,6 @@
                 <div class="psp_profile_img">
                     <img src="/static_Image/petSitter/profile_img.png" alt="프로필이미지">
                 </div>
-<!--                <th:block th:if="${}"></th:block>-->
                 <div class="psp_profile_star" th:if="${ !reviewList.isEmpty() }">
                     <img th:each="i : ${#numbers.sequence(0, #numbers.formatDecimal( #aggregates.avg(reviewList.![revScore]),1, 0) - 1 )}"
                          src="/static_Image/petSitter/star_1.png" alt="후기별">
