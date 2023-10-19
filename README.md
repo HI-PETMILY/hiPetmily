@@ -26,34 +26,34 @@
 - 쓴거 더 넣고 싶으면 넣어주세요
 
 # 📌 주요 기능
-로그인 -
+로그인 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(Login))
 - DB값 검증
 - ID찾기, PW찾기
 - ..등등 처럼 작성하시면 됩니다.
 
-회원가입 -
+회원가입 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C(Member))
 - ID 중복 체크
 - ..
 
-마이 페이지 -
+마이 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
 - 회원정보 변경
 - ..
 
-메인 페이지 -
+메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5())
 - ..
 - ..
 
-게시물 페이지 -
+게시물 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C())
 - ..
 - ..
 
-1대1문의 및 공지사항 -
+1대1문의 및 공지사항 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(5))
 - ..
 - ..
 
 ..등등 더 추가 하세요.
 
-관리자 페이지 - 
+관리자 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(admin))
 - ..
 - ..
 
