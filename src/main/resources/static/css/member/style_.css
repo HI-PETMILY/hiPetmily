@@ -148,7 +148,7 @@ header {
     border-bottom: 1px dashed #bebebe;
 }
 
-input[type=text], input[type=number]{
+input[type=text], input[type=number], input[type=email], input[type=password]{
     border: solid 1px #bfbfbf;
     border-radius: 5px;
     font-size: 12px;

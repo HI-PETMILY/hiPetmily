@@ -32,7 +32,7 @@ function findUserId() {
 }
 
 // 휴대폰 or 이메일로 비밀번호 찾기 선택 시 보이는 화면
-function find_Pwd(num) {
+/*function find_Pwd(num) {
     if (num == '1') {
         document.getElementById("findPwdByPhone").style.display = "";
         document.getElementById("findPwdByEmail").style.display = "none";
@@ -41,7 +41,7 @@ function find_Pwd(num) {
         document.getElementById("findPwdByEmail").style.display = "";
 
     }
-}
+}*/
 
 // 사진 등록
 document.addEventListener('DOMContentLoaded', function () {
