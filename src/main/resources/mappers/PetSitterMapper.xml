@@ -89,23 +89,9 @@
         <result property="desc" column="AUTHORITY_DESC"/>
     </resultMap>
 
+        <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
 
-
-
-
-    <select id="selectMypage" resultMap="memberResultMap">
-            SELECT
-                M.MEMBER_NO
-              , M.MEMBER_NAME
-              , M.ADDRESS
-            FROM TBL_MEMBER M
-            LEFT JOIN TBL_ROLE R ON(M.MEMBER_NO = R.MEMBER_NO)
-            WHERE MEMBER_STAT = '활동'
-    </select>
-
-
-
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+    
         SELECT
         COUNT(*)
         FROM TBL_PET_SITTER P
@@ -137,18 +123,17 @@
 
     <select id="selectPetSitterList" resultMap="petSitterResultMap">
         SELECT
-              P.PET_MEMBER_NO
-            , P.PET_TITLE
-            , P.PET_REGIST_DATE
-            , M.NICKNAME
-            , P.PET_M_DAY_PAY
-            , P.PET_M_TIME_PAY
-            , P.PET_L_DAY_PAY
-            , P.PET_L_TIME_PAY
-            , R.REV_CODE
-            , R.REV_SCORE
-            , R.REV_CONTENT
-            , T.TAG_CONTENT
+          P.PET_MEMBER_NO
+        , P.PET_TITLE
+        , M.NICKNAME
+        , P.PET_M_DAY_PAY
+        , P.PET_M_TIME_PAY
+        , P.PET_L_DAY_PAY
+        , P.PET_L_TIME_PAY
+        , R.REV_CODE
+        , R.REV_SCORE
+        , R.REV_CONTENT
+        , T.TAG_CONTENT
         FROM TBL_MEMBER M
         JOIN TBL_PET_SITTER P  ON ( M.MEMBER_NO = P.PET_MEMBER_NO )
         LEFT JOIN (SELECT * FROM TBL_REVIEW WHERE REV_CODE IN (SELECT MAX(REV_CODE) FROM TBL_REVIEW GROUP BY PET_MEMBER_NO)) R ON(P.PET_MEMBER_NO = R.PET_MEMBER_NO)
@@ -157,7 +142,19 @@
         ORDER BY P.PET_REGIST_DATE desc
     </select>
 
-<!--    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">-->
+
+<!--    <select id="getAccount" resultMap="petSitterResultMap">-->
+<!--         SELECT-->
+<!--         P.PET_BANK-->
+<!--        ,p.PET_BANK_NO-->
+<!--        ,P.PET_BANK_NAME-->
+<!--        FROM TBL_MEMBER M-->
+<!--        LEFT JOIN TBL_PET_SITTER P JOIN  ON(M.MEMBER_NO = P.PET_MEMBER_NO)-->
+<!--        WHERE P.PET_MEMBER_NO = #{M.MEMBER_NO}-->
+<!--    </select>-->
+
+
+    <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">
 <!--        SELECT-->
 <!--          A.PET_MEMBER_NO-->
 <!--        , A.PET_TITLE-->
@@ -214,7 +211,7 @@
 <!--        JOIN TBL_MEMBER M ON(P.PET_MEMBER_NO = M.MEMBER_NO)-->
 <!--        WHERE A.RNUM >= #{ startRow }-->
 <!--        ORDER BY petRegistDt desc;-->
-<!--    </select>-->
+    </select>
 
     <!--    <update id="incrementBoardCount">-->
     <!--        UPDATE-->

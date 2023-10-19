@@ -16,11 +16,4 @@ public class MypageService {
 
     private MypageService(PetSitterMapper petSitterMapper){ this.petSitterMapper = petSitterMapper;}
 
-
-    public PetSitterDTO selectMypage(@AuthenticationPrincipal MemberDTO loginMember) {
-
-//     PetSitterDTO petSitterInfo = petSitterMapper.selectMypage(loginMember);
-
-       return petSitterMapper.selectMypage(loginMember);
-    }
 }

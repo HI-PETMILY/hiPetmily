@@ -16,8 +16,8 @@ body,html{
 
     width: 1028px;
     height: 100%;
-    border: 1px solid rgb(235, 235, 235);
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 12px 0px;
+    /*border: 1px solid rgb(235, 235, 235);*/
+    /*box-shadow: rgba(0, 0, 0, 0.07) 0px 0px 12px 0px;*/
     display: flex;
     flex-direction: column;
 
@@ -87,6 +87,7 @@ body,html{
 .petsitter-content{
 
     background-color: white;
+    width: 600px;
 
 
 
@@ -138,7 +139,7 @@ body,html{
 
 .tagname{
 
-    width: 100px;
+    width: 96px;
     height: 50px;
     background-color: lightskyblue;
     border-radius: 8px;
@@ -149,7 +150,7 @@ body,html{
     /*vertical-align: center;*/
     line-height: 40px;
     display: flex;
-    flex: 0 0 calc(20% - 10px); /* 3개의 자식 요소가 한 줄에 나타나도록 설정 */
+    /*flex: 0 0 calc(20% - 10px); !* 5개의 자식 요소가 한 줄에 나타나도록 설정 *!*/
     margin: 5px; /* 각 자식 요소 사이의 간격 설정 */
 
 }
@@ -169,6 +170,10 @@ body,html{
 
 }
 
+.tag-collection :nth-child(6) {margin-left: 15px;
+
+}
+
 .price-box{
     height: 50px;
     display: flex;
@@ -177,8 +182,12 @@ body,html{
 .price{
     flex-direction: column;
     line-height: 60px;
+  
     margin-left: 15px;
-    font-size: 15px;
+  
+  
+
+   font-size: 15px;
     font-weight: bold;
 
 }
@@ -186,7 +195,9 @@ body,html{
 
 
 .review-content{
-    overflow: hidden;
+
+    width: 615px;
+  overflow: hidden;
     display: flex;
     line-height: 60px;
     margin-left: 20px;
@@ -196,6 +207,7 @@ body,html{
     overflow: hidden;
 
 }
+
 
 .sub_container{
     display: flex;
@@ -217,9 +229,8 @@ body,html{
 }
 
 .score{
-    width: 160px;
+    width: 225px;
 }
-
 
 .search1{
     margin-right: 15px;

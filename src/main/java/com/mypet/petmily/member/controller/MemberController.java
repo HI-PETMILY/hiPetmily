@@ -370,6 +370,8 @@ public class MemberController {
 
         model.addAttribute("petProfile", petProfile);
 
+        log.info("role :{}" , member);
+
         return "member/mypage";
     }
 
