@@ -24,7 +24,7 @@
 
 <div class="navbar-title navbar-expand-lg">
     <div class="collapse navbar-collapse" id="navbarNav">
-        <a class="navbar-brand" href="main-member">PETMILY</a>
+        <a class="navbar-brand" href="/">PETMILY</a>
         <ul class="navbar-4">
             <li>
                 <a class="nav-link" href="main-member">사이트 운영</a>
@@ -85,14 +85,12 @@
         <div class="choose">
             <ul class="chkchoose">
 
-
                 <form onsubmit="return validateMemberNumber()">
 
                     <!-- 체크박스 + 검색창 정보를 합쳐서 보내는 검색 버튼 -->
                     <button class="search-button" onclick="location.href='main-member'">검색</button>
 
-                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating"
-                                                                           value="전체">
+                    <li><b>• 회원등급</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="entire" name="rating" value="전체">
 
                         <label for="entire">전체</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -136,13 +134,13 @@
             <form>
                 <table class="table table-hover">
                     <colgroup>
-                        <col width="2%"/>
-                        <col width="10%"/>
+                        <col width="3%"/>
+                        <col width="9%"/>
+                        <col width="20%"/>
                         <col width="12%"/>
+                        <col width="15%"/>
                         <col width="12%"/>
-                        <col width="12%"/>
-                        <col width="12%"/>
-                        <col class="management-button" width="10%"/>
+                        <col class="management-button" width="8%"/>
                     </colgroup>
                     <thead>
                     <tr>
@@ -180,7 +178,7 @@
                             <td class="management-button">
                                 <!-- 팝업창 2개 -->
                                 <!--"1대1문의" 버튼을 클릭했을 때 popInquiry.html 호출-->
-                                <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/poplnquiry?id=' + ${member.memberNo} + '\', \'poplnquiry\', \'width=750, height=850, left=650, top=180\');'">1대1문의</button>
+<!--                                <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/poplnquiry?id=' + ${member.memberNo} + '\', \'poplnquiry\', \'width=750, height=850, left=650, top=180\');'">1대1문의</button>-->
                                 <!--"관리" 버튼을 클릭했을 때 popManagement.html 호출-->
                                 <button type="button" class="mbtn mbtn-primary" th:onclick="'window.open(\'/admin/popManagement?id=' + ${member.memberNo} + '\', \'popManagement\', \'width=750, height=850, left=650, top=180\');'">관리</button>
                         </div>

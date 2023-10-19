@@ -4,11 +4,12 @@ import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.payment.Pagenation.Pagenation;
 import com.mypet.petmily.payment.Pagenation.SelectCriteria;
 import com.mypet.petmily.payment.dao.PaymentMapper;
+import com.mypet.petmily.payment.dto.PaymentDTO;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public class PaymentService {
     }
 
 
+    /* 지난 예약 조회 */
     public Map<String, Object> selectReservationList(int memberNo, int page) {
 
         int totalCount = paymentMapper.selectReservationTotalCount();
@@ -34,7 +36,7 @@ public class PaymentService {
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount);
         log.info("reservation selectCriteria : {}", selectCriteria);
 
-        List<ReservationDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
+        List<ProgressReserveDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
         log.info("reservation reservationList : {}", reservationList);
 
         Map<String, Object> reservationListAndPaging = new HashMap<>();
@@ -44,11 +46,15 @@ public class PaymentService {
         return reservationListAndPaging;
     }
 
-    public List<ReservationDTO> selectDetailReservation(MemberDTO loginMember, int resCode) {
-        return paymentMapper.selectDeatilReservation(loginMember, resCode);
+    /* 상세 내역 조회 - 예약, 펫시터 */
+    public List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int reserveCode) {
+        return paymentMapper.selectDetailReservation(loginMember, reserveCode);
     }
 
-
+    /* 상세 내역 조회 - 결제내역 */
+    public List<PaymentDTO> selectPaymentReservation(MemberDTO loginMember, int reserveCode) {
+        return paymentMapper.selectPaymentReservation(loginMember, reserveCode);
+    }
 
 
     /* 예약 조회 */
@@ -79,7 +85,10 @@ public class PaymentService {
 //        return reservationListAndPaging;
 //    }
 
-
+    /* 진행 중인 예약 조회 페이지 */
+    public List<ProgressReserveDTO> selectProgressReserveList(MemberDTO loginMember) {
+        return paymentMapper.selectProgressReserveList(loginMember);
+    }
 
 
 

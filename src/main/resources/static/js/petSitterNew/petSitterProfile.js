@@ -6,12 +6,25 @@ $(function(){
     timeSelectBoxAdd();
     dogSelectBoxAdd();
 
+    reviewBtnClick();
+
     getReservation();
 
     fullcalendarApi();
     kakaoMapApi();
 
 });
+
+
+
+
+
+function reviewBtnClick() {
+    $("#revBtn").click(function (){
+        $("#revBtn").css({ "display" : "none" });
+        $(".psp_review_hide").css({ "display" : "flex" });
+    });
+}
 
 function getReservation() {
 
@@ -35,11 +48,6 @@ function getReservation() {
 
         $("#dogSelect").val("00").prop("selected", true);
     });
-
-    $("#req_btn1").click(function (){
-       alert("로그인 후 진행해주세요.");
-    });
-
 
     $("#startTime").change(function(){
         // endTime을 startTime보다 큰값만 다시 그려줌
@@ -155,6 +163,22 @@ function getReservation() {
         }
 
     });
+
+    $("#req_btn1").click(function (){
+        alert("로그인 후 진행해주세요.");
+    });
+
+    $("#req_btn2").click(function (){
+
+        if ( !startDate || !endDate || !startTime || !endTime ) {
+            alert("정보를 입력 후 진행해주세요.");
+        } else {
+            $("#resForm").submit();
+        }
+
+    });
+
+
 
 }
 
@@ -428,5 +452,16 @@ function kakaoMapApi() {
             map.setCenter(coords);
         }
     });
+
+    //문의하기 버튼연결
+    if(document.getElementById("qna_btn")) {
+
+        const $detail_button_terms = document.getElementById("qna_btn");
+
+        $detail_button_terms.addEventListener("click", (event) => {
+
+            location.href = "/board/qna/list";        // 추후 연결
+        });
+    }
 
 }

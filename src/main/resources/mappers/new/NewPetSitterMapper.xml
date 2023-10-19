@@ -106,7 +106,7 @@
     <!-- pet resultMap 관련 -->
 
     <!-- review resultMap 관련 -->
-    <resultMap id="reviewResultMap" type="com.mypet.petmily.review.dto.ReviewDTO">
+    <resultMap id="reviewResultMap" type="com.mypet.petmily.petSitterNew.dto.SitterReviewDTO">
         <id property="revCode" column="REV_CODE"/>
         <result property="revScore" column="REV_SCORE"/>
         <result property="revContent" column="REV_CONTENT"/>
@@ -389,6 +389,7 @@
         LEFT JOIN TBL_MEMBER B ON (A.MEMBER_NO = B.MEMBER_NO)
         WHERE A.REV_STATUS = 'Y'
         AND A.PET_MEMBER_NO = ${ petMemberNo }
+        ORDER BY 4 desc
     </select>
 
 </mapper>

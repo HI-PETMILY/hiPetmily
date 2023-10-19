@@ -6,7 +6,6 @@ import com.mypet.petmily.fileUpload.dto.FileUploadDTO;
 import com.mypet.petmily.member.dto.PetDTO;
 import com.mypet.petmily.petSitterNew.dao.NewPetSitterMapper;
 import com.mypet.petmily.petSitterNew.dto.*;
-import com.mypet.petmily.review.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +49,7 @@ public class NewPetSitterService {
         List<PetTagDTO> petTagList = newPetSitterMapper.selectAllTag(petSitter);
         PetJsonMemberDTO petJsonMemberInfo = newPetSitterMapper.selectMemberInfo(petSitter);
         List<PetDTO> myPetList = newPetSitterMapper.selectMyPet(petSitter);
-        List<ReviewDTO> reviewList = newPetSitterMapper.selectReview(petSitter);
+        List<SitterReviewDTO> reviewList = newPetSitterMapper.selectReview(petSitter);
 
         log.info("--petSitterInfo : {}", petSitterInfo);
         log.info("--fileUpload : {}", fileUpload);

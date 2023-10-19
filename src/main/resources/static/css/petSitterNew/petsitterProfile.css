@@ -469,6 +469,19 @@ table {
     margin: 15px auto 100px;
 }
 
+.revBtnBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.revBtn {
+    width: 80px;
+    border: 1px solid darkgray;
+}
+
+
+
 .psp_right {
     width: 33.33%;
     display: flex;
@@ -596,7 +609,8 @@ table {
 
 .pay_left_text span {
     font-weight: 600;
-    color: #81BDF1;
+    /*color: #81BDF1;*/
+    color: #E3A802;
 }
 
 .res_pay_right {

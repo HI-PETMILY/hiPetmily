@@ -3,11 +3,15 @@ package com.mypet.petmily.payment.controller;
 
 import com.mypet.petmily.common.exception.member.reservationDetailException;
 import com.mypet.petmily.member.dto.MemberDTO;
+import com.mypet.petmily.payment.dto.PaymentDTO;
+import com.mypet.petmily.payment.dto.ProgressReserveDTO;
+import com.mypet.petmily.payment.dto.ReservationHistoryDTO;
 import com.mypet.petmily.payment.service.PaymentService;
 import com.mypet.petmily.petSitterNew.dto.ReservationDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Request;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.access.method.P;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +63,6 @@ public class PaymentController {
 //    }
 
     /* 지난 예약 */
-
     @GetMapping("/reservationList")
     public String listReservations(@AuthenticationPrincipal MemberDTO loginMember,
                                    @RequestParam(defaultValue = "1") int page,
@@ -71,23 +74,34 @@ public class PaymentController {
 //        model.addAttribute("endRow", ReservationListAndPaging.get("endRow"));
         log.info("reservationList : {}", ReservationListAndPaging.get("reservationList"));
 
-        return "/member/reservationlist";
+        return "/member/reservationList";
     }
 
 
     @GetMapping("reservationDetail")
     public String detailReservation(@AuthenticationPrincipal MemberDTO loginMember, Model model,
-                                    @RequestParam int resCode, RedirectAttributes rttr)
+                                    @RequestParam int reserveCode, RedirectAttributes rttr)
     throws reservationDetailException {
 
         model.addAttribute("loginMember", loginMember.getMemberNo());
         log.info("loginMember : {}", loginMember);
-        List<ReservationDTO> detailReservation = paymentService.selectDetailReservation(loginMember, resCode);
+        List<ProgressReserveDTO> detailReservation = paymentService.selectDetailReservation(loginMember, reserveCode);
         model.addAttribute("detailReservation", detailReservation);
         log.info("detailReservation : {}", detailReservation);
+        List<PaymentDTO> selectPaymentInfo = paymentService.selectPaymentReservation(loginMember, reserveCode);
+        model.addAttribute("selectPaymentInfo", selectPaymentInfo);
 
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("res.detail.select"));
 
         return "member/reservationDetail";
+    }
+
+    /* 진행 중인 예약 리스트 조회 */
+    @GetMapping("/reservation-in-progress")
+    public void reservationInProgressPage(@AuthenticationPrincipal MemberDTO loginMember, Model model){
+
+        List<ProgressReserveDTO> progressReserveList = paymentService.selectProgressReserveList(loginMember);
+
+        model.addAttribute("progressReserveList", progressReserveList);
     }
 }

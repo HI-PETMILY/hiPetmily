@@ -30,32 +30,42 @@
                 <th class="col_m">예약코드</th>
                 <th class="col_m">예약일자</th>
                 <th class="col_m" id="col_m3">서비스일자</th>
-                <th class="col_m" id="col_m4">예약상태</th>
-                <th class="col_m" id="col_m5">상세내역</th>
+                <th class="col_m" id="col_m4">펫시터</th>
+                <th class="col_m" id="col_m5">예약내역</th>
+                <th class="col_m" id="col_m6">후기작성</th>
             </tr>
 
                 <tr th:if="${ #lists.isEmpty(reservationList) }">
                     <td colspan="5">예약 결과가 존재하지 않습니다. 펫밀리의 서비스를 이용해보세요!</td>
                 </tr>
                 <tr class="res_history_box" th:each="resHistory : ${ reservationList }" th:unless="${#lists.isEmpty(reservationList)}">
-                <td class="col" id="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
+                <!--<td class="col" id="col1" th:text="${ resHistory.resCode }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col" id="col2" th:text="${ #strings.substring(resHistory.resAppDate, 0, 11) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
                 <td class="col" id="col3" th:text="${ #strings.substring(resHistory.startDateTime, 0, 10) }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
-                <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>
-                <td class="col" id="col5">
-                    <span th:if="${ resHistory.resStatus == '결제완료' }">
+                <td class="col" id="col4" th:text="${ resHistory.resStatus }" th:onclick="|location.href='/member/reservationDetail?resCode=${resHistory.resCode}'|"></td>-->
+
+                    <td class="col" id="col1" th:text="${ resHistory.reserveCode }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
+                    <td class="col" id="col2" th:text="${ #strings.substring(resHistory.startDateTime, 0, 11) }"></td>
+                    <td class="col" id="col3" th:text="${ #strings.substring(resHistory.reserveAppDate, 0, 11) }"></td>
+                    <td class="col" id="col4" th:text="${ resHistory.petSitter.memberInfo.nickName }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
+                    <!-- 펫시터 프로필 연결 가능하면 하기 -->
+                    <td class="col" id="col5" th:text="${ resHistory.reserveStatus }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></td>
+                <td class="col" id="col6">
+                    <span th:if="${ resHistory.reserveStatus == '결제완료' }">
                         <form action="/member/review-write" method="post">
-                        <input type="hidden" name="resCode" th:value="${resHistory.resCode}" />
-                        <input type="hidden" name="petMemberNo" th:value="${resHistory.resPetSitter.petMemberNo}" />
-                            <a th:href="'/member/review-write?resCode=' + ${ resHistory.resCode }">후기작성</a>
+                        <input type="hidden" name="reserveCode" th:value="${resHistory.reserveCode}" />
+                        <input type="hidden" name="memberNo" th:value="${resHistory.petSitter.memberInfo.memberNo}" />
+                            <a th:href="'/member/review-write?reserveCode=' + ${ resHistory.reserveCode }">작성하기</a>
                         </form>
                     </span>
-                    <span th:if="${ resHistory.resStatus == '예약취소' }">취소내역</span>
-                    <span th:if="${ resHistory.resStatus == '결제취소' }">취소내역</span>
+                    <span th:if="${ resHistory.reserveStatus == '예약취소' }"></span>
+                    <span th:if="${ resHistory.reserveStatus == '결제취소' }"></span>
+<!--                    <span th:if="${ resHistory.reserveStatus == '예약취소' }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></span>-->
+<!--                    <span th:if="${ resHistory.reserveStatus == '결제취소' }" th:onclick="|location.href='/member/reservationDetail?reserveCode=${resHistory.reserveCode}'|"></span>-->
                 </td>
-<!--                <td class="col" id="col6" th:if="${ resHistory.resStatus == '대기' }">예약대기</td>-->
                 </tr>
             </table>
+        <p style="font-size: 12px">* 예약내역을 통해 상세내역을 살펴볼 수 있습니다. &nbsp;서비스 진행이 완료된 이후 후기를 작성할 수 있습니다.</p>
         </div>
     </div>
 
