@@ -35,25 +35,25 @@
 - ID 중복 체크
 - ..
 
-마이 페이지 - [상세보기-WIKI이동]
+마이 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
 - 회원정보 변경
 - ..
 
-메인 페이지 - [상세보기-WIKI이동]
+메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5())
 - ..
 - ..
 
-게시물 페이지 - [상세보기-WIKI이동]
+게시물 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C())
 - ..
 - ..
 
-1대1문의 및 공지사항 - [상세보기-WIKI이동]
+1대1문의 및 공지사항 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(5))
 - ..
 - ..
 
 ..등등 더 추가 하세요.
 
-관리자 페이지 - [상세보기-WIKI이동]
+관리자 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(admin))
 - ..
 - ..
 
