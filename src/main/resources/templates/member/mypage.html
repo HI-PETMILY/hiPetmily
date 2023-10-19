@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -22,8 +23,8 @@
     <div id="bar">
         <div class="bar_info" id="bar_member"><p id="member">사용자</p></div>
         <div class="bar_info" id="bar_sitter"
-             th:if="${#authorization.expression('hasRole(''ROLE_PETSITTER'')')}"
-             th:onclick="|location.href='/petSitter/myPage?petMemberNo=${petMemberNo}'|"><p id="sitter">펫시터</p></div>
+             sec:authorize="hasRole('ROLE_PET_SITTER')"
+            onclick="location.href='/petSitter/mypage'"><p id="sitter">펫시터</p></div>
     </div>
 </div>
 <div id="box">
@@ -44,23 +45,21 @@
                 </th:block>
                 <!-- 반려동물 프로필이 있는 경우 -->
                 <th:block th:if="${petProfile != null}">
-                    <div id="dog_pic">
-                        <th:block th:each="petImg : ${petProfile.petImgList}">
-                            <img th:if="${petImg.fileType == 'MainImg'}"
-                                 th:src="${petImg.filePathName + petImg.fileSaveName}">
-                        </th:block>
-                    </div>
-                    <div id="dog_profile">
-                        <p id="" th:text="이름 + ' : '  + ${petProfile.petName}"></p>
-                        <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
-                        <p class="pet_info"
-                           th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'"></p>
-                        <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
-                    </div>
-                </th:block>
+                <div id="dog_pic">
+                    <th:block th:each="petImg : ${petProfile.petImgList}">
+                        <img th:if="${petImg.fileType == 'MainImg'}"
+                             th:src="${petImg.filePathName + petImg.fileSaveName}">
+                    </th:block>
+                </div>
+                <div id="dog_profile">
+                    <p id="" th:text="이름 + ' : '  + ${petProfile.petName}"></p>
+                    <p class="pet_info" th:text="나이 + ' : '  + ${petProfile.petAge} +살"></p>
+                    <p class="pet_info" th:text="성별 + '('+중성화여부+')' + ' : '  + ${petProfile.petGender} + '(' + ${petProfile.neutralYn} + ')'" ></p>
+                    <p class="pet_info" th:text="몸무게 + ' : '  + ${petProfile.petWeight}+kg"></p>
+                </div>
+            </th:block>
                 <div>
-                    <button name="pet_regist" id="pet_regist"><a style="text-decoration: none; color: #ffffff"
-                                                                 href="/member/pet-profile-regist">등록</a></button>
+                    <button name="pet_regist" id="pet_regist"><a style="text-decoration: none; color: #ffffff" href="/member/pet-profile-regist">등록</a></button>
                 </div>
             </div>
 
