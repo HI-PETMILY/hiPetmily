@@ -19,7 +19,7 @@
 
 ## 🤼‍♀️ 멤버 구성
 - 팀원 : 김형수(https://github.com/brorsoo) - 펫시터 등록페이지, 펫시터 상세페이지, 예약, 메인페이지
-- 팀원 : 이소정(https://github.com/spehil) - 
+- 팀원 : 이소정(https://github.com/spehil) - 펫시터 목록 페이지, 펫시터 마이페이지
 - 팀원 : 박미림(https://github.com/HI-SAYA) - 회원가입, 회원 정보 수정(패스워드 변경), 회원탈퇴, 지난 예약 조회(상세+결제내역), 마이페이지
 - 팀원 : 박유리(https://github.com/qkrdbfl) - 회원관리, 관리자페이지
 - 팀원 : 정수현(https://github.com/wjdtngus3) - 게시판, 고객센터페이지
@@ -75,12 +75,13 @@
 
 
 - 펫시터 마이페이지 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
-
+  펫시터 프로필 조회 
 - 
 
 - 펫시터 목록 조회 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
-
-- 
+- 펫시터 목록 조회
+- 해당 펫시터의 제일 최신 후기 1개만 화면에 조회   
+  
 
 펫시터 등록 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(23))
 - 배너 이미지 첨부파일 등록
