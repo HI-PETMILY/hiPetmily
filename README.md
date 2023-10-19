@@ -96,7 +96,7 @@
 - 예약가능 날짜 표시(fullcalendarAPI 캘린더)
 - 펫시터 위치(카카오 map API)
 
-관리자 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(admin))
+관리자 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C(admin))
 - 가입한 회원들 조회,수정,삭제
 - 회원에게 적립금 주기
 - 펫시터 지원한 회원 조회, 지원서 조회
