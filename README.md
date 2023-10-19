@@ -18,12 +18,12 @@
 - 23.9.25일 ~ 23.10.20일
 
 ## 🤼‍♀️ 멤버 구성
-- 팀원1 : 김형수 - 펫시터 등록페이지, 펫시터 상세페이지, 예약, 메인페이지
-- 팀원2 : 이소정 - 
-- 팀원3 : 박미림 - 회원가입, 회원 정보 수정(패스워드 변경), 회원탈퇴, 지난 예약 조회(상세+결제내역), 마이페이지
-- 팀원4 : 박유리 - 회원관리, 관리자페이지
-- 팀원5 : 정수현 - 게시판, 고객센터페이지
-- 팀원6 : 주서현 - 로그인, id/pwd 찾기, 펫 프로필 관리, 후기 조회, 진행중인 예약 조회, 마이페이지
+- 팀원 : 김형수(https://github.com/brorsoo) - 펫시터 등록페이지, 펫시터 상세페이지, 예약, 메인페이지
+- 팀원 : 이소정(https://github.com/spehil) - 
+- 팀원 : 박미림(https://github.com/HI-SAYA) - 회원가입, 회원 정보 수정(패스워드 변경), 회원탈퇴, 지난 예약 조회(상세+결제내역), 마이페이지
+- 팀원 : 박유리(https://github.com/qkrdbfl) - 회원관리, 관리자페이지
+- 팀원 : 정수현(https://github.com/wjdtngus3) - 게시판, 고객센터페이지
+- 팀원 : 주서현(https://github.com/jooseohyeon) - 로그인, id/pwd 찾기, 펫 프로필 관리, 후기 조회, 진행중인 예약 조회, 마이페이지
 
 ## ⚙️ 개발환경
 - 운영체제 : Windows 10 64bit
@@ -59,8 +59,10 @@
 
 
 메인 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5())
-- ..
-- ..
+- 각종 화면 이동
+- 배너 슬라이드
+- 세션에 따라 Header 정보 변경
+- 최신 리뷰 3개 조회
 
 게시물 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C())
 - ..
@@ -79,7 +81,19 @@
 - 펫시터 목록 조회 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
 
 - 
-..등등 더 추가 하세요.
+
+펫시터 등록 페이지
+- 배너 이미지 첨부파일 등록
+- 입력하고싶은 태그, 경력교육 추가
+- 예약일정 등록(flatpickrAPI 캘린더)
+
+펫시터 상세 페이지
+- 펫시터 등록시 첨부한 이미지 출력
+- 펫시터별 각종 데이터 조회
+- 후기 조회(3개 이상 더보기 버튼 작동)
+- 예약하기(flatpickrAPI 캘린더)
+- 예약가능 날짜 표시(fullcalendarAPI 캘린더)
+- 펫시터 위치(카카오 map API)
 
 관리자 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(admin))
 - 가입한 회원들 조회,수정,삭제
