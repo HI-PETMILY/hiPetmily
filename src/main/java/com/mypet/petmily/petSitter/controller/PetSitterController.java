@@ -34,14 +34,8 @@ public class PetSitterController {
 
 
     @GetMapping("/mypage")
-    public String getMypage(@AuthenticationPrincipal MemberDTO loginMember, Model model) {
+    public String getMypage() {
 
-
-        log.info("loginMember : {}", loginMember);
-
-        PetSitterDTO petSitterInfo =  mypageService.selectMypage(loginMember);
-
-      model.addAttribute("petSitter", petSitterInfo);
 
         return "petSitter/mypage";
 
