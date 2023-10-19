@@ -15,7 +15,7 @@
 
 
 # ⌛ 개발 기간
-- 23.9.25일 ~ 23.10.20일
+- 23.9.25 ~ 23.10.20
 
 ## 🤼‍♀️ 멤버 구성
 - 팀원 : 김형수(https://github.com/brorsoo) - 메인페이지, 헤더&푸터, 펫시터 등록페이지, 펫시터 상세페이지, 예약
@@ -47,7 +47,7 @@
 
 로그인 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(Login))
 - DB값 검증
-- ID찾기, PW찾기
+- ID찾기, 임시비밀번호 생성
 
 회원가입 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C(Member))
 - ID 중복 체크
