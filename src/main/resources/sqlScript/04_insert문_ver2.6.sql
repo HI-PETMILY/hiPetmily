@@ -293,51 +293,51 @@ Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PA
 
 -- 반려동물 프로필
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'비글1.jpg','7ab0ddb5-4b46-403e-b22c-b6fb42866e4b.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_7ab0ddb5-4b46-403e-b22c-b6fb42866e4b.jpg','MainImg',13,0,0,2,0);
+ values (SEQ_TBL_FILE_NO.nextval,'비글1.jpg','7ab0ddb5-4b46-403e-b22c-b6fb42866e4b.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_7ab0ddb5-4b46-403e-b22c-b6fb42866e4b.jpg','MainImg',1,0,0,2,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'비글2.jpg','1eea8682-01e8-459a-bf88-54e6afbdf4f9.jpg','.jpg','/upload/original/','No','SubImg',13,0,0,2,0);
+ values (SEQ_TBL_FILE_NO.nextval,'비글2.jpg','1eea8682-01e8-459a-bf88-54e6afbdf4f9.jpg','.jpg','/upload/original/','No','SubImg',1,0,0,2,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'ayush-madikunt-j1nAPmahzSA-unsplash.jpg','79a1bf98-8f58-4e2c-b331-4eb43ccf47c0.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_79a1bf98-8f58-4e2c-b331-4eb43ccf47c0.jpg','MainImg',14,0,0,2,0);
+ values (SEQ_TBL_FILE_NO.nextval,'ayush-madikunt-j1nAPmahzSA-unsplash.jpg','79a1bf98-8f58-4e2c-b331-4eb43ccf47c0.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_79a1bf98-8f58-4e2c-b331-4eb43ccf47c0.jpg','MainImg',2,0,0,2,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'nataliia-kvitovska-t64RjBExKCQ-unsplash.jpg','e0954f32-1533-42eb-8b96-2e285d5e38f1.jpg','.jpg','/upload/original/','No','SubImg',14,0,0,2,0);
+ values (SEQ_TBL_FILE_NO.nextval,'nataliia-kvitovska-t64RjBExKCQ-unsplash.jpg','e0954f32-1533-42eb-8b96-2e285d5e38f1.jpg','.jpg','/upload/original/','No','SubImg',2,0,0,2,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466.jpg','d1e9f82f-3e17-49df-87aa-91843a2a9bea.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_d1e9f82f-3e17-49df-87aa-91843a2a9bea.jpg','MainImg',15,0,0,3,0);
+ values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466.jpg','d1e9f82f-3e17-49df-87aa-91843a2a9bea.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_d1e9f82f-3e17-49df-87aa-91843a2a9bea.jpg','MainImg',3,0,0,3,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466_01.jpg','e13cd4cd-7207-4a09-8784-d57feffb471b.jpg','.jpg','/upload/original/','No','SubImg',15,0,0,3,0);
+ values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466_01.jpg','e13cd4cd-7207-4a09-8784-d57feffb471b.jpg','.jpg','/upload/original/','No','SubImg',3,0,0,3,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466_02.jpg','0a293fac-fcad-4759-85d5-d061d41e4849.jpg','.jpg','/upload/original/','No','SubImg',15,0,0,3,0);
+ values (SEQ_TBL_FILE_NO.nextval,'KakaoTalk_20231018_114233466_02.jpg','0a293fac-fcad-4759-85d5-d061d41e4849.jpg','.jpg','/upload/original/','No','SubImg',3,0,0,3,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'비글1.jpg','2a176acf-7bfe-4943-940c-fd0fe8a80a19.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_2a176acf-7bfe-4943-940c-fd0fe8a80a19.jpg','MainImg',16,0,0,3,0);
+ values (SEQ_TBL_FILE_NO.nextval,'비글1.jpg','2a176acf-7bfe-4943-940c-fd0fe8a80a19.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_2a176acf-7bfe-4943-940c-fd0fe8a80a19.jpg','MainImg',4,0,0,3,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'비글2.jpg','63f42552-29c9-4eee-93ae-334b654617a9.jpg','.jpg','/upload/original/','No','SubImg',16,0,0,3,0);
+ values (SEQ_TBL_FILE_NO.nextval,'비글2.jpg','63f42552-29c9-4eee-93ae-334b654617a9.jpg','.jpg','/upload/original/','No','SubImg',4,0,0,3,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'karsten-winegeart-7vhqnO-sT88-unsplash.jpg','38af5589-65de-4134-850f-633972b09e00.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_38af5589-65de-4134-850f-633972b09e00.jpg','MainImg',17,0,0,5,0);
+ values (SEQ_TBL_FILE_NO.nextval,'karsten-winegeart-7vhqnO-sT88-unsplash.jpg','38af5589-65de-4134-850f-633972b09e00.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_38af5589-65de-4134-850f-633972b09e00.jpg','MainImg',5,0,0,5,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'alexandru-sofronie-jVOkrxUSzAQ-unsplash.jpg','a9fc84ec-0a1c-4384-ac16-5ffb9c625c25.jpg','.jpg','/upload/original/','No','SubImg',17,0,0,5,0);
+ values (SEQ_TBL_FILE_NO.nextval,'alexandru-sofronie-jVOkrxUSzAQ-unsplash.jpg','a9fc84ec-0a1c-4384-ac16-5ffb9c625c25.jpg','.jpg','/upload/original/','No','SubImg',5,0,0,5,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'richard-burlton-HTpmedSyZag-unsplash.jpg','45431338-94a3-4712-9095-887a10266188.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_45431338-94a3-4712-9095-887a10266188.jpg','MainImg',18,0,0,4,0);
+ values (SEQ_TBL_FILE_NO.nextval,'richard-burlton-HTpmedSyZag-unsplash.jpg','45431338-94a3-4712-9095-887a10266188.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_45431338-94a3-4712-9095-887a10266188.jpg','MainImg',6,0,0,4,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'mitchell-luo-f0Y_FDt0xJo-unsplash.jpg','f53b6e28-7813-4eb2-86d8-c8509860ec97.jpg','.jpg','/upload/original/','No','SubImg',18,0,0,4,0);
+ values (SEQ_TBL_FILE_NO.nextval,'mitchell-luo-f0Y_FDt0xJo-unsplash.jpg','f53b6e28-7813-4eb2-86d8-c8509860ec97.jpg','.jpg','/upload/original/','No','SubImg',6,0,0,4,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'petTest1.jpg','e950663e-2bc7-45ca-8494-f8bc22ace13c.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_e950663e-2bc7-45ca-8494-f8bc22ace13c.jpg','MainImg',19,0,0,6,0);
+ values (SEQ_TBL_FILE_NO.nextval,'petTest1.jpg','e950663e-2bc7-45ca-8494-f8bc22ace13c.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_e950663e-2bc7-45ca-8494-f8bc22ace13c.jpg','MainImg',7,0,0,6,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'flouffy-5QMmLrR_oVw-unsplash.jpg','8340821f-388d-4bad-a4e9-04053f6e95c8.jpg','.jpg','/upload/original/','No','SubImg',19,0,0,6,0);
+ values (SEQ_TBL_FILE_NO.nextval,'flouffy-5QMmLrR_oVw-unsplash.jpg','8340821f-388d-4bad-a4e9-04053f6e95c8.jpg','.jpg','/upload/original/','No','SubImg',7,0,0,6,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'alondra-pavon-Dqc126MQsXY-unsplash.jpg','16baa188-4c6b-48c8-b0d0-5d483c926963.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_16baa188-4c6b-48c8-b0d0-5d483c926963.jpg','MainImg',20,0,0,7,0);
+ values (SEQ_TBL_FILE_NO.nextval,'alondra-pavon-Dqc126MQsXY-unsplash.jpg','16baa188-4c6b-48c8-b0d0-5d483c926963.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_16baa188-4c6b-48c8-b0d0-5d483c926963.jpg','MainImg',8,0,0,7,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'david-vives-ASZX50HNskE-unsplash.jpg','eaafa3d9-9a7b-4689-8789-d89f40a2b96c.jpg','.jpg','/upload/original/','No','SubImg',20,0,0,7,0);
+ values (SEQ_TBL_FILE_NO.nextval,'david-vives-ASZX50HNskE-unsplash.jpg','eaafa3d9-9a7b-4689-8789-d89f40a2b96c.jpg','.jpg','/upload/original/','No','SubImg',8,0,0,7,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'진돗개1.jpg','b8bc0cd4-941e-414b-9663-b45c719adda6.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_b8bc0cd4-941e-414b-9663-b45c719adda6.jpg','MainImg',21,0,0,8,0);
+ values (SEQ_TBL_FILE_NO.nextval,'진돗개1.jpg','b8bc0cd4-941e-414b-9663-b45c719adda6.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_b8bc0cd4-941e-414b-9663-b45c719adda6.jpg','MainImg',9,0,0,8,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'진돗개2.jpg','ef8415be-15bd-46bb-a4c1-95e3c1aa105a.jpg','.jpg','/upload/original/','No','SubImg',21,0,0,8,0);
+ values (SEQ_TBL_FILE_NO.nextval,'진돗개2.jpg','ef8415be-15bd-46bb-a4c1-95e3c1aa105a.jpg','.jpg','/upload/original/','No','SubImg',9,0,0,8,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'시츄1.jpg','faf5b731-7b27-4f06-9b90-29edcb5a14a7.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_faf5b731-7b27-4f06-9b90-29edcb5a14a7.jpg','MainImg',22,0,0,9,0);
+ values (SEQ_TBL_FILE_NO.nextval,'시츄1.jpg','faf5b731-7b27-4f06-9b90-29edcb5a14a7.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_faf5b731-7b27-4f06-9b90-29edcb5a14a7.jpg','MainImg',10,0,0,9,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'시츄2.jpg','7a1400ba-edba-4164-956e-73d58e0b4992.jpg','.jpg','/upload/original/','No','SubImg',22,0,0,9,0);
+ values (SEQ_TBL_FILE_NO.nextval,'시츄2.jpg','7a1400ba-edba-4164-956e-73d58e0b4992.jpg','.jpg','/upload/original/','No','SubImg',10,0,0,9,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'포메1.jpg','853b66c8-304e-43a8-85f0-54409b6414c1.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_853b66c8-304e-43a8-85f0-54409b6414c1.jpg','MainImg',23,0,0,10,0);
+ values (SEQ_TBL_FILE_NO.nextval,'포메1.jpg','853b66c8-304e-43a8-85f0-54409b6414c1.jpg','.jpg','/upload/original/','/upload/thumbnail/thumbnail_853b66c8-304e-43a8-85f0-54409b6414c1.jpg','MainImg',11,0,0,10,0);
 Insert into TBL_FILE (FILE_NO,FILE_ORI_NAME,FILE_SAVE_NAME,FILE_EXT_NAME,FILE_PATH_NAME,FILE_T_PATH_NAME,FILE_TYPE,PET_NO,BOARD_NO,REV_NO,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_FILE_NO.nextval,'포메2.jpg','31d5a8ca-ffb4-40a9-8cc2-73ea1a785461.jpg','.jpg','/upload/original/','No','SubImg',23,0,0,10,0);
+ values (SEQ_TBL_FILE_NO.nextval,'포메2.jpg','31d5a8ca-ffb4-40a9-8cc2-73ea1a785461.jpg','.jpg','/upload/original/','No','SubImg',11,0,0,10,0);
 
 
 commit;
@@ -414,8 +414,6 @@ Insert into TBL_REVIEW (REV_CODE,REV_SCORE,REV_CONTENT,REV_CREATED_DATE,REV_MODI
 Insert into TBL_REVIEW (REV_CODE,REV_SCORE,REV_CONTENT,REV_CREATED_DATE,REV_MODIFY_DATE,REV_STATUS,MEMBER_NO,RESERV_CODE,PET_MEMBER_NO)
  values (SEQ_TBL_REVIEW_NO.NEXTVAL,'4','애들이 너무 잘 놀고왔나봐요. 비법을 알고 싶을 정도로 재밌게 보내고 온 것 같아요. 덕분에 걱정없이 어디 다녀올 수 있었어요. 다음에도 집 비울 일 있으면 맡기러 올게요!',to_date('23/10/19','RR/MM/DD'),to_date('23/10/19','RR/MM/DD'),'Y',2,39,7);
 
-Insert into TBL_REVIEW (REV_CODE,REV_SCORE,REV_CONTENT,REV_CREATED_DATE,REV_MODIFY_DATE,REV_STATUS,MEMBER_NO,RESERV_CODE,PET_MEMBER_NO)
- values (SEQ_TBL_REVIEW_NO.NEXTVAL,'3','펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~펫시터 추천합니다~~',to_date('23/10/19','RR/MM/DD'),to_date('23/10/19','RR/MM/DD'),'Y',4,19,7);
 
 commit;
 
@@ -461,8 +459,6 @@ Insert into TBL_RESERVATION (RESERV_CODE,RESERV_START,RESERV_END,RESERV_STATUS,R
  values (SEQ_TBL_RESERVATION_NO.NEXTVAL,'2023-10-10 06:00','2023-10-11 20:30','서비스완료',0,79750,1,15,7250,'2023. 10. 19. 오전 11:02:03','2023. 10. 19. 오전 11:02:03',4,8);
 Insert into TBL_RESERVATION (RESERV_CODE,RESERV_START,RESERV_END,RESERV_STATUS,RESERV_ACCUM,RESERV_TOTAL_AMOUNT,RESERV_DAY_COUNT,RESERV_TIME_COUNT,RESERV_VAT,RESERV_APP_DATE,RESERV_UPDATE_DATE,MEMBER_NO,PET_MEMBER_NO)
  values (SEQ_TBL_RESERVATION_NO.NEXTVAL,'2023-10-24 07:00','2023-10-25 20:30','취소',0,77000,1,14,7000,'2023. 10. 19. 오전 11:03:41','2023. 10. 19. 오전 11:03:41',4,7);
-Insert into TBL_RESERVATION (RESERV_CODE,RESERV_START,RESERV_END,RESERV_STATUS,RESERV_ACCUM,RESERV_TOTAL_AMOUNT,RESERV_DAY_COUNT,RESERV_TIME_COUNT,RESERV_VAT,RESERV_APP_DATE,RESERV_UPDATE_DATE,MEMBER_NO,PET_MEMBER_NO)
- values (SEQ_TBL_RESERVATION_NO.NEXTVAL,'2023-10-25 02:00','2023-10-26 06:30','서비스완료',0,52250,1,5,4750,'2023. 10. 19. 오후 2:56:58','2023. 10. 19. 오후 2:56:58',4,7);
 
 commit;
 
@@ -494,7 +490,12 @@ Insert into TBL_MYPET (PET_CODE,PET_NAME,PET_AGE,PET_GENDER,NEUTRAL_YN,PET_BREED
 commit;
 
 
+-- 결제 테이블 정보 추가
+Insert into TBL_PAYMENT (PAY_RECORD_CODE,PAY_PRICE,PAY_STAT,PAY_DATE,PAYMENT_CODE,RESERV_CODE) values (SEQ_TBL_PAYMENT_NO.NEXTVAL,16500,'결제완료',to_date('23/10/19','RR/MM/DD'),1,29);
+Insert into TBL_PAYMENT (PAY_RECORD_CODE,PAY_PRICE,PAY_STAT,PAY_DATE,PAYMENT_CODE,RESERV_CODE) values (SEQ_TBL_PAYMENT_NO.NEXTVAL,79750,'결제완료',to_date('23/10/19','RR/MM/DD'),1,34);
+Insert into TBL_PAYMENT (PAY_RECORD_CODE,PAY_PRICE,PAY_STAT,PAY_DATE,PAYMENT_CODE,RESERV_CODE) values (SEQ_TBL_PAYMENT_NO.NEXTVAL,19250,'결제완료',to_date('23/10/20','RR/MM/DD'),1,24);
 
+commit;
 
 
 
@@ -526,11 +527,6 @@ commit;
 --
 -- commit;
 --
--- -- 결제 테이블 정보 추가
--- INSERT INTO TBL_PAYMENT(PAY_RECORD_CODE,PAY_PRICE,PAY_STAT,PAY_DATE,PAYMENT_CODE,RESERV_CODE)
--- VALUES(SEQ_TBL_PAYMENT_NO.NEXTVAL,0,'','',0,0);
---
--- commit;
 --
 -- -- 환불 테이블 정보 추가
 -- INSERT INTO TBL_REFUND(RESERV_CODE,RESERV_CCL_DATE,RESERV_CCL_DESC,RESERV_CCL_DESC_DE)
