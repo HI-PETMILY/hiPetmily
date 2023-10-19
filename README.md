@@ -26,7 +26,7 @@
 - 쓴거 더 넣고 싶으면 넣어주세요
 
 # 📌 주요 기능
-로그인 - [상세보기-WIKI이동]([https://github.com/HI-PETMILY/hiPetmily.wiki.git](https://github.com/HI-PETMILY/hiPetmily.wiki.git))
+로그인 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily.wiki.git)
 - DB값 검증
 - ID찾기, PW찾기
 - ..등등 처럼 작성하시면 됩니다.
