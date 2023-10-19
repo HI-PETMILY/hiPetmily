@@ -32,7 +32,7 @@ public class PaymentService {
         log.info("reservation totalCount : {}", totalCount);
 
         int limit= 5;
-        int buttonAmount = 3;
+        int buttonAmount = 1;
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount);
         log.info("reservation selectCriteria : {}", selectCriteria);
 
