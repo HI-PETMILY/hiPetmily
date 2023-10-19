@@ -1,10 +1,12 @@
 package com.mypet.petmily.petSitter.service;
 
+import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.petSitter.dao.PetSitterMapper;
 import com.mypet.petmily.petSitter.pagnation.Pagenation;
 import com.mypet.petmily.petSitter.dto.PetSitterDTO;
 import com.mypet.petmily.petSitter.dto.SelectCriteria;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -58,4 +60,14 @@ public class PetSitterService {
         petSitterListAndPaging.put("petSitterList", petSitterDTOList);
         return petSitterListAndPaging;
     }
+
+//    public PetSitterDTO getAccount(@AuthenticationPrincipal MemberDTO loginMember) {
+//
+//        return petSitterMapper.getAccount(loginMember);
+//
+//
+//    }
+
+
+
 }

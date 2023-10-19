@@ -34,13 +34,9 @@ public class PetSitterController {
 
 
     @GetMapping("/mypage")
-    public String getMypage(@AuthenticationPrincipal MemberDTO loginMember, Model model) {
+    public String getMypage() {
 
-        log.info("loginMember : {}", loginMember);
 
-        PetSitterDTO petSitterInfo =  mypageService.selectMypage(loginMember);
-
-      model.addAttribute("petSitter", petSitterInfo);
 
         return "petSitter/mypage";
 
@@ -48,11 +44,12 @@ public class PetSitterController {
     }
 
 
-    @GetMapping("/account")
-    public String getAccount(Model model) {
-
-        return "petSitter/account";
-    }
+//    @GetMapping("/account")
+//    public String getAccount(@AuthenticationPrincipal MemberDTO loginMember, Model model) {
+//        PetSitterDTO petSitterInfo= petSitterService.getAccount(loginMember);
+//        model.addAttribute("petSitter"  ,petSitterInfo);
+//        return "petSitter/account";
+//    }
 
 
 

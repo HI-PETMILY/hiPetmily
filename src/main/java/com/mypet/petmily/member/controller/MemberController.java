@@ -291,8 +291,9 @@ public class MemberController {
 
         PetDTO petProfile = memberService.viewFirstPetProfile(member);
 
-
         model.addAttribute("petProfile", petProfile);
+
+        log.info("role :{}" , member);
 
         return "member/mypage";
     }

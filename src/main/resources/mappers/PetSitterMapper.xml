@@ -90,25 +90,6 @@
     </resultMap>
 
 
-
-
-
-    <select id="selectMypage" resultMap="memberResultMap">
-            SELECT
-            M.MEMBER_NO
-          , M.MEMBER_NAME
-          , M .ADDRESS
-            FROM TBL_MEMBER M
-            LEFT JOIN TBL_ROLE R ON(M.MEMBER_NO = R.MEMBER_NO)
-            WHERE MEMBER_STAT = '활동'
-
-
-
-
-        </select>
-
-
-
         <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
             SELECT
             COUNT(*)
@@ -158,6 +139,16 @@
         LEFT JOIN TBL_PET_TAG T ON(P.PET_MEMBER_NO = T.PET_MEMBER_NO)
         WHERE  P.PET_STAT= '승인'
     </select>
+
+<!--    <select id="getAccount" resultMap="petSitterResultMap">-->
+<!--         SELECT-->
+<!--         P.PET_BANK-->
+<!--        ,p.PET_BANK_NO-->
+<!--        ,P.PET_BANK_NAME-->
+<!--        FROM TBL_MEMBER M-->
+<!--        LEFT JOIN TBL_PET_SITTER P JOIN  ON(M.MEMBER_NO = P.PET_MEMBER_NO)-->
+<!--        WHERE P.PET_MEMBER_NO = #{M.MEMBER_NO}-->
+<!--    </select>-->
 
 
     <select id="selectPetSitterListPaging" resultMap="petSitterResultMap">

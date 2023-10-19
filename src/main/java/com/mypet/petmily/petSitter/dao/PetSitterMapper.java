@@ -21,4 +21,6 @@ public interface PetSitterMapper {
 
 
     PetSitterDTO selectMypage(MemberDTO loginMember);
+
+    PetSitterDTO getAccount(MemberDTO loginMember);
 }
