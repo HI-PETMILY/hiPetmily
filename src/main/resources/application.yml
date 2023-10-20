@@ -16,8 +16,10 @@ spring:
       max-file-size: 300MB
       max-request-size: 300MB
       # 각자 자기 프로젝트 환경에 맞는거 입력해두고 주석 풀고 걸고 사용
-      # 형수
+      # 형수 노트북
 #      location: D:/2.Dev/studyPj/sub_project/petmily
+      # 형수 학원
+      location: C:/Lecture/subProject/petmialy
       # 수현
 #      location:
       # 미림
