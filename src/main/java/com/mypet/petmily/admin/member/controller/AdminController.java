@@ -1,5 +1,6 @@
 package com.mypet.petmily.admin.member.controller;
 
+import com.mypet.petmily.admin.member.dao.AdminMapper;
 import com.mypet.petmily.admin.member.service.AdminService;
 import com.mypet.petmily.member.dto.MemberDTO;
 import com.mypet.petmily.member.dto.MemberRoleDTO;
@@ -37,7 +38,6 @@ public class AdminController {
         }
 
         log.info("검색버튼 클릭 시 들어오는 체크박스 선택 값 : {}", rating);                      //등급 체크박스 값 넘어오는지 확인
-// 서비스 클래스에서 총 회원 수와 페이징 처리된 회원 목록을 가져오기
 
         /////////////////////////////////////////////////////////////////////////////////////
         // 서비스로 라디오체크 값 넘김 (ex : [일반회원, 펫시터회원], [일반회원], [펫시터회원], null)
@@ -52,13 +52,19 @@ public class AdminController {
 
         List<MemberDTO> memberList = (List<MemberDTO>) memberListAndPaging.get("memberList");
         int totalCount = adminService.getTotalMemberCount(searchCondition, searchValue, rating);
-//      int searchResultCount = memberList.size(); // 검색 결과의 일치하는 전체 회원 수
 
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("memberList", memberList);
         model.addAttribute("paging", memberListAndPaging.get("paging"));
 
         return "admin/member/main-member";
+    }
+
+    @GetMapping("/ban-member") //회원 수동 삭제
+    public String banMember(@RequestParam("id") int id) {
+        adminService.banMember(id);
+
+        return "admin/member/ban-member";
     }
 
     @GetMapping("/secession")
@@ -88,7 +94,7 @@ public class AdminController {
 
         // 회원정보 보기 //
         //ID를 기반으로 멤버의 상세 정보를 검색하고 해당 정보를 뷰로 전달.
-        List<MemberDTO> member = adminService.getPoP_managementPageById(id);
+        List<MemberDTO> member = adminService.getPoP_managementPageById(id); ///////////////////
         model.addAttribute("member", member);
         log.info("member 잘 전달되냐? : {}", member);
 
@@ -103,11 +109,10 @@ public class AdminController {
                                               @RequestParam("point") int point,
                                               Model model) {
 
-        log.info("1파라미터 잘 전달되냐? : {}, {}, {}, {}", no, memberType, stat, point);
         adminService.setPoP_managementResultPage(no, memberType, stat, point);
 
         model.addAttribute("id", no);
-        log.info("2파라미터 잘 전달되냐? : {}, {}, {}, {}", no, memberType, stat, point);
+        log.info("파라미터 잘 전달되냐? : {}, {}, {}, {}", no, memberType, stat, point);
 
         return "admin/member/popManagementResult";
     }
@@ -127,7 +132,7 @@ public class AdminController {
     }
 
 
-    //펫시터 신청관리 ===========
+    //펫시터 신청관리 ===========(페이징과 검색, 조회를 같이하는 코드)
     @GetMapping("/management")
     public String getPetSitterList(@RequestParam(defaultValue = "1") int page,
                                    @RequestParam(required = false) String searchCondition,
@@ -143,9 +148,9 @@ public class AdminController {
 
         Map<String, Object> PetSitterListAndPaging = adminService.getPetSitterList(page, searchCondition, searchValue, apply);
 
-//        //탈퇴한지 180일 지난 회원 자동으로 삭제
-//        adminService.deleteMemebr();
-//        ////////////////////////////////////////////
+        //탈퇴한지 180일 지난 회원 자동으로 삭제
+        adminService.deleteMemebr();
+        ////////////////////////////////////////////
 
         List<PetSitterDTO> petSitterList = (List<PetSitterDTO>) PetSitterListAndPaging.get("petSitterList");
         int totalCount = adminService.getTotalPetSitterCount(searchCondition, searchValue, apply);
@@ -164,9 +169,9 @@ public class AdminController {
 
         // 펫시터 폼 보기 //
         //ID를 기반으로 멤버의 상세 정보를 검색하고 해당 정보를 뷰로 전달.
-//        List<MemberDTO> member = adminService.getPoP_managementPageById(id);
-//        model.addAttribute("member", member);
-//        log.info("member 잘 전달되냐? : {}", member);
+        List<PetSitterDTO> member = adminService.getPoP_petSitterPageById(id); ///////////////////
+        model.addAttribute("member", member);
+        log.info("member 잘 전달되냐? : {}", member);
 
         return "admin/member/popViewPetSitterApplicForm";
     }

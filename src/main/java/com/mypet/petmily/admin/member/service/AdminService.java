@@ -24,9 +24,6 @@ public class AdminService {
     }
 
     public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue, String rating) {
-        // 밑에 기존코드
-        // public Map<String, Object> getMemberList(int page, String searchCondition, String searchValue) {
-
 
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
         int totalCount = adminMapper.selectTotalCount(searchCondition, searchValue, rating);
@@ -58,7 +55,7 @@ public class AdminService {
 
     // 해당 회원 상세 조회
     @Transactional
-    public List<MemberDTO> getPoP_managementPageById(int id) {
+    public List<MemberDTO> getPoP_managementPageById(int id) { //////////////////////////////////
 
         // 클라이언트로부터 받은 memberId를 사용하여 회원 정보를 데이터베이스에서 조회
         List<MemberDTO> member = adminMapper.selectPoP_MemberById(id);
@@ -67,7 +64,7 @@ public class AdminService {
     }
 
     @Transactional
-    public void setPoP_managementResultPage(int no, int memberType, String stat, int point) {
+    public void setPoP_managementResultPage(int no, int memberType, String stat, int point) { //수정
 
         adminMapper.setPoP_Member(no, stat, point);
         adminMapper.setPoP_Authority(no, memberType);
@@ -76,7 +73,7 @@ public class AdminService {
     }
 
     @Transactional
-    public void deleteMemebr() {
+    public void deleteMemebr() {  //회원 삭제
 
         adminMapper.deleteMember();
     }
@@ -86,7 +83,7 @@ public class AdminService {
     public Map<String, Object> getPetSitterList(int page, String searchCondition, String searchValue, String apply) {
 
         /* 1. 전체 신청글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
-        int totalCount = adminMapper.selectPetSitterTotalCount(searchCondition, searchValue , apply);
+        int totalCount = adminMapper.selectPetSitterTotalCount(searchCondition, searchValue, apply);
         log.info("petSitterList totalCount : {}", totalCount);
 
         /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
@@ -105,8 +102,24 @@ public class AdminService {
 
         return petSitterListAndPaging;
     }
+
     @Transactional
     public int getTotalPetSitterCount(String searchCondition, String searchValue, String apply) {
-        return adminMapper.selectPetSitterTotalCount(searchCondition, searchValue , apply);
+        return adminMapper.selectPetSitterTotalCount(searchCondition, searchValue, apply);
+    }
+
+    // 해당 회원의 펫시터 신청 폼 상세 조회!!!
+    @Transactional
+    public List<PetSitterDTO> getPoP_petSitterPageById(int id) {
+
+        // 클라이언트로부터 받은 memberId를 사용하여 회원 정보를 데이터베이스에서 조회
+        List<PetSitterDTO> petSitter = adminMapper.selectPoP_PetSitterById(id);
+
+        return petSitter;
+
+    }
+    public void banMember(int id) { //수동 삭제
+
+        adminMapper.banMember(id);
     }
 }
