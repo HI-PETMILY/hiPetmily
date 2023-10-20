@@ -122,6 +122,7 @@
              , A.MEMBER_NO
              , A.RESERV_CODE
              , R.RESERV_START
+             , M.NICKNAME
              FROM (SELECT
                   ROWNUM RNUM
                   , B.REV_CODE
@@ -139,6 +140,8 @@
                         , C.RESERV_CODE
                         FROM TBL_REVIEW C
                         JOIN TBL_RESERVATION R ON(C.RESERV_CODE = R.RESERV_CODE)
+                        JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
+                        JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
                         WHERE C.REV_STATUS = 'Y'
                           AND C.MEMBER_NO = #{loginMember.memberNo}
                         ORDER BY C.REV_CODE DESC
@@ -148,8 +151,8 @@
                    ]]>
                    ) A
                 JOIN TBL_RESERVATION R ON (A.RESERV_CODE = R.RESERV_CODE)
-                /*JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)*/
-                /*JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)*/
+                JOIN TBL_PET_SITTER S ON (R.PET_MEMBER_NO = S.PET_MEMBER_NO)
+                JOIN TBL_MEMBER M ON (S.PET_MEMBER_NO = M.MEMBER_NO)
                 WHERE A.RNUM >= #{selectCriteria.startRow}
                 ORDER BY 1 DESC
     </select>

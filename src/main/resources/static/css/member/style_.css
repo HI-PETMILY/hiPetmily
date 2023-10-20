@@ -163,7 +163,7 @@ input[type=text], input[type=number], input[type=email], input[type=password]{
 
 .pet-profile-img{
     width: 180px;
-    margin: auto;
+    margin: 20px auto;
     border: solid 1px #bebebe;
     border-radius: 15px;
     max-height: 170px;

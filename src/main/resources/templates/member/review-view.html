@@ -24,7 +24,44 @@
 
     <div class="myPageMainWrapper">
         <h2 class="mainTitle">후기 조회</h2>
+
         <div class="nav-line"></div>
+
+        <div class="reserve-info">
+            <div class="sitter-profile">
+                <div class="sitter-profileImg">
+                    <img class="sitterImg" src="/static_Image/member/petProfileTest1.png">
+
+                </div>
+                <div class="sitter-nickname">
+                    <p th:text="${review.reserve.petSitter.memberInfo.nickName}"></p>
+                </div>
+            </div>
+
+            <div class="reserve-detail">
+                <div class="reserve-code">
+                    <p th:text="예약코드 + ' : ' + ${review.reserve.reserveCode}"></p>
+                </div>
+                <div class="reserve-text">
+                    <p th:text="'\''+${review.reserve.petSitter.memberInfo.nickName} + '\''"></p> 님에게 돌봄 서비스를 예약했어요.
+                </div>
+                <div class="nav-line grey-line"></div>
+                <div class="reserve-text-box">
+                    <h3 class="reserve-service-exp">펫시터 돌봄 서비스</h3>
+                    <div class="reserve-date">
+                        <p>예약 기간 : </p>
+                        <p th:text="${review.reserve.startDateTime} + ' ~ ' + ${review.reserve.endDateTime}"></p>
+
+                    </div>
+                    <div class="reserve-time">
+                        <p>총 예약 시간 : </p>
+                        <p th:text="${review.reserve.reserveDayCount} + 일 + ', ' + ${review.reserve.reserveTimeCount} + 시간"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-line"></div>
 
         <form id="reviewForm" action="/member/review_write" method="post">
 

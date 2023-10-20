@@ -30,9 +30,10 @@
             <tr>
                 <th class="col1">후기 번호</th>
                 <th class="col2">작성일</th>
-                <th class="col3">예약코드</th>
-                <th class="col4">별점</th>
-                <th class="col5">작성 내용</th>
+                <th class="col3">펫시터</th>
+                <th class="col4">예약 일시</th>
+                <th class="col5">별점</th>
+                <th class="col6">작성 내용</th>
             </tr>
             <tr th:if="${#lists.isEmpty(reviewList)}">
                 <td colspan="5">후기 작성 내역이 존재하지 않습니다. 펫밀리의 서비스를 이용하고 후기를 남겨보세요
@@ -42,9 +43,10 @@
                 th:onclick="|location.href='/member/review-view?revCode=${review.revCode}'|">
                 <td class="col1" th:text="${review.revCode}"></td>
                 <td class="col2" th:text="${#dates.format(review.revCreatedDate, 'yyyy-MM-dd')}"></td>
-                <td class="col3" th:text="${review.reserve.reserveCode}"></td>
-                <td class="col4" th:text="${review.revScore}"></td>
-                <td class="col5" th:text="${#strings.substring(review.revContent, 0, 10)}"></td>
+                <td class="col3" th:text="${review.reserve.petSitter.memberInfo.nickName}"></td>
+                <td class="col4" th:text="${#strings.substring(review.reserve.startDateTime, 0, 10)}"></td>
+                <td class="col5" th:text="${review.revScore}"></td>
+                <td class="col6" th:text="${#strings.substring(review.revContent, 0, 10)}"></td>
             </tr>
         </table>
 
