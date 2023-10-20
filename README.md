@@ -16,7 +16,7 @@
 # ⌛ 개발 기간
 - 23.9.25 ~ 23.10.20
 
-  ![image](https://github.com/HI-PETMILY/hiPetmily/assets/23203621/40809283-c3b0-4e20-8978-fba03d349a8a)
+  ![image](https://github.com/HI-PETMILY/hiPetmily/assets/23203621/090e625d-307b-4976-b950-effbb2977405)
 
 
 ## 🤼‍♀️ 멤버 구성
