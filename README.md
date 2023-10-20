@@ -64,18 +64,13 @@
 - 지난 예약 조회(상세+결제 조회)
 
 
-
-게시물 페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C())
-- ..
-- ..
-
 1대1문의 및 공지사항 고객센터페이지 - [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5(5))
 - 공지사항 목록/등록/수정/조회 확인
 - 1:1문의 목록/등록/수정/조회 확인 
 - 카카오톡 1:1상담 API
 
 
- 펫시터 마이페이지 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
+ 펫시터 마이페이지 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5-%EC%86%8C%EA%B0%9C(%ED%8E%AB%EC%8B%9C%ED%84%B0-%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80))
   - 펫시터 프로필 조회 
  
 
