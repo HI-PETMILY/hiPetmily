@@ -15,7 +15,8 @@ public interface PaymentMapper {
     int selectReservationTotalCount();
 
     /* 지난 예약 조회 */
-    List<ProgressReserveDTO> selectReservationBoardList(@Param("memberNo") int memberNo, @Param("startRow") int startRow, @Param("endRow") int endRow);
+    List<ProgressReserveDTO> selectReservationBoardList(
+            @Param("memberNo") int memberNo, @Param("startRow") int startRow, @Param("endRow") int endRow);
 
     /* 예약 상세 내역 조회 */
     List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int reserveCode);

@@ -62,8 +62,9 @@
     const inputEngNum = document.getElementById('memberId');
     inputEngNum.addEventListener('input', function (event) {
         const inputValue = event.target.value;
-        // event.target은 이벤트를 발생시킨 요소를 가리킨다. -> 입력필드
         event.target.value = inputValue.replace(/[^\w\s@.]/ig, '');
+
+        // event.target은 이벤트를 발생시킨 요소를 가리킨다. -> 입력필드
         // event.target.value는 입력 필드의 현재 값을 나타낸다.
         // => 정규 표현식을 사용하여 입력을 필터링하고, 필터링된 결과를 다시 입력 필드에 할당하여 불필요한 문자를 제거한다.
     });

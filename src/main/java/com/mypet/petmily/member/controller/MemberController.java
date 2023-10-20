@@ -255,7 +255,8 @@ public class MemberController {
 
             memberService.modifyPassword(modifyPassword);
 
-            SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(modifyPassword.getMemberId()));
+            SecurityContextHolder.getContext().setAuthentication(
+                    createNewAuthentication(modifyPassword.getMemberId()));
 
             rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify.success"));
 

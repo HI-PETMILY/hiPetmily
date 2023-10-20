@@ -70,8 +70,6 @@ public class PaymentController {
         Map<String, Object> ReservationListAndPaging = paymentService.selectReservationList(loginMember.getMemberNo(), page);
         model.addAttribute("paging", ReservationListAndPaging.get("paging"));
         model.addAttribute("reservationList", ReservationListAndPaging.get("reservationList"));
-//        model.addAttribute("startRow", ReservationListAndPaging.get("startRow"));
-//        model.addAttribute("endRow", ReservationListAndPaging.get("endRow"));
         log.info("reservationList : {}", ReservationListAndPaging.get("reservationList"));
 
         return "/member/reservationList";
@@ -80,18 +78,15 @@ public class PaymentController {
 
     @GetMapping("reservationDetail")
     public String detailReservation(@AuthenticationPrincipal MemberDTO loginMember, Model model,
-                                    @RequestParam int reserveCode, RedirectAttributes rttr)
-    throws reservationDetailException {
+                                    @RequestParam int reserveCode) {
 
         model.addAttribute("loginMember", loginMember.getMemberNo());
-        log.info("loginMember : {}", loginMember);
+
         List<ProgressReserveDTO> detailReservation = paymentService.selectDetailReservation(loginMember, reserveCode);
         model.addAttribute("detailReservation", detailReservation);
-        log.info("detailReservation : {}", detailReservation);
+
         List<PaymentDTO> selectPaymentInfo = paymentService.selectPaymentReservation(loginMember, reserveCode);
         model.addAttribute("selectPaymentInfo", selectPaymentInfo);
-
-        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("res.detail.select"));
 
         return "member/reservationDetail";
     }

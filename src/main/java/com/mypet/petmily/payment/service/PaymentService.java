@@ -32,19 +32,18 @@ public class PaymentService {
         log.info("reservation totalCount : {}", totalCount);
 
         int limit= 5;
-        int buttonAmount = 1;
+        int buttonAmount = 3;
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount);
-        log.info("reservation selectCriteria : {}", selectCriteria);
 
-        List<ProgressReserveDTO> reservationList = paymentMapper.selectReservationBoardList(memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
-        log.info("reservation reservationList : {}", reservationList);
+        List<ProgressReserveDTO> reservationList = paymentMapper.selectReservationBoardList(
+                memberNo, selectCriteria.getStartRow(), selectCriteria.getEndRow());
 
         Map<String, Object> reservationListAndPaging = new HashMap<>();
         reservationListAndPaging.put("paging", selectCriteria);
         reservationListAndPaging.put("reservationList", reservationList);
-        log.info("reservationListAndPaging : {}", reservationListAndPaging);
         return reservationListAndPaging;
     }
+
 
     /* 상세 내역 조회 - 예약, 펫시터 */
     public List<ProgressReserveDTO> selectDetailReservation(MemberDTO loginMember, int reserveCode) {

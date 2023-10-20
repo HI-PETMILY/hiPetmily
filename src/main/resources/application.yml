@@ -27,7 +27,7 @@ spring:
       # 서현 노트북
 #      location: C:/Lecture/subProject/hiPetmily
       # 유리
-      location: C:\Lecture11111\Petmily_project\hiPetmily
+#      location: C:\Lecture11111\Petmily_project\hiPetmily
       # 소정
 #      location:
 
