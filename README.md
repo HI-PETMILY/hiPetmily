@@ -79,7 +79,7 @@
   - 펫시터 프로필 조회 
  
 
- 펫시터 목록 조회 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C())
+ 펫시터 목록 조회 -  [상세보기-WIKI이동](https://github.com/HI-PETMILY/hiPetmily/wiki/%EC%A3%BC%EC%9A%94%EA%B8%B0%EB%8A%A5%EC%86%8C%EA%B0%9C(%ED%8E%AB%EC%8B%9C%ED%84%B0-%EB%AA%A9%EB%A1%9D-%EC%A1%B0%ED%9A%8C))
 - 펫시터 목록 조회
 - 해당 펫시터의 제일 최신 후기 1개만 화면에 조회   
   
