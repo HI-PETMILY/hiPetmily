@@ -7,10 +7,10 @@
 <body>
 <SCRIPT>
     function Change() {
-        alert("회원정보 수정 완료");
+        alert("회원 탈퇴 처리 완료");
 
         opener.parent.location.reload();
-        location.href="popManagement?id=" + [[${id}]];
+        window.close(); //창 닫기
 
         return true;
     }

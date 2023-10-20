@@ -30,4 +30,8 @@ public interface AdminMapper {
     int selectPetSitterTotalCount(String searchCondition, String searchValue, String apply);
 
     List<PetSitterDTO> selectPetSitterList(SelectPetSitterCriteria selectCriteria);
+
+    List<PetSitterDTO> selectPoP_PetSitterById(int id); //펫시터 폼 상세 조회
+
+    void banMember(int id); //수동 삭제
 }
